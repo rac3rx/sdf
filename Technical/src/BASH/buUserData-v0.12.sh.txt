@@ -1,0 +1,74 @@
+#!/bin/bash
+###
+#
+#  File:  buUserData-v0.10.sh 
+#  Purpose:  backup scripts in local directory.
+#  Author:  SFC Hammond, Christopher J.
+#  Date:  21:29, 10/07/10
+#
+###
+
+
+# 
+#  Maintenance Record and versioning
+# 
+#  need error control, logging, rsync, use find, email, dot files
+
+# 
+#  Syntax, notes, or instructions
+#
+
+#
+# env vars for directories or resources
+#
+HOME=/home/rac3rx                       # setup initial variables shortcuts first
+SUPPORT=/home/rac3rx/Support
+BIN=${HOME}/Bin
+MYBU=${SUPPORT}/Data/MyBU
+MYSNS=${SUPPORT}/Data/MySNs
+MYSRC=${SUPPORT}/Data/MySrc
+PCOS=${SUPPORT}/PCOS/W2k3/Bin
+DATA="${BIN} ${MYSNS} ${MYSRC} ${PCOS}"
+TMP=${HOME}/Tmp
+UL=${HOME}/UL
+COMP=`uname -n`
+
+#
+# env vars for dates eg $(date +%m-%d-%Y)
+#
+DOW=`date +%a`              		# Day of the week e.g. Mon
+DOM=`date +%d`              		# Date of the Month e.g. 27
+DM=`date +%d%b`             	        # Date and Month e.g. 27Sep
+DMY=`date +%d%b%y`             	        # Date, Month, and Year e.g. 27Sep10
+H=`date +%H`                            # 24 hr format
+HM=`date +%H%M`                         # 24 hr format
+BUFILE=${COMP}_${H}_${DM}.tbz
+
+#
+# mail variables
+#
+MTO=chris.hammond.tx@gmail.com
+MSUB=Backup ${DATA}
+#MBOD=`echo ${COMP} ${DM}`
+MBOD=${MYBU}/buMessage.txt
+MATT=${UL}/${BUFILE}
+
+#
+# synchronize directories rsync does it better than tar
+#
+
+#
+# backup targets bzip format 
+#
+    echo -e \\n
+    echo '+--------------------------------------+'
+    echo '|  backing-up targets in bzip format   |'
+    echo '+--------------------------------------+'
+    echo -e \\n
+    tar -jcf "${UL}/${BUFILE}" ${DATA}
+    mail -a "${MATT}" -s "${MSUB}" "${MTO}" < "${MBOD}"
+    echo -e \\n
+    echo '+--------------------------------------+'
+    echo '|  Done thank you                      |'
+    echo '+--------------------------------------+'
+    echo -e \\n

@@ -1,0 +1,136 @@
+::  -------------------------------------------------------------------------- 
+::  File:  step01b_wget.bat
+::  Purpose:  w2k3 slipstream SP1 and SP2 create source environment
+::            specifically files eg tools and updates.
+::  Author:  SFC Hammond, Christopher J. 
+::  Date:  Thu 10/07/2010 
+::  -------------------------------------------------------------------------- 
+ 
+:: (Place maintenance record here) 
+ 
+@ECHO OFF 
+GOTO START 
+ 
+::  (Place syntax, notes, or other instructions heres) 
+ 
+:START
+::  Create some environment variables
+
+SET SRCDIR=.\mmddyy_w2k3
+SET SRCW2K3=.\mmddyy_w2k3\w2k3
+SET SRCBIN=.\mmddyy_w2k3\w2k3\BIN
+SET SRCBINCDR=.\mmddyy_w2k3\w2k3\BIN\cdrtools-2.01
+SET SRCBINRSYNC=.\mmddyy_w2k3\w2k3\BIN\rsync-3.0.2
+SET SRCBOOT=.\mmddyy_w2k3\w2k3\BOOT
+SET SRCDL=.\mmddyy_w2k3\w2k3\DL
+SET SRCDOCS=.\mmddyy_w2k3\w2k3\DOCS
+SET SRCISOS=.\mmddyy_w2k3\w2k3\ISOS
+SET SRCMYSRC=.\mmddyy_w2k3\w2k3\MYSRC
+SET SRCRESEARCH=.\mmddyy_w2k3\w2k3\RESEARCH
+SET SRCROOT=.\mmddyy_w2k3\w2k3\ROOT
+SET SRCSP1=.\mmddyy_w2k3\w2k3\SP1
+SET SRCSP2=.\mmddyy_w2k3\w2k3\SP2
+SET SRCTMP=.\mmddyy_w2k3\w2k3\TMP
+SET SRCTOOLS=.\mmddyy_w2k3\w2k3\TOOLS
+SET SRCUL=.\mmddyy_w2k3\w2k3\UL
+
+::
+:: Files Tools Section 
+::   01.  wget.exe
+::   02.  rsync.exe
+::   03.  mkisofs.exe
+::   04.  Windows2003StdCDBootSector.zip
+::   05.  bbie.exe BBIE v1.0 (22KB) - Bart's Boot Image Extractor (optional: may use dd)
+::
+
+::  SRCBINWGET file
+::   1.  wget.exe
+IF EXIST .\mmddyy_w2k3\w2k3\BIN\wget.exe (
+      echo %DATE% %TIME% SRCBINWGET *** PRESENT *** >> .\SrcDirLog.txt
+) ELSE (
+      echo %DATE% %TIME% SRCBINWGET *** MISSING *** >> .\SrcDirLog.txt
+      xcopy .\bin\wget.exe .\mmddyy_w2k3\w2k3\BIN\
+      IF EXIST .\mmddyy_w2k3\w2k3\BIN\wget.exe (
+          echo %DATE% %TIME% SRCBINWGET *** PRESENT *** >> .\SrcDirLog.txt
+      ) ELSE (
+          echo %DATE% %TIME% SRCBINWGET *** MISSING *** >> .\SrcDirLog.txt
+		  echo %DATE% %TIME% SRCBINWGET Download wget.exe from:  >> .\SrcDirLog.txt 
+		  echo ftp://garbo.uwasa.fi/win95/unix/UnxUtils.zip   >> .\SrcDirLog.txt
+		  echo http://users.ugent.be/~bpuype/cgi-bin/fetch.pl?dl=wget/wget.exe  >> .\SrcDirLog.txt
+		  call .\Bin\ftpScript-v0.01.bat
+		  mkdir .\mmddyy_w2k3\w2k3\BIN\UnxUtils
+		  .\Bin\7za x -o .\mmddyy_w2k3\w2k3\BIN\UnxUtils .\UnxUtils.zip
+::
+::  UnxUtils
+::  wget
+::  .\mmddyy_w2k3\w2k3\BIN\UnxUtils\usr\local\wbin\wget.exe
+::
+		  echo %DATE% %TIME% UnxUtils available from:  >> .\SrcDirLog.txt
+	         )
+       )
+
+::  SRCBINSYNC file
+::   2.  rsync.exe
+IF EXIST .\mmddyy_w2k3\w2k3\BIN\rsync-3.0.2\rsync.exe (
+      echo %DATE% %TIME% SRCBINSYNC *** PRESENT *** >> .\SrcDirLog.txt
+) ELSE (
+      echo %DATE% %TIME% SRCBINSYNC *** MISSING *** >> .\SrcDirLog.txt
+      xcopy .\bin\rsync-3.0.2\*.* .\mmddyy_w2k3\w2k3\BIN\rsync-3.0.2\
+      IF EXIST .\mmddyy_w2k3\w2k3\BIN\rsync-3.0.2\rsync.exe (
+          echo %DATE% %TIME% SRCBINSYNC *** PRESENT *** >> .\SrcDirLog.txt
+      ) ELSE (
+          echo %DATE% %TIME% SRCBINSYNC *** MISSING *** >> .\SrcDirLog.txt
+		  echo %DATE% %TIME% SRCBINSYNC Download rsync-3.0.2\rsync.exe from:  >> .\SrcDirLog.txt 
+		  echo http://www.michael-wallner.at/website/media/download_gallery/wsrsync_0.0.9.zip  >> .\SrcDirLog.txt
+          mkdir .\mmddyy_w2k3\w2k3\BIN\rsync-3.0.2\
+          .\mmddyy_w2k3\w2k3\BIN\wget.exe -ct 3 -P .\mmddyy_w2k3\w2k3\BIN\rsync-3.0.2\ http://www.michael-wallner.at/website/media/download_gallery/wsrsync_0.0.9.zip
+          .\Bin\7za x -o .\mmddyy_w2k3\w2k3\BIN\rsync-3.0.2
+	         )
+       )
+::  SRCBINCDR file
+::   3.  mkisofs.exe
+IF EXIST .\mmddyy_w2k3\w2k3\BIN\cdrtools-2.01\mkisofs.exe (
+      echo %DATE% %TIME% SRCBINCDR *** PRESENT *** >> .\SrcDirLog.txt
+) ELSE (
+      echo %DATE% %TIME% SRCBINCDR *** MISSING *** >> .\SrcDirLog.txt
+      xcopy .\bin\cdrtools-2.01\*.* .\mmddyy_w2k3\w2k3\BIN\cdrtools-2.01\
+      IF EXIST .\mmddyy_w2k3\w2k3\BIN\cdrtools-2.01\mkisofs.exe (
+          echo %DATE% %TIME% SRCBINCDR *** PRESENT *** >> .\SrcDirLog.txt
+      ) ELSE (
+          echo %DATE% %TIME% SRCBINCDR *** MISSING *** >> .\SrcDirLog.txt
+		  echo %DATE% %TIME% SRCBINCDR Download cdrtools-2.01 from:  >> .\SrcDirLog.txt 
+		  echo http://smithii.com/files/cdrtools-latest.zip >> .\SrcDirLog.txt
+	  GOTO END
+	         )
+       )
+:: Files CD Parts (boot sector and SPs)
+::  1.  Windows2003StdCDBootSector.zip
+::  2.  Windows2003StdCDBootSector.zip
+::
+::  SRCDLBS file
+REM Validating SRCDLBS
+IF EXIST .\mmddyy_w2k3\w2k3\DL\Windows2003StdCDBootSector.zip (
+      echo %DATE% %TIME% SRCBINBS *** PRESENT *** >> .\SrcDirLog.txt
+) ELSE (
+       %SRCBIN%\wget.exe -ct 3 -P.\mmddyy_w2k3\w2k3\DL http://www.windowsitpro.com/content/content/46202/Windows2003StdCDBootSector.zip
+	   cd ..\..\..
+	   )
+
+::  SRCDLSP1 file
+REM Validating SRCDLSP1
+IF EXIST .\mmddyy_w2k3\w2k3\DL\WindowsServer2003-KB889101-SP1-x86-ENU.exe (
+      echo %DATE% %TIME% SRCBINBS *** PRESENT *** >> .\SrcDirLog.txt
+) ELSE (
+       %SRCBIN%\wget.exe -ct 3 -P.\mmddyy_w2k3\w2k3\DL http://download.microsoft.com/download/1/2/7/127c5938-d36a-4405-9df1-f00d57495652/WindowsServer2003-KB889101-SP1-x86-ENU.exe
+	   cd ..\..\..
+	   )
+
+::  SRCDLSP2 file
+REM Validating SRCDLSP2
+IF EXIST .\mmddyy_w2k3\w2k3\DL\WindowsServer2003-KB889101-SP1-x86-ENU.exe (
+      echo %DATE% %TIME% SRCBINBS *** PRESENT *** >> .\SrcDirLog.txt
+) ELSE (
+       %SRCBIN%\wget.exe -ct 3 -P.\mmddyy_w2k3\w2k3\DL http://download.microsoft.com/download/5/f/1/5f104409-2736-48ef-82e1-692ec3da020b/WindowsServer2003-KB914961-SP2-x86-ENU.exe
+       cd ..\..\..
+	   )
+:END 

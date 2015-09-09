@@ -1,0 +1,26 @@
+# two levels deep here, you can adjust that with the "-l" flag. 
+wget -r -l 2 www.targetwebsite.com
+
+# Next, we replace the spaces with new line characters and produce a uniq list:
+grep -hr "" www.targetwebsite.com/ | tr '[:space:]' '\n' | sort | uniq > wordlist.lst
+
+# Next step is to remove the weird characters. Don't worry, we can put them back. 
+# This primarily removes the HTML tags and such:
+# Note: I do not remove the parentheses characters "()". We probably need to move 
+# to perl regex or something similar to do that. 
+egrep -v '('\,'|'\;'|'\}'|'\{'|'\<'|'\>'|'\:'|'\='|'\"'|'\/'|'\/'|'\['|'\]')' wordlist.lst | sort -u > wordlist.clean.lst
+
+# Below, we append the default John the ripper password list to our custom list:
+cat password.lst >> wordlist.clean.lst
+
+# Now, we might have duplicates and since we removed all special
+# characters (Well, most of them anyhow) we need to put them back. Below
+# we run John to re-generate our unique wordlist, apply some rules, and
+# output to standard out:
+
+# For bonus points you can modify the rules so that it does a better job
+# of adding in special characters (such as replacing all "i" with "1").
+# We'll leave this exercise up to the reader.
+john --wordlist=wordlist.clean.lst --rules --stdout | uniq > final.wordlist.lst
+
+

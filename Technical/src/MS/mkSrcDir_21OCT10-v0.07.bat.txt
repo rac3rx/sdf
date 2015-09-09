@@ -1,0 +1,149 @@
+::  -------------------------------------------------------------------------- 
+::  File:  mkSrcDir_21OCT10-v0.07.bat 
+::  Purpose:   
+::  Author:  SFC Hammond, Christopher J. 
+::  Date:  Fri 10/01/2010 
+::  -------------------------------------------------------------------------- 
+ 
+::  21OCT10 Updated code for directory structure mmddyy
+::  %date:~4,2%%date:~7,2%%date:~-2%
+ 
+@ECHO OFF 
+GOTO START 
+TITLE mkSrcDir
+
+::  (Place syntax, notes, or other instructions heres) 
+ 
+:START
+
+::  Create some environment variables
+
+SET SRCDIR=.\%date:~4,2%%date:~7,2%%date:~-2%_setupdate
+SET SRCSEC=.\%date:~4,2%%date:~7,2%%date:~-2%_setupdate\SECURITY
+SET SRCSEC_Exe=.\%date:~4,2%%date:~7,2%%date:~-2%_setupdate\SECURITY\Exe
+SET SRCSEC_IAVADOCS=".\%date:~4,2%%date:~7,2%%date:~-2%_setupdate\SECURITY\IAV Docs"
+SET SRCSEC_MSI=.\%date:~4,2%%date:~7,2%%date:~-2%_setupdate\SECURITY\Msi
+SET SRCSEC_Office=.\%date:~4,2%%date:~7,2%%date:~-2%_setupdate\SECURITY\Office
+SET SRCSEC_Others=.\%date:~4,2%%date:~7,2%%date:~-2%_setupdate\SECURITY\Others
+SET SRCSEC_Windows=.\%date:~4,2%%date:~7,2%%date:~-2%_setupdate\SECURITY\Windows
+SET TT=D:\IAVAs_-_TACLAN\Tools_-_TACLAN
+
+::  Creating SRCDIR (.\%date:~4,2%%date:~7,2%%date:~-2%_setupdate) structure, if it's missing 
+::  Directories first, then a few files
+
+::  SRCDIR directory
+REM Validating and/or creating SRCDIR
+IF NOT EXIST .\%date:~4,2%%date:~7,2%%date:~-2%_setupdate (
+      mkdir .\%date:~4,2%%date:~7,2%%date:~-2%_setupdate
+      echo %DATE% %TIME% SRCDIR *** MISSING *** creating >> .\SrcDirLog.txt
+) ELSE (
+      echo %DATE% %TIME% SRCDIR *** PRESENT *** skipping >> .\SrcDirLog.txt
+       )
+  ::  SRCSEC directory
+  IF NOT EXIST .\%date:~4,2%%date:~7,2%%date:~-2%_setupdate\Security (
+      mkdir .\%date:~4,2%%date:~7,2%%date:~-2%_setupdate\Security
+      echo %DATE% %TIME% SRCSEC *** MISSING *** creating >> .\SrcDirLog.txt
+) ELSE (
+      echo %DATE% %TIME% SRCSEC *** PRESENT *** skipping >> .\SrcDirLog.txt
+       )
+  ::  SRCSEC_EXE directory
+  IF NOT EXIST .\%date:~4,2%%date:~7,2%%date:~-2%_setupdate\Security\Exe (
+      mkdir .\%date:~4,2%%date:~7,2%%date:~-2%_setupdate\Security\Exe
+      echo %DATE% %TIME% SRCSEC_EXE *** MISSING *** creating >> .\SrcDirLog.txt
+) ELSE (
+      echo %DATE% %TIME% SRCSEC_EXE *** PRESENT *** skipping >> .\SrcDirLog.txt
+       )
+  ::  SRCSEC_IAVADOCS directory
+  IF NOT EXIST ".\%date:~4,2%%date:~7,2%%date:~-2%_setupdate\Security\IAV Docs" (
+      mkdir ".\%date:~4,2%%date:~7,2%%date:~-2%_setupdate\Security\IAV Docs"
+      echo %DATE% %TIME% SRCSEC_IAVADOCS *** MISSING *** creating >> .\SrcDirLog.txt
+) ELSE (
+      echo %DATE% %TIME% SRCSEC_IAVADOCS *** PRESENT *** skipping >> .\SrcDirLog.txt
+       )
+  ::  SRCSEC_MSI directory
+  IF NOT EXIST .\%date:~4,2%%date:~7,2%%date:~-2%_setupdate\Security\Msi (
+      mkdir .\%date:~4,2%%date:~7,2%%date:~-2%_setupdate\Security\Msi
+      echo %DATE% %TIME% SRCSEC_MSI *** MISSING *** creating >> .\SrcDirLog.txt
+) ELSE (
+      echo %DATE% %TIME% SRCSEC_MSI *** PRESENT *** skipping >> .\SrcDirLog.txt
+       )
+  ::  SRCSEC_OFFICE directory
+  IF NOT EXIST .\%date:~4,2%%date:~7,2%%date:~-2%_setupdate\Security\Office (
+      mkdir .\%date:~4,2%%date:~7,2%%date:~-2%_setupdate\Security\Office
+      echo %DATE% %TIME% SRCSEC_OFFICE *** MISSING *** creating >> .\SrcDirLog.txt
+) ELSE (
+      echo %DATE% %TIME% SRCSEC_OFFICE *** PRESENT *** skipping >> .\SrcDirLog.txt
+       )
+  ::  SRCSEC_OTHERS directory
+  IF NOT EXIST .\%date:~4,2%%date:~7,2%%date:~-2%_setupdate\Security\Others (
+      mkdir .\%date:~4,2%%date:~7,2%%date:~-2%_setupdate\Security\Others
+      echo %DATE% %TIME% SRCSEC_OTHERS *** MISSING *** creating >> .\SrcDirLog.txt
+) ELSE (
+      echo %DATE% %TIME% SRCSEC_OTHERS *** PRESENT *** skipping >> .\SrcDirLog.txt
+       )
+  ::  SRCSEC_WINDOWS directory
+  IF NOT EXIST .\%date:~4,2%%date:~7,2%%date:~-2%_setupdate\Security\Windows (
+      mkdir .\%date:~4,2%%date:~7,2%%date:~-2%_setupdate\Security\Windows
+      echo %DATE% %TIME% SRCSEC_WINDOWS *** MISSING *** creating >> .\SrcDirLog.txt
+) ELSE (
+      echo %DATE% %TIME% SRCSEC_WINDOWS *** PRESENT *** skipping >> .\SrcDirLog.txt
+       )
+
+::  Check the presence of some needed files
+::  qchain.exe
+
+  REM ensure qchain.exe is present 
+  IF NOT EXIST .\%date:~4,2%%date:~7,2%%date:~-2%_setupdate\Security\qchain.exe (
+	  echo qchain.exe missing from present directory
+	  echo ensure TT=D:\IAVAs_-_TACLAN\Tools_-_TACLAN is present
+	  echo additionally that qchain.exe is within TT
+      echo %DATE% %TIME% qchain.exe *** MISSING *** copy qchain.exe to current directory >> .\SrcDirLog.txt
+	  echo.
+	  copy D:\IAVAs_-_TACLAN\Tools_-_TACLAN\qchain.exe %SRCSEC%
+) ELSE (
+      echo %DATE% %TIME% qchain.exe *** PRESENT *** skipping >> .\SrcDirLog.txt
+       )
+
+::  test1.scr
+
+  REM ensure test1.scr is present 
+  IF NOT EXIST .\%date:~4,2%%date:~7,2%%date:~-2%_setupdate\Security\test1.scr (
+	  echo test1.scr missing from present directory
+	  echo ensure TT=D:\IAVAs_-_TACLAN\Tools_-_TACLAN is present
+	  echo additionally that test1.scr is within TT
+      echo %DATE% %TIME% test1.scr *** MISSING *** copy test1.scr to current directory >> .\SrcDirLog.txt
+	  echo.
+	  copy D:\IAVAs_-_TACLAN\Tools_-_TACLAN\test1.scr %SRCSEC%
+) ELSE (
+      echo %DATE% %TIME% test1.scr *** PRESENT *** skipping >> .\SrcDirLog.txt
+       )
+
+::  Test2.scr
+
+  REM ensure Test2.scr is present 
+  IF NOT EXIST .\%date:~4,2%%date:~7,2%%date:~-2%_setupdate\Security\Test2.scr (
+	  echo Test2.scr missing from present directory
+	  echo ensure TT=D:\IAVAs_-_TACLAN\Tools_-_TACLAN is present
+	  echo additionally that Test2.scr is within TT
+      echo %DATE% %TIME% Test2.scr *** MISSING *** copy Test2.scr to current directory >> .\SrcDirLog.txt
+	  echo.
+	  copy D:\IAVAs_-_TACLAN\Tools_-_TACLAN\Test2.scr %SRCSEC%
+) ELSE (
+      echo %DATE% %TIME% Test2.scr *** PRESENT *** skipping >> .\SrcDirLog.txt
+       )
+
+::  AllHotFixes.bat
+
+  REM ensure AllHotFixes.bat is present 
+  IF NOT EXIST .\%date:~4,2%%date:~7,2%%date:~-2%_setupdate\Security\AllHotFixes.bat (
+	  echo AllHotFixes.bat missing from present directory
+	  echo ensure TT=D:\IAVAs_-_TACLAN\Tools_-_TACLAN is present
+	  echo additionally that AllHotFixes.bat is within TT
+      echo %DATE% %TIME% AllHotFixes.bat *** MISSING *** copy AllHotFixes.bat to current directory >> .\SrcDirLog.txt
+	  echo.
+	  copy D:\IAVAs_-_TACLAN\Tools_-_TACLAN\AllHotFixes.bat %SRCSEC%
+) ELSE (
+      echo %DATE% %TIME% AllHotFixes.bat *** PRESENT *** skipping >> .\SrcDirLog.txt
+      echo. >> .\SrcDirLog.txt
+       )
+:END 

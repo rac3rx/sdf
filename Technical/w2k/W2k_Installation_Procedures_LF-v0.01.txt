@@ -1,0 +1,62 @@
+W2k Installation Procedures
+
+  Apps to install
+
+    SP4
+    Encryption Pack
+    Acrobat
+    wFortune
+    Putty
+    Firefox
+    SpyBot - Search&Destroy
+    TightVNC
+    Rawrite32
+    7-Zip
+    gvim63.exe
+    xnews
+    rsync
+    sync2nas_1.38_installer.exe
+    ConTEXT
+    Tadpole
+    LANcet Chat
+    HTML Reminder
+    PixResizer
+    Cygwin
+    Sandisk
+    PhotoFiltre
+
+  Hosts
+    
+            192.168.1.1 AP-Router
+            192.168.1.2
+            192.168.1.3
+            192.168.1.4 DI-614+
+            192.168.1.5
+    Pippen  192.168.1.6
+            192.168.1.7
+            192.168.1.8
+    Gandalf 192.168.1.9
+            192.168.1.10
+    Legolas 192.168.1.11
+    Galadriel 192.168.1.12
+            192.168.1.13
+            192.168.1.14
+            192.168.1.15
+
+
+  DNS Servers
+            192.168.1.1
+            205.152.132.23
+            205.152.37.23
+  ISP Information
+    username: blancahammond@bellsouth.net
+    p/w: 5370864
+
+
+
+PPPoE
+rsync -av --delete -b --suffix='.1' c:/dl/ 192.168.1.11:/DL/
+
+            205.152.37.23
+Gandalf: Toshiba Satellite 330 CDT: 
+  Sound Settings

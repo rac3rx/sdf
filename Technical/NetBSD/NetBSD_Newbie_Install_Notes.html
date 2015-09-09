@@ -1,0 +1,43 @@
+<HTML>
+  <HEAD>
+    <TITLE>
+      NetBSD Newbie Installation Notes
+    </TITLE>
+  </HEAD>
+  <BODY>
+    <P>
+First thing I have to do is setup "Filename Completion".
+    </P>
+    <P>
+1.) .cshrc must be edited to include the folliwng line,
+
+    set filec
+    </P>
+    <P>
+Second most important thing is to setup the network.  
+    </P>
+    <P>
+2.) network configuration
+
+     a.) find the nic, ifconfig -a, dmesg | grep MAC, or dmesg | grep address
+     b.) echo "192.168.1.4 netmask 0xffffff00" > /etc/ifconfig.fxp0
+         i.)  # echo "auto_ifconfig=YES" >> /etc/rc.conf
+     c.) echo "Legolas" > /etc/myname
+     d.) echo "192.168.1.1" > /etc/mygate
+     e.) echo "nameserver 192.168.1.5" > /etc/resolv.conf
+     ee.) ntpdate -b tick.uh.edu
+     f.) /etc/hosts
+
+    </P>
+
+    <P>
+      LAST UPDATED: Mon Apr 19 16:49:28 UTC 2004
+    </P> 
+    <P>
+      <A HREF="MAILTO:rac3rx@sdf.lonestar.org">
+        Webmaster: rac3rx@sdf.lonestar.org
+      </A>
+    </P>
+  </BODY>
+</HTML>
+

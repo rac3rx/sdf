@@ -1,0 +1,16 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\SYSTEM_00\ControlSet001\Control\CriticalDeviceDatabase\pci#VEN_1106&DEV_3149]
+"ClassGUID"="{4D36E97B-E325-11CE-BFC1-08002BE10318}"
+"Service"="viasraid"
+
+[HKEY_LOCAL_MACHINE\SYSTEM_00\ControlSet001\Services\viasraid]
+"ErrorControl"=dword:00000001
+"Group"="SCSI miniport"
+"Start"=dword:00000000
+"Tag"=dword:00000001
+"Type"=dword:00000001
+"DisplayName"="Via Serial ATA RAID"
+"ImagePath"=hex(2):53,00,59,00,53,00,54,00,45,00,4d,00,33,00,32,00,5c,00,44,00,\
+  72,00,69,00,76,00,65,00,72,00,73,00,5c,00,76,00,69,00,61,00,73,00,72,00,61,\
+  00,69,00,64,00,2e,00,73,00,79,00,73,00,00,00

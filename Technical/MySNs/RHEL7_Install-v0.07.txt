@@ -1,0 +1,591 @@
+LAB 01
+                     Physical Host
+                     kauai.example.net
+                     HD1 Space:  80GB>
+                     RAM:  > 4GB
+                     IP:  192.168.122.1
+       VM (server sytstem)         VM (test sytstem)         VM (test sytstem)
+       gamma.example.net           whitehat.example.net
+       HD1 Space: 12GB             HD1 Space: 12GB           HD1 Space: 12GB
+       HD2 Space: 01GB             HD1 Space: 01GB           HD1 Space: 01GB
+       RAM: 768 MB                 RAM: 768 MB               RAM: 768 MB
+       IP:  192.168.122.20         IP:  192.168.122.130      IP:  192.168.122.240
+
+
+STEP 01:a:
+ 
+    Create YUM Repo
+
+   mount -o loop /home/rac3rx/Downloads/RHCSA/rhel-server-7.0-x86_64-dvd.iso ./mnt/
+   mkdir -p /opt/yum_repo/rhel7/repodata
+   cp -a ./mnt/Packages/*.rpm /opt/yum_repo/rhel7/
+   ls ./mnt/repodata/*comps*.xml
+   cp ./mnt/repodata/*comps*.xml /opt/yum_repo/rhel7/repodata/comps.xml
+   cd /opt/yum_repo/rhel7/
+   createrepo -g /opt/yum_repo/rhel7/repodata/comps.xml /opt/yum_repo/rhel7
+
+--snip /etc/yum.repos.d/rhel-local.repo --
+
+[rhel7-local]
+name=RHEL 7 local repository
+baseurl=file:///opt/yum_repo/rhel7/
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+enabled=1
+
+--snip /etc/yum.repos.d/rhel-local.repo --
+
+ 
+STEP 01:
+http://www.howtoforge.com/how-to-install-kvm-and-libvirt-on-centos-6.2-with-bridged-networking
+http://www.cyberciti.biz/faq/kvm-virtualization-in-redhat-centos-scientific-linux-6/
+http://www.cyberciti.biz/faq/centos-rhel-linux-kvm-virtulization-tutorial/
+https://linux.dell.com/files/whitepapers/KVM_Virtualization_in_RHEL_6_made_easy.pdf
+http://www.techotopia.com/index.php/Creating_an_RHEL_6_KVM_Virtual_Machine
+http://xmodulo.com/2013/10/install-configure-kvm-centos.html
+http://www.howtoforge.com/how-to-install-kvm-and-libvirt-on-centos-6.2-with-bridged-networking
+
+Verify Installation
+ ifconfig -a
+lsmod | grep kvm
+sudo virsh sysinfo
+sudo virsh sysinfo | grep -i "smbios"
+cat /etc/group
+cat /etc/group | grep kvm
+cat /etc/group | grep sudoer
+cat /etc/group | grep sudo
+cat /etc/group | grep root
+sudo usermod -a -G kvm rac3rx
+man suders
+man sudo
+man sudoers
+cat /etc/group | grep -i adm
+ls /dev/kvm
+ls -l /dev/kvm
+ls /etc/udev/rules.d/
+virsh list
+brctl show
+sudo virt-manager
+
+Install guest OS via KVM
+http://www.server-world.info/en/note?os=CentOS_6&p=kvm&f=2
+http://www.reddit.com/r/sysadmin/comments/1ccru4/scripting_vm_creation_with_libvirt_kvm_and_qemu/
+SELinux
+http://www.cyberciti.biz/faq/rhel-fedora-redhat-selinux-protection/
+
+
+KVM Package Group
+
+  # yum groupinfo KVM
+
+Install KVM
+  Type the following command to install KVM under RHEL or CentOS:
+  # yum install kvm virt-viewer virt-manager libvirt libvirt-python python-virtinst
+  OR
+  # yum groupinstall KVMImportant Configuration And Log Files (Directories) Location
+
+The following files are required to manage and debug KVM problems:
+
+/etc/libvirt/ - Main configuration directory.
+/etc/libvirt/qemu/ - Virtual machine configuration directory. All xml files regarding VMs are stored here. You can edit them manually or via virt-manager.
+/etc/libvirt/qemu/networks/ - Networking for your KVM including default NAT. NAT is only recommended for small setup or desktops. I strongly suggest you use bridged based networking for performance.
+/etc/libvirt/qemu/networks/default.xml - The default NAT configuration used by NAT device virbr0.
+/var/log/libvirt/ - The default log file directory. All VM specific logs files are stored here.
+/etc/libvirt/libvirtd.conf - Master libvirtd configuration file.
+/etc/libvirt/qemu.conf - Master configuration file for the QEMU driver.
+
+TCP/UDP Ports
+
+By default libvirt does not opens any TCP or UDP ports. However, you can configure the same by editing the /etc/libvirt/libvirtd.conf file. Also, VNC is configured to listen on 127.0.0.1 by default. To make it listen on all public interfaces, edit /etc/libvirt/qemu.conf file.
+
+Our Sample Setup
+
+                                                                            +-------------> vm#1 ( 10.10.21.71 / 123.1.2.4, CentOS MySQL Server)
+                                                                             |
+                                                                             +-------------> vm#2 ( 10.10.21.72 / 123.1.2.5, FreeBSD 7 Web Server)
+LAN --> Switch    -->  eth0 --> -+   10.10.21.70                             |
+                                 | ---> br0 -+      +----------------+       +-------------> vm#3 ( 10.10.21.73 / 123.1.2.6, OpenBSD 4.x Firewall )
+                                 |           | ===> |   RHEL Server  |  -----+
+                                 |           |      |      KVM       |       +-------------> vm#4 ( 10.10.21.74 / 123.1.2.7, Solaris 10 Testing Server )
+                                 | ---> br1 -+      +----------------+       |
+Wan --> ISP Router --> eth1 --> -+   123.1.2.3                               +-------------> vm#5 ( 10.10.21.71 / 123.1.2.8, Windows Server Testing Server )
+                                                                             |
+                                                                             +-------------> vm#6 ( 10.10.21.71 / 123.1.2.9, RHEL Mail Server )
+
+ip forwarding is synonymous with routing (vlan or lan)
+static directives vs dynamic directives all use boolean values 0 or 1
+    static directives
+    /etc/sysctl.conf
+    dynamic directives
+    echo "1" > /proc/sys/net/ipv4/ip_forward
+SELinux
+    sestatus
+IPTABLES/FIREWALLD
+https://fedoraproject.org/wiki/FirewallD
+http://liquidat.wordpress.com/2013/04/09/howto-firewalld-basics/
+The former firewall model with system-config-firewall/lokkit was static and every change required a complete firewall restart
+    /etc/sysconfig/iptables
+    /etc/init.d/iptables
+
+rpm -qf $( which firewall-cmd )
+
+firewall-cmd --state
+
+firewall-cmd --get-zones
+
+firewall-cmd --get-services
+
+firewall-cmd --get-icmptypes
+
+firewall-cmd --list-all-zones
+
+firewall-config
+
+firewall-applet
+
+  --old--
+
+systemctl disable firewalld.service
+systemctl stop firewalld.service
+
+system-config-firewall
+
+iptables -L
+
+
+Adding a local Yum repository to Red Hat Enterprise Linux
+
+http://portal2portal.blogspot.com/2012/06/adding-local-yum-repository-to-red-hat.html
+Here's the shortened version: -
+
+(a) Create a directory into which I'm going to copy the RHEL DVD: -
+
+  $ mkdir /var/repo
+  $ mkdir /var/repo/rhel6
+
+(b) Copy the DVD contents ( where the ISO is mounted to/mnt ): -
+     NOTE:  loop devices vs block devices
+  $ mount -o loop foo.iso ./mnt
+
+# mount -t iso9660 -o loop /home/tecmint/Fedora-18-i386-DVD.iso /mnt/iso/
+
+  $ cd /mnt
+  $ cp -r * /var/repo/rhel6/
+
+(c) Create the YUM repository metadata ( this is created one level up from the DVD contents ): -
+
+$ cd /var/repo
+$ createrepo .
+
+(d) Create the YUM repository pointing back at the newly created repository metadata
+
+$ cd /etc/yum.repos.d/
+$ vi server.repo
+[server]
+gpgcheck=1
+name=Red Hat Enterprise Linux 6.2
+baseurl=file:///var/repo
+
+(e) Update YUM to have it pick up the new repository
+
+$ yum clean
+
+(f) Test by listing the available packages
+
+$ yum list
+
+Loaded plugins: product-id, refresh-packagekit, security, subscription-manager
+Updating certificate-based repositories.
+Installed Packages
+ConsoleKit.x86_64 0.4.1-3.el6 @anaconda-RedHatEnterpriseLinux-201111171049.x86_64/6.2
+ConsoleKit-libs.x86_64 0.4.1-3.el6 @anaconda-RedHatEnterpriseLinux-201111171049.x86_64/6.2
+ConsoleKit-x11.x86_64 0.4.1-3.el6 @anaconda-RedHatEnterpriseLinux-201111171049.x86_64/6.2
+DeviceKit-power.x86_64 014-3.el6 @anaconda-RedHatEnterpriseLinux-201111171049.x86_64/6.2
+GConf2.x86_64 2.28.0-6.el6 @anaconda-RedHatEnterpriseLinux-201111171049.x86_64/6.2
+GConf2-devel.x86_64 2.28.0-6.el6 @anaconda-RedHatEnterpriseLinux-201111171049.x86_64/6.2
+...
+
+yum-plugin-aliases.noarch 1.1.30-10.el6 server
+yum-plugin-changelog.noarch 1.1.30-10.el6 server
+yum-plugin-downloadonly.noarch 1.1.30-10.el6 server
+yum-plugin-tmprepo.noarch 1.1.30-10.el6 server
+yum-plugin-verify.noarch 1.1.30-10.el6 server
+yum-plugin-versionlock.noarch 1.1.30-10.el6 server
+yum-presto.noarch 0.6.2-1.el6 server
+zlib-devel.i686 1.2.3-27.el6 server
+zsh.x86_64 4.3.10-4.1.el6 server
+
+(g) Install my package: -
+
+$ yum install gtk2.i686
+
+iptables -A INPUT -s 192.168.2.76 -p tcp --destination-port 25 -j DROP
+
+iptables -D INPUT -s 192.168.2.76 -p tcp --destination-port 25 -j DROP
+
+IP ADDRESS TOOLS
+
+    ifconfig eth0    OR
+    ip a show eth0
+    OR
+    ip addr list eth0 | awk '/inet /{sub(/\/[0-9]+/,"",$2); print $2}'
+    OR
+    ifconfig eth0 | awk '/inet /{print $2}'
+
+LAMP
+    sudo yum install httpd
+    sudo systemctl enable httpd.service
+    sudo systemctl start httpd.service
+    ln -s '/usr/lib/systemd/system/httpd.service' '/etc/systemd/system/multi-user.target.wants/httpd
+
+    sudo yum install mariadb-server mariadb
+    mysql -u root -p
+
+    sudo yum install php php-mysql php-gd php-pear
+    sudo systemctl restart httpd.service
+    sudo yum search php-
+    sudo yum info php-pgsql
+    sudo yum install php-pgsql
+    sudo vi /var/www/html/test.php
+    cat > /var/www/html/test.php
+
+  --snip--
+    <?php
+
+   phpinfo(INFO_GENERAL);
+   ?>
+     --snip--
+
+
+http://lxadm.wordpress.com/2012/10/09/preparing-for-rhel-7/
+Firewalld
+    The FirewallD section is a bit dodgy, it’s not a replacement for iptables, it’s a replacement for system-config-firewall, i.e. it’s just a change in the configuration interface that manages the iptables rules.
+     (And the lost connections thing is a side-effect of system-config-firewall itself rather than iptables I think?)
+     Also, the firewalld -> iptables link is one way, in that firewalld is unable to parse rules added through iptables, so if you’re using firewalld, then all changes must be made using it, as any changes made directly
+     using iptables will get overwritten by firewalld.
+systemd vs sysvinit vs upstart
+Btrfs
+LVM Thin Provisioning
+LXC - Linux Virtual Containers
+
+KVM Guest installed from console
+30JUN14
+========================
+    KVM 14 part virtualization series
+    ==========================
+    http://www.cyberciti.biz/faq/kvm-install-centos-redhat-using-kickstart-ks-cfg/
+    http://www.cyberciti.biz/faq/centos-rhel-linux-kvm-virtulization-tutorial/
+                     Physical Host
+                     kauai.example.net
+                     HD1 Space:  80GB>
+                     RAM:  > 4GB
+                     IP:  192.168.122.1
+       VM (server sytstem)         VM (test sytstem)         VM (test sytstem)
+       gamma.example.net           whitehat.example.net
+       HD1 Space: 12GB             HD1 Space: 12GB           HD1 Space: 12GB
+       HD2 Space: 01GB             HD1 Space: 01GB           HD1 Space: 01GB
+       RAM: 768 MB                 RAM: 768 MB               RAM: 768 MB
+       IP:  192.168.122.20         IP:  192.168.122.130      IP:  192.168.122.240
+    Step 01:  Use kickstart GUI tool called "Kickstart Configurator" (run system-config-kickstart command to start the tool) to create a file called ks.cfg as follows:
+    
+        $ system-config-kickstart                 #  ks.cfg
+
+        --snip--ks.cfg--
+
+auth  --useshadow  --enablemd5
+bootloader --location=mbr
+zerombr
+clearpart --all --initlabel
+text
+firewall --enabled --port=22:tcp
+firstboot --disable
+keyboard us
+network --device eth0 --bootproto static --ip 10.10.21.76 --netmask 255.255.255.240 --gateway 10.10.21.100 --nameserver 10.10.21.1,10.10.21.2 --noipv6
+network --device eth1 --bootproto static --ip 123.1.2.6 --netmask 255.255.255.240 --gateway 123.1.2.100 --nameserver 10.10.21.1,10.10.21.2 --hostname centos.nixcraft.in --noipv6
+lang en_US
+logging --level=info
+url --url=http://mirrors.nixcraft.in/centos/5.5/os/x86_64/
+reboot
+rootpw --iscrypted $1$somepassword
+selinux --enforcing
+skipx
+timezone  America/New_York
+install
+part / --bytes-per-inode=4096 --fstype="ext3" --grow --size=1
+part swap --recommended
+%packages
+@core
+--nobase
+%post
+(
+echo '10.0.0.0/8 via 10.10.21.100' > /etc/sysconfig/network-scripts/route-eth0
+sed -i 's/LABEL=\//& console=ttyS0/' /etc/grub.conf
+echo 'S0:12345:respawn:/sbin/agetty ttyS0 115200' >> /etc/inittab
+echo "ttyS0" >> /etc/securetty
+echo 'IPV6INIT=no' >> /etc/sysconfig/network
+echo 'install ipv6 /bin/true' >> /etc/modprobe.conf
+) 1>/root/post_install.log 2>&1
+
+        --snip--ks.cfg--
+    Step 02: 
+
+virt-install: Install CentOS using Kickstart
+
+Type the following command:
+# virt-install \
+-n centos \
+-r 2048 \
+--vcpus=1 \
+--os-variant=rhel5.4 \
+--accelerate \
+-v \
+-w bridge:br0 \
+-w bridge:br1 \
+--disk path=/emc/kvm/centos.img,size=100 \
+-l http://mirrors.nixcraft.in/centos/5.5/os/x86_64/ \
+-nographics \
+-x "ks=http://10.10.21.3/static/ks.cfg ksdevice=eth0 ip=10.10.21.76 netmask=255.255.255.240 dns=10.10.21.1 gateway=10.10.21.100"
+http://ubuntuforums.org/archive/index.php/t-1629579.html
+I finally got mine to work. This is what I ended up with:
+
+virt-install \
+--name timtest \
+--hvm \
+--ram 1024 \
+--file /u01/timtest.img \
+--file-size 10 \
+--nographics \
+--network bridge:br0 \
+--location=/u01/KS/RHEL5ISO \
+--extra-args="ks=http://kickstartserver/timtest.cfg text console=tty0 utf8 console=ttyS0,115200"
+
+What worked best "text console=tty0 utf8 console=ttyS0,115200" The utf8 gives the color so you can see what you are doing. I even added the the bridge network and was able to use the kickstart server. I did find out that putting this in the kickstart file helps you come up with the console correct after the reboot:
+
+bootloader --location=mbr --append="console=tty0 console=ttyS0,9600"
+
+My issues turned out to be trying to use the ISO image that I was using. I loaded it locally and things started to work. I may try going straight to the kickstart server tomorrow. SHould work, I hope.
+http://garfield001.wordpress.com/2012/05/30/creating-kvm-guests-with-automatic-installation-of-debian-squeeze-6-0-5/
+KVM: VM creation
+http://moss.csc.ncsu.edu/~mueller/cluster/arc/kvm_vm_creation.html
+
+KVM Guest installed from console
+
+KVM XP
+virt-install --name myWinXP --ram 512 --disk path=/tmp/winxp.img,size=6 \
+      --network network:default --vnc --os-variant winxp --cdrom /dev/sr0
+KVM 14 part virtualization series
+==========================
+http://www.cyberciti.biz/faq/centos-rhel-linux-kvm-virtulization-tutorial/
+for i in {1..254}; do ping -c 1 -W1 192.168.122.$i | grep 'from'; done
+
+
+NFS
+http://www.barryodonovan.com/index.php/2012/12/12/apple-os-x-as-an-nfs-server-with-linux-clients
+http://www.techrepublic.com/blog/apple-in-the-enterprise/mounting-nfs-volumes-in-os-x/
+http://scottlab.ucsc.edu/~wgscott/xtal/wiki/index.php/NFS_on_OS_X_10.5_and_above
+http://theredblacktree.wordpress.com/2013/02/16/nfs-shares-between-ubuntu-12-04-and-mac-osx-10-8/
+http://www.williamrobertson.net/documents/nfs-mac-linux-setup.html
+http://community.spiceworks.com/how_to/show/61136-how-to-create-an-nfs-share-on-mac-os-x-snow-leopard-and-mount-automatically-during-startup-from-another-mac
+
+
+http://www.vmwareadmins.com/using-virt-install-create-virtual-machine-template-openstack/
+virt-install -r 2048 --accelerate -n systemname --disk path=/storage/vms/systemname.qcow2,format=qcow2,bus=virtio,cache=none --location /isos/CentOS_6.3_Install_DVD.iso --extra-args='console=tty0 console=ttyS0,115200n8 serial'
+
+
+KVM virtualization – text only CentOS guest install
+
+
+git clone \
+    https://github.com/kashyapc/virt-scripts.git
+http://opennodecloud.com/documentation/howtos/kvm-guests-virt-install-examples/
+Windows Server 2008 R2 KVM Guest VM install example
+
+01# Place WinServ ISO into /storage/local/iso/
+02# Download VIRTIO driver iso image to use during install
+03cd /storage/local/iso/
+04wget http://alt.fedoraproject.org/pub/alt/virtio-win/latest/images/bin/virtio-win-0.1-52.iso
+05
+06# Pre-create VM disk image
+07qemu-img create -f qcow2 -o preallocation=metadata /storage/local/images/winserv1.qcow2 50G
+08
+09# Launch installation inside screen
+10screen
+11virt-install --connect qemu:///system --name WinServ1 --ram 2048 --vcpus 2 \
+12--disk path=/storage/local/images/winserv1.qcow2,format=qcow2,bus=virtio,cache=none \
+13--disk path=/storage/local/iso/virtio-win-0.1-52.iso,device=cdrom \
+14--cdrom /storage/local/iso/winserv.iso \
+15--network=bridge:vmbr0,model=e1000 \
+16--vnc --os-type=windows --os-variant=win2k8 \
+17--noautoconsole --accelerate --noapic --keymap=en-us
+18# Detach screen
+19CTRL+A+D
+20
+21# Run virt-manager for VNC display (make sure you have X forwarding enabled on your ssh session for remote display)
+22virt-manager
+23# OR
+24virt-viewer -c qemu:///system WinServ1RHEL6 (CentOS6) KVM Guest VM install example
+# Pre-create VM disk image
+qemu-img create -f qcow2 -o preallocation=metadata /storage/local/images/centos6vm.qcow2 10G
+
+# Launch installation inside screen
+screen
+virt-install --connect qemu:///system \
+--name centos6vm --ram 1024 --vcpus 1 \
+--disk path=/storage/local/images/centos6vm.qcow2,format=qcow2,bus=virtio,cache=none \
+--network=bridge:vmbr0,model=virtio --vnc --os-type=linux --os-variant=rhel6 \
+--cdrom /storage/local/iso/centos63-x86_64.iso --accelerate --noautoconsole --keymap=en-us
+# Detach screen
+CTRL+A+D
+
+# Run virt-manager for VNC display (make sure you have X forwarding enabled on your ssh session for remote display)
+virt-viewer -c qemu:///system centos6vm
+
+
+Installing Centos 6 using virt-install over SSH with no graphics - beginner
+http://serverfault.com/questions/388471/installing-centos-6-using-virt-install-over-ssh-with-no-graphics-beginner
+virt-install --nographics --name kvm3 --ram 768 --disk path=/home/chris/KVM/kvm3.img,size=12 --accelerate -c /home/chris/CentOS-6.2-x86_64-minimal.iso
+
+TS3:
+brctl show
+port: 5901
+# virsh net-destroy default
+# virsh net-undefine default
+# service libvirtd restart
+# ifconfig
+
+REF:
+
+Routed subnets without NAT for libvirt managed virtual machines in Fedora
+https://www.berrange.com/posts/2009/12/13/routed-subnets-without-nat-for-libvirt-managed-virtual-machines-in-fedora/
+
+Virtualization short cuts for noobs
+http://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=3&cad=rja&uact=8&ved=0CDIQFjAC&url=http%3A%2F%2Ffedoraproject.org%2Fwiki%2FVirtualization_short_cuts_for_noobs&ei=61-7U8TFFsqgyATewIKIDw&usg=AFQjCNH1FF9O0uFjtiCHL-u7AXTQWYqrOg&sig2=PJN9K_f2t695xAv9FX8CZg&bvm=bv.70138588,d.aWw
+
+http://geekizo.com/adding-new-bridge-in-centos-linux-kvm/
+
+https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/
+https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Virtualization_Getting_Started_Guide/index.html
+https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Virtualization_Deployment_and_Administration_Guide/index.html
+https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html-single/Virtualization_Host_Configuration_and_Guest_Installation_Guide/
+
+http://wiki.libvirt.org/page/FAQ
+
+
+https://help.ubuntu.com/community/KVM/Networking
+https://github.com/kimduho/linux/wiki/Linux-Bridge-LAN-VLAN-WLAN-Configurations
+
+https://wiki.debian.org/BridgeNetworkConnections#Bridging_with_a_wireless_NIC
+http://johanv.org/node/190
+
+openvswitch bridge
+
+**
+RHEL / CentOS 6.x KVM Virtualization Installation and Configuration Guide
+http://www.cyberciti.biz/faq/kvm-virtualization-in-redhat-centos-scientific-linux-6/
+
+KVM and CentOS-6
+http://wiki.centos.org/HowTos/KVM
+**
+http://blog.falconindy.com/articles/build-a-virtual-army.html
+GNU/Screen and Cisco Devices (routers/switches) comm server
+=====================================================================
+CCIE R&S lab – How to console into your devices 
+                        9600 8N1 (9600 baud, 8-bits per character, no parity, and 1 stop bit)
+http://www.gns3.net/articles/ccie-routing-switching-lab/how-to-console-into-your-devices/
+Don't have tip / cu / minicom / kermit / hyperterminal / securecrt / an old vt100 / whatever around or just love GNU Screen? Here's a cool tip:
+
+So, how do you send a break? C-a B. Just use Ctrl-a ? for help
+
+    cu -ehot /dev/cuau0
+    lsof /dev/ttyS0
+
+/sbin/agetty -L -f /etc/issueserial 9600 ttyS0 vt100
+:/sbin/agetty ttyS0 9600 vt100
+/sbin/agetty -w 115200 ttyS0 vt100
+
+    screen /dev/ttyS0 9600
+    screen -L /dev/ttyUSB0 38400
+    screen /dev/tty.PL2303-001013FA 9600
+    Soekris based embedded router
+    screen /dev/ttyS0 19200,cs8
+    9600 8N1 (9600 baud, 8-bits per character, no parity, and 1 stop bit)
+    screen /dev/ttyS0 9600,cs8,-parenb,-cstopb,-hupcl
+
+    *9600 baud
+    *8 data bits
+       *no parity
+    *one stop bit
+    *VT100 terminal emulation
+    *ignore hang-ups (if supported); this allows a single terminal session to continue running even if 
+     Equalizer restarts.
+
+    These settings are for the serial console of an embedded computer board (115200 8N1):
+    screen /dev/ttyS0 115200,cs8,-parenb,-cstopb,-hupcl
+
+    Configuring Ser2net
+    Ser2net is a service that maps TCP ports to your USB ports. You need to make changes in its configuration file.
+
+    apt-get install ser2net.
+
+   The file should look like the following, for instance if you have 5 USB adapters:
+
+2000:telnet:0:/dev/ttyUSB0:9600 8DATABITS NONE 1STOPBIT banner
+2001:telnet:0:/dev/ttyUSB1:9600 8DATABITS NONE 1STOPBIT banner
+2002:telnet:0:/dev/ttyUSB2:9600 8DATABITS NONE 1STOPBIT banner
+2003:telnet:0:/dev/ttyUSB3:9600 8DATABITS NONE 1STOPBIT banner
+2004:telnet:0:/dev/ttyUSB4:9600 8DATABITS NONE 1STOPBIT banner
+
+    The first number corresponds to the TCP port to reach respective switches linked by USB serial adapters.
+
+    Finally restart set2net.
+
+    sudo /etc/init.d/ser2net restart
+
+    Let’s suppose your terminal server has the 192.168.1.2 IP address, you should be able to connect to your
+
+    Cisco device using telnet.
+
+    telnet 192.168.1.2 2000
+    ser2net port 2000 device /dev/ttyUSB0 [9600 N81] (Debian GNU/Linux)
+
+    SW1#
+
+ 
+    sudo nano /etc/ser2net.conf
+
+CISCO:
+===================================================
+Resetting Catalyst Switches to Factory Defaults
+------------------------------------------------------------------------------------------------------
+wr erase
+delete flash:vlan.dat
+reload
+show vlan
+Procedure To Reset Password On Cisco Catalyst 3550
+------------------------------------------------------------------------------------------------------
+
+On a 3550 release the mode button after the 1x port LED goes out.
+
+flash_init
+load_helper
+dir flash:
+rename flash:config.text flash:config.backup
+boot
+rename flash:config.backup config.text
+copy flash:config.text system:running-config
+config terminal
+no enable secret
+enable password password
+copy running-config startup-config
+
+
+
+
+rhel7 networking
+============================
+
+ifup ens33
+
+/etc/sysconfig/network-scripts/ifcfg-ens192
+
+

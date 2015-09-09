@@ -1,0 +1,41 @@
+#!/bin/bash
+###
+#
+#  File:  newFoo.sh.txt
+#  Purpose:  somePurposeExplainingTheExistanceOfThisFileInAMeaningConciseManner
+#  Author:  SFC Hammond, Christopher J.
+#  Date:  20:54, 10/07/10
+#
+###
+
+#
+#  Maintenance Record and versioning
+#
+#  need it to be interactive
+
+#
+# Syntax
+#
+
+#
+# Creating shell template through the "echo" command
+#
+echo '#!/bin/bash' > ./newFoo.sh.txt
+echo '###' >> ./newFoo.sh.txt
+echo '#' >> ./newFoo.sh.txt
+echo '#  File:  newFoo.sh.txt' >> ./newFoo.sh.txt
+echo '#  Purpose:  somePurposeExplainingTheExistanceOfThisFileInAMeaningConciseManner' >> ./newFoo.sh.txt
+echo '#  Author:  SFC Hammond, Christopher J.' >> ./newFoo.sh.txt
+echo '#  Date:  '"$(date +%R)"','" $(date +%D)" >> ./newFoo.sh.txt
+echo '#' >> ./newFoo.sh.txt
+echo '###' >> ./newFoo.sh.txt
+echo "\n"  >> ./newFoo.sh.txt
+echo '# ' >> ./newFoo.sh.txt
+echo '#  Maintenance Record and versioning' >> ./newFoo.sh.txt
+echo '# ' >> ./newFoo.sh.txt
+echo "\n"  >> ./newFoo.sh.txt
+echo '# ' >> ./newFoo.sh.txt
+echo '#  Syntax, notes, or instructions' >> ./newFoo.sh.txt
+echo '# ' >> ./newFoo.sh.txt
+echo "\n"  >> ./newFoo.sh.txt
+

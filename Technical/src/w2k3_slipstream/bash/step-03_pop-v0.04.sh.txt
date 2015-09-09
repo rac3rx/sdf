@@ -1,0 +1,68 @@
+#!/bin/bash
+###
+#
+#  File:  step-03_pop-v0.04.sh
+#  Purpose:  Populate BOOT directory with El Torito boot sectors. One that is downloadable 
+#            and one that is extracted from source CD.  Copy CD to ROOT directory.
+#  Author:  SFC Hammond, Christopher J.
+#  Date:  14:20, 10/11/10
+#
+###
+
+# 
+#  Maintenance Record and versioning
+# 
+  
+# 
+#  Populate the following directories
+#    01.  BOOT
+#         01a.  BOOT:  Windows2003StdCDBootSector.zip --> Windows2003StdCDBootSector.html
+#         01b.  BOOT:  geteltorito.pl (optional: may use dd)
+#         01c.  BOOT:  dd
+#    02.  ROOT - synchronize source CD with ROOT directory
+#
+
+#
+# environment variables
+#
+MNT="$HOME/mnt/CD"
+SRCCD="/dev/sr0"
+
+#
+#  01a.  BOOT:  Windows2003StdCDBootSector.zip --> Windows2003StdCDBootSector.html
+#
+if [ -e ../w2k3/BOOT ]             
+then
+  if [ -e ../w2k3/DL/Windows2003StdCDBootSector.zip ]             
+  then
+  unzip -d ../w2k3/BOOT ../w2k3/DL/Windows2003StdCDBootSector.zip
+  fi
+fi
+
+#
+# 01b.  BOOT:  geteltorito.pl 
+#
+if [ -e ../w2k3/DL/geteltorito.pl ]             
+then
+  cp ../w2k3/DL/geteltorito.pl .
+  sudo perl ./geteltorito.pl -o ../w2k3/DL/w2k3ElTo.img /dev/sr0
+  sudo chown $USER:$USER ../w2k3/DL/w2kElTo.img
+  cp ../w2k3/DL/w2kElTo.img ../w2k3/BOOT
+fi
+
+#
+#    02.  ROOT - synchronize source CD with ROOT directory
+#
+# MNT="$HOME/mnt/CD"; SRCCD="/dev/sr0"; if [ -e ../ROOT ]; then if [ -e $MNT/i386 ]; then rsync -avz $MNT/ ../ROOT; else sudo mount $SRCCD $MNT; rsync -avz $MNT/ ../ROOT; fi; cd ../../Bin;fi
+#
+if [ -e ../ROOT ]
+then
+  if [ -e $MNT/i386 ]
+  then
+    rsync -avz $MNT/ ../ROOT
+  else
+      sudo mount $SRCCD $MNT
+      rsync -avz $MNT/ ../ROOT
+      sudo umount $SRCCD $MNT
+  fi
+fi

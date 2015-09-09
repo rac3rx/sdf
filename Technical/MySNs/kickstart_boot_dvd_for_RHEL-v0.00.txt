@@ -1,0 +1,937 @@
+kickstart boot dvd for RHEL
+=============================
+
+I'm not sure if this is the right stackexchange site to ask this on. But I'm trying to set up a kickstart boot dvd for RHEL5.5. 
+I also want to add some RPM's on it to install after with the %post script section. 
+My question is, how can I add these rpm's as well as my .ks file to the DVD ISO? 
+Is there a program I need to open the ISO, extract all the data, then remake it into an ISO for burning?
+
+In my opinion the hardest part of setting up a custom boot CD is getting the bootloader to function correctly from the CD after remaster.
+
+To remaster the CD it is necessary to update some metadata for the isolinux setup. I think it is covered on either page 3 or 4 of Frank's link.
+
+mkisofs -iso-level 4 -l -R -J -joliet-long -D -V "UBCD501" -o "../custom.iso" -b
+  "isolinux/isolinux.bin" -c "isolinux/boot.catalog"  \
+   -hide "isolinux/boot.catalog" -hide-joliet "isolinux/boot.catalog" 
+   -no-emul-boot -boot-load-size 4 -boot-info-table .
+
+Execute this from the top level folder containing the extracted contents of your CD.
+
+On a related note I personally like to keep a dedicated local repository for my servers. 
+It makes the updates process easier and it also provides a really convenient way to keep a set of kickstart files. 
+I put a http reference for my kickstart file and load it off the server along with the latest versions of whatever packages I want to install. 
+It is way faster than trying to run the updates after the fact.
+
+NOTE - this works flawlessly for remastering RHEL / CentOS boxes. Haven't tested elsewhere.
+
+
+
+
+
+I'm trying to create a "Magic DVD" that will install and configure RHEL 6.2 just the way we want it the first time, every time.
+
+Here's the process I've been trying to use, just to prove the concept:
+
+Perform the install manually as intended. Allow anaconda to create  /root/anaconda-ks.cfg. Copy the contents of the RHEL install DVD to a directory on my hard drive.
+
+ mkdir -p /home/derp/RHEL/diskFiles   
+ cp /media/RHEL_6.2\ i386\ Disc\ 1/* /home/derp/RHEL/diskFiles
+Move /root/anaconda-ks.cfg into said directory, at the top level:
+
+ cp /root/anaconda-ks.cfg /home/derp/RHEL/diskFiles/ks.cfg
+Create a new ISO file using the appropriate commands. (Taken from this link.)
+
+cd /home/derp/RHEL
+mkisofs -o file.iso -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot     -boot-load-size 4 -boot-info-table -R -J -v -T diskFiles/
+
+From this point, it should be straightforward:
+
+Burn the file to disk (or, in this case, connect the VM's "optical drive" to the ISO file.)
+Boot the machine.
+Cry tears of joy as the machine installs itself.
+So here's the issue: My re-mastered ISO works fine booting and starting anaconda, but once it gets there, nothing happens. I'm confused as to what I've missed--it looks quite similar to an answer I found here. As I understand it, the anaconda-ks.cfg file should have executed the exact same install I performed to build the system. The only thing I added to the file was the autostep --autoscreenshot command so that I could see what it was doing.
+
+I do notice that some of the partition commands are commented out, but I can't figure out if that's what's causing the the issue. Judging by the fact that the re-mastered ISO boots properly, I think I've screwed up the ks.cfg file and/or not specified a boot parameter I needed to. I've pasted in my ks.cfg below:
+
+#version=DEVEL
+autostep --autoscreenshot
+install
+cdrom
+lang en_US.UTF-8
+keyboard us
+network --onboot no --device eth0 --noipv4 --noipv6
+rootpw  --iscrypted $6$CLfKLztawb7ZJq.O$d9iWhj6/SC..72WZFOtiy6t90DfTkTGZ9xgJ/8Cy.xKVNLlv6tmqf73uxeP0mvZT481kvyQzDi7uLon5fUAAw/
+firewall --service=ssh
+authconfig --enableshadow --passalgo=sha512
+selinux --enforcing
+timezone --utc America/Los_Angeles
+bootloader --location=mbr --driveorder=sda --append=" rhgb crashkernel=auto quiet"
+# The following is the partition information you requested
+# Note that any partitions you deleted are not expressed
+# here so unless you clear all partitions first, this is
+# not guaranteed to work
+#clearpart --all --drives=sda
+
+#part /boot --fstype=ext4 --size=500
+#part pv.008002 --grow --size=1
+
+#volgroup vg_dbs01 --pesize=4096 pv.008002
+#logvol /omnyx --fstype=ext4 --name=lv_omnyx --vgname=vg_dbs01 --size=81448
+#logvol / --fstype=ext4 --name=lv_root --vgname=vg_dbs01 --size=8192
+#logvol swap --name=lv_swap --vgname=vg_dbs01 --size=4064
+#logvol /var --fstype=ext4 --name=lv_var --vgname=vg_dbs01 --size=8192
+
+repo --name="Red Hat Enterprise Linux"  --baseurl=cdrom:sr0 --cost=100
+
+%packages
+@base
+@client-mgmt-tools
+@core
+@debugging
+@basic-desktop
+@desktop-debugging
+@desktop-platform
+@directory-client
+@fonts
+@general-desktop
+@graphical-admin-tools
+@input-methods
+@internet-applications
+@internet-browser
+@java-platform
+@legacy-x
+@network-file-system-client
+@office-suite
+@print-client
+@remote-desktop-clients
+@server-platform
+@workstation-policy
+@x11
+mtools
+pax
+python-dmidecode
+oddjob
+sgpio
+genisoimage
+wodim
+abrt-gui
+certmonger
+pam_krb5
+krb5-workstation
+gnome-pilot
+libXmu
+%end
+
+
+Help would be met with much gratitude.
+
+
+You need to tell the installer to do a kickstart installation. You can do this in one of two ways:
+
+A. When you see the installer screen type linux ks=/ks.cfg
+B. Since you are rolling your own media, you can change the linux label in the file named isolinux.cfg in the isolinux folder of the media to read:
+
+label linux
+  menu label ^Install or upgrade an existing system
+  menu default
+  kernel vmlinuz
+  append initrd=initrd.img ks=/ks.cfg <-- EDIT HERE!
+
+I knew I was missing something! Thanks. :-D I'll try this out and accept the answer once I've got it working. –  Vishal Kotcherlakota May 23 '12 at 22:36
+  	  	
+When I followed your steps, I got an error because the installer couldn't find the ks.cfg. When I specified cdrom, it defaulted to the file I wanted. I modified your answer a little bit based on some documentation I read. Thanks for the tip about the boot options! –  Vishal Kotcherlakota May 23 '12 at 23:22
+
+
+
+
+Tips and tricks for anaconda and kickstart
+http://wiki.centos.org/TipsAndTricks/KickStart
+============================================
+
+For full documentations, please see http://www.centos.org/docs/5/html/5.2/Installation_Guide/s1-kickstart2-howuse.html
+
+Tuning the %packages section
+
+When using %packages to define the set of packages that should be installed there are a number of more or less documented options that can be set:
+
+--resolvedeps
+Dependencies between packages will be automatically resolved. This option has been deprecated in Centos 5, dependencies are resolved automatically every time now.
+--excludedocs
+Skips the installation of files that are marked as documentation (all files that are listed when you do rpm -qld <packagename>)
+
+--nobase
+Skips installation of @Base. This won't work unless you know what you're doing as it might leave out packages required by post installation scripts
+--ignoremissing
+Ignore missing packages and groups instead of asking what to do. This option has been deprecated in Centos 5, dependencies are resolved automatically every time now.
+Example of minimal package selection for CentOS 4:
+
+
+%packages --resolvedeps --excludedocs --nobase
+kudzu
+please note that essential stuff will be missing. There will be no rpm, no yum, no vim, no dhcp-client and no keyboard layouts. Kudzu is required, because the installer fails if it is missing.
+
+Example of minimal package selection for CentOS 5:
+
+
+%packages --excludedocs --nobase
+@Core
+Again, this will leave you with a *very* basic system that will be missing almost every feature you might expect.
+
+<!> The --resolvedeps used with CentOS 4 is not required for CentOS 5 as the newer installer always resolves dependencies.
+
+Partitioning
+
+If you start out with a unpartitioned disk, or a virtual machine on a unpartitioned image, use the --initlabel parameter to clearpart to make sure that the disklabel is initialized, or Anaconda will ask you to confirm creation of a disklabel interactively. For instance, to clean all partitions on xvda, and initialize the disklabel if it does not exist yet, you could use:
+
+
+clearpart --all --initlabel --drives=xvda
+Running anaconda in real text-mode
+
+You probably already know that you can make anaconda run with a ncurses interface instead of the X11 interface by adding the line "text" to your kickstart file. But there's another option: install in real shell-like textmode. Replace the "text"-line with a "cmdline"-line in your kickstart file and anaconda will do the whole installation in textmode. Especially when you use %packages --nobase or run complex %post scripts this will probably save hours of debugging, because you can actually see the output of all scripts that run during the installation.
+
+Enable/disable firstboot
+
+You all know firstboot, the druid that helps you to set up the system after install. It can be enabled and disabled by adding either "firstboot --enable" or "firstboot --disable" to the command section of your kickstart file.
+
+What the different terminals display
+
+Alt-F1
+The installation dialog when using text or cmdline
+Alt-F2
+A shell prompt
+Alt-F3
+The install log displaying messages from install program
+Alt-F4
+The system log displaying messages from kernel, etc.
+Alt-F5
+All other messages
+Alt-F7
+The installation dialog when using the graphical installer
+Logging %pre and %post
+
+When using a %pre or %post script you can simply log the output to a file by using --log=/path/to/file
+
+
+%post --log=/root/my-post-log
+echo 'Hello, World!'
+Another way of logging and displaying the results on the screen would be the following:
+
+
+%post
+exec < /dev/tty3 > /dev/tty3
+chvt 3
+echo
+echo "################################"
+echo "# Running Post Configuration   #"
+echo "################################"
+(
+echo 'Hello, World!'
+) 2>&1 | /usr/bin/tee /var/log/post_install.log
+chvt 1
+Trusted interfaces for firewall configuration
+
+You can use the --trust option to the firewall option multiple times to trust multiple interfaces:
+
+
+# Enable firewall, open port for ssh and make eth1 and eth2 trusted
+firewall --enable --ssh --trust=eth1 --trust=eth2
+Use a specific network interface for kickstart
+
+When your system has more than one network interface anaconda asks you which one you'd like to use for the kickstart process. This decision can be made at boot time by adding the ksdevice paramter and setting it accordingly. To run kickstart via eth0 simply add ksdevice=eth0 to the kernel command line.
+
+A second method is using ksdevice=link. In this case anaconda will use the first interface it finds that has a active link.
+
+A third method works if you are doing PXE based installations. Then you add IPAPPEND 2 to the PXE configuration file and use ksdevice=bootif. In this case anaconda will use the interface that did the PXE boot (this does not necessarily needs to be the first one with a active link).
+
+Within the kickstart config itself you need to define the network interfaces using the network statement. If you are using method 2 or 3 then you don't know which device actually will be used. If you don't specify a device for the network statement anaconda will configure the device used for the kickstart process and set it up according to your network statement.
+
+Forcing kickstart to ask for network configuration
+
+Starting at CentOS 5, there a undocumented option that enable a prompt asking for network configuration during the installation. At the network statement, put the query keyword at the --bootproto= networking configuration, as we see below:
+
+
+network --device=eth0 --bootproto=query
+And a dialog box will appear asking for IP addressing, as well the hostname configuration.
+
+Useful collection of ready-made kickstart files
+
+At https://nazar.karan.org/summary/bluecain.git you can find a collection of ready-made kickstart files. Their primary goal is for testing the CentOS deployment process but they can of course be used for any other purpose.
+
+
+
+
+
+
+Red Hat server minimal install
+up vote
+5
+down vote
+favorite
+4
+In a farm of virtualized Red Hat servers, there's the need to install a minimal system for security reasons. Minimal installs have several advantages (even no security related):
+
+Less exposure to vulnerabilities (if you don't need it, don't install it)
+Better update process (less packages to update, less probability of breaking the system)
+Better performance (no unneeded daemons or processes)
+The less software you have the easier it is to harden the system
+Unfortunately, this is not easy because the "Minimal Installation" on Red Hat contains lots of unnecessary packages.
+
+There is an added challenge as the farm is running Oracle iAS. I've been told that iAS has dependencies with local graphical environment. So finally every server in the farm has gnome, X, etc.
+
+I've been searching the web and one solution seems to be making a kickstart script that will install only the necessary packages. But I find this difficult and have several doubts about how to maintain the system dependencies afterwards.
+
+How do you install minimal Red Hat servers? Is it OK to use kickstart or will I have dependency problems in the installation or in updates? Is there any way to avoid installing the graphical environment for iAS?
+
+redhat install kickstart hardening
+share|improve this question
+edited Jun 13 at 13:16
+
+Benjamin
+1,0221625	
+asked Jun 20 '09 at 8:06
+
+chmeee
+4,37011639
+1	  	
+At first, this question has really stricken me as outright weird. I mean, X on a minimal_server_installation? But then, I understand, that this is Red Hat world and what a different world it is! We almost exclusively run Debian systems and a minimal Debian installation is truly minimal - you get only enough stuff to run sshd and that's all (ever seen a process tree, where you could count the processes using the fingers of one hand?). –  shylent Jun 20 '09 at 12:38
+1	  	
+The Red Hat minimal installation does not have X. He has X because of Oracle, not because of Red Hat. –  wzzrd Jun 20 '09 at 13:42
+add comment
+5 Answers
+activeoldestvotes
+up vote
+7
+down vote
+accepted
+I've been searching the web and one solution seems to be making a kickstart script that will intall only the necessary packages. But I find this difficult and have several doubts about how to maintain the system dependencies afterwards.
+
+Making a kickstart file is not so hard: look in /root of one of your installed servers for a file called anaconda-ks.cfg. That is a kickstart file to make a new server looking like the existing one. Every RH, Fedora or CentOS server has that file.
+
+You can edit the file in system-config-kickstart if you are unfamiliar with writing kickstart files. You do need X for that though.
+
+How do you install minimal Red Hat servers? Is it Ok to use kickstart or will I have dependency problems in the installation or in updates? Is there any way to avoid installing the graphical environment for iAS?
+
+You are doing fine with a kickstart file. Kickstart do affect the way you update after installation. During installation, dependencies are calculated automatically. Packages you removed (if that is at all possible) that are needed anyway are added. You cannot install a system with broken dependencies for the system. Dependencies for Oracle is a complete different matter though.
+
+If Oracle needs a graphical environment (and it does, I know it sucks, but it does), you have no option but to install X. However, afaik, Oracle needs X because it has a graphical installer. You do not need X afterwards. So after install, you can remove X.
+
+In my shop we only install a very minimal set of X libraries, btw. Just enough to run xclock (and thus the installer) remotely with X forwarding. That's enough.
+
+Oracle has more insane dependencies. There are some ancient C library compat packages the Oracle installer needs. Not because it actually needs them, but because the zip implementation they ship needs them. Why do they ship that zip implementation? Rumor has it, that the very old zip implementation Oracle ships has more favorable licensing terms (as in: it's not GPL'ed), so they refuse to use a newer implementation. Just rumors though, never heard confirmation...
+
+share|improve this answer
+answered Jun 20 '09 at 13:56
+
+wzzrd
+7,1571436
+  	  	
+Oracle's installer does not need X if you perform a silent installation: oracle-base.com/articles/misc/OuiSilentInstallations.php –  pokstad Feb 7 '11 at 21:23
+  	  	
+I am facing the same situation now as well and found that on RHEL5.8 the minimal packages to run xclock with X forwarding are xorg-x11-apps and xorg-x11-xauth. This pulls in several dependencies but this shouldhopefully suffice for a remote graphical install. –  Bram Jun 4 '12 at 11:46
+add comment
+
+Did you find this question interesting? Try our newsletter
+Sign up for our newsletter and get our top new questions delivered to your inbox (see an example).   
+up vote
+6
+down vote
+KIckstart is fine. If you want to make sure certain packages are NOT installed you can list them in the list of packages/groups to install, preceeded by a minus ('-') sign.
+
+e.g.
+
+%packages
+@base
+core-utils
+-httpd
+
+to make sure apache does not get installed
+
+Then in the %post section you can run commands such as chkconfig to switch off services you don't want - and do anything else you want to do to tighten up your install.
+
+share|improve this answer
+answered Jun 20 '09 at 8:38
+
+Jason Tan
+1,9151715
+add comment
+up vote
+2
+down vote
+You can install once, make a backup and use it on other systems. To get a minimal system to use in the first place, you can either:
+
+do a normal "minimal" installation, then remove the packages you don't need; or
+ask the installer to let you choose individual packages.
+I'd say the latter is easier to accomplish. It may take a while to do this, but it doesn't matter much since you'll be doing it only one time.
+
+If the farm has homogenous virtual "hardware", all the better. If not, all you generally need to care for is making full use of disk space. Just make the "master" copy conform to the least denominator in terms of size and see below.
+
+The last part is relatively easy to achieve in some conditions. If there's a biggest partition at the end of the (virtual) disk, you delete it in 'fdisk' and recreate it to fill the disk up. Then you run resize2fs and you're done. Another idea might be to use LVM, which allows for easier volume enlargement with 'lvextend'. (In LVM is quite effortless to script/automate this.)
+
+share|improve this answer
+edited Jun 20 '09 at 11:51
+
+answered Jun 20 '09 at 9:25
+
+Eduard - Gabriel Munteanu
+20612
+  	  	
+-1 It's not related to the question. –  chmeee Jun 20 '09 at 11:30
+  	  	
+To quote you on this: "How do you install minimal Red Hat servers?". This is how: install once, customize (add/remove packages), save and reuse. How come it isn't related? oO –  Eduard - Gabriel Munteanu Jun 20 '09 at 11:38
+  	  	
+It might even be easier than fiddling with anaconda stuff and Kickstart. –  Eduard - Gabriel Munteanu Jun 20 '09 at 11:39
+  	  	
+Sorry, but your answer does not give any hint about how to get a 'minimal' system. –  chmeee Jun 20 '09 at 11:44
+  	  	
+Oh, I understand, I've edited my answer accordingly. –  Eduard - Gabriel Munteanu Jun 20 '09 at 11:51
+show 1 more comment
+up vote
+2
+down vote
+Your problem in fact is not RedHat but more the Oracle dependency.
+
+As said by a previous poster, Oracle dependencies are crazy and mainly link to the crappy installer, not the product itself.
+
+You need to separate your problem in two :
+
+Create a minimal RedHat installation with a kickstart file who will run on your hardware and generate the filesystem according to Oracle IAS pre-req.
+Create a script/package who will install the needed packages for the Oracle installer, install Oracle with a response file, then uninstall the non-needed packages.
+The second part is the most difficult, you will need to spend some time to determine from the oracle pre-req what is really needed and what is just a stupid dependency.
+
+But when its done, you can automate your installation, and have a minimum maintenance on all the systems.
+
+share|improve this answer
+answered Jun 20 '09 at 14:09
+
+Fleole
+16317
+add comment
+up vote
+0
+down vote
+I'm answering another old one because I spent a while on this yesterday. I wanted Red Hat to install with the absolute minimal number of packages for a special purpose server.
+
+It seems that in the latest versions, even if you don't specify a single package in the %packages section the group @base is installed by default.
+
+This installs far more packages and service than I care to maintain on some systems.
+
+Then I found %packages --nobase in the CentOS Kickstart/Anaconda Wiki. This truly is the most minimal install for Red Hat based distributions. You will find many commands that you are used to and dependent on missing. But, if you want a minimal starting point this is it.
+
+
+
+http://grokbase.com/t/centos/centos/1161rg4zab/virt-install-hell-how-to-force-a-local-cd-rom-install
+I mount the ISO image using the loop back define (-o loop) and created a
+virtual host whose DocumentRoot was the loop back mount point of the
+DVD:
+
+Line in /etc/fstab:
+
+/distrocds/Fedora/Fedora-15-x86_64-DVD.iso /fc15x86_64 iso9660 ro,loop 0 0
+
+http virthost spec:
+
+<VirtualHost *:80>
+ServerName fc15.deepsoft.com
+DocumentRoot /fc15x86_64
+<Directory /fc15x86_64>
+AllowOverride all
+Options FollowSymLinks
+</Directory>
+</VirtualHost>
+
+This seems to work, so long as one does not select random unseen options
+in the GUI installer... :-(
+
+
+
+Use virt-install and connect by using a local VNC client
+http://docs.openstack.org/image-guide/content/virt-install.html
+
+If you do not wish to use virt-manager (for example, you do not want to install the dependencies on your server, you don't have an X server running locally, the X11 forwarding over SSH isn't working), you can use the virt-install tool to boot the virtual machine through libvirt and connect to the graphical console from a VNC client installed on your local machine.
+
+Because VNC is a standard protocol, there are multiple clients available that implement the VNC spec, including TigerVNC (multiple platforms), TightVNC (multiple platforms), RealVNC (multiple platforms), Chicken (Mac OS X), Krde (KDE), and Vinagre (GNOME).
+
+The following example shows how to use the qemu-img command to create an empty image file virt-install command to start up a virtual machine using that image file. As root:
+
+# qemu-img create -f qcow2 /data/centos-6.4.qcow2 10G
+# virt-install --virt-type kvm --name centos-6.4 --ram 1024 \
+--cdrom=/data/CentOS-6.4-x86_64-netinstall.iso \
+--disk path=/data/centos-6.4.qcow2,size=10,format=qcow2 \
+--network network=default\
+--graphics vnc,listen=0.0.0.0 --noautoconsole \
+--os-type=linux --os-variant=rhel6
+
+Starting install...
+Creating domain...                                                                                                                                       |    0 B     00:00
+Domain installation still in progress. You can reconnect to
+the console to complete the installation process.
+The KVM hypervisor starts the virtual machine with the libvirt name, centos-6.4, with 1024 MB of RAM. The virtual machine also has a virtual CD-ROM drive associated with the /data/CentOS-6.4-x86_64-netinstall.iso file and a local 10 GB hard disk in qcow2 format that is stored in the host at /data/centos-6.4.qcow2. It configures networking to use libvirt's default network. There is a VNC server that is listening on all interfaces, and libvirt will not attempt to launch a VNC client automatically nor try to display the text console (--no-autoconsole). Finally, libvirt will attempt to optimize the configuration for a Linux guest running a RHEL 6.x distribution.
+
+[Note]	Note
+When using the libvirt default network, libvirt will connect the virtual machine's interface to a bridge called virbr0. There is a dnsmasq process managed by libvirt that will hand out an IP address on the 192.168.122.0/24 subnet, and libvirt has iptables rules for doing NAT for IP addresses on this subnet.
+
+Run the virt-install --os-variant list command to see a range of allowed --os-variant options.
+
+Use the virsh vncdisplay vm-name command to get the VNC port number.
+
+# virsh vncdisplay centos-6.4
+:1
+In the example above, the guest centos-6.4 uses VNC display :1, which corresponds to tcp port 5901. You should be able to connect to a VNC client running on your local machine to display :1 on the remote machine and step through the installation process.
+
+
+How to connect to KVM-QEMU guests over SSH SOCKS Proxy. EXAMPLE of how to setup VNC for ALL your guests, without having to port forward/port tunnel every single 590# number
+==============================================
+https://gist.github.com/diginc/9219680
+$ # EXAMPLE of how to setup VNC for ALL your guests, without having to port forward/port tunnel every single 590# number
+$ cat ~/.ssh/config
+ 
+# Host Machines
+Host host_a.prod.domain.com
+  User diginc
+  DynamicForward 127.0.0.1:1080
+  # Used with VNCViewer (RealVNC) like so (FullColor fixes the immediate disconnect bug)
+  # `vncviewer --ProxyServer=127.0.0.1:1080 --ProxyType=socks --FullColor 127.0.0.1:5901`
+ 
+ 
+ 
+$ cat ~/.bash_aliases
+# VNC Aliases for hosts
+for PORT in `seq 5900 5920` ; do
+  alias host_a_${PORT}="vncviewer --ProxyServer=127.0.0.1:1080 --ProxyType=socks --FullColor 127.0.0.1:${PORT}"
+done
+
+
+
+
+
+
+Installing KVM guest OS via VNC over SSH tunnel
+http://maciek.lasyk.info/sysop/2013/01/03/installing-kvm-guest-os-via-vnc-over-ssh-tunnel/
+=================================================
+
+Posted by docent on	 January 3, 2013 Leave a comment (0)Go to comments
+Verry merry and christmas is over. And I’ve bought myself a brand new server for this occasion :D So this is it – enough of doing-nothing or not-doing-anything and I had to start migrating services from the old box. And as old machine is just bare-metal env, where users kill each other for memory, than I decided – no more. KVM, cgroups and hell with ya guys – You won’t ever know about each other! And all this for the same price (as the old box has 2 years and I paid the same price for the new one, where I’ve got 8x more RAM, 2x more storage and some quad-core…).
+
+Ok enough of this talking. So I’ve got clean CentOS 6.3 installation with basic KVM environment and SELinux set to Permissive mode (You could leave it in Enforcing, having to ”chcon –reference /var/lib/libvirt/images /your/vm/repodir” – but i see no point in using SELinux in host OS – this would eat to much resources, and is at all not needed – what you have to do on host OS for security is using very strict rules.
+
+So… Centos, KVM, Permissive and We’re ready to engage. For lazy guys I suggest using Virtual Manger (virt-manager) where You can click through the whole guest configuration process (for making this work You should turn off iptables for a while or open some virt-manager TCP ports). But as virt-manager is for lame, then we write on the terminal:
+
+[root@cubryna iso]# virt-install -r 2048 --accelerate -n VM-docent --disk path=/vm/VM-docent/VM-docent.img,size=50 --cdrom CentOS-6.3-x86_64-minimal.iso --vcpus=2  --vnc --os-type linux --hvm --vncport=65322
+ 
+Starting install...
+Creating storage file VM-docent.img                         |  50 GB     00:00     
+Creating domain...                                          |    0 B     00:00     
+Cannot open display: 
+Run 'virt-viewer --help' to see a full list of available command line options
+Domain installation still in progress. You can reconnect to 
+the console to complete the installation process.
+
+And installation is running. Now We’d like to connect to it – so VNC FTW! But…
+
+               sudo netstat -anltp | grep "LISTEN"
+
+[root@cubryna iso]# netstat -nlp | grep 65322
+tcp        0      0 127.0.0.1:65322             0.0.0.0:*                   
+LISTEN      12768/qemu-kvm
+
+
+VNC daemon is safely listening only on localhost, so We have to try some different way. We could make this daemon to listen also on WAN interface, but this would be to lame and risky. So we create SSH tunnel:
+
+[docent@docent-toshiba ~]$ ssh -p 65234 docent@cubryna.makaronzserem.eu -L 65322:127.0.0.1:65322
+RSA host key for IP address '5.135.178.98' not in list of known hosts.
+Last login: Thu Jan  3 20:26:48 2013 from neostradaaa
+CentOS release 6.3 (Final)
+Linux cubryna.makaronzserem.eu 2.6.32-279.19.1.el6.x86_64 #1 SMP Wed Dec 19 07:05:20 UTC 2012 x86_64 x86_64 x86_64 GNU/Linux
+ 
+ip        : 5.135.178.98
+hostname  : cubryna.makaronzserem.eu
+ 
+[docent@cubryna ~]$
+
+And just after that We can safely connect our VNC client (like Tiger-VNC) to our installation process using host 127.0.0.1:65322 :)
+
+Of course after successfull installation I suggest creating clone of our brand-new VPS just to save some time for future installations – use virt-clone command to do this.
+
+And that’s all for now – next time I’ll write how to configure guest OS to make it possible to use virsh console command to connect to it via serial console.
+
+
+
+Using serial console to access virtual machines (Centos, KVM)
+http://maciek.lasyk.info/sysop/2013/01/09/using-serial-console-to-access-virtual-machines-centos-kvm/
+========================================================================
+Posted by docent on	 January 9, 2013 Leave a comment (0)Go to comments
+Last time I promised, that I’ll write how to connect to VM via serial console. So – this time very shortly and without any explanations:
+
+On the guest OS:
+
+
+1
+echo ttyS0 >> /etc/securetty
+ 
+
+Now add following param to kernel params in /etc/grub.conf:
+
+
+1
+console=ttyS0
+And the last thing:
+
+
+1
+echo "S0:12345:respawn:/sbin/agetty ttyS0 115200" >> /etc/inittab && init q
+ 
+
+Now restart the guest OS and You’re good to connct to VM via:
+
+virsh console guest_id
+
+If You feel like interested in what happened above – please ask questions in comments – I’ll explain :)
+
+
+
+
+
+
+Tunneling the qemu or kvm vnc unix socket via ssh
+http://www.nico.schottelius.org/blog/tunneling-qemu-kvm-unix-socket-via-ssh/
+==================================================================================
+Perhaps you were searching for a way to tunnel the unix socket provided by qemu or kvm for vnc through an ssh tunnel, too? When I was searching for an answer, I found ssvnc, which I did not give a try, because I wanted to solve the problem with socat and ssh.
+
+I started kvm on the remote machine using the following command:
+
+kvm -vnc unix:/home/services/vms/vnc-socket ...
+Then I connected socat locally on the remote machine to test the settings:
+
+socat STDIO UNIX-CONNECT:/home/services/vms/vnc-socket
+Which worked pretty fine. On the local side we need a listener on a tcp port around port 5500+ (not a must, but the standard vnc port), which can be created like that:
+
+socat STDIO TCP-LISTEN:5500
+As reading and writing is not possible with a single pipe, one cannot just do pipe into socat like this:
+
+ssh root@tee.schottelius.org "socat STDIO UNIX-CONNECT:/home/services/vms/vnc-socket" | socat STDIO TCP-LISTEN:5500
+But socat has another nice option, the EXEC parameter, which solves the problem:
+
+socat TCP-LISTEN:5500 EXEC:'ssh root@tee.schottelius.org "socat STDIO UNIX-CONNECT:/home/services/vms/vnc-socket"'
+And now I can connect locally via tightvnc:
+
+xtightvncviewer -encodings "copyrect tight hextile zlib corre rre raw" localhost:5500
+I specify a different order for the encodings, because xtightvncviewer prefers raw "encoding", if it connects to localhost, which is not desired here.
+
+And that's it, vnc connected to a unix socket from kvm tunneled through ssh!
+
+
+
+Howto setup a KVM server the fast way
+http://www.screenage.de/blog/2012/05/28/howto-setup-a-kvm-server-the-fast-way/
+===========================================
+Veröffentlicht am 28. Mai 2012 von ccm
+This is a very short quick setup on how to get KVM server up and running. It assumes that
+
+you want to run a KVM server with at least one virtual machine,
+your KVM server gets an ip address in your network,
+your virtual machine(s) get an ip address from your network – so you can use bridging instead of natting (using NATting instead of bridging is an easy task but not part of this howto),
+you can use lvm for disk space allocation on your KVM master (using other disk space allications methods like image files is easy, too, but not part of this howto)
+Get the server running
+
+I assume you are able to install an Ubuntu server from scratch and setup a lvm environment. Actually this can be done by mostly accepting the defaults during the Ubuntu server setup. I’d suggest you install at least Ubuntu Lucid 10.04 or newer.
+If you continue reading here, you should have a running, up-to-date Ubuntu server with network connectivity and preferably access via ssh.
+Get the network up and running
+
+For the bridged network you need to install the bridge utilities and change your network configuration. First install the package:
+$ sudo apt-get install bridge-utils
+Now add a bridge named “br0? (this has only be done once):
+$ sudo brctl addbr br0
+Now change your /etc/network/interfaces so it uses the bridge br0. This step actually sets up br0 instead of eth0. Think of eth0 as being just a physical transport added to the virtual bridge interface.
+# The loopback network interface
+auto lo
+iface lo inet loopback
+ 
+auto eth0
+iface eth0 inet manual
+ 
+auto br0
+iface br0 inet static
+address 192.168.1.100
+netmask 255.255.255.0
+network 192.168.1.0
+broadcast 192.168.1.255
+gateway 192.168.1.1
+bridge_ports eth0
+bridge_fd 9
+bridge_hello 2
+bridge_maxage 12
+bridge_stp off
+Please make sure you don’t forget setting your “eth0? to “iface eth0 inet manual” as shown above. This is needed as you want to prevent eth0 to fetch an address via dhcp but still want it to be there for your bridge as it is the physical layer. After you setup the bridge either restart your network (sudo /etc/init.d/networking restart) or reboot your server. If you are accessing your server already by ssh be warned that a misconfiguration might lock you out.
+
+Install KVM
+
+Now it’s time to install kvm and some usefull helper applications:
+$ sudo apt-get install qemu-kvm ubuntu-vm-builder uml-utilities \
+  virtinst
+That’s all: You already have a kvm server now. Time to…
+
+Install your first virtual machine
+
+We are going to setup a 100Gb logical volume for the guest, download Ubuntu and create a machine with 2Gb of Ram and 4 cores:
+
+# create an empty 100Gb logical volume
+sudo lvcreate --size 100G vg0 --name guest1
+# download Ubuntu iso
+$ wget http://..../
+# create machine
+$ sudo virt-install --connect qemu:///system -n guest1 -r 2048 \
+ --vcpus=4 -f /dev/mapper/guest1 --network=bridge:br0 \
+ --vnc --accelerate -v -c ./SOMEUBUNTUISO.iso \
+ --os-type=linux --os-variant=ubuntuKarmic --noautoconsole
+# please note: "ubuntuKarmic" is currently the most recent
+# virt-install defaults scheme - just use this if in doubt.
+Get a VNC connection
+
+KVM uses VNC to give you ca graphical interface to your machine. The good thing about this is, that it enables you to use graphical installers (and yes, even Windows) without problems. As even Ubuntu server boots into a graphical mode in the beginning – it’s great to use VNC here.
+
+I assume you are working on a remote server. KVM gives every guest it launches a new vnc instance with a new, incremented port. It starts with 5900. So let’s tunnel via ssh:
+
+ssh user@remotekvmhost -L 5900:localhost:5900
+You connect to your remote kvm host via ssh and open a ssh tunnel fort port 5900. Now start your prefered VNC client locally and let it connect to either display “0? or port 5900 which means the same in VNC (duh…).
+
+From now on you should see your server on a VNC display. Install it like you’d install every other server. The networking is bridged, so you could even use dhcp if that is offered in your network.
+
+Please make sure, you install the package “acpi” inside your kvm guest, otherwise you won’t be able to stop the guest from the master (as it is done via acpi):
+
+# make sure, "acpi" is installed in the *guest* machine
+sudo apt-get install acpi
+After installation you can manage your kvm gues by using the following commands:
+
+# list running instances
+$ virsh list
+# start an instance
+$ virsh start INSTANCENAME
+# stop an instance politely
+$ virsh stop INSTANCE
+# immediatly destroy a running instance
+$ virsh destroy INSTANCE
+# edit the config file for an instance
+$ virsh edit INSTANCE
+Mounting the LVM volumes
+
+As you might have noticed, your virtual guest’s lvm volumes cannot be mounted directly in the master as they contain their own partition table. If you need access to the guest’s filesystem from the master, though, you have to create some device nodes. There is a great tool called “kpartx” than can create and delete device nodes for you. It’s as easy as this:
+
+# install kpartx
+$ sudo install kpartx
+# make sure, virtual gues is switched off!
+# create device nodes
+$ sudo kpartx -a /dev/mapper/guest1
+# check /dev/mapper for new device nodes and mount/unmount them
+# after you are done, delete the nodes
+$ sudo kpartx -d /dev/mapper/guest1
+Please note, this methods also works with other block devices like image files containing partition tables. You only might run into trouble, when your lvm volume contains it’s own lvm. If that is the case, play around with pvscan, vgscan and lvscan after using kpartx. Be brave but be warned that backing up data is always a great idea.
+
+Alternative Management Interfaces
+
+In case you really need a gui for your management needs, check “virt-manager”. You can install this on your desktop and remotely manage running instances:
+
+$ sudo install virt-manager
+
+You should check RedHat’s “Virtual Machine Manager” page, though. It might be a good idea to manually compile and install a more recent version and rely on the setup howtos. Personally I prefer using plain text console here, as it helps being able to act quite fast and from everywhere when problems occur.
+
+Conclusion
+
+Nowadays it’s fairly easy setting up a KVM server. As KVM/libvirt enabled guests are quite fast, it’s a nice and easy way for even hosting virtual machines. I run about a dozen virtual machines and three hardware servers for two years now without any serious problems.
+
+Dieser Eintrag wurde veröffentlicht in Allgemein, CommandLine, Debian, KVM, Linux, Ubuntu von ccm. Permanenter Link des Eintrags.
+EIN GEDANKE ZU “HOWTO SETUP A KVM SERVER THE FAST WAY”
+Rusty sagte am 7. Juni 2012 um 14:22 :
+You’ve made an assumption that fell through for me. Specifically I do not have LVM or related tools set up on my system, so I get as far as:
+
+# create an empty 100Gb logical volume
+sudo lvcreate –size 100G vg0 –name guest1
+
+and I get stopped.
+
+Don’t get me wrong, I know that LVM is a great collection of tools and resources, however it is not installed by default, and you have not included instructions for installing it for those who have not already gone out and done that install.
+
+And while I understand that it is a fine collection of tools, I’m going to hold off on installing it, as I already see alternatives down the road that may not be ‘better’ whatever that means, but may provide solutions that fit my needs in ways that I’ve found LVM does not.
+
+Thank you for the otherwise fine set of instructions.
+
+-Rusty
+
+
+==
+==
+Creating a Domain with virt-install with Kickstart
+
+A Tale from /dev/console: virt-install and kickstart
+A Tale from /dev/console: virt-install and kickstart Page 1
+© 2013 Copyright ROI Training, Inc.: All rights reserved. Not to be reproduced without prior written consent.
+Creating a Domain with virt-install with Kickstart
+I was reviewing for a KVM class and I got really tired of installing a VM and having to
+answer all of the questions in the RHEL installation process. Yes, I know a little about
+cloning and I like this better. Probably need to do some more work on cloning. Here is the
+procedure I worked out for creating an installation which did not ask any questions.
+1. Login
+a. Open a terminal window
+b. Execute: su –
+c. Change to ~sherlock/KVM/Create
+2. Create the NFS source for building the new domain
+a. Create image mount point.
+i. Execute: mkdir /media/RHEL6
+b. Mount the ISO
+i. Execute:
+mount –t iso9660 –o loop,ro \
+/home/sherlock/KVM/ISO/CentOS-6.4-x86_64-bin-DVD1.iso \
+/media/RHEL6
+c. Create the share point for NFS
+i. Execute: mkdir /NFS_Share
+d. Create directory to hold iso image under /NFS_Share
+i. Execute: mkdir /NFS_Share/CentOS-6.4_Tree
+e. Copy DVD1 iso image under /NFS_Share/CentOS-6.4_Tree
+i. Execute:
+cp –pr /media/RHEL6 /NFS_Share/CentOS-6.4_Tree
+f. Setup share
+i. Edit /etc/exports and add the following line
+/NFS_Share *(ro)
+ii. Execute: service nfs restart
+iii. Execute: service nfslock restart
+iv. Execute: chkconfig nfs on
+v. Execute: chkconfig nfslock on
+vi. Execute: exportfs –a
+1. Only the last command is necessary if the nfs and nfslock
+servers are up and running.
+vii. Execute: showmount –e
+1. You should see:
+3. Setup virt-install script
+A Tale from /dev/console: virt-install and kickstart
+A Tale from /dev/console: virt-install and kickstart Page 2
+© 2013 Copyright ROI Training, Inc.: All rights reserved. Not to be reproduced without prior written consent.
+Usual start of bash script
+Setup /home/sherlock/KVM/Images as location for image files because it was
+managed storage and it allowed me to format the image as qcow2. See chapter on
+storage.
+Lines 10 thru 22 are checks for correct command line parameters and that root is
+running the command. Root must run the command as nfs access required a root
+account.
+Description in XML file
+Required to have root do the work.
+Name of the domain from first parameter
+1 #! /usr/bin/env bash
+2
+3 # FILE: mkVM_kickstart
+4 # Usage: ./mkVM_kickstart domain_name
+5 # Author: Arthur M. Messenger (703 626 2121)
+6
+7 VIRT_INST=$(which virt-install)
+8 KVM_HOME=/home/sherlock/KVM
+9 IMAGES_LOC=${KVM_HOME}/Images
+25 ${VIRT_INST} \
+26 --description "CentOS 6.4 kickstart install for
+${1}" \
+27 --connect=qemu:///system \
+28 --name=${1} \
+29 --disk ${IMAGES_LOC}/${1}.img,sparse=true,size=20,format=qcow2 \
+A Tale from /dev/console: virt-install and kickstart
+A Tale from /dev/console: virt-install and kickstart Page 3
+This is managed storage which allows me to format the disk with qcow2. See chapter
+on storage.
+Location of the repository for loading Linux. Since this is specified here, it cannot be
+specified in the kickstart (ks.cfg) file.
+Location of the kickstart file. Documentation states in should be on the same share as
+the repository
+This is the same as a normal virt-install installation.
+4. Setup the kickstart file (ks.cfg)
+This is modified from /root/anaconda-ks.cfg from an install done for a minimal
+install.
+Documentation on the kind of installation being done. Could probably be removed
+Do an install not an upgrade
+30 --location="nfs:192.168.122.1:/NFS_Share/CentOS-6.4_Tree" \
+31 --extra-args="ks=nfs:192.168.122.1:/NFS_Share/ks.cfg" \
+32 --ram=1024 \
+33 --graphics vnc,listen=0.0.0.0 \
+34 --vcpu=1 \
+35 --network=network=default \
+36 --os-type=linux \
+37 --os-variant=rhel6
+1 #platform=x86, AMD64, or Intel EM64T
+2 #version=DEVEL
+3 # Install OS instead of upgrade
+4 install
+5 rootpw --iscrypted
+$6$75WbsU0U$TPjV/iH4nd89IxamYREuq5IirjCO6pG
+sJnqdfye7B5.cgQqtr/.6iR.MNm8UbdkPagnulv21Rp5qxrgLh8uNa1
+A Tale from /dev/console: virt-install and kickstart
+A Tale from /dev/console: virt-install and kickstart Page 4
+© 2013 Copyright ROI Training, Inc.: All rights reserved. Not to be reproduced without prior written consent.
+Root password. I copied it from /etc/shadow. Can get it from the command line with
+grub-crypt
+Use /etc/shadow for password and sha512 as the encryption algorithm
+Reboot after installation
+Added this to make sure that mbr was zeroed out. Help with getting the partitioning
+correct.
+The sshd=1 make ssh available during the boot process. Needed to remotely access
+system. The --location=mbr states to put the bootloader in the Master Boot Record
+(MBR)
+6 auth –useshadow –passalgo=sha512
+7 keyboard us
+8 lang en_US
+9 firewall --disabled
+10 selinux --permissive
+11 logging --level=info
+12 reboot
+13 timezone America/New_York
+14 network --bootproto=dhcp --device=eth0 --onboot=on
+15 zerombr
+16 bootloader --append="sshd=1" --location=mbr
+17
+18 clearpart --all --initlabel
+19 part /boot --asprimary --fstype="ext4" --size=512
+20 part swap --asprimary --fstype="swap" --recommended
+21 part / --asprimary --fstype="ext4" --grow --size=1
+A Tale from /dev/console: virt-install and kickstart
+A Tale from /dev/console: virt-install and kickstart Page 5
+The clearpart –all –initlabel is clears out any partitions already created. I found that
+you need to have zerombr also to make this work consistently. The part partitions the
+only disk found. –asprimary means I want it as a primary partition. The –grow with –
+size=1 says to take as much of the remaining disk space as available.
+This is the list of packages to be installed on the VM. I created this by building one by
+hand then extracting it from /root/anaconda-ks.cfg.
+22
+23
+24 firstboot –disable
+25 user --name=sherlock --password=holmes
+26
+27 %packages
+28 @base
+29 @basic-desktop
+30 @desktop-platform
+31 @fonts
+32 @general-desktop
+33 @graphical-admin-tools
+34 @input-methods
+35 @internet-applications
+36 @internet-browser
+37 @network-server
+38 @network-tools
+39 @office-suite
+40 @remote-desktop-clients
+41 @storage-client-iscsi
+42 @storage-server
+43 @system-admin-tools
+44 @web-server
+45 @web-servlet
+46 crypto-utils
+47
+48 %end
+A Tale from /dev/console: virt-install and kickstart
+A Tale from /dev/console: virt-install and kickstart Page 6
+© 2013 Copyright ROI Training, Inc.: All rights reserved. Not to be reproduced without prior written consent.
+This creates a user, sherlock with the password holmes. There are other options.
+5. Make sure you are root
+6. Change directory to /home/sherlock/KVM/Create
+7. Execute: ./mkVM_kickstart Fourth
+a. This should not ask any questions and should completely install the Linux
+system.
+8. Login as sherlock, open a terminal window, su – to root and look around.
+a. Check networking
+b. Partitioning
+c. Sherlock’s and root’s home directories
+End of Exercise.

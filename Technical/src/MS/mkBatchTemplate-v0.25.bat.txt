@@ -1,0 +1,70 @@
+::  --------------------------------------------------------------------------
+::  File:  mkBatchTemplate-v0.24.bat
+::  Purpose:  Create a batch template file
+::  Author:  SFC Hammond, Christopher J.
+::  Date:  01OCT10
+::  --------------------------------------------------------------------------
+
+:: (Place maintenance record here)
+:: %~dp0 <-- If you want to know where the batch file lives
+:: %0 <-- is the name of the batch file.
+:: ~dp <-- gives you the drive and path of the specified argument. 
+
+@ECHO OFF & SETLOCAL ENABLEEXTENSIONS
+GOTO START
+
+::  (Place syntax, notes, or other instructions heres)
+
+:START
+TITLE createBatchTemplate
+
+ECHO ::  -------------------------------------------------------------------------- > _batchTemplate.bat.txt
+ECHO ::  File:  _batchTemplate.bat.txt >> _batchTemplate.bat.txt
+ECHO ::  Purpose:   >> _batchTemplate.bat.txt
+ECHO ::  Author:  SFC Hammond, Christopher J. >> _batchTemplate.bat.txt
+ECHO ::  Date:  %DATE% >> _batchTemplate.bat.txt
+ECHO ::  -------------------------------------------------------------------------- >> _batchTemplate.bat.txt
+
+:: Used ECHO. for CR/LF supposedly ECHO: or ECHO"ALT-255" sans quotes will work too
+ECHO. >> _batchTemplate.bat.txt
+ECHO :: (Place maintenance record here) >> _batchTemplate.bat.txt
+ECHO :: %0 script used >> _batchTemplate.bat.txt
+ECHO. >> _batchTemplate.bat.txt
+
+ECHO @ECHO OFF ^& SETLOCAL ENABLEEXTENSIONS >> _batchTemplate.bat.txt
+ECHO GOTO START >> _batchTemplate.bat.txt
+ECHO. >> _batchTemplate.bat.txt
+ECHO ::  (Place syntax, notes, or other instructions heres) >> _batchTemplate.bat.txt
+ECHO. >> _batchTemplate.bat.txt
+
+ECHO :START >> _batchTemplate.bat.txt
+ECHO TITLE BatchTemplate  >> _batchTemplate.bat.txt
+ECHO. >> _batchTemplate.bat.txt
+
+ECHO :: ensure temp directory exists c:\temp  >> _batchTemplate.bat.txt
+
+ECHO IF NOT EXIST "C:\Temp" (  >> _batchTemplate.bat.txt
+ECHO mkdir c:\Temp  >> _batchTemplate.bat.txt
+ECHO )  >> _batchTemplate.bat.txt
+ECHO IF EXIST "C:\Temp" ( >> _batchTemplate.bat.txt
+ECHO Temp directory on root of C drive exists >> _batchTemplate.bat.txt
+ECHO ) >> _batchTemplate.bat.txt
+ECHO. >> _batchTemplate.bat.txt
+
+ECHO :: Variables >> _batchTemplate.bat.txt
+ECHO SET FILE=someFile >> _batchTemplate.bat.txt
+ECHO SET PATH=%~dp0texmf\miktex\bin;%PATH%  >> _batchTemplate.bat.txt
+ECHO SET TEMP=C:\TEMP >> _batchTemplate.bat.txt
+ECHO SET URL="someURL" >> _batchTemplate.bat.txt
+ECHO. >> _batchTemplate.bat.txt
+
+ECHO :: Offspring Variables >> _batchTemplate.bat.txt
+ECHO SET FILEOPTS=/quiet /norestart /log c:\temp\%%FILE%%_%%KB%%_Log.txt >> _batchTemplate.bat.txt
+ECHO SET PATH=%%PATH%%;C:\TEMP\BIN >> _batchTemplate.bat.txt
+ECHO SET LOG=%%TOTALD%%_-_InstallLog.txt >> _batchTemplate.bat.txt
+ECHO SET VERSION=%FILE:~0,8% >> _batchTemplate.bat.txt
+ECHO. >> _batchTemplate.bat.txt
+
+ECHO ENDLOCAL >> _batchTemplate.bat.txt
+ECHO. >> _batchTemplate.bat.txt
+ECHO :EOF >> _batchTemplate.bat.txt

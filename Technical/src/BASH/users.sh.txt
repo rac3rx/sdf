@@ -1,0 +1,7 @@
+date -d "+90 days"
+
+groupadd -g 900 consultants
+
+for i in sspade bboop dtracey; do useradd -e 20141208 -G consultants -p default $i; done
+
+for i in sspade bboop dtracey; do chage -d 0 -m 15 -M 30 $i; done

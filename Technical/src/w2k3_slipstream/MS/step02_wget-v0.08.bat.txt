@@ -1,0 +1,157 @@
+::  -------------------------------------------------------------------------- 
+::  File:  step01b_wget.bat
+::  Purpose:  w2k3 slipstream SP1 and SP2 create source environment
+::            specifically files eg tools and updates.
+::  Author:  SFC Hammond, Christopher J. 
+::  Date:  Thu 10/07/2010 
+::  -------------------------------------------------------------------------- 
+ 
+:: (Place maintenance record here) 
+ 
+@ECHO OFF 
+GOTO START 
+ 
+::  (Place syntax, notes, or other instructions heres) 
+::  Need to clean up Reporting
+
+:START
+::  Create some environment variables
+
+SET SRCDIR=.\mmddyy_w2k3
+SET SRCW2K3=.\mmddyy_w2k3\w2k3
+SET SRCBIN=.\mmddyy_w2k3\w2k3\BIN
+SET SRCBINCDR=.\mmddyy_w2k3\w2k3\BIN\cdrtools-2.01
+SET SRCBINRSYNC=.\mmddyy_w2k3\w2k3\BIN\rsync-3.0.2
+SET SRCBOOT=.\mmddyy_w2k3\w2k3\BOOT
+SET SRCDL=.\mmddyy_w2k3\w2k3\DL
+SET SRCDOCS=.\mmddyy_w2k3\w2k3\DOCS
+SET SRCISOS=.\mmddyy_w2k3\w2k3\ISOS
+SET SRCMYSRC=.\mmddyy_w2k3\w2k3\MYSRC
+SET SRCRESEARCH=.\mmddyy_w2k3\w2k3\RESEARCH
+SET SRCROOT=.\mmddyy_w2k3\w2k3\ROOT
+SET SRCSP1=.\mmddyy_w2k3\w2k3\SP1
+SET SRCSP2=.\mmddyy_w2k3\w2k3\SP2
+SET SRCTMP=.\mmddyy_w2k3\w2k3\TMP
+SET SRCTOOLS=.\mmddyy_w2k3\w2k3\TOOLS
+SET SRCUL=.\mmddyy_w2k3\w2k3\UL
+
+::
+::  This  package consists of the following files:
+::    Bin
+::    Bin\7za.exe 
+::    Bin\wget.exe
+::    Bin\bbie10\
+::    Bin\bbie10\bbie.exe
+::    Bin\BOOT\
+::    Bin\BOOT\w2k3ElTo.img
+::    Bin\BOOT\Windows2003StdCDBootSector.zip
+::    Bin\cdrtools-2.01\
+::    Bin\cdrtools-2.01\mkisofs.exe
+::    Bin\rsync-3.0.2\
+::    Bin\rsync-3.0.2\rsync.exe
+::    ftpScript-v0.01.bat
+::    step01_mkdir-v0.03.bat
+::    step02_wget-v0.04.bat
+::
+
+::
+:: Files Tools Section that are native to this package
+::   01.  wget.exe
+::   02.  rsync.exe
+::   03.  mkisofs.exe
+::   04.  bbie.exe BBIE v1.0 (22KB) - Bart's Boot Image Extractor (optional: may use dd)
+::   05.  w2k3ElTo.img
+::   06.  Windows2003StdCDBootSector.zip
+::   07.  WindowsProductKey_07OCT10.txt
+::
+
+::
+:: Files CD Parts (boot sector and w2k3 SPs)
+::   01.  WindowsServer2003-KB889101-SP1-x86-ENU.exe
+::   02.  WindowsServer2003-KB914961-SP2-x86-ENU.exe
+::   03.  Windows Server 2003 SP1 Deployment Tools [32 bit] ~1.8MB - WindowsServer2003-KB892778-SP1-DeployTools-x86-ENU.cab 
+::   04.  Windows Server 2003 SP2 Deployment Tools [32 bit] ~2.2MB - WindowsServer2003-KB926028-v2-x86-ENU.exe
+::   05.  Windows Server 2003 SP1 Support Tools ~5.3MB - WindowsServer2003-KB892777-SupportTools-x86-ENU.exe
+::   06.  1/2 Windows Server 2003 SP2 Support Tools ~3.6MB - support.cab
+::   07.  2/2 Windows Server 2003 SP2 Support Tools ~232KB - suptools.msi
+::
+
+  ::   03.  Windows Server 2003 SP1 Deployment Tools [32 bit] ~1.8MB - WindowsServer2003-KB892778-SP1-DeployTools-x86-ENU.cab 
+  wget -ct 3 -P ../w2k3/DL http://download.microsoft.com/download/a/2/6/a267c18e-32d7-4e59-81e7-816c3b23cc29/WindowsServer2003-KB892778-SP1-DeployTools-x86-ENU.cab
+  ::   04.  Windows Server 2003 SP2 Deployment Tools [32 bit] ~2.2MB - WindowsServer2003-KB926028-v2-x86-ENU.exe
+  wget -ct 3 -P ../w2k3/DL http://download.microsoft.com/download/a/8/8/a88a053e-a5f5-47c1-8fd0-90c792adf56a/WindowsServer2003-KB926028-v2-x86-ENU.exe
+  ::   05.  Windows Server 2003 SP1 Support Tools ~5.3MB - WindowsServer2003-KB892777-SupportTools-x86-ENU.exe
+  wget -ct 3 -P ../w2k3/DL http://download.microsoft.com/download/3/e/4/3e438f5e-24ef-4637-abd1-981341d349c7/WindowsServer2003-KB892777-SupportTools-x86-ENU.exe
+  ::   06.  1/2 Windows Server 2003 SP2 Support Tools ~3.6MB - support.cab
+  wget -ct 3 -P ../w2k3/DL http://download.microsoft.com/download/6/e/4/6e481b67-54af-4340-a534-25de4229cfc6/support.cab
+  ::   07.  2/2 Windows Server 2003 SP2 Support Tools ~232KB - suptools.msi
+  wget -ct 3 -P ../w2k3/DL http://download.microsoft.com/download/6/e/4/6e481b67-54af-4340-a534-25de4229cfc6/suptools.msi
+
+
+::
+:: Files CD Parts (boot sector and w2k3 SPs)
+::   01.  WindowsServer2003-KB889101-SP1-x86-ENU.exe
+::   02.  WindowsServer2003-KB914961-SP2-x86-ENU.exe
+::   03.  Windows Server 2003 SP1 Deployment Tools [32 bit] ~1.8MB - WindowsServer2003-KB892778-SP1-DeployTools-x86-ENU.cab 
+::   04.  Windows Server 2003 SP2 Deployment Tools [32 bit] ~2.2MB - WindowsServer2003-KB926028-v2-x86-ENU.exe
+::   05.  Windows Server 2003 SP1 Support Tools ~5.3MB - WindowsServer2003-KB892777-SupportTools-x86-ENU.exe
+::   06.  1/2 Windows Server 2003 SP2 Support Tools ~3.6MB - support.cab
+::   07.  2/2 Windows Server 2003 SP2 Support Tools ~232KB - suptools.msi
+::
+
+::
+::  SRCDLSP1 file
+::   01.  WindowsServer2003-KB889101-SP1-x86-ENU.exe
+IF EXIST .\mmddyy_w2k3\w2k3\DL\WindowsServer2003-KB889101-SP1-x86-ENU.exe (
+      echo %DATE% %TIME% SRCBINBS *** PRESENT *** >> .\SrcDirLog.txt
+) ELSE (
+       %SRCBIN%\wget.exe -ct 3 -P.\mmddyy_w2k3\w2k3\DL http://download.microsoft.com/download/1/2/7/127c5938-d36a-4405-9df1-f00d57495652/WindowsServer2003-KB889101-SP1-x86-ENU.exe
+	   )
+
+::
+::  SRCDLSP2 file
+::   02.  WindowsServer2003-KB914961-SP2-x86-ENU.exe
+IF EXIST .\mmddyy_w2k3\w2k3\DL\WindowsServer2003-KB914961-SP2-x86-ENU.exe (
+      echo %DATE% %TIME% SRCBINBS *** PRESENT *** >> .\SrcDirLog.txt
+) ELSE (
+       %SRCBIN%\wget.exe -ct 3 -P.\mmddyy_w2k3\w2k3\DL http://download.microsoft.com/download/5/f/1/5f104409-2736-48ef-82e1-692ec3da020b/WindowsServer2003-KB914961-SP2-x86-ENU.exe
+	   )
+
+::
+::   03.  Windows Server 2003 SP1 Deployment Tools [32 bit] ~1.8MB - WindowsServer2003-KB892778-SP1-DeployTools-x86-ENU.cab 
+IF EXIST .\mmddyy_w2k3\w2k3\DL\WindowsServer2003-KB892778-SP1-DeployTools-x86-ENU.cab (
+      echo %DATE% %TIME% SRCBINBS *** PRESENT *** >> .\SrcDirLog.txt
+) ELSE (
+       %SRCBIN%\wget.exe -ct 3 -P.\mmddyy_w2k3\w2k3\DL http://download.microsoft.com/download/a/2/6/a267c18e-32d7-4e59-81e7-816c3b23cc29/WindowsServer2003-KB892778-SP1-DeployTools-x86-ENU.cab
+	   )
+::
+::   04.  Windows Server 2003 SP2 Deployment Tools [32 bit] ~2.2MB - WindowsServer2003-KB926028-v2-x86-ENU.exe
+IF EXIST .\mmddyy_w2k3\w2k3\DL\WindowsServer2003-KB926028-v2-x86-ENU.exe (
+      echo %DATE% %TIME% SRCBINBS *** PRESENT *** >> .\SrcDirLog.txt
+) ELSE (
+       %SRCBIN%\wget.exe -ct 3 -P.\mmddyy_w2k3\w2k3\DL http://download.microsoft.com/download/a/8/8/a88a053e-a5f5-47c1-8fd0-90c792adf56a/WindowsServer2003-KB926028-v2-x86-ENU.exe
+	   )
+
+::
+::   05.  Windows Server 2003 SP1 Support Tools ~5.3MB - WindowsServer2003-KB892777-SupportTools-x86-ENU.exe
+IF EXIST .\mmddyy_w2k3\w2k3\DL\WindowsServer2003-KB892777-SupportTools-x86-ENU.exe (
+      echo %DATE% %TIME% SRCBINBS *** PRESENT *** >> .\SrcDirLog.txt
+) ELSE (
+       %SRCBIN%\wget.exe -ct 3 -P.\mmddyy_w2k3\w2k3\DL http://download.microsoft.com/download/3/e/4/3e438f5e-24ef-4637-abd1-981341d349c7/WindowsServer2003-KB892777-SupportTools-x86-ENU.exe
+	   )
+
+::
+::   06.  1/2 Windows Server 2003 SP2 Support Tools ~3.6MB - support.cab
+IF EXIST .\mmddyy_w2k3\w2k3\DL\support.cab (
+      echo %DATE% %TIME% SRCBINBS *** PRESENT *** >> .\SrcDirLog.txt
+) ELSE (
+       %SRCBIN%\wget.exe -ct 3 -P.\mmddyy_w2k3\w2k3\DL http://download.microsoft.com/download/6/e/4/6e481b67-54af-4340-a534-25de4229cfc6/support.cab
+	   )
+
+::   07.  2/2 Windows Server 2003 SP2 Support Tools ~232KB - suptools.msi
+IF EXIST .\mmddyy_w2k3\w2k3\DL\suptools.msi (
+      echo %DATE% %TIME% SRCBINBS *** PRESENT *** >> .\SrcDirLog.txt
+) ELSE (
+       %SRCBIN%\wget.exe -ct 3 -P.\mmddyy_w2k3\w2k3\DL http://download.microsoft.com/download/6/e/4/6e481b67-54af-4340-a534-25de4229cfc6/suptools.msi
+	   )
+:END 

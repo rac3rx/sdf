@@ -1,0 +1,22 @@
+Verify KVM Installation On RHEL7 Install
+ifconfig -a
+lsmod | grep kvm
+sudo virsh sysinfo
+sudo virsh sysinfo | grep -i "smbios"
+cat /etc/group
+cat /etc/group | grep kvm
+cat /etc/group | grep sudoer
+cat /etc/group | grep sudo
+cat /etc/group | grep root
+sudo usermod -a -G kvm rac3rx
+man suders
+man sudo
+man sudoers
+cat /etc/group | grep -i adm
+ls /dev/kvm
+ls -l /dev/kvm
+ls /etc/udev/rules.d/
+virsh list
+brctl show
+sudo virt-manager
+

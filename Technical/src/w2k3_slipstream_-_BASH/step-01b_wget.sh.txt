@@ -1,0 +1,34 @@
+#!/bin/bash
+###
+#
+#  File:  newFoo.sh.txt
+#  Purpose:  somePurposeExplainingTheExistanceOfThisFileInAMeaningConciseManner
+#  Author:  SFC Hammond, Christopher J.
+#  Date:  12:05, 10/11/10
+#
+###
+
+# 
+#  Maintenance Record and versioning
+# 
+
+# 
+#  Syntax, notes, or instructions
+#
+ 
+#
+# Verify ./w2k3/DL exits and download
+#   1.  Windows2003StdCDBootSector.zip
+#   2.  WindowsServer2003-KB889101-SP1-x86-ENU.exe
+#   3.  WindowsServer2003-KB914961-SP2-x86-ENU.exe
+#
+if [ -e ./w2k3/DL ]
+then
+  cd ./w2k3/DL                                 # for i in $(ls); do rm -rf $i; done
+  wget -ct 3 http://www.windowsitpro.com/content/content/46202/Windows2003StdCDBootSector.zip
+       wget -ct 3 http://download.microsoft.com/download/1/2/7/127c5938-d36a-4405-9df1-f00d57495652/WindowsServer2003-KB889101-SP1-x86-ENU.exe
+  wget -ct 3 http://download.microsoft.com/download/5/f/1/5f104409-2736-48ef-82e1-692ec3da020b/WindowsServer2003-KB914961-SP2-x86-ENU.exe
+cd ../..
+fi
+
+

@@ -1,0 +1,504 @@
+   72  pwd
+   73  sh ./wireshark.sh.txt 
+   74  cat > wireshark.sh.txt
+   75  cat > WF.txt
+   76  root@162.243.193.44
+   77  ssh root@162.243.193.44
+   78  ssh root@162.243.193.44
+   79  ssh rac3rx@freeshell.org
+   80  cd Downloads/
+   81  cat > dl_manjaro.sh.txt
+   82  sh dl_manjaro.sh.txt 
+   83  ls -ltr
+   84  cat tricare.txt 
+   85  cat > tricare.txt 
+   86  cd Movies/Music_Videos/
+   87  ls
+   88  sh ipodScript.sh 
+   89  port install mplayer
+   90  sudo port install mplayer
+   91  sudo port install mplayer
+   92  ls -ltr
+   93  vim cleanMP3s-v0.01.sh 
+   94  ls -ltr
+   95  cp cleanMP3s-v0.01.sh cleanMP4s-v0.01.sh 
+   96  sh cleanMP4s-v0.01.sh 
+   97  less cleanMP4s-v0.01.sh 
+   98  less cleanMP4s-v0.01.sh 
+   99  ls
+  100  ls *.mp4
+  101  clear
+  102  ls *.mp4
+  103  lynx .
+  104  ls
+  105  ls *.mp4
+  106  lynx .
+  107  clear
+  108  sh ipodScript.sh ./Daddy_Yankee_-_Limbo.mp4 
+  109  history
+  110  sh ipodScript.sh ./Daddy_Yankee_-_Limbo.mp4 
+  111  sh ipodScript.sh ./Daddy_Yankee_-_Limbo.mp4 
+  112  sudo port clean mencoder
+  113  sudo port -s -v install mencoder
+  114  vim /opt/local/etc/macports/macports.conf
+  115  ls
+  116  ls
+  117  pwd
+  118  mkdir test
+  119  cp Arcangel_-_Me_Prefieres_a_Mi_Official_Video-B9Yc7BMQPH0.mp4 test/
+  120  ls
+  121  ls -ltr
+  122  pwd
+  123  history
+  124  sh _convert-v0.02.sh 
+  125  vim _convert-v0.02.sh 
+  126  sh _convert-v0.02.sh 
+  127  ls
+  128  sh cleanMP4s-v0.01.sh 
+  129  vim _convert-v0.02.sh 
+  130  sh cleanMP4s-v0.01.sh 
+  131  sh _convert-v0.02.sh 
+  132  vim ffmpeg2iphone.sh
+  133  ls -ltr
+  134  mv enrique_iglesias_-_bailando_español_ft_descemer_bueno,_gente_de_zona.mp4 ./FAVs/
+  135  mv mickey_mouse_en_español_latino_-_canciones-tk_umczhkae.mp4 FAVs/
+  136  sh ffmpeg2iphone.sh 
+  137  screen -x
+  138  screen
+  139  exit
+  140  vim ./.bashrc
+  141  vim ./.bashrc
+  142  pwd
+  143  vim ./.bashrc
+  144  vim ./.bashrc
+  145  exit
+  146  vim ./.bash_profile
+  147  vim ./.profile
+  148  vim ./.bash_profile
+  149  vim ./.profile
+  150  exit
+  151  whereis gvim
+  152  exit
+  153  cd bin
+  154  mv FTP ftp
+  155  cd ftp
+  156  ls
+  157  ls ../Download
+  158  pwd
+  159  ls -ltr ../../Downloads/
+  160  mv ../../Downloads/vlc_repo.sh.txt .
+  161  mv ../../Downloads/mk_yum_repo.txt .
+  162  ls
+  163  pwd
+  164  pwd
+  165  exit
+  166  exit
+  167  exit
+  168  whereis vim
+  169  /usr/bin/vim
+  170  exit
+  171   /Applications/mvim 
+  172  exit
+  173  exit
+  174  exit
+  175  exit
+  176  screen
+  177  screen
+  178  vim ./.bashrc
+  179  screen
+  180  exit
+  181  screen
+  182  screen -x
+  183  exit
+  184  ls -ld /bin/bash
+  185  ls -l /bin/bash
+  186  cd /bin/bash
+  187  cd /
+  188  ls
+  189  cd bin
+  190  ls
+  191  cd bash
+  192  man sudo
+  193  ll /bin/bash
+  194  file /bin/bash
+  195  clear
+  196  exit
+  197  pip
+  198  sudo port install httpie
+  199  cat > sn_cli_diaryAndNotes.txt
+  200  mkdir MySNs
+  201  vim ./.bashrc
+  202  sn
+  203  dz
+  204  vim ./.bashrc
+  205  dz
+  206  exit
+  207  lr
+  208  exit
+  209  ./color
+  210  ls
+  211  lr
+  212  ll
+  213  exit
+  214  cat > nw_scan.txt
+  215  pwd
+  216  cat > Kellum_Aaron.txt
+  217  less /etc/services 
+  218  less /etc/services 
+  219  less /etc/services 
+  220  less /etc/services 
+  221  man nmap
+  222  vim ./.bashrc
+  223  ll
+  224  pwd
+  225  ls -R
+  226  ls -R ./Downloads/
+  227  ls -R ./tmp
+  228  ls -R ./tmp | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/ /' -e 's/-/|/'
+  229  lr
+  230  vim ./.bashrc
+  231  cp ./.bashrc bashrc.txt
+  232  lr
+  233  vim ./.bashrc
+  234  ll
+  235  vim ./.bashrc
+  236  cp ./.bashrc bashrc.txt
+  237  cp ./.bashrc bashrc_01AUG14-v0.00.txt
+  238  exit
+  239  dz
+  240  ls
+  241  vim 2014-07-30 
+  242  sudo port install tac
+  243  script
+  244  ls -ltr
+  245  man script
+  246  tail ./.bashrc
+  247  cd
+  248  tail ./.bashrc
+  249  vim ./.bashrc
+  250  sudo port install gcal
+  251  gcal
+  252  http
+  253  http http://xzero.io/../../../../../../../etc/hosts
+  254  http http://xzero.io/../../../../../../../etc/hosts%00
+  255  python
+  256  sudo port install python-pip
+  257  sudo port search pip
+  258  easy_install pip
+  259  sudo easy_install pip
+  260  git
+  261  sudo pip install docopt pygments
+  262  cat > Network Scanning Workshop
+  263  Questions/Comments: jonschipp@gmail.com
+  264  Student Worksheet:
+  265  ===========
+  266  ==Part 1.== ( Sockets )
+  267  ===========
+  268  netcat - Client and Server Interaction:
+  269  1.1 nc -l -p 55555 (listen on all interfaces)
+  270  1.2 nc -l -p 55555 -s 127.0.0.1 (listen on localhost)
+  271  1.3 nc -l -p 55555 -s 192.168.1.16 (listen on ip address)
+  272  netstat -an -A inet -p | grep LISTEN
+  273  netstat -l -A inet -p
+  274  1.4 nc 192.168.1.16 55555
+  275  1.5 nc -l -p 55555 -s 192.168.1.16 -e /bin/bash
+  276  1.6 nc -l -p 55555 -s 192.168.1.16 < snoopdogg.mp3
+  277  1.7 nc 192.168.1.16 55555 > snoopdogg.mp3
+  278  1.8  nc -n -z -v 192.168.1.8 1-1000
+  279  1.9 echo -e "HEAD / HTTP/1.0\r\n" | nc -v -w1 itt-tech.edu 80 2>/dev/null | grep -i server
+  280  ===========
+  281  ==Part 2.== ( Route Mapping )
+  282  ===========
+  283  traceroute - follow the path a datagram takes to its destination
+  284  Windows traceroute sends ICMP datagrams
+  285  Unix traceroute sends UDP datagrams
+  286  2.1 traceroute -n google.com
+  287  2.2 tcptraceroute -S -n google.com 80
+  288  2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.ho
+  289  2222222222222222 --t2222222222222222 --t22222222222222ero2222222222222222 --map 2222222222222222 --t2222222222222222 -com2222222222222222 --t222
+  290  2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2==
+  291  2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2==
+  292  -t22222
+  293  NmaNmaNmaNmaNmaNmaery:NmaNmaNmaNmaNmaNmaery:NmaNmaNmaNmaNmaNmaery:NmaNf wNmaNmaNmaNmaNmaNmaery:NmaNmaNmaNmaNmaNmrt sNmaNmaNmaNmaNscanNmaNmaNmaNmaNmaNmaery:NmaNmaNmaNults NmaNmaNmaNmaNmaNmaeryrgeNmaNmaNmaNmaNmaNmaery:NmaNmaNmaNmaNmaNmaery:NmaNmaNmaNmaNmaNmaery:NmaNf wNmaNmaNmaNmaNmanmapNmaNmaNmaNR NmaNmaNmaNmaNmaNmaery:NmaNm - NmaNmaNmaketsNmaNmaNmaNmaNmaNmaery:NmaNmaNmaNmaNmaNmaery:NmaNmaNmaNmaNmaNmaeo
+  294  maNmaNmaNmaNmaNmaery:NmaNmaNmaNmaNmaN.1maNmaNmaNmaNmaNmaery:NmaNmaNmaNmaNnmamaNmaNmaNmaNmaNmaery:NmaNma,443maNmaNmaNmaNmaNmaery:NmaNmasonmaNmaNmaNmaNmaNmaery:NmaNmaNmaNmaNmaN.1maNmaNma -PEmaNmaNmaNmaNmaNmaery:NmaNmaNmaNmaNm3 --maNmaNmaNmaNmaNmaery:NmaNmaNmaNmaNmaN.1maNmaNmaNmaNmaNmaery:NmaNmaNmaNmaNnmamaNmaNmaNmaNmaNmaerp - maNmaNmaNmaNmaNmaery:NmaNmaNmaNmaNmaN.1maNmaNmaNmaNmaNmaeCK maNmaNmaNmaNmaNmaery:NmaNmaNmaNmaNmaN.1maNmaNmaNmaNmaNmaery:NmaNmaNmaNmaNnmamaNmaNmaNmaNmaNmaery:NmaNma,443maNmaNmaNmaNmaNmaery:NmaNmasonmaNmaN 19maNmaNmaNmaNmaNmaery:NmaNmaNmaNmaNm momaNmaNmaNmaNmaNmaery:NmaNmaNmaNmaNm800maNma0 1maNmaNmaNmaNmaNmaery:NmaNmaNmaNmaNmaN.1maNmaNmaNmaNmaNmaery:NmaNmaNmaNmaNnmamaNmaNmaNmaNmaNmaery:NmaNma,443maNmaNmaNmaNmaNmaery:NmaNmasonmaNmaNmaNmaNmaNmaery:NmaNmaNmaNmaNmaN.1maNmaNma -PEmaNmaNmaNmaNmaNmaery:NmaNmaNmaNmaNm3 --maNmaNmaNmaNmaNmaery:NmaNmaNmaNmaNmaN.1maNmaNmaNmaNmaNmaery:NmaNmaNmaNmaNnmamaNmaNmaNmaNmaNmaerp - maNmaNmaNmaNmaNmaery:NmaNmaNmaNmaNmaN.1maNmaNmaNmaNmaNmaeCK maNmaNmaNmaNmaNma- --min-rate 1000 --max-retries 0 192.168.1.8,20,1
+  295  3.12 nmap -sA -n -v -p1-100,400-500 192.168.254.254
+  296  --------------------------
+  297  Service/OS Detection & Other Options:
+  298  *default version intensity: -sV is 7*
+  299  3.13 nmap -sV -F -n -PN --version-light -T4 --reason -O --osscan-limit -oN scan.txt 192.168.1.1-5
+  300  3.14 nmap -n -PN -A -vv --reason -T4 -oN scan.txt 192.168.1-2.1-5
+  301  3.15 xprobe2 -v 192.168.1.2
+  302  3.16 xprobe2 -v -A -U 111 -T 80,443,3000 192.168.1.2
+  303  -------------------------------
+  304   
+  305  Script Scans:
+  306  exit
+  307  cd Cloud\ Drive/
+  308  ls
+  309  dos2unix newSecNotes.txt 
+  310  cat newSecNotes.txt >> Sec_Plus_29JUL14-v0.00.txt 
+  311  cp Sec_Plus_29JUL14-v0.00.txt Sec_Plus_29JUL14-v0.01.txt
+  312  mkdir tmp
+  313  mv Sec_Plus_29JUL14-v0.00.txt ./tmp/
+  314  vim Sec_Plus_29JUL14-v0.01.txt 
+  315  ll
+  316  exit
+  317  exit
+  318  exit
+  319  exit
+  320  screen -x
+  321  screen
+  322  exit
+  323  cat ./.bash_profile 
+  324  vim ./.profile
+  325  vim ./.bashrc
+  326  exit
+  327  exit
+  328  exit
+  329  exit
+  330  exit
+  331  lr
+  332  lr
+  333  ll
+  334  cat ./.bash_profile 
+  335  screen
+  336  exit
+  337  vim ./.bashrc
+  338  exit
+  339  ls -R | grep ":$" | sed -e 's,:$,,' -e 's,[^-][^\/]*\/,--,g' -e 's,^, ,' -e 's,-,|,'
+  340  ls -R tmp | grep ":$" | sed -e 's,:$,,' -e 's,[^-][^\/]*\/,--,g' -e 's,^, ,' -e 's,-,|,'
+  341  ls -R tmp| grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/ /' -e 's/-/|/'
+  342  ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/ /' -e 's/-/|/'
+  343  ls -R tmp| grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/ /' -e 's/-/|/'
+  344  ls -R tmp| grep ":$" | sed 's/:$//'; 's/[^-][^\/]*\//--/g'; 's/^/ /'; 's/-/|/'
+  345  ls -R tmp| grep ":$" | sed 's/:$//';'s/[^-][^\/]*\//--/g';'s/^/ /';'s/-/|/'
+  346  ls -R tmp| grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/ /' -e 's/-/|/'
+  347  man sed
+  348  man sed
+  349  exit
+  350  exit
+  351  exit
+  352  exit
+  353  vim ./.bashrc
+  354  screen
+  355  exit
+  356  vim ./.basrch
+  357  vim ./.bashrc
+  358  exit
+  359  vim ./.bashrc
+  360  exit
+  361  exit
+  362  exit
+  363  exit
+  364  exit
+  365  exit
+  366  exit
+  367  exit
+  368  exit
+  369  exit
+  370  exit
+  371  lr
+  372  exit
+  373  lr
+  374  lr
+  375  exit
+  376  ls -R | grep ":$" | sed "s/:$//" | "s/[^-][^\/]*\//--/g" | "s/^/ /" | "s/-/|/"
+  377  exit
+  378  exit
+  379  sudo scutil --set HostName MBP-E2011-10.6.8
+  380  hostname
+  381  exit
+  382  lr
+  383  cd tmp
+  384  ls
+  385  ls -R
+  386  ls -R | grep ":$"
+  387  lr
+  388  ls -R | grep ":$" | sed s/:$//
+  389  ls -R | grep ":$" | sed s/:$// | sed s/\./\|/
+  390  hostname | sed "s/\..*$//"
+  391  vim /etc/hostconfig 
+  392  man hostname
+  393  man 5 hostname
+  394  vim /etc/hosts
+  395  vim /etc/hosts.equiv 
+  396  man scutil
+  397  sudo scutil hostname MBP_E2011_10.6.8
+  398  sudo scutil set hostname MBP_E2011_10.6.8
+  399  sudo scutil set hostname MBP-E2011-10.6.8
+  400  sudo scutil --set hostname MBP-E2011-10.6.8
+  401  cd
+  402  script
+  403  ls -ltr
+  404  lr
+  405  zsh
+  406  clear
+  407  exit
+  408  vim ./.bashrc
+  409  vim ./.bashrc
+  410  vim ./.bashrc
+  411  vim ./.bashrc
+  412  cp ./.bashrc bashrc_01AUG14-v0.01.txt 
+  413  exit
+  414  ls -R | grep ":$" | sed 's/:$//' | sed 's/[^-][^\/]*\//--/g' | sed 's/^/ /' | sed 's/-/|/'
+  415  ls -R ./tmp | grep ":$" | sed 's/:$//' | sed 's/[^-][^\/]*\//--/g' | sed 's/^/ /' | sed 's/-/|/'
+  416  ls -R | grep ":$" | sed 's/:$//' | 's/[^-][^\/]*\//--/g' | 's/^/ /' | 's/-/|/'
+  417  exit
+  418  vim ./.bashrc
+  419  screen
+  420  screen
+  421  exit
+  422  pwd
+  423  cd ceh
+  424  ls
+  425  clear
+  426  vim sn_ceh.txt 
+  427  exit
+  428  sudo port install rtorrent
+  429  sudo port selfupdate
+  430  sudo port upgrade outdated
+  431  clear
+  432  cd Downloads/
+  433  ls
+  434  ls *.iso
+  435  df -h
+  436  df -h
+  437  grep '.*ldap.*' /etc/services
+  438  grep '.*syslog.*' /etc/services
+  439  grep '.*dhcp.*' /etc/services
+  440  grep '.*snmp.*' /etc/services
+  441  grep '.*519.*' /etc/services
+  442  grep '.*lpd.*' /etc/services
+  443  grep '.*515.*' /etc/services
+  444  grep '.*9100.*' /etc/services
+  445  grep '.*sql.*' /etc/services
+  446  exit
+  447  exit
+  448  exit
+  449  exit
+  450  screen -x
+  451  screen
+  452  exit
+  453  grep -r '.*private.internet.access.*'
+  454  grep -r '.*private.internet.access.*' .
+  455  sudo port install dsniff
+  456  cd ceh
+  457  cat > dsniff_Install.sh.txt
+  458  sh dsniff_Install.sh.txt 
+  459  vim dsniff_Install.sh.txt 
+  460  sh dsniff_Install.sh.txt 
+  461  vim dsniff_Install.sh.txt 
+  462  vim dsniff_Install.sh.txt 
+  463  ls -ltr
+  464  vim dsniff_Install.sh.txt 
+  465  vim arpSPOOF.sh.txt 
+  466  python sslstrip.py -p -k -l 8080 -w ./sslstrip.log
+  467  sh arpSPOOF-kill.sh.txt 
+  468  ettercap -G
+  469  ettercap -c
+  470  ettercap -c en1
+  471  cd ceh
+  472  vim dl.sh.txt 
+  473  vim dl_ceh_class.sh.txt
+  474  exit
+  475  ifconfig -a
+  476  exit
+  477  cat /etc/passwd 
+  478  less /etc/passwd 
+  479  man nc
+  480  exit
+  481  cd ceh
+  482  mkdir class
+  483  cd class/
+  484  wget -ct 3 http:\\tailormadetechnologies.com\cehv8.zip
+  485  wget -ct 3 http://tailormadetechnologies.com/cehv8.zip
+  486  wget -ct 3 http://tailormadetechnologies.com/wargames.zip
+  487  wget -ct 3 http://tailormadetechnologies.com/wargames.zip
+  488  history | grep '.*wget.*' > dl_class.sh.txt
+  489  vim dl_class.sh.txt 
+  490  ls
+  491  cp dl_class.sh.txt ../bin/
+  492  unzip cehv8.zip 
+  493  ls
+  494  ls
+  495  unzip wargames.zip 
+  496  cd wargames
+  497  ls
+  498  lynx zyclonite\ networx\ -\ zyclonite\ networx.URL 
+  499  lynx hackergames.net.URL 
+  500  exit
+  501  xcrun
+  502  xcrun -f
+  503  xcode-select --install
+  504  gcc
+  505  gcc --version
+  506  xcode-select -p
+  507  gcc
+  508  make
+  509  xcode-select -p
+  510  sudo port selfupdate
+  511  sudo upgrade outdate
+  512  sudo upgrade outdated
+  513  sudo port upgrade outdated
+  514  sudo port install ruby19 +nosuffix
+  515  ls /local
+  516  ruby --version
+  517  /opt/local/bin/ruby1.9 --version
+  518  sudo port select ruby19
+  519  whereis ruby
+  520  locate ruby
+  521  locate ruby | less
+  522  locate ruby | less
+  523  sudo port select ruby ruby19
+  524  gem install bundler
+  525  sudo gem install bundler
+  526  sudo install postgresql93-server
+  527  sudo port install postgresql93-server
+  528  sudo mkdir -p /opt/local/var/db/postgresql93/defaultdb
+  529  sudo chown postgres:postgres /opt/local/var/db/postgresql93/defaultdb
+  530  sudo su postgres -c '/opt/local/lib/postgresql93/bin/initdb -D /opt/local/var/db/postgresql93/defaultdb'
+  531  /opt/local/lib/postgresql93/bin/postgres -D /opt/local/var/db/postgresql93/defaultdb
+  532  sudo /opt/local/lib/postgresql93/bin/postgres -D /opt/local/var/db/postgresql93/defaultdb
+  533  /opt/local/lib/postgresql93/bin/pg_ctl -D /opt/local/var/db/postgresql93/defaultdb -l logfile start
+  534  man postgres 
+  535  sudo su postgres /opt/local/lib/postgresql93/bin/pg_ctl -D /opt/local/var/db/postgresql93/defaultdb -l logfile start
+  536  sudo port select --list postgresql
+  537  which ruby gem
+  538  which psql
+  539  which postgresql
+  540  sudo which psql
+  541  which postgresql93
+  542  history
+  543  sudo port install postgresql93-server
+  544  sudo port select --set postgresql postgresql93
+  545  sudo port load postgresql93-server
+  546  createuser --superuser `whoami` -U postgres -P
+  547  createdb `whoami`
+  548  /opt/local/lib/postgresql93/bin/postgres -D /opt/local/var/db/postgresql93/defaultdb
+  549  ls -l /opt/local/var/db
+  550  /usr/bin/sudo launchctl load -w /Library/LaunchDaemons/org.macports.postgresql93-server.plist
+  551  sudo launchctl stop org.macports.postgresql93-server
+  552  sudo launchctl start org.macports.postgresql93-server
+  553  /opt/local/lib/postgresql93/bin/postgres -D /opt/local/var/db/postgresql93/defaultdb
+  554  ls -l /opt/local/var/db/postgresql93/defaultdb/postgresql.conf
+  555  ls -l /opt/local/var/db/postgresql93/defaultdb/
+  556  ls -l /opt/local/var/db/postgresql93/
+  557  sudo psql -U postgres
+  558  sudo psql -U postgres
+  559  cd local
+  560  cd \local
+  561  sudo svn co https://www.metasploit.com/svn/framework3/trunk/ /opt/local/msf/
+  562  whoami
+  563  sudo su
+  564  sudo launchctl load -w /Library/LaunchDaemons/org.macports.postgresql93-server.plist
+  565  export PATH=/opt/local/lib/postgresql93/bin:$PATH
+  566   createuser msf -h localhost
+  567  sudo su msf_user
+  568  sudo su postrges
+  569  sudo su postgres
+  570  history
+  571  history > sn_msf-install.txt
+Mavericks, MacPorts, PostgreSQL 9, Tomcat 6 and PostgreSQL Studio
+1   createuser msf -h localhost
+    2  vim /opt/local/var/db/postgresql93/defaultdb/pg_hba.conf
+

@@ -1,0 +1,84 @@
+::  --------------------------------------------------------------------------
+::  File:  mkBatchTemplate_-_RegEdits-v0.25.bat
+::  Purpose:  Create a batch template file
+::  Author:  SFC Hammond, Christopher J.
+::  Date:  01OCT10
+::  --------------------------------------------------------------------------
+
+:: (Place maintenance record here)
+
+@ECHO OFF & SETLOCAL ENABLEEXTENSIONS
+GOTO START
+
+::  (Place syntax, notes, or other instructions heres)
+
+:START
+TITLE createBatchTemplate
+
+ECHO ::  -------------------------------------------------------------------------- > _regEdits_2k3_batchTemplate-v0.00.bat.txt
+ECHO ::  File:  _regEdits_2k3_batchTemplate-v0.00.bat.txt >> _regEdits_2k3_batchTemplate-v0.00.bat.txt
+ECHO ::  Purpose:   >> _regEdits_2k3_batchTemplate-v0.00.bat.txt
+ECHO ::  Author:  SFC Hammond, Christopher J. >> _regEdits_2k3_batchTemplate-v0.00.bat.txt
+ECHO ::  Date:  %DATE% >> _regEdits_2k3_batchTemplate-v0.00.bat.txt
+ECHO ::  -------------------------------------------------------------------------- >> _regEdits_2k3_batchTemplate-v0.00.bat.txt
+
+:: Used ECHO. for CR/LF supposedly ECHO: or ECHO"ALT-255" sans quotes will work too
+ECHO. >> _regEdits_2k3_batchTemplate-v0.00.bat.txt
+ECHO :: (Place maintenance record here) >> _regEdits_2k3_batchTemplate-v0.00.bat.txt
+ECHO :: REG query "HKLM\xx\xx\xx\xx" >> _regEdits_2k3_batchTemplate-v0.00.bat.txt
+ECHO. >> _regEdits_2k3_batchTemplate-v0.00.bat.txt
+
+ECHO @ECHO OFF ^& SETLOCAL ENABLEEXTENSIONS >> _regEdits_2k3_batchTemplate-v0.00.bat.txt
+ECHO GOTO START >> _regEdits_2k3_batchTemplate-v0.00.bat.txt
+ECHO. >> _regEdits_2k3_batchTemplate-v0.00.bat.txt
+ECHO ::  (Place syntax, notes, or other instructions heres) >> _regEdits_2k3_batchTemplate-v0.00.bat.txt
+ECHO. >> _regEdits_2k3_batchTemplate-v0.00.bat.txt
+
+ECHO :START >> _regEdits_2k3_batchTemplate-v0.00.bat.txt
+ECHO TITLE BatchTemplate  >> _regEdits_2k3_batchTemplate-v0.00.bat.txt
+ECHO. >> _regEdits_2k3_batchTemplate-v0.00.bat.txt
+
+ECHO :: ensure temp directory exists c:\temp  >> _regEdits_2k3_batchTemplate-v0.00.bat.txt
+
+ECHO IF NOT EXIST "C:\Temp" (  >> _regEdits_2k3_batchTemplate-v0.00.bat.txt
+ECHO mkdir c:\Temp  >> _regEdits_2k3_batchTemplate-v0.00.bat.txt
+ECHO )  >> _regEdits_2k3_batchTemplate-v0.00.bat.txt
+ECHO IF EXIST "C:\Temp" ( >> _regEdits_2k3_batchTemplate-v0.00.bat.txt
+ECHO Temp directory on root of C drive exists >> _regEdits_2k3_batchTemplate-v0.00.bat.txt
+ECHO ) >> _regEdits_2k3_batchTemplate-v0.00.bat.txt
+ECHO. >> _regEdits_2k3_batchTemplate-v0.00.bat.txt
+
+ECHO :: Variables >> _regEdits_2k3_batchTemplate-v0.00.bat.txt
+ECHO SET FILE=someFile >> _regEdits_2k3_batchTemplate-v0.00.bat.txt
+ECHO SET Hive=HKEY_LOCAL_MACHINE >> _regEdits_2k3_batchTemplate-v0.00.bat.txt
+ECHO SET HPath=System\CurrentControlSet\Services\LanmanServer\Parameters >> _regEdits_2k3_batchTemplate-v0.00.bat.txt
+ECHO SET HKey1="First Home Page" >> _regEdits_2k3_batchTemplate-v0.00.bat.txt
+ECHO SET HKey2="Start Page" >> _regEdits_2k3_batchTemplate-v0.00.bat.txt
+ECHO SET HKey3="Default_Page_URL" >> _regEdits_2k3_batchTemplate-v0.00.bat.txt
+ECHO SET HType=REG_SZ >> _regEdits_2k3_batchTemplate-v0.00.bat.txt
+ECHO SET HValue="about:blank" >> _regEdits_2k3_batchTemplate-v0.00.bat.txt
+ECHO SET PATH=%~dp0texmf\miktex\bin;%PATH%  >> _regEdits_2k3_batchTemplate-v0.00.bat.txt
+ECHO SET TEMP=C:\TEMP >> _regEdits_2k3_batchTemplate-v0.00.bat.txt
+ECHO SET URL="someURL" >> _regEdits_2k3_batchTemplate-v0.00.bat.txt
+ECHO. >> _regEdits_2k3_batchTemplate-v0.00.bat.txt
+
+ECHO :: Offspring Variables >> _regEdits_2k3_batchTemplate-v0.00.bat.txt
+ECHO SET FILEOPTS=/quiet /norestart /log c:\temp\%%FILE%%_%%KB%%_Log.txt >> _regEdits_2k3_batchTemplate-v0.00.bat.txt
+ECHO SET PATH=%%PATH%%;C:\TEMP\BIN >> _regEdits_2k3_batchTemplate-v0.00.bat.txt
+ECHO SET LOG=%%TOTALD%%_-_InstallLog.txt >> _regEdits_2k3_batchTemplate-v0.00.bat.txt
+ECHO SET VERSION=%FILE:~0,8% >> _regEdits_2k3_batchTemplate-v0.00.bat.txt
+ECHO. >> _regEdits_2k3_batchTemplate-v0.00.bat.txt
+
+ECHO :: backup existing ActiveX Compatibilit entry >> _regEdits_2k3_batchTemplate-v0.00.bat.txt
+ECHO reg export HKLM\xx\xx\xx\xx c:\temp\reg_Foo00oo.reg.txt >> _regEdits_2k3_batchTemplate-v0.00.bat.txt
+ECHO reg query "HKLM\xx\xx\xx\xx" 2^>nul 1^>nul ^&^& ( >> _regEdits_2k3_batchTemplate-v0.00.bat.txt
+ECHO reg copy "HKLM\xx\xx\xx\xx" "HKLM\xx\xx\xx\xx".bak /f /s 2>nul 1>nul >> _regEdits_2k3_batchTemplate-v0.00.bat.txt
+ECHO ) >> _regEdits_2k3_batchTemplate-v0.00.bat.txt
+
+ECHO start /min echo updating registry; __someIAVAUpdate__ >> _regEdits_2k3_batchTemplate-v0.00.bat.txt
+ECHO reg add "HKLM\xx\xx\xx\xx" /v xxXX /d 0 /t REG_DWORD /f >> _regEdits_2k3_batchTemplate-v0.00.bat.txt
+ECHO MSG * "updated registry; __someIAVAUpdate__" >> _regEdits_2k3_batchTemplate-v0.00.bat.txt
+
+ECHO ENDLOCAL >> _regEdits_2k3_batchTemplate-v0.00.bat.txt
+ECHO. >> _regEdits_2k3_batchTemplate-v0.00.bat.txt
+ECHO :EOF >> _regEdits_2k3_batchTemplate-v0.00.bat.txt

@@ -1,0 +1,51 @@
+<!-- ******************************************************* --> 
+<!-- *  File: SN_DVD_Decrypter_25JAN09.txt                 * -->
+<!-- *  Author:   Anonymous                                * --> 
+<!-- *  File:     /home/rac3rx/html/index.html             * --> 
+<!-- *  Purpose:  Backup a personal DVD for home use.      * --> 
+<!-- *  Date:     21JAN09                                  * --> 
+<!-- ******************************************************* --> 
+
+How to backup you DVD collection for free.
+
+    STEP 01:  Download the program DVD Decryptor from the following URL:
+              
+              mrbass.org
+              http://www.mrbass.org/dvdrip/SetupDVDDecrypter_3.5.4.0.exe
+
+    STEP 02:  The filename and hashes of the program are listed down 
+              below to verify the confidentiality and integrity of the       <-- need easy gui for newbs
+              program to ensure that it hasn't been hacked or corrupted.
+
+                  Filename:  SetupDVDDecrypter_3.5.4.0.exe
+                  MD5 hash:  78d806097da8e8b8d595827cccddf6d9
+                  SHA1 hash: 4cd617d8bdad9b2175b1cf688780945ec5f2335d
+
+    STEP 03:  
+
+
+
+
+
+References:
+
+mrbass.org
+http://www.mrbass.org/dvdrip/SetupDVDDecrypter_3.5.4.0.exe
+
+Copy a DVD5 with DVD Decrypter
+http://www.digitalfaq.com/dvdguides/dvdcopy/decrypter/decrypter.htm
+
+DVD Decrypter ripper | DVD43 on-the-fly decryption | RCE Protection
+http://www.mrbass.org/dvdrip/
+
+
+DVD Decrypter - SetupDVDDecrypter_3.5.4.0.exe
+MD5: 78d806097da8e8b8d595827cccddf6d9
+SHA1: 4cd617d8bdad9b2175b1cf688780945ec5f2335d
+Freeware : Windows
+
+DVD Shrink 3.2.0.15 - dvdshrink32setup.zip
+MD5: e6b0a6346fe640365f4ab9d5c7d9fb93
+SHA1: 011c6a1caa485c54b585d774d6438473ce5f9b39
+Freeware : Windows
+http://www.cleansoftware.org/utility/

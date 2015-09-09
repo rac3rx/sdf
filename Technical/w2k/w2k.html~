@@ -1,0 +1,35 @@
+<HTML>
+  <HEAD>
+    <TITLE>
+      w2k Newbie Notes, Checklists and Tutorials
+    </TITLE>
+  </HEAD>
+  <BODY>
+    <TABLE>
+      <TR>
+        <TD>
+          <A HREF="./W2k_Installation_Procedures_LF-v0.01.txt">[ w2k Notes ]</A>
+        </TD>
+        <TD>
+	  <A HREF="../NetBSD/NetBSD.html">[ NetBSD ]</A> 
+	</TD>
+	<TD>
+	  <A HREF="../Shells/Shells.html">[ Shells ]</A>
+        </TD>
+        <TD>
+	  <A HREF="NetBSD_Kernel.html">[ Kernel ]</A> 
+        </TD>
+      </TR>
+    </TABLE>
+    <P>
+    <a href="http://www.NetBSD.org/"><img src="../Graphics/NetBSD_212x209.jpg" border=0 alt="Site driven by NetBSD - NetBSD rules!"></a>
+    </P>
+    <P>
+      LAST UPDATED: Mon Apr 19 16:49:28 UTC 2004
+    </P> 
+    <P>
+    <A HREF="MAILTO:rac3rx@sdf.lonestar.org">Webmaster: rac3rx@sdf.lonestar.org</A>
+    </P>
+  </BODY>
+</HTML>
+

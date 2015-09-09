@@ -1,0 +1,25 @@
+::  -------------------------------------------------------------------------- 
+::  File:  newFoo.bat.txt 
+::  Purpose:   
+::  Author:  SFC Hammond, Christopher J. 
+::  Date:  Fri 10/15/2010 
+::  -------------------------------------------------------------------------- 
+ 
+:: (Place maintenance record here) 
+ 
+@ECHO OFF 
+GOTO START 
+ 
+::  (Place syntax, notes, or other instructions heres) 
+ 
+:START 
+
+:: extracted files
+.\mmddyy_w2k3\w2k3\DL\WindowsServer2003-KB914961-SP2-x86-ENU.exe /X:./mmddyy_w2k3/w2k3/SP2
+
+:: Windows Server 2003 SP2 files are being integrated into the Windows Server 2003 installation folder.
+:: .\mmddyy_w2k3\w2k3\DL\WindowsServer2003-KB914961-SP2-x86-ENU.exe  /integrate:.\mmddyy_w2k3\w2k3\ROOT
+
+.\mmddyy_w2k3\w2k3\SP2\i386\update\update.exe /integrate:.\mmddyy_w2k3\w2k3\ROOT
+ 
+:END 

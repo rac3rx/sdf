@@ -1,0 +1,28 @@
+File:  SN_System Administrator_SA.txt
+
+Minimum Training Requirements:
+(1). IASO course (https://ia.gordon.army.mil ) – estimated time: 2-3 working days
+(2). IA Technical Level I course (SkillPort> CIO G-6/NETCOM Information Assurance>
+Technical Level I Certification – 11 modules) – estimated time: 5-7 working days.
+(3). Network Security Issues 
+     (SkillPort>CIO-G6/NETCOM Information Assurance>CIO - G6/NETCOM IA Phase I>
+      Net Safety>Network Security Issues – 1 module (estimated time: 3.5 hours).
+(4). Completion of an on-the-job skills practical evaluation to meet functional requirements of DoD 8570.01-M. 
+     This requirement must be validated by the individual IAPM or IAM.
+
+======
+E-learning Security + modules
+
+======
+
+
+IAT Level I     IAT Level II	IAT Level III
+A+              GSEC            CISA
+Network+        SCNP            CISSP
+SSCP            SSCP            GSE
+                Security+       SCNA
+
+IAM Level I     IAM Level II    CISM
+GISF            CISM            GSLC
+GSLC            GSLC            CISSP
+Security+       CISSP

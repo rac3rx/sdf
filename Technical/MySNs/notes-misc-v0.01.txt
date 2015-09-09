@@ -1,0 +1,156 @@
+the famous amorphous Hacktivist group Anonymous
+
+
+
+faith without works is dead
+"The Soul of a New Machine" by Tracy Kidder.
+
+Published 1981, Pulitzer Prize 1982 I think.
+
+"Snow Crash"
+
+
+Pentesting
+
+oAuth and OpenID OpenSSL heartbleed
+
+  hacker news
+http://ihackernews.com/
+
+http://techmeme.com/
+
+Techmeme - http://www.techmeme.com (aggregator with human editing)
+Slashdot - http://slashdot.org/ (aggregator with human editing)
+YC Hacker News - http://news.ycombinator.com (aggregator with voting)
+Hacker News - http://hackernews.org/ (rss feed aggregator)
+Ars Technica - http://arstechnica.com/
+CNET - http://www.cnet.com/ ( ZDNet - http://www.zdnet.com/ )
+Engadget - http://www.engadget.com/
+GigaOM - http://gigaom.com/
+Gizmodo - http://gizmodo.com/
+Mashable - http://mashable.com/
+ReadWriteWeb - http://www.readwriteweb.com/
+The Next Web - http://thenextweb.com/
+The Verge - http://www.theverge.com/
+TechCrunch - http://techcrunch.com/
+TechRadar - http://www.techradar.com/
+TWiT.tv - strives to be CNN of tech
+Valleywag - http://valleywag.gawker.com/
+Wired - http://www.wired.com/
+
+  iOS Hacker News
+http://install.nodemesh.net/r/BKbW
+  news:yc
+costs $2.99 (free if you have Xcode, see below)
+open-source (if you have Xcode, you can download the source from https://github.com/newsyc/newsyc ,compile and push to your iOS device, all without paying a cent, hat tip Dennis Cahillane)
+allows for submitting links / text (starting threads)
+search-enabled
+user profile tab so you can view your own submissions, comments, etc
+customizable (toggles for "Confirm Votes" and even "Less Orange")
+plenty of sharing options (open in Safari, email, copy link, read later in Instapaper, you can even send comment threads to Instapaper) 
+  The best iOS app for Hacker News (in my opinion) is a tie between news:yc and HackerNode, depending on your specific needs
+
+  http://www.quora.com/Hacker-News/What-are-some-of-the-best-Hacker-News-posts-ever
+  http://news.ycombinator.com/best
+  http://www.gabrielweinberg.com/startupswiki/Ask_YC_Archive
+  http://news.ycombinator.com/item?id=1838021
+  http://twitter.com/#!/paulg/status/28911860225
+  http://www.hnsearch.com/search#request/comments&q=-octagenarian&start=0
+  http://hntop100.com/
+  http://news.ycombinator.com/item?id=35079
+
+  http://www.quora.com/search?q=best+hacker
+
+  Who are the best hackers in the world
+  http://www.quora.com/Who-are-the-best-hackers-in-the-world
+
+    "Growth Hackers", Security Experts, Coders
+
+
+     IIT Kharagpur
+     Shubham Gupta. 2010 batch. Period.
+     Shubham Agrawal cse dual first year
+     Buddhiprakash Karol, 2nd Year OENA, LBS Hall, Room A-412
+     Aakash Anuj, 4th year,  RP Hall
+
+    https://twitter.com/jgrunzweig
+    https://twitter.com/Picchioni
+    Matthew Jakubowski.
+    http://goo.gl/TfduVG
+    http://en.wikipedia.org/wiki/MafiaBoy
+    http://en.wikipedia.org/wiki/Hackers_Wanted
+    http://en.wikipedia.org/wiki/Max_Butler
+
+    Nicholas J. Percoco is an ethical computer hacker and security researcher with the firm KPMG.
+    http://en.wikipedia.org/wiki/Nicholas_J._Percoco
+    Trustwave SpiderLabs team which was responsible for ethical hackin
+    Internet Security Systems and VeriSign.
+    THOTCON hacking conference and co-founder of the I am The Cavalry movement.
+    KPMG is one of the largest professional services companies in the world and one of the Big Four auditors, along with Deloitte, Ernst & Young (EY) and PricewaterhouseCoopers (PwC). Its global headquarters is located in Amstelveen, the Netherlands.[1]
+
+  KALI Linux aka backtrack
+
+  Afterwards, I shut down the device and accessed the file system using well-known techniques (DFU mode, custom ramdisk, SSH over usbmux)
+  iOS forensics tool called 'iPhone Data Protection'
+    # mount_hfs /dev/disk0s1s2 /mnt2
+    # cd /mnt2/mobile/Library/Mail/
+
+    # xxd Protected\ Index
+    xxd: Protected Index: Operation not permitted
+
+  OAuth and OpenID  (Heartbleed)
+    Nasty Covert Redirect Vulnerability found in OAuth and OpenID After Heartbleed bug
+
+Games 
+    Final Fantasy
+
+Tactics
+    Aegis System
+
+Job Search - Nice Companies
+    SpaceX
+    Facebook
+    Google
+
+Facebook ULs
+    http://www.quora.com/Photographs/What-are-some-of-the-most-epic-photos-ever-taken
+
+
+history
+  Notably were the first use of the (potters) wheel, leading to war chariots (superior weapon early on), Writing (Hammurabi's Code and Epic Tale of Gilgamesh), Mathematics with a base of 60, leading to our 60 seconds minute and 60 minute hour, 360 degrees for a circle (sound familiar?) and potentially the Pythagorean theorem as well as the number "pi". Further they were well advanced in astronomy, being able to predict the course of te visible planets (Venus, Mars, Jupiter, Saturn) and their 12 month calendar based on the lunar month (which was the bases for both the greek as well as the jewish calendar). They knew and recorded medicinal use, healing illnesses with creams and pills. They used advanced technology for irrigation (archimedes screw, pumpin water up to higher terrain, babylonian hanging gardens). There is probably much, much more they achieved. Now what was the most advanced technology used during that time in that area by any of those people you ask is a question I cannot begin to answer. Instead among all the firsts were Man’s First Cosmogony and Cosmology, The First Moral Ideas, The First Biblical Parallels, The First `Noah’, `Moses’, and `Job’, Man’s First Epic Literature, The First Case of Library Borrowing, The First Legal Precedent, The First Aquarium, and The First Proverbs and Sayings. Mesopotamia generally, and Sumer specifically, gave the world some of its most enduring cultural aspects and, even though the cities and great palaces are long gone, that legacy continues.
+
+Literature
+  She waited for the train to pass. Then she said, "I sometimes think that people’s hearts are like deep wells. Nobody knows what’s at the bottom. All you can do is imagine by what comes floating to the surface every once in a while.” 
+- Blind Willow, Sleeping Woman
+
+“Whatever it is you're seeking won't come in the form you're expecting.” 
+- Kafka on the Shore
+
+“No matter what they wish for, no matter how far they go, people can never be anything but themselves. That's all.” 
+-Blind Willow, Sleeping Woman
+
+And the best one,
+
+“If you remember me, then I don't care if everyone else forgets.” 
+-Kafka on the Shore
+
+"It does not do to dwell on dreams and forget to live." 
+
+"It is our choices, Harry, that show what we truly are, far more than our abilities."
+
+
+
+	
+Dulles International Airport
+1 Saarinen Cir, Dulles, VA 20166
+
+
+00:47
+Flight UA 7086
+Updated information regarding your flight
+BAQ 4:14 PM
+E Cortissoz Airport	›	PTY 5:31 PM
+Tocumen International Airport
+Departure Terminal:    /   Departure Gate: 5INT	Arrival Terminal:    /   Arrival Gate: 19
+
+

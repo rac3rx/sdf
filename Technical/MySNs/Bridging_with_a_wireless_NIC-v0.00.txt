@@ -1,0 +1,136 @@
+Debian:  Bridging Network Connections
+https://wiki.debian.org/BridgeNetworkConnections#Bridging_with_a_wireless_NIC
+
+  Most Access Points (APs) will reject frames that have a source address that didn’t authenticate with the AP. 
+  Since Linux does ethernet bridging transparently (doesn’t modify outgoing or incoming frames), we have to set up some rules to do this with a program called ebtables.
+
+Manual bridge setup
+brctl addbr br0
+ip addr show
+brctl addif br0 eth0 eth1
+
+Configuring bridging in /etc/network/interfaces
+cat /etc/network/interfaces
+--snip--
+
+ # This file describes the network interfaces available on your system
+ # and how to activate them. For more information, see interfaces(5).
+  
+ # The loopback network interface
+ auto lo br0
+ iface lo inet loopback
+
+ # Set up interfaces manually, avoiding conflicts with, e.g., network manager
+ iface eth0 inet manual
+
+ iface eth1 inet manual
+
+ # Bridge setup
+ iface br0 inet dhcp
+        bridge_ports eth0 eth1
+
+--snip--
+
+To bring up your bridge, you just have to issue  # ifup br0
+ifup br0
+
+Libvirt and bridging
+==========================================================================================================
+Additional REFs:
+**********************************************************************************************************
+Fedora/RHEL Bridging 
+http://wiki.libvirt.org/page/Networking#Bridged_networking_.28aka_.22shared_physical_device.22.29
+----------------------------------------------------------------------------------------------------------
+ Disabling NetworkManager
+
+As of the time of writing (Fedora 12), NetworkManager still does not support bridging, so it is necessary to use "classic" network initscripts for the bridge, and to explicitly mark them as independent from NetworkManager (the "NM_CONTROLLED=no" lines in the scripts below).
+
+If desired, you can also completely disable the NetworkManager:
+
+# chkconfig NetworkManager off
+# chkconfig network on
+# service NetworkManager stop
+# service network start
+
+[edit]
+Creating network initscripts
+
+In the /etc/sysconfig/network-scripts directory it is neccessary to create 2 config files. The first (ifcfg-eth0) defines your physical network interface, and says that it will be part of a bridge:
+
+# cat > ifcfg-eth0 <<EOF
+DEVICE=eth0
+HWADDR=00:16:76:D6:C9:45
+ONBOOT=yes
+BRIDGE=br0
+NM_CONTROLLED=no
+EOF
+
+Obviously change the HWADDR to match your actual NIC's address. You may also wish to configure the device's MTU here using e.g. MTU=9000.
+
+The second config file (ifcfg-br0) defines the bridge device:
+
+# cat > ifcfg-br0 <<EOF
+DEVICE=br0
+TYPE=Bridge
+BOOTPROTO=dhcp
+ONBOOT=yes
+DELAY=0
+NM_CONTROLLED=no
+EOF
+
+WARNING: The line TYPE=Bridge is case-sensitive - it must have uppercase 'B' and lower case 'ridge'
+
+After changing this restart networking (or simply reboot)
+
+ # service network restart
+
+The final step is to disable netfilter on the bridge:
+
+ # cat >> /etc/sysctl.conf <<EOF
+ net.bridge.bridge-nf-call-ip6tables = 0
+ net.bridge.bridge-nf-call-iptables = 0
+ net.bridge.bridge-nf-call-arptables = 0
+ EOF
+
+ # sysctl -p /etc/sysctl.conf
+ Guest configuration
+
+In order to let your virtual machines use this bridge, their configuration should include the interface definition as described in Bridge to LAN. In essence you are specifying the bridge name to connect to. Assuming a shared physical device where the bridge is called "br0", the following guest XML would be used:
+
+ <interface type='bridge'>
+    <source bridge='br0'/>
+    <mac address='00:16:3e:1a:b3:4a'/>
+    <model type='virtio'/>   # try this if you experience problems with VLANs
+ </interface>
+
+NB, the mac address is optional and will be automatically generated if omitted.
+
+To edit the virtual machine's configuration, use:
+
+virsh edit <VM name>
+
+For more information, see the FAQ entry at:
+
+http://wiki.libvirt.org/page/FAQ#Where_are_VM_config_files_stored.3F_How_do_I_edit_a_VM.27s_XML_config.3F 
+----------------------------------------------------------------------------------------------------------
+**********************************************************************************************************
+----------------------------------------------------------------------------------------------------------
+Altering the interface config 
+http://wiki.libvirt.org/page/Networking#Altering_the_interface_config
+
+
+----------------------------------------------------------------------------------------------------------
+
+Libvirt is a virtualization API which supports KVM and various other virtualization techniques. In many cases, it's desirable to share a physical network interface with guests, i.e. setup a bridge they can use. This operation is composed of two parts:
+
+    Setup the bridge interface on host as described in this article and in here
+    Configure guest to use the newly-created bridge 
+
+You can verify if bridging is working properly by looking at brctl output:
+# brctl show
+
+KeyWords:
+rhel7 wireless bridge
+REF:
+http://www.astroarch.com/2014/06/rhev-upgrade-saga-installing-open-vswitch-on-rhel-7/
+http://www.cyberciti.biz/faq/kvm-virtualization-in-redhat-centos-scientific-linux-6/

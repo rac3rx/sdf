@@ -1,0 +1,10 @@
+REGEDIT4 
+
+[HKEY_CLASSES_ROOT\Folder\shell] 
+@="FreeCommander" 
+
+[HKEY_CLASSES_ROOT\Folder\shell\FreeCommander] 
+@="FreeCommander" 
+
+[HKEY_CLASSES_ROOT\Folder\shell\FreeCommander\command] 
+@="\"C:\\Program Files\\FreeCommander\\FreeCommander.exe\" /C /R=\"%1\"" 

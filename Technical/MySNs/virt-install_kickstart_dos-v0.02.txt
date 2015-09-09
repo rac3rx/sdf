@@ -1,0 +1,296 @@
+
+KeyWords: 
+
+    rhel centos virt-install cobbler "linux provisioning server" dhcp tftp dns "Kickstart Configurator" 
+
+Various Commands: 
+
+    $ system-config-kickstart
+    $ parted -s /dev/sdb mkpart primary 0% 100%
+    $ mkfs -t vfat /dev/sdb1
+    
+KVM: Install CentOS / RHEL Using Kickstart File (Automated Installation)
+http://www.cyberciti.biz/faq/kvm-install-centos-redhat-using-kickstart-ks-cfg/
+
+Step 01  Download the Source Media
+
+    # wget -ct 3 http://mirror.kentdigital.net/centos/7.0.1406/isos/x86_64/CentOS-7.0-1406-x86_64-DVD.iso
+    # wget -ct 3 http://mirror.pac-12.org/7.0.1406/isos/x86_64/CentOS-7.0-1406-x86_64-Everything.iso
+
+Step 02:  Setup Environment
+http://www.nathanboyce.com/automatic-centos-6-installation-dvd-with-kickstart/
+
+    # for i in createrepo isomd5sum genisoimage; do yum list $i; done
+    # for i in createrepo isomd5sum genisoimage; do yum install $i; done
+
+Step 03:  Make Your Mount Points And Mount Your Source Media File
+
+    # mkdir ~/mnt/{DVD1,DVD2}
+    # mount -o loop ~/Downloads/ISOs/CentOS-7.0-1406-x86_64-DVD.iso ~/mnt/DVD1
+    # mount -o loop ~/Downloads/ISOs/rhel-server-7.0-x86_64-dvd.iso ~/mnt
+
+Step 04:  Next You Need A Working Directory For What Will Be the New Install Image.
+
+    # mkdir -p ~/centos_rebuild/kickstart_build/{ks,CentOS}
+
+Step 05:  Now we will work within the ~/centos_rebuild; our new target installation media
+
+    # cd ~/centos_rebuild
+    # cp -r ~/mnt/DVD1/isolinux/ ~/centos_rebuild/kickstart_build/
+    # cp ~/mnt/DVD1/.discinfo ~/centos_rebuild/kickstart_build/ 
+    # cp -r ~/mnt/DVD1/images/ ~/centos_rebuild/kickstart_build/
+    # chmod 664 ~/centos_rebuild/kickstart_build/isolinux/isolinux.bin
+    # chmod 664 ~/centos_rebuild/kickstart_build/isolinux/isolinux.cfg
+    # cp ~/anaconda-ks.cfg ~/centos_rebuild/kickstart_build/ks/ks.cfg
+    # chmod 664 ~/centos_rebuild/kickstart_build/ks/ks.cfg
+    # cp ~/mnt/DVD1/Packages/*.rpm ~/centos_rebuild/kickstart_build/CentOS/
+    # cp DVD2_mount/Packages/*.rpm kickstart_build/CentOS/
+
+Step 06:  A comps.xml for anaconda, just pulled one from a centos repo.
+
+    # find ./useful/ -name "love*" -exec sh -c 'cp "$@" /tmp' sh {} +
+    # find /root/mnt/repodata -iregex '.*x86_64.*\.gz$' -exec sh -c 'cp "$@" /tmp' sh {} +
+
+    # wget http://mirror.centos.org/centos/7.0.1406/os/x86_64/repodata/4b9ac2454536a901fecbc1a5ad080b0efd74680c6e1f4b28fb2c7ff419872418-c7-x86_64-comps.xml.gz -o ~/centos_rebuild/kickstart_build/comps.xml.gz
+    # gunzip -d comps.xml.gz
+
+
+
+Step 07:  Create kickstart file
+http://www.nathanboyce.com/automatic-centos-6-installation-dvd-with-kickstart/
+http://books.google.com/books?id=wpbLuqjYwVUC&pg=PA56&lpg=PA56&dq=cp+anaconda.ks.cfg&source=bl&ots=TPYlE4Gq-t&sig=Xc8Uav9H4287v2B3wcOwbPeA7kg&hl=en&sa=X&ei=rOPKU5qOKYSTyASB4oD4Cw&ved=0CC8Q6AEwAg#v=onepage&q=cp%20anaconda.ks.cfg&f=false
+http://usgcb.nist.gov/usgcb/content/configuration/workstation-ks.cfg
+https://access.redhat.com/knowledge/docs/en-US/Red_Hat_Enterprise_Linux/6/html/Installation_Guide/s1-kickstart2-options.html
+   
+    $ system-config-kickstart
+
+    $ cp ~/anaconda-ks.cfg ks.cfg
+
+
+Step 07a:  Add needed packages
+
+           Make sure you have added any new packages to the "ks.cfg 'package'" section.
+
+    yumdownloader rpl
+    cp rpl.rmp ~/centos_rebuild/kickstart_build/CentOS/
+
+Step 07a:  Remove unneeded packages
+
+    cd ~/centos_rebuild/kickstart_build/CentOS
+
+    for X in $(ls -a |grep -iE "gnome|kde|libreoffice|tiger|tomcat|java|log4|gimp|evolution|firefox|thunderbird|eclipse"); do rm -f $X; done
+
+Step 08: isolinux.cfg
+
+         Edit the following file, so the install will automatically use the kickstart file
+
+         Add label ks group and move menu default from linux to ks.
+
+         It should look something like this (this might not be w hat you want because it will wipe everything)
+
+     $ sed s,'initrd.*quiet',ks=cdrom:/ks/ks.cfg initrd=initrd.img,g ~/centos_rebuild/kickstart_build/isolinux/isolinux.cfg
+    
+     $ vim ~/centos_rebuild/kickstart_build/isolinux/isolinux.cfg
+
+==snip==
+default vesamenu.c32
+#prompt 1
+timeout 600
+
+display boot.msg
+
+# Clear the screen when exiting the menu, instead of leaving the menu displayed.
+# For vesamenu, this means the graphical background is still displayed without
+# the menu itself for as long as the screen remains in graphics mode.
+menu clear
+menu background splash.png
+menu title CentOS 7
+menu vshift 8
+menu rows 18
+menu margin 8
+#menu hidden
+menu helpmsgrow 15
+menu tabmsgrow 13
+
+# Border Area
+menu color border * #00000000 #00000000 none
+
+# Selected item
+menu color sel 0 #ffffffff #00000000 none
+
+# Title bar
+menu color title 0 #ff7ba3d0 #00000000 none
+
+# Press [Tab] message
+menu color tabmsg 0 #ff3a6496 #00000000 none
+
+# Unselected menu item
+menu color unsel 0 #84b8ffff #00000000 none
+
+# Selected hotkey
+menu color hotsel 0 #84b8ffff #00000000 none
+
+# Unselected hotkey
+menu color hotkey 0 #ffffffff #00000000 none
+
+# Help text
+menu color help 0 #ffffffff #00000000 none
+
+# A scrollbar of some type? Not sure.
+menu color scrollbar 0 #ffffffff #ff355594 none
+
+# Timeout msg
+menu color timeout 0 #ffffffff #00000000 none
+menu color timeout_msg 0 #ffffffff #00000000 none
+
+# Command prompt text
+menu color cmdmark 0 #84b8ffff #00000000 none
+menu color cmdline 0 #ffffffff #00000000 none
+
+# Do not display the actual menu unless the user presses a key. All that is displayed is a timeout message.
+
+menu tabmsg Press Tab for full configuration options on menu items.
+
+menu separator # insert an empty line
+menu separator # insert an empty line
+
+label linux
+  menu label ^Install CentOS 7
+  kernel vmlinuz
+  append initrd=initrd.img inst.stage2=hd:LABEL=CentOS\x207\x20x86_64 quiet
+
+label ks
+menu label Install with included Kickstart file
+menu default
+kernel vmlinuz
+append ks=cdrom:/ks/ks.cfg initrd=initrd.img
+
+label check
+  menu label Test this ^media & install CentOS 7
+  menu default
+  kernel vmlinuz
+  append initrd=initrd.img inst.stage2=hd:LABEL=CentOS\x207\x20x86_64 rd.live.check quiet
+
+menu separator # insert an empty line
+
+# utilities submenu
+menu begin ^Troubleshooting
+  menu title Troubleshooting
+
+label vesa
+  menu indent count 5
+  menu label Install CentOS 7 in ^basic graphics mode
+  text help
+        Try this option out if you're having trouble installing
+        CentOS 7.
+  endtext
+  kernel vmlinuz
+  append initrd=initrd.img inst.stage2=hd:LABEL=CentOS\x207\x20x86_64 xdriver=vesa nomodeset quiet
+
+label rescue
+  menu indent count 5
+  menu label ^Rescue a CentOS system
+  text help
+        If the system will not boot, this lets you access files
+        and edit config files to try to get it booting again.
+  endtext
+  kernel vmlinuz
+  append initrd=initrd.img inst.stage2=hd:LABEL=CentOS\x207\x20x86_64 rescue quiet
+
+label memtest
+  menu label Run a ^memory test
+  text help
+        If your system is having issues, a problem with your
+        system's memory may be the cause. Use this utility to
+        see if the memory is working correctly.
+  endtext
+  kernel memtest
+
+menu separator # insert an empty line
+
+label local
+  menu label Boot from ^local drive
+  localboot 0xffff
+
+menu separator # insert an empty line
+menu separator # insert an empty line
+
+label returntomain
+  menu label Return to ^main menu
+  menu exit
+
+menu end
+   
+==snip==
+
+--snip--
+
+default vesamenu.c32
+#prompt 1
+timeout 600
+
+display boot.msg
+
+menu background splash.jpg
+menu title Cabelas OLS Image CentOS 6.3!
+menu color border 0 #ffffffff #00000000
+menu color sel 7 #ffffffff #ff000000
+menu color title 0 #ffffffff #00000000
+menu color tabmsg 0 #ffffffff #00000000
+menu color unsel 0 #ffffffff #00000000
+menu color hotsel 0 #ff000000 #ffffffff
+menu color hotkey 7 #ffffffff #ff000000
+menu color scrollbar 0 #ffffffff #00000000
+
+label linux
+menu label ^Install or upgrade an existing system
+kernel vmlinuz
+append initrd=initrd.img
+label ks
+menu label Install with included Kickstart file
+menu default
+kernel vmlinuz
+append ks=cdrom:/ks/ks.cfg initrd=initrd.img
+label vesa
+menu label Install system with ^basic video driver
+kernel vmlinuz
+append initrd=initrd.img xdriver=vesa nomodeset
+label rescue
+menu label ^Rescue installed system
+kernel vmlinuz
+append initrd=initrd.img rescue
+label local
+menu label Boot from ^local drive
+localboot 0xffff
+label memtest86
+menu label ^Memory test
+kernel memtest
+append -
+
+--snip--
+
+Step 08:  Build
+
+          Starting the build proccess.
+
+          The first step in the rebuild is to creat a new repo list
+
+          cd ~/centos_rebuild/kickstart_build
+          declare -x discinfo=$(head -1 .discinfo)
+          createrepo -u “media://$discinfo” -g comps.xml .
+
+Step 09:  Next build the image
+
+          $ cd /home/centos_rebuild/
+
+          $ mkisofs -r -N -allow-leading-dots -d -J -T -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot -V ols_cent6.3_v1 -boot-load-size 4 -boot-info-table -o ols_cent7.0_ks_v-0.00.iso kickstart_build/
+
+Step 10:  You now have a installable iso named ols_cent6.3_v1.iso but its missing the md5 check sums. To add the checksums to the iso run:
+
+          $ implantisomd5 ols_cent6.3_v1.iso
+
+Now the iso is done. I used virtual box for a quick test of the iso.
+
+
+
+

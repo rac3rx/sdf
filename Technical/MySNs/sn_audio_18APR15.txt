@@ -1,0 +1,54 @@
+# lspci | grep -i audio
+lspci -k | grep -i audio
+00:1b.0 Audio device: Intel Corporation 6 Series/C200 Series Chipset Family High Definition Audio Controller (rev 05)
+aplay -l
+lsmod | grep ^snd
+aplay -l
+man alsactl
+alsamixer
+lsmod
+lsmod | grep ^snd
+man alsamixer
+alsamixer -c 0
+amixer set Master 100 unmute
+amixer set PCM 100 unmute
+pavucontrol
+aplay -L
+front:CARD=PCH,DEV=0
+    HDA Intel PCH, CS4206 Analog
+    Front speakers
+pulseaudio
+E: [pulseaudio] module-alsa-card.c: Failed to find a working profile.
+E: [pulseaudio] module.c: Failed to load module "module-alsa-card" (argument: "device_id="0" name="pci-0000_00_1b.0" card_name="alsa_card.pci-0000_00_1b.0" namereg_fail=false tsched=yes fixed_latency_range=no ignore_dB=no deferred_volume=yes use_ucm=yes card_properties="module-udev-detect.discovered=1""): initialization failed.
+pulseaudio -k
+$ cat /proc/asound/cards
+0 [PCH            ]: HDA-Intel - HDA Intel PCH
+                     HDA Intel PCH at 0xa0900000 irq 36
+$ cat /proc/asound/devices
+  1:        : sequencer
+  2: [ 0]   : control
+  3: [ 0- 0]: digital audio playback
+  4: [ 0- 0]: digital audio capture
+  5: [ 0- 1]: digital audio playback
+  6: [ 0- 3]: digital audio playback
+  7: [ 0- 7]: digital audio playback
+  8: [ 0- 8]: digital audio playback
+  9: [ 0- 0]: hardware dependent
+ 10: [ 0- 3]: hardware dependent
+ 33:        : timer
+
+mv ./.config/pulse ./.config/pulse.000
+
+Reboot your computer, or
+    Run "udevadm control --reload" and then "udevadm trigger" (as root), or
+    Create a symlink from extra-hdmi.conf to default.conf.
+
+
+
+Solved my own problem....
+
+After a day of poking around and thinking about the error message I figured there is a socket is left open or being used somewhere  and pulseaudio does not know how to handle this. I found a socket file in /tmp/.esd-UID/socket that I rm'd. 
+Rebooted my laptop and logged into my Gnome desktop and there is now sound.
+Furthermore I removed the line in /etc/pulse/default.pa that loads module-esound-protocol and have not ran in to any issues.
+
+

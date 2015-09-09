@@ -1,0 +1,72 @@
+%pre
+…
+clearpart –all
+/usr/sbin/parted –script /dev/sda mklabel gpt
+/usr/sbin/parted –script /dev/sdb mklabel gpt
+…
+%end
+
+--snip--
+part /mnt/localhost/sda/storage --fstype="ext4" --ondisk=sda --size=1000000
+%pre
+/sbin/parted /dev/sda mklabel gpt
+%end
+%post --interpreter=/bin/bash
+yum -y install yum-{metadata-parser,presto,utils,arch,plugin-{aliases,changelog,downloadonly,filter-data,fs-snapshot,keys,list-data,merge-conf,post-transaction-actions,priorities,protectbase,ps,rpm-warm-cache,show-leaves,tmprepo,tsflags,upgrade-helper,verify,versionlock}}
+%end
+%packages
+--snip--
+
+
+
+
+%pre  --log=/tmp/kspre.log
+#!/bin/sh
+
+cd /tmp
+wget http://example.com/driver.img
+mkdir /arcmsr
+mount -o loop driver.img /arcmsr
+cd /arcmsr
+sh ./pre-install.sh
+sleep 5
+dd if=/dev/zero of=/dev/sda bs=512 count=64
+parted -s /dev/sda mklabel gpt 
+%end
+
+
+bootloader
+http://fedoraproject.org/wiki/Anaconda/Kickstart
+part biosboot --fstype=biosboot --size=1
+==========================================
+This required command specifies how the boot loader should be installed.
+BIOS Boot partition
+As of Fedora 16 there must be a biosboot partition for the bootloader to be installed successfully onto a disk that contains a GPT/GUID partition table, which includes disks initialized by anaconda. This partition may be created with the kickstart option part biosboot --fstype=biosboot --size=1. However, in the case that a disk has an existing biosboot partition, adding a "part biosboot" option is unnecessary.
+BIOS Boot partition
+
+clearpart --disklabel=gpt
+
+https://www.dark.ca/2009/08/03/complex-partitioning-in-kickstart/
+TOTAL=`parted -s /dev/sda unit mb print free | grep Free | awk '{print $3}' | cut -d "M" -f1`
+# calculate start points
+let SWAP_START=$TOTAL-8192
+let OPT_START=$SWAP_START-51680
+# partitions IN ORDER
+parted -s /dev/sda mkpart primary ext3 0 128
+parted -s /dev/sda mkpart primary ext3 128 20128
+parted -s /dev/sda mkpart primary ext3 20128 40256
+parted -s /dev/sda mkpart extended 40256 $TOTAL
+parted -s /dev/sda mkpart logical ext3 40256 $OPT_START
+parted -s /dev/sda mkpart logical ext3 $OPT_START $SWAP_START
+parted -s /dev/sda mkpart logical $SWAP_START $TOTAL
+
+# this goes in the regular portion of kickstart to reflect the script above
+part  /boot     --onpart=/dev/sda1
+part  /         --onpart=/dev/sda2
+part  /var/log  --onpart=/dev/sda3
+part  /home     --onpart=/dev/sda5
+part  /opt      --onpart=/dev/sda6
+part  swap      --onpart=/dev/sda7
+
+
+

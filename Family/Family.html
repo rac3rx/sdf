@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- ******************************************************* --> 
+<!-- *  File:     ................................html     * --> 
+<!-- *  Author:   Anonymous                                * --> 
+<!-- *  Purpose:  To present and share my photo gallery    * --> 
+<!-- *            in an organize fashion.                  * --> 
+<!-- *  Date:     22NOV09                                  * --> 
+<!-- ******************************************************* --> 
+<html lang="en">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+        <meta name="description" content="New Begginging photo gallery">
+        <meta name="GENERATOR" content="vim">
+        <meta name="ProgId" content="vim.Document">
+	    <title>
+		    New Beginning -- Family Section
+		</title>
+    </head>
+    <body>
+        <BODY BGCOLOR="BLACK">
+        <BODY TEXT="GREEN">
+	    <FONT SIZE=+0 FACE="ARIAL">
+        <HR COLOR="#80ff80">
+        <TABLE>
+            <TR>
+                <TD><A HREF=".../index.html">[ Home ]</A></TD>
+                <TD><A HREF=".../Technical/TechnicalNotes.html">[ Technical ]</A></TD>
+                <TD><A HREF=".../Military/Military.html">[ Military ]</A></TD>
+                <TD><A HREF=".../Literature/Literature.html">[ Literature ]</A></TD>
+                <TD><A HREF="./Family.html">[ Nuestra Foticos ]</A></TD>
+                <TD><A HREF=".../Bookmarks/Bookmarks.html">[ Bookmarks ]</A></TD>
+                <TD><A HREF=".../Health/Health.html">[ Health ]</A></TD>
+                <TD><A HREF=".../Lyrics/Lyrics.html">[ Lyrics ]</A></TD>
+            </TR>
+        </TABLE>
+        <HR COLOR="#80ff80">
+	    <h1> New Beggining Photo Gallery</h1>
+	    <FONT SIZE=+0 FACE="ARIAL">
+        <P ALIGN=LEFT>First attempt at coding a photo gallery by hand with VIM and javascript; it took a long time.
+	    This is really going to suck, being the first one and it being so unwieldly ,but at least it's 
+	    here and it will only get better, time permitting.  hehe  :)</p>
+        <p> NOTE:  If this page doesn't work for you because of JavaScript use this link instead: <a href="./Family.html">clic here</a>
+        <p></p>
+        <div class="indent">
+	    <table border="0" cellpadding="2">
+		    <tr>
+                <td>
+		            <script  type="text/javascript">
+                        // Gallery script.
+                        // With image cross fade effect for those browsers that support it.
+                        // Script copyright (C) 2004 www.cryer.co.uk.
+                        // Script is free to use provided this copyright header is included.
+                        function LoadGallery(pictureName,imageFile,titleCaption,captionText)
+                        {
+                            var picture = document.getElementById(pictureName);
+                            if (picture.filters)
+                                {
+                                    picture.style.filter="blendTrans(duration=1)";
+                                    picture.filters.blendTrans.Apply();
+                                }
+                            picture.src = imageFile;
+                            if (picture.filters)
+                                {
+                                    picture.filters.blendTrans.Play();
+                                }
+                            document.getElementById(titleCaption).innerHTML=captionText;
+                         }
+                     </script>
+                     <img style="border: 1px black solid" alt="Photo gallery" src="../Images/SANY0207.jpg" id="NuestraFoticos" width="640" height="480">
+				</td>
+				<td>
+				    <ol>
+                        <li><a href="#_self" onclick="LoadGallery('NuestraFoticos', '../Images/AtTheGym1o2_22NOV09.jpg', 'NuestraFoticosCaption', '../Images/AtTheGym1o2_22NOV09.jpg')">../Images/AtTheGym1o2_22NOV09.jpg</a>
+                        <li><a href="#_self" onclick="LoadGallery('NuestraFoticos', '../Images/AtTheGym2o2_22NOV09.jpg', 'NuestraFoticosCaption', '../Images/AtTheGym2o2_22NOV09.jpg')">../Images/AtTheGym2o2_22NOV09.jpg</a>
+					</ol>
+				</td>
+			</tr>
+		    <tr>
+			    <td>
+		            <div id="NuestraFoticosCaption" class="center">Here's the pack</div>
+					    <div></div>
+				    </div>
+				</td>
+				<td></td>
+			</tr>
+		</table>
+	  </div>
+	<BR></BR>
+	<BR></BR>
+	<BR></BR>
+
+	<FONT SIZE=+0 FACE="ARIAL">
+    <P ALIGN=CENTER>
+    <TABLE>
+      <TR>
+        <TD>
+          Site driven by NetBSD
+        </TD>
+        <TD>
+          Free unix-like OS, created by
+	      <P></P>
+
+          Linux Torvalds and others
+	      <P></P>
+          around the world
+        </TD>
+        <TD>
+          GNU is not unix
+        </TD>
+        <TD>
+          VImproved
+        </TD>
+      </TR>
+
+      <TR>
+        <TD>
+          <a href="http://www.NetBSD.org/"><img src="../Graphics/NetBSD_212x209.jpg" border=0 alt="Site driven by NetBSD - NetBSD rules!"></a>
+        </TD>
+        <TD>
+          <a href="http://www.Linux.org/"><img src="../Graphics/tux_212x209.jpg" border=0 alt="Free unix like OS, created by Linus Torvalds and others!"></a>
+        </TD>
+        <TD>
+          <a href="http://www.GNU.org/"><img src="../Graphics/gnu-linux_212x209.jpg" border=0 alt="GNU is not unix!"></a>
+
+        </TD>
+        <TD>
+          <A HREF="http://www.VIM.org/"><IMG SRC="../Graphics/vim_212x209.jpg" border=1 alt="VImproved!"></a>
+        </TD>
+      </TR>
+    </TABLE>
+    </P>
+	<BR></BR>
+	<FONT SIZE=+0 FACE="ARIAL">
+
+    <HR COLOR="#80ff80">
+    <P>Last updated: Sun Jan 20 22:46:49 UTC 2009</P>
+    <P><A HREF="MAILTO:rac3rx@sdf.lonestar.org">Webmaster: rac3rx@sdf.lonestar.org</A></P>
+    <HR COLOR="#80ff80">
+	</FONT>
+    </body>
+</html>

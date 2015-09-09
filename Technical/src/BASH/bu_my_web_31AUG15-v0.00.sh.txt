@@ -1,0 +1,23 @@
+#!/bin/bash
+###
+#
+#  File: bu_my_web_31AUG15-v0.00.sh.txt 
+#  Purpose:  elementary backup script /w rsync & ssh
+#  Author:  SFC Hammond, Christopher J.
+#  Date:  19:52, 08/31/15
+#
+###
+
+
+# 
+#  Maintenance Record and versioning
+# 
+# 08/31/15:  needs diff and cron
+
+# 
+#  Syntax, notes, or instructions
+# 
+
+
+#rsync -az -e ssh --delete ~ftp/pub/samba nimbus:"~ftp/pub/tridge"
+rsync -avz -e ssh /var/www/html/ rac3rx@freeshell.org:/arpa/ns/r/rac3rx/html/

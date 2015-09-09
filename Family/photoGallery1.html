@@ -1,0 +1,96 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+        <meta name="description" content="my wolf's clan photo gallery">
+        <meta name="GENERATOR" content="vim">
+        <meta name="ProgId" content="vim.Document">
+	    <title>
+		    Wolf Clan Gallery
+		</title>
+    </head>
+    <body>
+	  <h1> My Wolf Clan's Photo Gallery</h1>
+	  <p>First attempt at coding a photo gallery by hand with VIM and javascript; it took a long time.</p>
+	  <p>This is going to suck being the first one and it being unwieldly but at least it's here and </p>
+	  <p>it will only get better, time permitting.  hehe  :)</p>
+      <div class="indent">
+	    <table border="0" cellpadding="2">
+		    <tr>
+                <td>
+		            <script  type="text/javascript">
+                        // Gallery script.
+                        // With image cross fade effect for those browsers that support it.
+                        // Script copyright (C) 2004 www.cryer.co.uk.
+                        // Script is free to use provided this copyright header is included.
+                        function LoadGallery(pictureName,imageFile,titleCaption,captionText)
+                        {
+                            var picture = document.getElementById(pictureName);
+                            if (picture.filters)
+                                {
+                                    picture.style.filter="blendTrans(duration=1)";
+                                    picture.filters.blendTrans.Apply();
+                                }
+                            picture.src = imageFile;
+                            if (picture.filters)
+                                {
+                                    picture.filters.blendTrans.Play();
+                                }
+                            document.getElementById(titleCaption).innerHTML=captionText;
+                         }
+                     </script>
+                     <img style="border: 1px black solid" alt="Photo gallery" src="640x480_16x20_Heavenly_wolves.jpg" id="WolfClanGallery" width="640" height="480">
+				</td>
+				<td>
+				    <ol>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '640x480_11x14_BigD_N_Blanca_Rosharon_04.jpg', 'WolfClanGalleryCaption', '640x480_11x14_BigD_N_Blanca_Rosharon_04.jpg')">640x480_11x14_BigD_N_Blanca_Rosharon_04.jpg</a>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '640x480_2004_XMAS_(6).jpg', 'WolfClanGalleryCaption', '640x480_2004_XMAS_(6).jpg')">640x480_2004_XMAS_(6).jpg</a>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '640x480_3.5x5_Beach04BlaGordBre.jpg', 'WolfClanGalleryCaption', '640x480_3.5x5_Beach04BlaGordBre.jpg')">640x480_3.5x5_Beach04BlaGordBre.jpg</a>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '640x480_3.5x5_BreDakChr07.jpg', 'WolfClanGalleryCaption', '640x480_3.5x5_BreDakChr07.jpg')">640x480_3.5x5_BreDakChr07.jpg</a>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '640x480_3.5x5_FtPolkPark06GorChrBre.jpg', 'WolfClanGalleryCaption', '640x480_3.5x5_FtPolkPark06GorChrBre.jpg')">640x480_3.5x5_FtPolkPark06GorChrBre.jpg</a>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '640x480_3.5x5_H-ween_BlaBubBreChr.jpg', 'WolfClanGalleryCaption', '640x480_3.5x5_H-ween_BlaBubBreChr.jpg')">640x480_3.5x5_H-ween_BlaBubBreChr.jpg</a>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '640x480_3.5x5_H-ween_ChrBigAly.jpg', 'WolfClanGalleryCaption', '640x480_3.5x5_H-ween_ChrBigAly.jpg')">640x480_3.5x5_H-ween_ChrBigAly.jpg</a>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '640x480_3.5x5_NewHome_FtPolk_ChrBreAlyBla_2006.jpg', 'WolfClanGalleryCaption', '640x480_3.5x5_NewHome_FtPolk_ChrBreAlyBla_2006.jpg')">640x480_3.5x5_NewHome_FtPolk_ChrBreAlyBla_2006.jpg</a>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '640x480_3.5x5_PrincessesHomesteadFl_BreAly07.jpg', 'WolfClanGalleryCaption', '640x480_3.5x5_PrincessesHomesteadFl_BreAly07.jpg')">640x480_3.5x5_PrincessesHomesteadFl_BreAly07.jpg</a>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '640x480_4x5.5_FtPolkB-day_BoGraGirlie07.jpg', 'WolfClanGalleryCaption', '640x480_4x5.5_FtPolkB-day_BoGraGirlie07.jpg')">640x480_4x5.5_FtPolkB-day_BoGraGirlie07.jpg</a>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '640x480_4x5.5_LilAndBigDFtPolk07.jpg', 'WolfClanGalleryCaption', '640x480_4x5.5_LilAndBigDFtPolk07.jpg')">640x480_4x5.5_LilAndBigDFtPolk07.jpg</a>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '640x480_4x5.5_LilAndBigDGirlieFtPolk_07.jpg', 'WolfClanGalleryCaption', '640x480_4x5.5_LilAndBigDGirlieFtPolk_07.jpg')">640x480_4x5.5_LilAndBigDGirlieFtPolk_07.jpg</a>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '640x480_4x5.5_LilD_FtPolk_07.jpg', 'WolfClanGalleryCaption', '640x480_4x5.5_LilD_FtPolk_07.jpg')">640x480_4x5.5_LilD_FtPolk_07.jpg</a>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '640x480_4x5_AuntTinaAndJacobNewYears2006_Houston.jpg', 'WolfClanGalleryCaption', '640x480_4x5_AuntTinaAndJacobNewYears2006_Houston.jpg')">640x480_4x5_AuntTinaAndJacobNewYears2006_Houston.jpg</a>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '640x480_4x5_ChrisDino07.jpg', 'WolfClanGalleryCaption', '640x480_4x5_ChrisDino07.jpg')">640x480_4x5_ChrisDino07.jpg</a>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '640x480_4x5_SunshineBdayFtPolk_07.jpg', 'WolfClanGalleryCaption', '640x480_4x5_SunshineBdayFtPolk_07.jpg')">640x480_4x5_SunshineBdayFtPolk_07.jpg</a>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '640x480_4x6_BBear_FtPolk_DaisyTruck_06.jpg', 'WolfClanGalleryCaption', '640x480_4x6_BBear_FtPolk_DaisyTruck_06.jpg')">640x480_4x6_BBear_FtPolk_DaisyTruck_06.jpg</a>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '640x480_4x6_Blanca_DaisyFord.jpg', 'WolfClanGalleryCaption', '640x480_4x6_Blanca_DaisyFord.jpg')">640x480_4x6_Blanca_DaisyFord.jpg</a>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '640x480_4x6_DakotaArmyGreen_FtPolk_06.jpg', 'WolfClanGalleryCaption', '640x480_4x6_DakotaArmyGreen_FtPolk_06.jpg')">640x480_4x6_DakotaArmyGreen_FtPolk_06.jpg</a>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '640x480_4x6_DakotaBigSmileFtPolk_06.jpg', 'WolfClanGalleryCaption', '640x480_4x6_DakotaBigSmileFtPolk_06.jpg')">640x480_4x6_DakotaBigSmileFtPolk_06.jpg</a>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '640x480_Rucking_VirginiaBeach_JUL08.jpg', 'WolfClanGalleryCaption', '640x480_Rucking_VirginiaBeach_JUL08.jpg')">640x480_Rucking_VirginiaBeach_JUL08.jpg</a>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '640x480_SOCSOUTH_CelebrationOfHostageRelease_(3).jpg', 'WolfClanGalleryCaption', '640x480_SOCSOUTH_CelebrationOfHostageRelease_(3).jpg')">640x480_SOCSOUTH_CelebrationOfHostageRelease_(3).jpg</a>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '640x480_SSg_Hammond_FamilyChiliCookOut15DEC07.jpg', 'WolfClanGalleryCaption', '640x480_SSg_Hammond_FamilyChiliCookOut15DEC07.jpg')">640x480_SSg_Hammond_FamilyChiliCookOut15DEC07.jpg</a>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '640x480_SSg_Hammond_II.jpg', 'WolfClanGalleryCaption', '640x480_SSg_Hammond_II.jpg')">640x480_SSg_Hammond_II.jpg</a>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '640x480_SandCastle_BubBigDBre_Beach_TX_04.jpg', 'WolfClanGalleryCaption', '640x480_SandCastle_BubBigDBre_Beach_TX_04.jpg')">640x480_SandCastle_BubBigDBre_Beach_TX_04.jpg</a>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '640x480_Spiderman_picnic.jpg', 'WolfClanGalleryCaption', '640x480_Spiderman_picnic.jpg')">640x480_Spiderman_picnic.jpg</a>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '640x480_SweetDakotaSmiling_12AUG08.jpg', 'WolfClanGalleryCaption', '640x480_SweetDakotaSmiling_12AUG08.jpg')">640x480_SweetDakotaSmiling_12AUG08.jpg</a>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '640x480_TACLAN_School_JUL08.jpg', 'WolfClanGalleryCaption', '640x480_TACLAN_School_JUL08.jpg')">640x480_TACLAN_School_JUL08.jpg</a>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '640x480_TheFamousPointing_BreBigD_Rosharon_03.jpg', 'WolfClanGalleryCaption', '640x480_TheFamousPointing_BreBigD_Rosharon_03.jpg')">640x480_TheFamousPointing_BreBigD_Rosharon_03.jpg</a>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '640x480_TrainingForLancero_VA_08.jpg', 'WolfClanGalleryCaption', '640x480_TrainingForLancero_VA_08.jpg')">640x480_TrainingForLancero_VA_08.jpg</a>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '640x480_Waiting_to_jump.jpg', 'WolfClanGalleryCaption', '640x480_Waiting_to_jump.jpg')">640x480_Waiting_to_jump.jpg</a>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '640x480_Warm_Hug_BigD_N_Girlie_Rosharon_03_.jpg', 'WolfClanGalleryCaption', '640x480_Warm_Hug_BigD_N_Girlie_Rosharon_03_.jpg')">640x480_Warm_Hug_BigD_N_Girlie_Rosharon_03_.jpg</a>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '640x480_XMAS06_Houston.jpg', 'WolfClanGalleryCaption', '640x480_XMAS06_Houston.jpg')">640x480_XMAS06_Houston.jpg</a>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '640x480_Xtopher_N_Patches.jpg', 'WolfClanGalleryCaption', '640x480_Xtopher_N_Patches.jpg')">640x480_Xtopher_N_Patches.jpg</a>
+					</ol>
+				</td>
+			</tr>
+		    <tr>
+			    <td>
+		            <div id="WolfClanGalleryCaption" class="center">Here's the pack</div>
+					    <div></div>
+				    </div>
+				</td>
+				<td></td>
+			</tr>
+		</table>
+	  </div>
+    </body>
+</html>

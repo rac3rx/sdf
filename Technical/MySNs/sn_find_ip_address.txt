@@ -1,0 +1,6 @@
+arp -n
+arp -an
+virsh dumpxml
+ip neighbor
+cat /var/lib/libvirt/dnsmasq/testbench.leases
+[root@mbp ~]# cat /var/lib/libvirt/dnsmasq/virbr1.status

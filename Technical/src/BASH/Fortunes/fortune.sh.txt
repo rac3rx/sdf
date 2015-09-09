@@ -1,0 +1,24 @@
+#!/bin/bash
+# fortune - A shell script to print out a random fortune cookie type message.
+# It works by printing out a randomly chosen line from a file of fortunes.
+# Written 1998 by Wayne Pollock, Tampa, FL
+
+FILE=$HOME/.fortunes
+
+if [ ! -r $FILE ]
+then
+    echo "### $0: Can't read fortune file \"$FILE\"!" >&2
+    exit 1
+fi
+
+# Could also use test -s $FILE here:
+MAX=$(wc -l < $FILE)   # Count the lines of $FILE, put into MAX.
+if [ "$MAX" -eq 0 ]
+then
+    echo "### $0: Sorry, No fortunes in file \"$FILE\"!" >&2
+    exit 1
+fi
+
+let "num = ($RANDOM % $MAX) + 1"  # The "%" operator computes the remainder.
+
+sed -n "${num}p" $FILE

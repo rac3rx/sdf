@@ -1,0 +1,19 @@
+@echo off 
+echo. 
+echo Backing up your flash drive... 
+echo. 
+FOR /F "TOKENS=*" %%A IN ('TIME/T') DO SET TIME=%%A 
+for /f "tokens=2-4 delims=/ " %%g in ('date /t') do ( 
+  set mm=%%g 
+  set dd=%%h 
+  set yy=%%i 
+) 
+for /f "tokens=3 delims=\" %%i in ("%USERPROFILE%") do (set user=%%i) 2>&1 
+if exist "C:\Documents and Settings\%user%\Desktop\Flash Drive Backup\%mm%-%dd%-%yy% %time%" ( 
+  rd /S /Q "C:\Documents and Settings\%user%\Desktop\Flash Drive Backup\%mm%-%dd%-%yy% %time%" 
+) 
+SET time=%time::=.% 
+xcopy "*" "C:\Documents and Settings\%user%\Desktop\Flash Drive Backup\%mm%-%dd%-%yy% %time%" /s /i 
+echo. 
+echo Backup Complete! 
+echo.

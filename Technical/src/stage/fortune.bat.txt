@@ -1,0 +1,1 @@
+call C:\Bin\Bin_-_MS\Fortunes\fortune_topcat\fortune.cmd

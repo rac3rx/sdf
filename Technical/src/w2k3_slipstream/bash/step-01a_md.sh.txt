@@ -1,0 +1,48 @@
+#!/bin/bash
+###
+#
+#  File:  step-01a_md.sh
+#  Purpose:  Slipstream SP1 and SP2 for w2k3
+#            Step01a create source directories 
+#            and environment. 
+#  Author:  SFC Hammond, Christopher J.
+#  Date:  21:52, 10/10/10
+#
+###
+
+# 
+#  Maintenance Record and versioning
+# 
+   
+# 
+#  Syntax, notes, or instructions
+# 
+  
+#
+# Create environment variables
+#
+W2K3_DIRS="ARCHIVES BIN BOOT DL DOCS ISOS MYSRC RESEARCH ROOT SP1 SP2 TMP TOOLS UL"
+
+#
+# Create parent directory and siblings structure
+#
+if [ ! -d ./w2k3 ]
+then
+  mkdir ./w2k3                                 # for i in $(ls); do rm -rf $i; done
+fi
+
+cd ./w2k3
+
+#
+# siblings
+#
+                                               # for i in ARCHIVES BIN; do if [ ! -d $i ]; then mkdir $i; fi; done
+for i in ${W2K3_DIRS}                          # for i in ARCHIVES BIN; do if [ ! -d $i ]; then mkdir $i; fi; done
+do
+  if [ ! -d $i ]                               # if [ ! -d ARCHIVES ]; then mkdir ARCHIVES; fi 
+  then
+    mkdir $i
+  fi
+done
+
+cd ..

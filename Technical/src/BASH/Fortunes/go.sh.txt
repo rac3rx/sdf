@@ -1,0 +1,2 @@
+perl /Users/rac3rx/Documents/Bin/Fortunes/fortune2html.pl > test.html
+open -a /Applications/Safari.app test.html

@@ -1,0 +1,21 @@
+#!/bin/bash
+###
+#
+#  File:  step-05_convmv-v0.01.sh
+#  Purpose:  convert character code to upper case within ROOT 
+#  Author:  SFC Hammond, Christopher J.
+#  Date:  02:18, 10/12/10
+#
+###
+  
+# 
+#  Maintenance Record and versioning
+# 
+  
+# 
+#  Syntax, notes, or instructions
+# 
+if [ -e ../w2k3/ROOT ]
+then  
+  convmv -r --upper --notest ../w2k3/ROOT
+fi

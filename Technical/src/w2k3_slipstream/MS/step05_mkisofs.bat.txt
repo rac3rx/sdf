@@ -1,0 +1,22 @@
+::  -------------------------------------------------------------------------- 
+::  File:  newFoo.bat.txt 
+::  Purpose:   
+::  Author:  SFC Hammond, Christopher J. 
+::  Date:  Fri 10/15/2010 
+::  -------------------------------------------------------------------------- 
+ 
+:: (Place maintenance record here) 
+ 
+@ECHO OFF 
+GOTO START 
+ 
+::  (Place syntax, notes, or other instructions heres) 
+ 
+:START 
+cd mmddyy_w2k3\w2k3\ROOT
+cp .\mmddyy_w2k3\w2k3\BOOT\boot.bin .\mmddyy_w2k3\w2k3\ROOT
+..\..\..\Bin\cdrtools-2.01\mkisofs.exe -b boot.bin -no-emul-boot -boot-load-seg 1984 -boot-load-size 4 -iso-level 2 -J -l -D -N -joliet-long -relaxed-file
+names -V "w2k3" -o ../MYISOS/w2k3v0.iso .
+:: ..\..\..\Bin\cdrtools-2.01\mkisofs -iso-level 4 -l -d -D -J -joliet-long -b boot.bin -hide boot.bin -hide boot.catalog -allow-multidot -no-emul-boot -volid "w2k3SP2" -A MKISOFS -sysid "Win32" -boot-load-size 4 -o "../MYISOS/w2k3-v0.iso" .
+:: ..\..\..\Bin\cdrtools-2.01\mkisofs.exe -b boot.bin -no-emul-boot -boot-load-seg 1984 -boot-load-size 4 -iso-level 2 -J -l -D -N -joliet-long -relaxed-filenames -V "w2k3" -o ..\ISOs\w2k3sp2.iso . 
+:END 

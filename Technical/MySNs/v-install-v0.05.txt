@@ -1,0 +1,520 @@
+                     Physical Host
+                     kauai.example.net
+
+                     HD1 Space:  80GB>
+                     RAM:  > 4GB
+                     IP:  192.168.122.1
+
+
+       VM (server sytstem)         VM (test sytstem)         VM (test sytstem)
+       gamma.example.net           whitehat.example.net
+
+       HD1 Space: 12GB             HD1 Space: 12GB           HD1 Space: 12GB
+       HD2 Space: 01GB             HD1 Space: 01GB           HD1 Space: 01GB
+       RAM: 768 MB                 RAM: 768 MB               RAM: 768 MB
+       IP:  192.168.122.20         IP:  192.168.122.130      IP:  192.168.122.240
+
+
+
+
+virt-install --name=ubu1204-server \
+    --disk path=/var/lib/libvirt/images/ubu1204-server,size=30,sparse=true,format=qcow2,bus=virtio  \
+    --vcpus=2 --ram=512 --location="http://archive.ubuntu.com/ubuntu/dists/precise/main/installer-amd64/" \
+    --network bridge=virbr1,model=virtio --os-type=linux --os-variant=virtio26 --nographics \
+    -x "ip=192.168.122.7 netmask=255.255.255.0 dns=8.8.8.8 gateway=192.168.122.1 console=tty0 utf8 console=ttyS0,115200n8"
+
+http://qiita.com/mykysyk@github/items/4a3e3ede6fbbd35d0514
+wget http://ftp.redhat.com/redhat/rhel/rc/7/Server/x86_64/iso/rhel-server-7.0-x86_64-dvd.iso
+cp ./rhel-server-7.0-x86_64-dvd.iso /var/lib/libvirt/images/
+mount -o loop /var/lib/libvirt/images/rhel-server-7.0-x86_64-dvd.iso /var/www/html/tree/
+
+qemu-img create -f qcow2 /var/lib/libvirt/images/rhel7-rc.img 10G
+virt-install \
+    --connect qemu:///system \
+    --name=rhel7-rc \
+    --ram=1024 \
+    --vcpus=1 \
+    --disk path=/var/lib/libvirt/images/rhel7-rc.img,format=qcow2 \
+    --network network:default \
+    --nographics \
+    --accelerate \
+    --hvm \
+    --location=/var/www/html/tree
+    -x "ip=192.168.122.7 netmask=255.255.255.0 dns=8.8.8.8 gateway=192.168.122.1 console=tty0 utf8 console=ttyS0,115200n8"
+   
+    ****extra examples*** 
+    --location=http://192.168.122.1/tree \
+    --extra-args='console=tty0 console=ttyS0,115200n8'
+    --serial tcp,host=:2222,mode=bind,protocol=telnet
+
+TS:
+brctl show
+brctl addbr virbr0
+
+brctl delbr virbr0
+route -n
+/etc/init.d/network restart
+
+virsh list -all
+virsh --connect qemu:///system undefine rhel7-rc
+virsh net-start default
+virsh ttyconsole serial-test
+virt-edit guestName
+http://wiki.libvirt.org/page/Networking
+virsh net-list
+virsh net-list --all
+virsh net-edit default
+virsh net-dumpxml default
+virsh net-define /usr/share/libvirt/networks/default.xml
+virsh net-autostart default
+virsh net-start default
+
+tail -f /var/log/libvirt/qemu/rhel7-rc.log
+tail -f /var/log/messages
+tail -f /var/log/secure
+tail -f ~/.virtinst/virt-install.log
+
+http://wiki.libvirt.org/page/VirtualNetworking
+ifconfig virbr0
+ip addr show virbr0
+
+ifconfig -a
+ip addr show
+http://wiki.libvirt.org/page/VirtualNetworking
+
+[root@ghost ~]# virsh net-dumpxml default
+<network connections='3'>
+  <name>default</name>
+  <uuid>d5dd530e-a345-4d4f-abb3-dffcd8eb5119</uuid>
+  <forward mode='nat'>
+    <nat>
+      <port start='1024' end='65535'/>
+    </nat>
+  </forward>
+  <bridge name='virbr0' stp='on' delay='0' />
+  <ip address='192.168.122.1' netmask='255.255.255.0'>
+    <dhcp>
+      <range start='192.168.122.2' end='192.168.122.254' />
+    </dhcp>
+  </ip>
+</network>
+
+
+Dummy Devices
+------------------------------------------------------------------------
+These are dummy devices. You can run
+
+    modprobe dummy
+
+To create a network interface called dummy0.
+
+If you want more than one device, you can create say 5 with
+
+    modprobe dummy numdummies=5
+
+You can then control these devices like any other network device.
+
+Give it a MAC address with
+
+    ip link set dummy0 address aa:aa:aa:bb:bb:bb
+
+Give it an IP address with
+
+    ip addr add 10.0.0.1/24 dev dummy0
+
+Add it to your existing bridge with
+
+    brctl addif virbr0 dummy0
+
+Set it up, set it down, NAT off it, and so on.
+
+
+Routed subnets without NAT for libvirt managed virtual machines in Fedora
+https://www.berrange.com/posts/2009/12/13/routed-subnets-without-nat-for-libvirt-managed-virtual-machines-in-fedora/
+http://wiki.libvirt.org/page/Networking
+http://wiki.libvirt.org/page/VirtualNetworking
+geekizo.com/adding-new-bridge-in-centos-linux-kvm/
+---------------------------------------------------------------------------------------------------------------------
+	
+
+VMs/Guests --> VirtualSwitch --> Bridge --> BridgeIF --> wlp5s0/Host --> WiFi GW --> ISP/Internet
+                                                         10.0.0.0/24    10.0.0.51
+
+
+                                            virbr0*
+                                         192.168.122.1
+
+
+NOTE:
+* virbr0 is the default virtual network and will/is to be disabled
+
+STEP:01
+
+    # virsh net-list --all
+
+    NB:  Extra virtual network default XML copy at the following location
+    /usr/share/libvirt/networks/default.xml
+
+    --snip--
+
+<network>
+  <name>default</name>
+  <bridge name="virbr0" />
+  <forward/>
+  <ip address="192.168.122.1" netmask="255.255.255.0">
+    <dhcp>
+      <range start="192.168.122.2" end="192.168.122.254" />
+    </dhcp>
+  </ip>
+</network>
+
+    --snip--
+
+    We'll change the virtual network default element values (name, bridge name, ip address, & range start) with sed in one pass
+
+    # sed -e 's/default/VMs/g;s/virbr0/virbr1/g;s/192.168.122/192.168.200/g' /usr/share/libvirt/networks/default.xml \
+      > /usr/share/libvirt/networks/virbr1.xml
+
+    # virsh net-define /usr/share/libvirt/networks/virbr1.xml
+    # virsh net-autostart VMs
+    # virsh net-start VMs
+
+    http://www.thegeekstuff.com/2011/01/iptables-fundamentals/
+    http://www.vercot.com/~jeoss/howto/Imgs/JeossEasyFirewall_01.png
+    http://www.pettingers.org/images/iptables-full.gif
+    http://codeidol.com/img/linux-fix/0131861506/graphics/14fig01.gif
+    http://www.iptables.info/files/tables_traverse.jpg
+    http://xkr47.outerspace.dyndns.org/netfilter/packet_flow/packet_flow9.png
+    # iptables -L -n -v --line-numbers
+
+    # echo "1" > /proc/sys/net/ipv4/ip_forward
+    
+
+***GNU/screen***
+http://www.noah.org/wiki/Screen_notes#using_screen_as_a_serial_terminal
+
+screen /dev/ttyS0 9600,cs8,-parenb,-cstopb,-hupcl
+
+The previous settings work with the Coyote Point E450si load balancers. The Coyote Point E450si manual calls for the following settings:
+
+*9600 baud
+*8 data bits
+*no parity
+*one stop bit
+*VT100 terminal emulation
+*ignore hang-ups (if supported); this allows a single terminal session to continue running even if Equalizer restarts.
+
+These settings are for the serial console of an embedded computer board (115200 8N1):
+
+screen /dev/ttyS0 115200,cs8,-parenb,-cstopb,-hupcl
+
+SomthingElse:
+
+https://wiki.inf.ed.ac.uk/DICE/SimpleKVMGuests
+KVM guests should be created using the local kvmtool, which was written to standardise on a few VM configurations and to simplify KVM guest creation (particularly from the command line).
+kvmtool create --name myvm [--host remoteserver] [--uri uri] [--flavour template]
+               [--cpus number] [--memory number] [--bridge interface-name]
+               [--mac mac-address] [--pool storagepoolname] [--disksize gigabytes]
+               [--diskallocation number] [--bootorder option[,option..]]
+
+
+http://kashyapc.com/2011/08/18/unattended-guest-install-with-a-local-kickstart/
+#!/bin/bash
+set -x
+
+# Note: Replace this with your local Fedora tree if you have one.
+tree= http://download.fedoraproject.org/pub/fedora/linux/releases/15/Everything/x86_64/os
+
+virt-install --connect=qemu:///system \
+    --network=bridge:br0 \
+    --initrd-inject=/export/fed-minimal.ks \
+    --extra-args="ks=file:/fed-minimal.ks \
+      console=tty0 console=ttyS0,115200" \
+    --name=f15testbox \
+    --disk /var/lib/libvirt/images/f15testbox.img,size=20 \
+    --ram 2048 \
+    --vcpus=2 \
+    --check-cpu \
+    --accelerate \
+    --hvm \
+    --location=$tree \
+    --nographics 
+
+
+
+https://help.ubuntu.com/community/DraftKVMSerialConsole
+Configure a Serial Console in the Guest
+
+First, we need to configure a serial console (see SerialConsoleHowto) in the guest, in order that it will accept a connection:
+
+sudo editor /etc/init/ttyS0.conf
+Add the configuration:
+
+# ttyS0 - getty
+#
+# This service maintains a getty on ttyS0 from the point the system is
+# started until it is shut down again.
+
+start on stopped rc RUNLEVEL=[2345]
+stop on runlevel [!2345]
+
+respawn
+exec /sbin/getty -L 115200 ttyS0 xterm
+Run the following command to initiate the Serial Console (or restart the VM):
+
+sudo start ttyS0
+Here we are using "xterm" as the terminal type, which works well if we are connecting using a gnome-terminal (or xterm) instance. It is likely preferable to set this to match the terminal type which will be used to connect. This can be found using this command in the host/client terminal you will be using to connect:
+
+echo $TERM
+For example, if you are running screen it is "screen", for byobu "screen-bce", etc.
+
+You can also set the variable temporarily when you are already connected to the console:
+
+export TERM=screen
+Connect kernel & GRUB to Serial Console
+
+If you want everything, including boot selection & default console messages, to the serial console, modify/add the following lines to /etc/default/grub:
+
+
+GRUB_CMDLINE_LINUX="console=tty0 console=ttyS0,115200n8"
+ 
+# Uncomment to disable graphical terminal (grub-pc only)
+#GRUB_TERMINAL=console
+GRUB_TERMINAL=serial
+
+
+
+
+
+http://www-01.ibm.com/support/knowledgecenter/?lang=en#!/linuxonibm/liaai.kvminstall/liaaikvminstallvirtinstall.htm
+# virt-install \
+       --name kvm1 \
+       --ram 500 \
+       --disk path=/var/lib/libvirt/images/kvm1.img,size=5 \
+       --network network:default \
+       --accelerate \
+       --vnc \
+       -c /tmp/SLES11-x86_64-DVD.iso
+
+# virt-install \
+       --name kvm2 \
+       --vcpus 2 \
+       --ram 1000 \
+       --disk path=/dev/mapper/VolGroup00-LogVol03  \
+       --network bridge:br0 \
+       --arch i686 \
+       -l nfs://10.1.1.212/nfsexport/rhel5.4-server-i386-is/
+
+
+
+
+https://github.com/cozybit/open80211s/wiki/QemuAsDevelTarget
+very interesting
+
+
+
+http://nullworks.wordpress.com/2012/09/19/kicking-centos-6-3-kvm-guests/
+cat >/var/www/html/${VM_NAME}.ks <<EOF
+install
+text
+url --url http://10.0.0.1/centos
+lang en_US.UTF-8
+keyboard us
+network --bootproto=static --ip=$VM_IP --netmask=255.255.255.0 --hostname=$VM_NAME --onboot=true
+rootpw changeme
+firewall --enabled --port=22:tcp
+authconfig --enableshadow --enablemd5
+selinux --disabled
+timezone --utc America/Los_Angeles
+zerombr yes
+bootloader --location=mbr --driveorder=vda
+clearpart --all --initlabel --drives=vda
+part /boot --fstype ext3 --size=100 --ondisk=vda
+part pv.2 --size=1 --grow --ondisk=vda
+volgroup vg_system --pesize=32768 pv.2
+logvol / --fstype ext3 --name=lv_root --vgname=vg_system --size=8064
+logvol swap --name=lv_swap --vgname=vg_system --grow --size=512 --maxsize=1024
+skipx
+reboot
+ 
+%packages
+@core
+@base
+sgpio
+screen
+sudo
+wget
+mlocate
+ntpdate
+git
+links
+EOF
+ 
+virt-install \
+    --hvm \
+    --virt-type=kvm \
+    --name=$VM_NAME \
+    --cpuset=1 \
+    --ram=2048 \
+    --network bridge=ovsbr1 \
+    --disk path=/home/vmstore/${VM_NAME}.img,size=9 \
+    --os-variant=rhel6 \
+    --arch=x86_64 \
+    --location http://10.0.0.1/centos/ \
+    --extra-args "console=ttyS0,115200 text headless ks=http://10.0.0.1/$VM_NAME.ks ip=$VM_IP" \
+    --graphics none
+
+
+
+***
+http://marcofalchi.blogspot.com/2013/05/fedora-17-kvm-install-fedora-19-nightly.html
+# virt-install --connect qemu:///system -n Fedora19-x86_64  -r 1024 --vcpus=2  --disk path=/var/lib/libvirt/images/Fedora19-x86_64,size=12 -c /var/lib/libvirt/images/Fedora-19-Nightly-x86_64-Live-desktop-20130512.11-1.iso  --graphics spice --noautoconsole --os-type linux --os-variant fedora18 --network bridge=virbr0  --hvm
+
+
+
+kickstart examples
+http://wiki.eri.ucsb.edu/sysadm/Linux_Kickstart_Installs
+
+
+
+# virt-install \
+> -n vmm1msrv \
+> -r 512 \
+> -f /var/lib/libvirt/images/vmm1msrv.img \
+> -s 16 \
+> –vcpus=2 \
+> –os-type linux \
+> –network bridge=br0 \
+> –nographics \
+> –location=’http://vmx1msrv.labs.local/os/rhel/6.0/x86_64&#8242; \
+> –extra-args=’console=tty0 console=ttyS0,115200n8′
+
+
+
+virt-install --name=ubu1204-server \
+    --disk path=/var/lib/libvirt/images/ubu1204-server,size=30,sparse=true,format=qcow2,bus=virtio  \
+    --vcpus=2 --ram=512 --location="http://archive.ubuntu.com/ubuntu/dists/precise/main/installer-amd64/" \
+    --network bridge=virbr1,model=virtio --os-type=linux --os-variant=virtio26 --nographics \
+    -x "ip=192.168.122.7 netmask=255.255.255.0 dns=8.8.8.8 gateway=192.168.122.1 console=tty0 utf8 console=ttyS0,115200n8"
+
+
+
+http://linuxvijay.blogspot.com/2014/05/kernel-virtual-machine.html
+
+http://sachitanandpandey.blogspot.com/2014/03/kvm-command-to-install-fedorarhel-guest.html
+
+http://serverfault.com/questions/257962/kvm-guest-installed-from-console-but-how-to-get-to-the-guests-console
+
+
+http://www-01.ibm.com/support/knowledgecenter/linuxonibm/liaat/liaatkvmsecnewguest.htm?lang=en
+# virt-install --name guest01 --ram 512 --accelerate \
+ --location /mnt/rhel5-u5/ \
+ --extra-args "console=tty0 console=ttyS0,115200n8" \
+ --os-type linux --os-variant rhel5 \
+ --disk path=/dev/mapper/guest01-img,bus=virtio,device=disk \
+ --disk path=/root/RHEL5.5-Server-20100322.0-x86_64-DVD.iso,bus=ide,device=cdrom \
+ --network network:default --nographics
+
+http://kashyapc.fedorapeople.org/virt/create-guest-virt-install.bash
+
+
+
+http://sysadminman.net/blog/2011/kvm-virtualization-text-centos-guest-install-2098
+Firstly all of my VMs live on LVM so create a virtual disk to hold the VM. I’m creating a 20G ‘partition’ in a volume group called kvm-storage. The logical volume is called host.demo.com.
+
+lvcreate -L20G -n host.demo.com kvm-storage
+
+Now download the CentOS install ISO. Either CD1 or the netinstall ISO should be fine -
+wget http://mirrors.manchester.icecolo.com/centos/5.5/isos/x86_64/CentOS-5.5-x86_64-bin-1of8.iso
+
+Now we mount the ISO -
+mkdir /mnt/centos55
+
+mount -o loop CentOS-5.5-x86_64-bin-1of8.iso /mnt/centos55/
+
+Now we run the virt-install command. I suggest putting this command in a file and running it from there to make editing easier!
+virt-install \
+-n host.demo.com \
+-r 512 \
+--vcpus=1 \
+--os-variant=rhel5.4 \
+--accelerate \
+--nographics  \
+-v \
+-l /mnt/centos55/ \
+-w bridge:br1 \
+--disk path=/dev/kvm-storage/host.demo.com \
+-x "console=ttyS0"
+
+Here are the parts of the command above that allow for a text based install -
+
+–nographics  – tells KVM not to allocate a graphics console to the VM
+
+-v  – means we’re doing full virtualization
+
+-l  – sets the boot location to be the ISO we mounted earlier
+
+–disk  – sets the install destination disk to be the disk we created earlier
+
+-x “console=ttyS0″  – sets a kernel boot parameter telling CentOS to use ttyS0 as the console
+
+Once this is done you should see the text based installation screens. This worked pretty well in putty, you are able to tell what menu options you are selecting. You won’t be able to use the mounted ISO for the actual installation media so I did a HTTP install, selecting one of the CentOS mirrors to do the install from  (like – http://mirrors.manchester.icecolo.com/centos/5.5/os/x86_64/)
+
+Once the install is complete and the VM rebooted you can access the console again by running -
+virsh
+list --all
+console VM-ID
+
+
+TS2:
+The following files are required to manage and debug KVM problems:
+
+/etc/libvirt/ - Main configuration directory.
+/etc/libvirt/qemu/ - Virtual machine configuration directory. All xml files regarding VMs are stored here. You can edit them manually or via virt-manager.
+/etc/libvirt/qemu/networks/ - Networking for your KVM including default NAT. NAT is only recommended for small setup or desktops. I strongly suggest you use bridged based networking for performance.
+/etc/libvirt/qemu/networks/default.xml - The default NAT configuration used by NAT device virbr0.
+/var/log/libvirt/ - The default log file directory. All VM specific logs files are stored here.
+/etc/libvirt/libvirtd.conf - Master libvirtd configuration file.
+/etc/libvirt/qemu.conf - Master configuration file for the QEMU driver.
+
+TCP/UDP Ports
+
+By default libvirt does not opens any TCP or UDP ports. However, you can configure the same by editing the /etc/libvirt/libvirtd.conf file. Also, VNC is configured to listen on 127.0.0.1 by default. To make it listen on all public interfaces, edit /etc/libvirt/qemu.conf file.
+
+Our Sample Setup
+
+                                                                            +-------------> vm#1 ( 10.10.21.71 / 123.1.2.4, CentOS MySQL Server)
+                                                                             |
+                                                                             +-------------> vm#2 ( 10.10.21.72 / 123.1.2.5, FreeBSD 7 Web Server)
+LAN --> Switch    -->  eth0 --> -+   10.10.21.70                             |
+                                 | ---> br0 -+      +----------------+       +-------------> vm#3 ( 10.10.21.73 / 123.1.2.6, OpenBSD 4.x Firewall )
+                                 |           | ===> |   RHEL Server  |  -----+
+                                 |           |      |      KVM       |       +-------------> vm#4 ( 10.10.21.74 / 123.1.2.7, Solaris 10 Testing Server )
+                                 | ---> br1 -+      +----------------+       |
+Wan --> ISP Router --> eth1 --> -+   123.1.2.3                               +-------------> vm#5 ( 10.10.21.71 / 123.1.2.8, Windows Server Testing Server )
+                                                                             |
+                                                                             +-------------> vm#6 ( 10.10.21.71 / 123.1.2.9, RHEL Mail Server )
+
+ip forwarding is synonymous with routing (vlan or lan)
+static directives vs dynamic directives all use boolean values 0 or 1
+
+    static directives
+    /etc/sysctl.conf
+
+    dynamic directives
+    echo "1" > /proc/sys/net/ipv4/ip_forward
+
+SELinux
+    sestatus
+
+
+Weak Subjects:
+    iptables
+    SELinux
+
+REF:
+http://wiki.libvirt.org/page/FAQ
+http://fedoraproject.org/wiki/Virtualization_short_cuts_for_noobs
+https://www.berrange.com/posts/2009/12/13/routed-subnets-without-nat-for-libvirt-managed-virtual-machines-in-fedora/
+Very Good
+http://sysadminman.net/blog/2011/kvm-virtualization-text-centos-guest-install-2098

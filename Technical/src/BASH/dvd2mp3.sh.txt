@@ -1,0 +1,22 @@
+#!/bin/bash
+###
+#
+#  File:  dvd2mp3.sh.txt
+#  Purpose:  backup a dvd to mp3
+#  Author:  SFC Hammond, Christopher J.
+#  Date:  22:18, 09/01/15
+#
+###
+
+
+# 
+#  Maintenance Record and versioning
+# 
+
+
+# 
+#  Syntax, notes, or instructions
+# 
+
+
+transcode -i /dev/dvd -x dvd -T 1,-1 -a 0 -y raw -m complete_audio.mp3

@@ -1,0 +1,173 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- ******************************************************* --> 
+<!-- *  File:     /home/rac3rx/html/Family/Family.html     * --> 
+<!-- *  Author:   Anonymous                                * --> 
+<!-- *  Purpose:  To present and share my photo gallery    * --> 
+<!-- *            in an organizable fashion.               * --> 
+<!-- *  Date:     21JAN09                                  * --> 
+<!-- ******************************************************* --> 
+<html lang="en">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+        <meta name="description" content="my wolf's clan photo gallery">
+        <meta name="GENERATOR" content="vim">
+        <meta name="ProgId" content="vim.Document">
+	    <title>
+		    Wolf Clan Gallery -- Family Section
+		</title>
+    </head>
+    <body>
+        <BODY BGCOLOR="BLACK">
+        <BODY TEXT="GREEN">
+	    <FONT SIZE=+0 FACE="ARIAL">
+        <HR COLOR="#80ff80">
+        <TABLE>
+            <TR>
+                <TD><A HREF="../index.html">[ Home ]</A></TD>
+                <TD><A HREF="../Technical/TechnicalNotes.html">[ Technical ]</A></TD>
+                <TD><A HREF="../Military/Military.html">[ Military ]</A></TD>
+                <TD><A HREF="../Literature/Literature.html">[ Literature ]</A></TD>
+                <TD><A HREF="./Family.html">[ Family ]</A></TD>
+                <TD><A HREF="../Bookmarks/Bookmarks.html">[ Bookmarks ]</A></TD>
+                <TD><A HREF="../Health/Health.html">[ Health ]</A></TD>
+                <TD><A HREF="../Lyrics/Lyrics.html">[ Lyrics ]</A></TD>
+            </TR>
+        </TABLE>
+        <HR COLOR="#80ff80">
+	    <h1> My Wolf Clan's Photo Gallery</h1>
+	    <FONT SIZE=+0 FACE="ARIAL">
+        <P ALIGN=LEFT>First attempt at coding a photo gallery by hand with VIM and javascript; it took a long time.
+	    This is really going to suck, being the first one and it being so unwieldly ,but at least it's 
+	    here and it will only get better, time permitting.  hehe  :)</p>
+        <p> NOTE:  If this page doesn't work for you because of JavaScript use this link instead: <a href="./altFamily.html">clic here</a>
+        <p></p>
+        <div class="indent">
+	    <table border="0" cellpadding="2">
+		    <tr>
+                <td>
+		            <script  type="text/javascript">
+                        // Gallery script.
+                        // With image cross fade effect for those browsers that support it.
+                        // Script copyright (C) 2004 www.cryer.co.uk.
+                        // Script is free to use provided this copyright header is included.
+                        function LoadGallery(pictureName,imageFile,titleCaption,captionText)
+                        {
+                            var picture = document.getElementById(pictureName);
+                            if (picture.filters)
+                                {
+                                    picture.style.filter="blendTrans(duration=1)";
+                                    picture.filters.blendTrans.Apply();
+                                }
+                            picture.src = imageFile;
+                            if (picture.filters)
+                                {
+                                    picture.filters.blendTrans.Play();
+                                }
+                            document.getElementById(titleCaption).innerHTML=captionText;
+                         }
+                     </script>
+                     <img style="border: 1px black solid" alt="Photo gallery" src="../Graphics/640x480_16x20_Heavenly_wolves.jpg" id="WolfClanGallery" width="../Graphics/640" height="480">
+				</td>
+				<td>
+				    <ol>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '../Graphics/640x480_11x14_BigD_N_Blanca_Rosharon_04.jpg', 'WolfClanGalleryCaption', '../Graphics/640x480_11x14_BigD_N_Blanca_Rosharon_04.jpg')">../Graphics/640x480_11x14_BigD_N_Blanca_Rosharon_04.jpg</a>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '../Graphics/640x480_2004_XMAS_(6).jpg', 'WolfClanGalleryCaption', '../Graphics/640x480_2004_XMAS_(6).jpg')">../Graphics/640x480_2004_XMAS_(6).jpg</a>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '../Graphics/640x480_3.5x5_Beach04BlaGordBre.jpg', 'WolfClanGalleryCaption', '../Graphics/640x480_3.5x5_Beach04BlaGordBre.jpg')">../Graphics/640x480_3.5x5_Beach04BlaGordBre.jpg</a>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '../Graphics/640x480_3.5x5_BreDakChr07.jpg', 'WolfClanGalleryCaption', '../Graphics/640x480_3.5x5_BreDakChr07.jpg')">../Graphics/640x480_3.5x5_BreDakChr07.jpg</a>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '../Graphics/640x480_3.5x5_FtPolkPark06GorChrBre.jpg', 'WolfClanGalleryCaption', '../Graphics/640x480_3.5x5_FtPolkPark06GorChrBre.jpg')">../Graphics/640x480_3.5x5_FtPolkPark06GorChrBre.jpg</a>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '../Graphics/640x480_3.5x5_H-ween_BlaBubBreChr.jpg', 'WolfClanGalleryCaption', '../Graphics/640x480_3.5x5_H-ween_BlaBubBreChr.jpg')">../Graphics/640x480_3.5x5_H-ween_BlaBubBreChr.jpg</a>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '../Graphics/640x480_3.5x5_H-ween_ChrBigAly.jpg', 'WolfClanGalleryCaption', '../Graphics/640x480_3.5x5_H-ween_ChrBigAly.jpg')">../Graphics/640x480_3.5x5_H-ween_ChrBigAly.jpg</a>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '../Graphics/640x480_3.5x5_NewHome_FtPolk_ChrBreAlyBla_2006.jpg', 'WolfClanGalleryCaption', '../Graphics/640x480_3.5x5_NewHome_FtPolk_ChrBreAlyBla_2006.jpg')">../Graphics/640x480_3.5x5_NewHome_FtPolk_ChrBreAlyBla_2006.jpg</a>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '../Graphics/640x480_3.5x5_PrincessesHomesteadFl_BreAly07.jpg', 'WolfClanGalleryCaption', '../Graphics/640x480_3.5x5_PrincessesHomesteadFl_BreAly07.jpg')">../Graphics/640x480_3.5x5_PrincessesHomesteadFl_BreAly07.jpg</a>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '../Graphics/640x480_4x5.5_FtPolkB-day_BoGraGirlie07.jpg', 'WolfClanGalleryCaption', '../Graphics/640x480_4x5.5_FtPolkB-day_BoGraGirlie07.jpg')">../Graphics/640x480_4x5.5_FtPolkB-day_BoGraGirlie07.jpg</a>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '../Graphics/640x480_4x5.5_LilAndBigDFtPolk07.jpg', 'WolfClanGalleryCaption', '../Graphics/640x480_4x5.5_LilAndBigDFtPolk07.jpg')">../Graphics/640x480_4x5.5_LilAndBigDFtPolk07.jpg</a>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '../Graphics/640x480_4x5.5_LilAndBigDGirlieFtPolk_07.jpg', 'WolfClanGalleryCaption', '../Graphics/640x480_4x5.5_LilAndBigDGirlieFtPolk_07.jpg')">../Graphics/640x480_4x5.5_LilAndBigDGirlieFtPolk_07.jpg</a>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '../Graphics/640x480_4x5_AuntTinaAndJacobNewYears2006_Houston.jpg', 'WolfClanGalleryCaption', '../Graphics/640x480_4x5_AuntTinaAndJacobNewYears2006_Houston.jpg')">../Graphics/640x480_4x5_AuntTinaAndJacobNewYears2006_Houston.jpg</a>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '../Graphics/640x480_4x5_ChrisDino07.jpg', 'WolfClanGalleryCaption', '../Graphics/640x480_4x5_ChrisDino07.jpg')">../Graphics/640x480_4x5_ChrisDino07.jpg</a>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '../Graphics/640x480_4x5_SunshineBdayFtPolk_07.jpg', 'WolfClanGalleryCaption', '../Graphics/640x480_4x5_SunshineBdayFtPolk_07.jpg')">../Graphics/640x480_4x5_SunshineBdayFtPolk_07.jpg</a>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '../Graphics/640x480_4x6_BBear_FtPolk_DaisyTruck_06.jpg', 'WolfClanGalleryCaption', '../Graphics/640x480_4x6_BBear_FtPolk_DaisyTruck_06.jpg')">../Graphics/640x480_4x6_BBear_FtPolk_DaisyTruck_06.jpg</a>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '../Graphics/640x480_4x6_Blanca_DaisyFord.jpg', 'WolfClanGalleryCaption', '../Graphics/640x480_4x6_Blanca_DaisyFord.jpg')">../Graphics/640x480_4x6_Blanca_DaisyFord.jpg</a>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '../Graphics/640x480_4x6_DakotaArmyGreen_FtPolk_06.jpg', 'WolfClanGalleryCaption', '../Graphics/640x480_4x6_DakotaArmyGreen_FtPolk_06.jpg')">../Graphics/640x480_4x6_DakotaArmyGreen_FtPolk_06.jpg</a>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '../Graphics/640x480_4x6_DakotaBigSmileFtPolk_06.jpg', 'WolfClanGalleryCaption', '../Graphics/640x480_4x6_DakotaBigSmileFtPolk_06.jpg')">../Graphics/640x480_4x6_DakotaBigSmileFtPolk_06.jpg</a>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '../Graphics/640x480_Rucking_VirginiaBeach_JUL08.jpg', 'WolfClanGalleryCaption', '../Graphics/640x480_Rucking_VirginiaBeach_JUL08.jpg')">../Graphics/640x480_Rucking_VirginiaBeach_JUL08.jpg</a>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '../Graphics/640x480_SOCSOUTH_CelebrationOfHostageRelease_(3).jpg', 'WolfClanGalleryCaption', '../Graphics/640x480_SOCSOUTH_CelebrationOfHostageRelease_(3).jpg')">../Graphics/640x480_SOCSOUTH_CelebrationOfHostageRelease_(3).jpg</a>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '../Graphics/640x480_SSg_Hammond_FamilyChiliCookOut15DEC07.jpg', 'WolfClanGalleryCaption', '../Graphics/640x480_SSg_Hammond_FamilyChiliCookOut15DEC07.jpg')">../Graphics/640x480_SSg_Hammond_FamilyChiliCookOut15DEC07.jpg</a>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '../Graphics/640x480_SSg_Hammond_II.jpg', 'WolfClanGalleryCaption', '../Graphics/640x480_SSg_Hammond_II.jpg')">../Graphics/640x480_SSg_Hammond_II.jpg</a>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '../Graphics/640x480_SandCastle_BubBigDBre_Beach_TX_04.jpg', 'WolfClanGalleryCaption', '../Graphics/640x480_SandCastle_BubBigDBre_Beach_TX_04.jpg')">../Graphics/640x480_SandCastle_BubBigDBre_Beach_TX_04.jpg</a>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '../Graphics/640x480_Spiderman_picnic.jpg', 'WolfClanGalleryCaption', '../Graphics/640x480_Spiderman_picnic.jpg')">../Graphics/640x480_Spiderman_picnic.jpg</a>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '../Graphics/640x480_SweetDakotaSmiling_12AUG08.jpg', 'WolfClanGalleryCaption', '../Graphics/640x480_SweetDakotaSmiling_12AUG08.jpg')">../Graphics/640x480_SweetDakotaSmiling_12AUG08.jpg</a>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '../Graphics/640x480_TACLAN_School_JUL08.jpg', 'WolfClanGalleryCaption', '../Graphics/640x480_TACLAN_School_JUL08.jpg')">../Graphics/640x480_TACLAN_School_JUL08.jpg</a>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '../Graphics/640x480_TheFamousPointing_BreBigD_Rosharon_03.jpg', 'WolfClanGalleryCaption', '../Graphics/640x480_TheFamousPointing_BreBigD_Rosharon_03.jpg')">../Graphics/640x480_TheFamousPointing_BreBigD_Rosharon_03.jpg</a>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '../Graphics/640x480_TrainingForLancero_VA_08.jpg', 'WolfClanGalleryCaption', '../Graphics/640x480_TrainingForLancero_VA_08.jpg')">../Graphics/640x480_TrainingForLancero_VA_08.jpg</a>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '../Graphics/640x480_Waiting_to_jump.jpg', 'WolfClanGalleryCaption', '../Graphics/640x480_Waiting_to_jump.jpg')">../Graphics/640x480_Waiting_to_jump.jpg</a>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '../Graphics/640x480_Warm_Hug_BigD_N_Girlie_Rosharon_03_.jpg', 'WolfClanGalleryCaption', '../Graphics/640x480_Warm_Hug_BigD_N_Girlie_Rosharon_03_.jpg')">../Graphics/640x480_Warm_Hug_BigD_N_Girlie_Rosharon_03_.jpg</a>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '../Graphics/640x480_XMAS06_Houston.jpg', 'WolfClanGalleryCaption', '../Graphics/640x480_XMAS06_Houston.jpg')">../Graphics/640x480_XMAS06_Houston.jpg</a>
+                        <li><a href="#_self" onclick="LoadGallery('WolfClanGallery', '../Graphics/640x480_Xtopher_N_Patches.jpg', 'WolfClanGalleryCaption', '../Graphics/640x480_Xtopher_N_Patches.jpg')">../Graphics/640x480_Xtopher_N_Patches.jpg</a>
+					</ol>
+				</td>
+			</tr>
+		    <tr>
+			    <td>
+		            <div id="WolfClanGalleryCaption" class="center">Here's the pack</div>
+					    <div></div>
+				    </div>
+				</td>
+				<td></td>
+			</tr>
+		</table>
+	  </div>
+	<BR></BR>
+	<BR></BR>
+	<BR></BR>
+
+	<FONT SIZE=+0 FACE="ARIAL">
+    <P ALIGN=CENTER>
+    <TABLE>
+      <TR>
+        <TD>
+          Site driven by NetBSD
+        </TD>
+        <TD>
+          Free unix-like OS, created by
+	      <P></P>
+
+          Linux Torvalds and others
+	      <P></P>
+          around the world
+        </TD>
+        <TD>
+          GNU is not unix
+        </TD>
+        <TD>
+          VImproved
+        </TD>
+      </TR>
+
+      <TR>
+        <TD>
+          <a href="http://www.NetBSD.org/"><img src="../Graphics/NetBSD_212x209.jpg" border=0 alt="Site driven by NetBSD - NetBSD rules!"></a>
+        </TD>
+        <TD>
+          <a href="http://www.Linux.org/"><img src="../Graphics/tux_212x209.jpg" border=0 alt="Free unix like OS, created by Linus Torvalds and others!"></a>
+        </TD>
+        <TD>
+          <a href="http://www.GNU.org/"><img src="../Graphics/gnu-linux_212x209.jpg" border=0 alt="GNU is not unix!"></a>
+
+        </TD>
+        <TD>
+          <A HREF="http://www.VIM.org/"><IMG SRC="../Graphics/vim_212x209.jpg" border=1 alt="VImproved!"></a>
+        </TD>
+      </TR>
+    </TABLE>
+    </P>
+	<BR></BR>
+	<FONT SIZE=+0 FACE="ARIAL">
+
+    <HR COLOR="#80ff80">
+    <P>Last updated: Sun Jan 20 22:46:49 UTC 2009</P>
+    <P><A HREF="MAILTO:rac3rx@sdf.lonestar.org">Webmaster: rac3rx@sdf.lonestar.org</A></P>
+    <HR COLOR="#80ff80">
+	</FONT>
+    </body>
+</html>

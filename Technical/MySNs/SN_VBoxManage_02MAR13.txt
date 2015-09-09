@@ -1,0 +1,136 @@
+
+http://www.electricmonk.nl/log/2011/09/24/multiple-virtualbox-vms-using-one-base-image-copy-on-write/
+VBoxManage clonehd ~/VirtualBox\ VMs/minimal.deb.local/minimal.deb.local.vdi ~/base.vdi
+
+$ VBoxManage createvm --name "clone1" --ostype Debian_64 --register
+Virtual machine 'clone1' is created and registered.
+UUID: 1becc453-f4a9-44a8-a6c8-e43b80baf04d
+Settings file: '/home/fboender/VirtualBox VMs/clone1/clone1.vbox'
+$ VBoxManage modifyvm "clone1" --nic1 hostonly --hostonlyadapter1 "vboxnet0"
+$ VBoxManage storagectl "clone1" --name "sata1" --add sata
+$ VBoxManage storageattach "clone1" --storagectl "sata1" --port 0 --device 0 --type hdd --medium~/base.vdi --mtype multiattach
+$ VBoxManage startvm "clone1"
+
+VBoxManage storageattach "clone2" --storagectl "sata1" --port 0 --device 0 --type hdd --medium base.vdi --mtype multiattach
+
+http://blog.zerodev.it/index.php/2009/07/30/virtualbox-3-0-2-and-hostonly-networking
+
+# for host only  you need vboxnetadp module
+modprobe vboxnetadp
+
+# VBoxManage listvms
+VBoxManage list hostonlyifs
+
+/usr/lib/virtualbox/VBoxNetAdpCtl add
+
+VBoxManage hostonlyif create
+VBoxManage dhcpserver remove --ifname vboxnet0
+
+VBoxManage dhcpserver add --netname newnet0 --ip ..
+
+
+VBoxManage dhcpserver modify --ifname vboxnet0 --ip 192.168.56.1 --netmask 255.255.255.0 --lowerip 192.168.56.99 --upperip 192.168.56.99 --enable
+
+VBoxManage dhcpserver modify --ifname vboxnet1 --ip 192.168.2.100 --netmask 255.255.255.0 --lowerip 192.168.2.101 --upperip 192.168.2.110 --enable
+
+VBoxManage dhcpserver modify --ifname vboxnet2 --ip 192.168.3.100 --netmask 255.255.255.0 --lowerip 192.168.3.101 --upperip 192.168.3.110 --enable
+# VBoxManage list vms
+VBoxManage modifyvm DSL_4.4.10 --nic1 hostonly
+VBoxManage modifyvm DSL_4.4.10 --hostonlyadapter1 vboxnet1
+
+VBoxHeadless --startvm testMachine
+VBoxVRDP -s DSL_4.4.10 &
+
+rdesktop 172.28.202.216:3390
+
+VBoxManage list hostonlyifs
+
+
+
+
+
+
+VBoxManage hostonlyif ipconfig vboxnet0 --ip 172.16.0.1 --netmask 
+255.255.255.0 
+VBoxManage hostonlyif ipconfig vboxnet1 --ip 172.16.1.1 --netmask 
+255.255.255.0 
+
+VBoxManage modifyvm myVM --nic1 hostonly --hostonlyadapter1 vboxnet0 
+VBoxManage modifyvm myVM --nic2 hostonly --hostonlyadapter2 vboxnet1 
+
+
+
+
+
+vboxmanage showvminfo 854cb12e-af16-4ad8-bf8a-69d6c0c34f0f
+
+
+
+
+/usr/lib/virtualbox/VBoxNetAdpCtl add
+VBoxManage dhcpserver modify --ifname vboxnet1 \
+--ip 192.168.2.100 --netmask 255.255.255.0 \
+--lowerip 192.168.2.101 --upperip 192.168.1.110 --enable
+
+VBoxManage list vms
+
+VBoxManage modifyvm wxp --nic1 hostonly
+
+VBoxManage modifyvm wxp --hostonlyadapter1 vboxnet1
+VBoxVRDP -s MachineName
+
+
+VBoxManage list vms
+VBoxManage modifyvm "VM name" --nic<x> hostonly
+
+
+VBoxManage modifyvm "server2" -memory "256MB" -acpi on -boot1 dvd -nic1 bridged
+
+VBoxManage modifyvm debian --nic1 bridged --bridgeadapter1 eth0
+
+VBoxManage modifyvm "MyVM" --natnet1 "192.168/16"
+VBoxManage modifyvm OpenSuse01 --natnet1 "172.23.24/24"
+ 
+
+
+
+
+snip
+#!/bin/bash
+
+VMNAME="OpenBSD"
+
+VBoxManage createvm --name $VMNAME --ostype OpenBSD --register
+VBoxManage createhd --filename ~/"VirtualBox VMs"/$VMNAME/$VMNAME --size 100000
+VBoxManage storagectl $VMNAME --name "IDE Controller" --add ide --controller PIIX4 --hostiocache on --bootable on
+VBoxManage storageattach $VMNAME --storagectl "IDE Controller" --port 0 --device 0 --type hdd --medium ~/"VirtualBox VMs"/$VMNAME/$VMNAME.vdi
+VBoxManage storageattach $VMNAME --storagectl "IDE Controller" --port 1 --device 0 --type dvddrive --medium ~/iso/install49.iso --passthrough off
+VBoxManage modifyvm $VMNAME --memory 512 --vrde on --acpi on --rtcuseutc on
+VBoxManage modifyvm $VMNAME --nic1 bridged --bridgeadapter1 eth0
+VBoxManage modifyvm $VMNAME --nic2 bridged --bridgeadapter2 eth1
+VBoxManage modifyvm $VMNAME --nic3 bridged --bridgeadapter3 eth2
+
+This is "Bridged Networking" without the bridge to the host.
+This is a pure virtual interface, never seen by the Host, as it is not attached to any network. Only Guests can communicate on this network.
+You can have more than one internal network. They are identified by their name, this can be changed by the GUI or (untested)
+VBoxManage modifyvm "VMNAME" --intnet0 "name" 
+You can enable DHCP on this interface using something like (untested)
+VBoxManage dhcpserver --netname --ip 0.0.0.0 --netmask 255.255.255.0 --lowerip 0.0.0.100 --upperip 0.0.0.199 
+
+
+VBoxManage createvm --name "MyVM" --register
+VBoxManage modifyvm "MyVM" --memory 512 --acpi on --boot1 dvd --nic1 nat
+VBoxManage createhd --filename /some/path/MyVM.img --variant fixed --size 22000
+VBoxManage storagectl "MyVM" --name "IDE Controller" --add ide
+VBoxManage storageattach "MyVM" --storagectl "IDE Controller" --port 0 --device 0 --type hdd --medium /some/path/MyVM.img
+VBoxManage storageattach "MyVM" --storagectl "IDE Controller" --port 1 --device 0 --type dvddrive --medium /path/to/image/debian.iso
+VBoxManage modifyvm "MyVM" --hwvirtex on
+VBoxManage modifyvm "MyVM" --cpuexecutioncap 100
+VBoxManage modifyvm "MyVM" --clipboard disabled
+
+
+
+
+VBoxManage modifyvm "MyVM" --nic1 bridged
+VBoxManage modifyvm "MyVM" --bridgeadapter1 eth0
+VBoxManage setextradata "MyVM" VBoxInternal/Devices/pcnet/0/LUN#0/Config/RestrictAccess 0

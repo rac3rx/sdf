@@ -1,0 +1,80 @@
+#!/bin/bash
+###
+#
+#  File:  buShScripts.sh.txt
+#  Purpose:  backup scripts in local directory.
+#  Author:  SFC Hammond, Christopher J.
+#  Date:  21:29, 10/07/10
+#
+###
+# 
+#  Maintenance Record and versioning
+# 
+# 
+#  Syntax, notes, or instructions
+#
+#
+# create environment variables
+#
+#tar -cvf ./UL/MyBin.tar $HOME/Bin $HOME/Support/Data/MySrc/ $HOME/SN_*.txt
+#tar -rvf ./UL/MyBin.tar $HOME/Support/PCOS/W2k3/UL/*.{pl,py,rb,sh,txt}
+#tar -tf ./UL/MyBin.tar
+#
+BIN=$HOME/bin
+BU_FILE=buScripts_$(date +%H%M)_$(date +%m-%d-%Y).tar
+FRIENDLY_NAME="Chris H"
+MySNs=$HOME/Support/Data/MySNs
+MYSRC=$HOME/Support/Data/MySrc
+PCOS=$HOME/Support/PCOS/W2k3/UL/*.{sh,txt}
+#
+UL=$HOME/_UL
+TAR_FILE=${UL}/${BU_FILE}
+UUE_FILE=${TAR_FILE}.uue
+#
+FROM_EMAIL_ADDRESS=chris.hammond.tx@gmail.com
+#EMAIL_SUBJECT="buScript `date` `hostname` `whoami`"
+EMAIL_SUBJECT="buScript $(date +%H%M)_$(date +%m-%d-%Y)"
+TO_EMAIL_ADDRESS=chris.hammond.tx@gmail.com
+TO_CC_ADDRESS=3057208407@messaging.sprintpcs.com
+#
+#
+# verify if files containing the file extension "sh" & "txt" 
+# exist if they exist then compressed them in bzip format 
+#
+if [ -d "$UL" ]; then
+    if [ -d "$BIN" ]; then
+        echo -e \\n;
+        echo '+---------------------------------------------------------------+';
+        echo '|  backing-up the $BIN script files in tar format.              |';
+        echo '|  filename: buScripts_TIME_DATE.tar Director: $HOME/_UL        |';
+        echo '+---------------------------------------------------------------+';
+        echo -e \\n;
+    else
+        mkdir $BIN;
+        echo -e \\n;
+        echo '+-----------------------------------------------------------+';
+        echo '|  rerun script                                             |';
+        echo '+-----------------------------------------------------------+';
+        echo -e \\n;
+        exit $?;
+    fi
+    tar -cf ${UL}/${BU_FILE} ${BIN}/*.{bat,pl,py,rb,sh,txt};
+    uuencode ${TAR_FILE} ${TAR_FILE} > ${UUE_FILE};
+    #cat ${UUE_FILE} | mailx -s "${EMAIL_SUBJECT}" -c "${TO_CC_ADDRESS}" "${TO_EMAIL_ADDRESS}";
+    cat ${UUE_FILE} | mailx -s "${EMAIL_SUBJECT}" "${TO_EMAIL_ADDRESS}";
+    # mailx -s "${EMAIL_SUBJECT}" "${TO_CC_ADDRESS}"
+    echo "`whoami` `hostname` `date`" | mail -s "buScripts" 3057208407@messaging.sprintpcs.com
+else
+    mkdir $UL;
+    echo -e \\n;
+    echo '+-----------------------------------------------------------+';
+    echo '|  rerun script                                             |';
+    echo '+-----------------------------------------------------------+':
+    echo -e \\n;
+    exit $?;
+fi
+    echo -e \\n;
+    echo '+-----------------------------------------------------------+';
+    echo '|  Done thank you                                           |':
+    echo '+-----------------------------------------------------------+';
+    echo -e \\n;

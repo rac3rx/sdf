@@ -1,0 +1,194 @@
+::  -------------------------------------------------------------------------- 
+::  File:  step01_mkdir-v0.03.bat
+::  Purpose:  w2k3 slipstream SP1 and SP2 create source environment
+::            specifically directory structure to work from.
+::  Author:  SFC Hammond, Christopher J. 
+::  Date:  Thu 10/07/2010 
+::  -------------------------------------------------------------------------- 
+ 
+:: (Place maintenance record here) 
+
+::
+::  This  package consists of the following files:
+::    Bin
+::    Bin\wget.exe
+::    Bin\7za.exe 
+::    Bin\cdrtools-2.01\mkisofs.exe
+::    Bin\rsync-3.0.2\rsync.exe
+::    ftpScript-v0.01.bat
+::    step01_mkdir-v0.03.bat
+::    step02_wget-v0.04.bat
+::    
+
+@ECHO OFF 
+GOTO START 
+
+::
+::  Create directory structure
+::  01.  .\mmddyy_w2k3
+::  02.  .\mmddyy_w2k3\w2k3
+::  03.  .\mmddyy_w2k3\w2k3\BIN
+::  04.  .\mmddyy_w2k3\w2k3\BIN\cdrtools-2.01
+::  05.  .\mmddyy_w2k3\w2k3\BIN\rsync-3.0.2
+::  06.  .\mmddyy_w2k3\w2k3\BOOT
+::  07.  .\mmddyy_w2k3\w2k3\DL
+::  08.  .\mmddyy_w2k3\w2k3\DOCS
+::  09.  .\mmddyy_w2k3\w2k3\ISOS
+::  10.  .\mmddyy_w2k3\w2k3\MYSRC
+::  11.  .\mmddyy_w2k3\w2k3\RESEARCH
+::  12.  .\mmddyy_w2k3\w2k3\ROOT
+::  13.  .\mmddyy_w2k3\w2k3\SP1
+::  14.  .\mmddyy_w2k3\w2k3\SP2
+::  15.  .\mmddyy_w2k3\w2k3\TMP
+::  16.  .\mmddyy_w2k3\w2k3\TOOLS
+::  17.  .\mmddyy_w2k3\w2k3\UL
+::
+
+:START
+::  Create some environment variables
+
+SET SRCDIR=.\mmddyy_w2k3
+SET SRCW2K3=.\mmddyy_w2k3\w2k3
+SET SRCBIN=.\mmddyy_w2k3\w2k3\BIN
+SET SRCBINCDR=.\mmddyy_w2k3\w2k3\BIN\cdrtools-2.01
+SET SRCBINRSYNC=.\mmddyy_w2k3\w2k3\BIN\rsync-3.0.2
+SET SRCBOOT=.\mmddyy_w2k3\w2k3\BOOT
+SET SRCDL=.\mmddyy_w2k3\w2k3\DL
+SET SRCDOCS=.\mmddyy_w2k3\w2k3\DOCS
+SET SRCISOS=.\mmddyy_w2k3\w2k3\ISOS
+SET SRCMYSRC=.\mmddyy_w2k3\w2k3\MYSRC
+SET SRCRESEARCH=.\mmddyy_w2k3\w2k3\RESEARCH
+SET SRCROOT=.\mmddyy_w2k3\w2k3\ROOT
+SET SRCSP1=.\mmddyy_w2k3\w2k3\SP1
+SET SRCSP2=.\mmddyy_w2k3\w2k3\SP2
+SET SRCTMP=.\mmddyy_w2k3\w2k3\TMP
+SET SRCTOOLS=.\mmddyy_w2k3\w2k3\TOOLS
+SET SRCUL=.\mmddyy_w2k3\w2k3\UL
+
+::  Creating SRCDIR (.\mmddyy_setupdate) structure, if SRCDIR is 
+::  missing, create it.
+
+::  01.  .\mmddyy_w2k3 
+IF NOT EXIST .\mmddyy_w2k3 (
+      mkdir .\mmddyy_w2k3
+      echo %DATE% %TIME% SRCDIR %SRCDIR% *** MISSING *** creating >> .\SrcDirLog.txt
+) ELSE (
+      echo %DATE% %TIME% SRCDIR *** PRESENT *** skipping >> .\SrcDirLog.txt
+       )
+
+::  02.  .\mmddyy_w2k3\w2k3
+IF NOT EXIST .\mmddyy_w2k3\w2k3 (
+      mkdir .\mmddyy_w2k3\w2k3
+      echo %DATE% %TIME% SRCW2K3 %SRCW2K3% *** MISSING *** creating >> .\SrcDirLog.txt
+) ELSE (
+      echo %DATE% %TIME% SRCW2K3 *** PRESENT *** skipping >> .\SrcDirLog.txt
+       )
+
+::  03.  .\mmddyy_w2k3\w2k3\BIN
+::  04.  .\mmddyy_w2k3\w2k3\BIN\cdrtools-2.01 
+::  05.  .\mmddyy_w2k3\w2k3\BIN\rsync-3.0.2
+IF NOT EXIST .\mmddyy_w2k3\w2k3\BIN (
+      mkdir .\mmddyy_w2k3\w2k3\BIN
+	  mkdir .\mmddyy_w2k3\w2k3\BIN\cdrtools-2.01
+      mkdir .\mmddyy_w2k3\w2k3\BIN\rsync-3.0.2
+      echo %DATE% %TIME% SRCBIN %SRCBIN% SRCBINRSYNC *** MISSING *** creating >> .\SrcDirLog.txt
+) ELSE (
+      echo %DATE% %TIME% SRCBIN SRCBINRSYNC *** PRESENT *** skipping >> .\SrcDirLog.txt
+       )
+
+::  06.  .\mmddyy_w2k3\w2k3\BOOT
+IF NOT EXIST .\mmddyy_w2k3\w2k3\BOOT (
+      mkdir .\mmddyy_w2k3\w2k3\BOOT
+      echo %DATE% %TIME% SRCBOOT %SRCBOOT% *** MISSING *** creating >> .\SrcDirLog.txt
+) ELSE (
+      echo %DATE% %TIME% SRCBOOT *** PRESENT *** skipping >> .\SrcDirLog.txt
+       )
+
+::  07.  .\mmddyy_w2k3\w2k3\DL
+IF NOT EXIST .\mmddyy_w2k3\w2k3\DL (
+      mkdir .\mmddyy_w2k3\w2k3\DL
+      echo %DATE% %TIME% SRCDL %SRCDL% *** MISSING *** creating >> .\SrcDirLog.txt
+) ELSE (
+      echo %DATE% %TIME% SRCDL *** PRESENT *** skipping >> .\SrcDirLog.txt
+       )
+
+::  08.  .\mmddyy_w2k3\w2k3\DOCS
+IF NOT EXIST .\mmddyy_w2k3\w2k3\DOCS (
+      mkdir .\mmddyy_w2k3\w2k3\DOCS
+      echo %DATE% %TIME% SRCDOCS %SRCDOCS% *** MISSING *** creating >> .\SrcDirLog.txt
+) ELSE (
+      echo %DATE% %TIME% SRCDOCS *** PRESENT *** skipping >> .\SrcDirLog.txt
+       )
+
+::  09.  .\mmddyy_w2k3\w2k3\ISOS
+IF NOT EXIST .\mmddyy_w2k3\w2k3\MYISOS (
+      mkdir .\mmddyy_w2k3\w2k3\MYISOS
+echo %DATE% %TIME% SRCISOS %SRCISOS% *** MISSING *** creating >> .\SrcDirLog.txt
+) ELSE (
+      echo %DATE% %TIME% SRCISOS *** PRESENT *** skipping >> .\SrcDirLog.txt
+       )
+
+::  10.  .\mmddyy_w2k3\w2k3\MYSRC
+IF NOT EXIST .\mmddyy_w2k3\w2k3\MYSRC (
+      mkdir .\mmddyy_w2k3\w2k3\MYSRC
+      echo %DATE% %TIME% SRCMYSRC %SRCMYSRC% *** MISSING *** creating >> .\SrcDirLog.txt
+) ELSE (
+      echo %DATE% %TIME% SRCMYSRC *** PRESENT *** skipping >> .\SrcDirLog.txt
+       )
+
+::  11.  .\mmddyy_w2k3\w2k3\RESEARCH
+IF NOT EXIST .\mmddyy_w2k3\w2k3\ROOT (
+      mkdir .\mmddyy_w2k3\w2k3\RESEARCH
+      echo %DATE% %TIME% SRCRESEARCH %SRCRESEARCH% *** MISSING *** creating >> .\SrcDirLog.txt
+) ELSE (
+      echo %DATE% %TIME% SRCRESEARCH *** PRESENT *** skipping >> .\SrcDirLog.txt
+       )
+
+::  12.  .\mmddyy_w2k3\w2k3\ROOT
+IF NOT EXIST .\mmddyy_w2k3\w2k3\ROOT (
+      mkdir .\mmddyy_w2k3\w2k3\ROOT
+      echo %DATE% %TIME% SRCROOT %SRCROOT% *** MISSING *** creating >> .\SrcDirLog.txt
+) ELSE (
+      echo %DATE% %TIME% SRCROOT *** PRESENT *** skipping >> .\SrcDirLog.txt
+       )
+
+::  13.  .\mmddyy_w2k3\w2k3\SP1
+IF NOT EXIST .\mmddyy_w2k3\w2k3\SP1 (
+      mkdir .\mmddyy_w2k3\w2k3\SP1
+      echo %DATE% %TIME% SRCSP1 %SRCSP1% *** MISSING *** creating >> .\SrcDirLog.txt
+) ELSE (
+      echo %DATE% %TIME% SRCSP1 *** PRESENT *** skipping >> .\SrcDirLog.txt
+       )
+
+::  14.  .\mmddyy_w2k3\w2k3\SP2
+IF NOT EXIST .\mmddyy_w2k3\w2k3\SP2 (
+      mkdir .\mmddyy_w2k3\w2k3\SP2
+      echo %DATE% %TIME% SRCSP2 %SRCSP2% *** MISSING *** creating >> .\SrcDirLog.txt
+) ELSE (
+      echo %DATE% %TIME% SRCSP2 *** PRESENT *** skipping >> .\SrcDirLog.txt
+       )
+
+::  15.  .\mmddyy_w2k3\w2k3\TMP
+IF NOT EXIST .\mmddyy_w2k3\w2k3\TMP (
+      mkdir .\mmddyy_w2k3\w2k3\TMP
+      echo %DATE% %TIME% SRCTMP %SRCTMP% *** MISSING *** creating >> .\SrcDirLog.txt
+) ELSE (
+      echo %DATE% %TIME% SRCTMP *** PRESENT *** skipping >> .\SrcDirLog.txt
+       )
+
+::  16.  .\mmddyy_w2k3\w2k3\TOOLS
+IF NOT EXIST .\mmddyy_w2k3\w2k3\TOOLS (
+      mkdir .\mmddyy_w2k3\w2k3\TOOLS
+      echo %DATE% %TIME% SRCTOOLS %SRCTOOLS% *** MISSING *** creating >> .\SrcDirLog.txt
+) ELSE (
+      echo %DATE% %TIME% SRCTOOLS *** PRESENT *** skipping >> .\SrcDirLog.txt
+       )
+
+::  17.  .\mmddyy_w2k3\w2k3\UL
+IF NOT EXIST .\mmddyy_w2k3\w2k3\UL (
+      mkdir .\mmddyy_w2k3\w2k3\UL
+      echo %DATE% %TIME% SRCUL %SRCUL% *** MISSING *** creating >> .\SrcDirLog.txt
+) ELSE (
+      echo %DATE% %TIME% SRCUL *** PRESENT *** skipping >> .\SrcDirLog.txt
+       )
+:END 

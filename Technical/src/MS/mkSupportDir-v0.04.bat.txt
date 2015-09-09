@@ -1,0 +1,510 @@
+::  -------------------------------------------------------------------------- 
+::  File:  mkSupportDir-v0.04.bat
+::  Purpose:  copy and consolidate exe and msi files 
+::  Author:  SFC Hammond, Christopher J. 
+::  Date:  18/08/2011  
+::  -------------------------------------------------------------------------- 
+:: 
+:: (Place maintenance record here) 
+:: clean up files delete duplicates and versioning redundantcy
+:: conditional statements are wrong eg EOF
+:: 
+@ECHO OFF 
+GOTO START 
+:: 
+::  (Place syntax, notes, or other instructions heres)
+::  c:\temp
+::  c:\bin 
+::  Support
+::    Data
+::      MyCheatSheets
+::      MyEbooks
+::      MyLyrics
+::      MyPlaylists
+::      MyMilitary
+::      MySDF
+::      MySecurity
+::        MyCISSP
+::      MySNs
+::      MySrc
+::    PCOS
+:START 
+:: 
+setlocal 
+::  
+:: Variables 
+::
+SET BIN=C:\Bin
+SET TEMP=C:\TEMP
+SET HOME=C:\Users\JonJon
+SET TEMP=C:\TEMP
+SET URL="http://rac3rx.freeshell.org/Technical/Technical.html" 
+:: 
+:: Offspring Variables 
+:: 
+SET BIN_MS=%BIN%\Bin_-_MS
+SET BIN_NIX=%BIN%\Bin_-_Nix
+SET DL=%TEMP%\DL
+SET UL=%TEMP%\UL
+SET MY_DOCS=%HOME%\Documents
+SET SUPPORT=%MY_DOCS%\Support
+SET DATA=%SUPPORT%\Data
+SET CHEATSHEETS=%DATA%\MyCheatSheets
+SET EBOOKS=%DATA%\MyEbooks
+SET LYRICS=%DATA%\MyLyrics
+SET PLAYLISTS=%DATA%\MyPlaylists
+SET MILITARY=%DATA%\MyMilitary
+SET SDF=%DATA%\MySDF
+SET SECURITY=%DATA%\MySecurity
+SET CISSP=%SECURITY%\MyCISSP
+SET SN=%DATA%\MySNs
+SET SRC=%DATA%\MySrc
+SET PCOS=%SUPPORT%\PCOS
+SET PAGE=http://rac3rx.freeshell.org/Technical/Windows/cpExe-v0.05.bat
+SET PATH=%PATH%;%TEMP%\BIN
+::
+CLS
+echo.
+echo .....................................................................................................
+echo.
+echo visit my site: %URL% for other tips and scripts
+echo File location: %PAGE%
+echo.
+echo .....................................................................................................
+::
+REM ensure Bin directory exists c:\Bin  
+::
+echo.
+echo checking for %BIN% directory
+echo.
+IF NOT EXIST %BIN%\nul ( 
+md %BIN%
+)  
+::
+IF EXIST %BIN% ( 
+echo.
+echo %BIN% directory on root of C drive exists
+echo.
+) ELSE ( 
+echo.
+echo Couldn't make %BIN% 
+echo.
+GOTO EOF
+)
+::
+REM ensure BIN_MS directory exists c:\Bin\Bin_-_MS 
+::
+echo.
+echo checking for %BIN_MS% directory
+echo.
+IF NOT EXIST %BIN_MS%\nul ( 
+md %BIN_MS%
+)  
+::
+IF EXIST %BIN_MS% ( 
+echo.
+echo %BIN_MS% directory on root of C drive exists
+echo.
+) ELSE ( 
+echo.
+echo Couldn't make %BIN_MS% 
+echo.
+GOTO EOF
+)
+::
+REM ensure BIN_NIX directory exists c:\Bin\Bin_-_Nix
+::
+echo.
+echo checking for %BIN_NIX% directory
+echo.
+IF NOT EXIST %BIN_NIX%\nul ( 
+md %BIN_NIX%
+)  
+::
+IF EXIST %BIN_NIX% ( 
+echo.
+echo %BIN_NIX% directory on root of C drive exists
+echo.
+) ELSE ( 
+echo.
+echo Couldn't make %BIN_NIX% 
+echo.
+GOTO EOF
+)
+::
+REM ensure temp directory exists c:\temp  
+::
+echo.
+echo checking for %TEMP% directory
+echo.
+IF NOT EXIST %TEMP%\nul ( 
+md %TEMP%
+)  
+::
+IF EXIST %TEMP% ( 
+echo.
+echo Temp directory on root of C drive exists
+echo.
+) ELSE ( 
+echo.
+echo Couldn't make %TEMP% 
+echo.
+GOTO EOF
+)
+::
+REM Ensure temp\dl directory exists c:\temp\dl
+::
+echo.
+echo checking for %DL% directory
+echo.
+IF NOT EXIST %DL% ( 
+echo.
+echo %DL% doesn't exist; making %DL%
+echo.
+mkdir %DL%
+echo.
+echo made %DL%
+echo.
+)  
+IF EXIST %DL% ( 
+echo.
+echo %DL% directory on root of C drive exists 
+echo.
+) ELSE ( 
+echo.
+echo Couldn't make %DL%
+echo.
+GOTO EOF 
+)
+::
+REM Ensure temp\ul directory exists c:\temp\ul
+::
+echo.
+echo checking for %UL% directory
+echo.
+IF NOT EXIST %UL% ( 
+echo.
+echo %UL% doesn't exist; making %UL%
+echo.
+mkdir %UL%
+echo.
+echo made %UL%
+echo.
+)  
+IF EXIST %UL% ( 
+echo.
+echo %UL% directory on root of C drive exists 
+echo.
+) ELSE ( 
+echo.
+echo Couldn't make %UL%
+echo.
+GOTO EOF 
+)
+::
+REM ensure Support directory exists C:\Users\JonJon\Documents\Support
+::
+echo.
+echo checking for %SUPPORT% directory 
+echo.
+IF NOT EXIST %SUPPORT%\nul ( 
+md %SUPPORT%
+)  
+::
+IF EXIST %SUPPORT% ( 
+echo.
+echo %SUPPORT% directory on root of C drive exists
+echo.
+) ELSE ( 
+echo.
+echo Couldn't make %SUPPORT% 
+echo.
+GOTO EOF
+)
+::
+REM ensure DATA directory exists %SUPPORT%\DATA 
+::
+echo.
+echo checking for %DATA% directory
+echo.
+IF NOT EXIST %DATA%\nul ( 
+md %DATA%
+)  
+::
+IF EXIST %DATA% ( 
+echo.
+echo %DATA% directory on root of C drive exists
+echo.
+) ELSE ( 
+echo.
+echo Couldn't make %DATA% 
+echo.
+GOTO EOF
+)
+::
+REM ensure PCOS directory exists %SUPPORT%\PCOS
+::
+echo.
+echo checking for %PCOS% directory
+echo.
+IF NOT EXIST %PCOS%\nul ( 
+md %PCOS%
+)  
+::
+IF EXIST %PCOS% ( 
+echo.
+echo %PCOS% directory on root of C drive exists
+echo.
+) ELSE ( 
+echo.
+echo Couldn't make %PCOS% 
+echo.
+GOTO EOF
+)
+::
+REM ensure CHEATSHEETS directory exists %DATA%\MyCheatSheets  
+::
+echo.
+echo checking for %CHEATSHEETS% directory
+echo.
+IF NOT EXIST %CHEATSHEETS%\nul ( 
+md %CHEATSHEETS%
+)  
+::
+IF EXIST %CHEATSHEETS% ( 
+echo.
+echo Temp directory on root of C drive exists
+echo.
+) ELSE ( 
+echo.
+echo Couldn't make %CHEATSHEETS% 
+echo.
+GOTO EOF
+)
+::
+REM Ensure MyEbooks directory exists %DATA%\MyEbooks
+::
+echo.
+echo checking for %EBOOKS% directory
+echo.
+IF NOT EXIST %EBOOKS% ( 
+echo.
+echo %EBOOKS% doesn't exist; making %EBOOKS%
+echo.
+mkdir %EBOOKS%
+echo.
+echo made %EBOOKS%
+echo.
+)  
+IF EXIST %EBOOKS% ( 
+echo.
+echo %EBOOKS% directory on root of C drive exists 
+echo.
+) ELSE ( 
+echo.
+echo Couldn't make %EBOOKS%
+echo.
+GOTO EOF 
+)
+::
+REM Ensure MyLyrics directory exists %DATA%\MyLyrics
+::
+echo.
+echo checking for %LYRICS% directory
+echo.
+IF NOT EXIST %LYRICS% ( 
+echo.
+echo %LYRICS% doesn't exist; making %LYRICS%
+echo.
+mkdir %LYRICS%
+echo.
+echo made %LYRICS%
+echo.
+)  
+IF EXIST %LYRICS% ( 
+echo.
+echo %LYRICS% directory on root of C drive exists 
+echo.
+) ELSE ( 
+echo.
+echo Couldn't make %LYRICS%
+echo.
+GOTO EOF 
+)
+::
+REM Ensure MyPlaylists directory exists %DATA%\MyPlaylists
+::
+echo.
+echo checking for %PLAYLISTS% directory
+echo.
+IF NOT EXIST %PLAYLISTS% ( 
+echo.
+echo %PLAYLISTS% doesn't exist; making %PLAYLISTS%
+echo.
+mkdir %PLAYLISTS%
+echo.
+echo made %PLAYLISTS%
+echo.
+)  
+IF EXIST %PLAYLISTS% ( 
+echo.
+echo %PLAYLISTS% directory on root of C drive exists 
+echo.
+) ELSE ( 
+echo.
+echo Couldn't make %PLAYLISTS%
+echo.
+GOTO EOF 
+)
+::
+REM Ensure MyMilitary directory exists %DATA%\MyMilitary
+::
+echo.
+echo checking for %MILITARY% directory
+echo.
+IF NOT EXIST %MILITARY% ( 
+echo.
+echo %MILITARY% doesn't exist; making %MILITARY%
+echo.
+mkdir %MILITARY%
+echo.
+echo made %MILITARY%
+echo.
+)  
+IF EXIST %MILITARY% ( 
+echo.
+echo %MILITARY% directory on root of C drive exists 
+echo.
+) ELSE ( 
+echo.
+echo Couldn't make %MILITARY%
+echo.
+GOTO EOF 
+)
+::
+REM Ensure MySDF directory exists %DATA%\MySDF
+::
+echo.
+echo checking for %SDF% directory
+echo.
+IF NOT EXIST %SDF% ( 
+echo.
+echo %SDF% doesn't exist; making %SDF%
+echo.
+mkdir %SDF%
+echo.
+echo made %SDF%
+echo.
+)  
+IF EXIST %SDF% ( 
+echo.
+echo %SDF% directory on root of C drive exists 
+echo.
+) ELSE ( 
+echo.
+echo Couldn't make %SDF%
+echo.
+GOTO EOF 
+)
+::
+REM Ensure MySecurity directory exists %DATA%\MySecurity
+::
+echo.
+echo checking for %SECURITY% directory
+echo.
+IF NOT EXIST %SECURITY% ( 
+echo.
+echo %SECURITY% doesn't exist; making %SECURITY%
+echo.
+mkdir %SECURITY%
+echo.
+echo made %SECURITY%
+echo.
+)  
+IF EXIST %SECURITY% ( 
+echo.
+echo %SECURITY% directory on root of C drive exists 
+echo.
+) ELSE ( 
+echo.
+echo Couldn't make %SECURITY%
+echo.
+GOTO EOF 
+)
+::
+REM Ensure MySecurity\MyCISSP directory exists %SECURITY%MyCISSP
+::
+echo.
+echo checking for %CISSP% directory
+echo.
+IF NOT EXIST %CISSP% ( 
+echo.
+echo %CISSP% doesn't exist; making %CISSP%
+echo.
+mkdir %CISSP%
+echo.
+echo made %CISSP%
+echo.
+)  
+IF EXIST %CISSP% ( 
+echo.
+echo %CISSP% directory on root of C drive exists 
+echo.
+) ELSE ( 
+echo.
+echo Couldn't make %CISSP%
+echo.
+GOTO EOF 
+)
+::
+REM Ensure MySNs directory exists %DATA%MySNs
+::
+echo.
+echo checking for %SN% directory
+echo.
+IF NOT EXIST %SN% ( 
+echo.
+echo %SN% doesn't exist; making %SN%
+echo.
+mkdir %SN%
+echo.
+echo made %SN%
+echo.
+)  
+IF EXIST %SN% ( 
+echo.
+echo %SN% directory on root of C drive exists 
+echo.
+) ELSE ( 
+echo.
+echo Couldn't make %SN%
+echo.
+GOTO EOF 
+)
+::
+REM Ensure MySrc directory exists %DATA%MySrc
+::
+echo.
+echo checking for %SRC% directory
+echo.
+IF NOT EXIST %SRC% ( 
+echo.
+echo %SRC% doesn't exist; making %SRC%
+echo.
+mkdir %SRC%
+echo.
+echo made %SRC%
+echo.
+)  
+IF EXIST %SRC% ( 
+echo.
+echo %SRC% directory on root of C drive exists 
+echo.
+) ELSE ( 
+echo.
+echo Couldn't make %SRC%
+echo.
+GOTO EOF 
+)
+endlocal 
+:EOF 

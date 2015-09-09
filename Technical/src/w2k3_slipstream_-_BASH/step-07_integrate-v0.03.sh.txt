@@ -1,0 +1,38 @@
+#!/bin/bash
+###
+#
+#  File:  step-07_integrate-v0.01.sh
+#  Purpose:  Slipstream w2k3 SP1/2
+#  Author:  SFC Hammond, Christopher J.
+#  Date:  20:23, 10/12/10
+#
+###
+  
+# 
+#  Maintenance Record and versioning
+# 
+  
+# 
+#  Syntax, notes, or instructions
+# 
+
+# 
+#  Integrate SP1/2 into w2k3 CD source files 
+#
+
+#
+# SP1  ::  Another Note: You can use /integrate:<path> instead of the /S:<path>.
+#
+#wine ./SP1/I386/UPDATE/UPDATE.EXE -s:.\\ROOT
+
+#Error: This Service Pack Cannot be intergrated into a destination that also has intergrated Software Updates. Consult the Service Pack documentation for more details about supported intergration scenerarios. This is a common error message that occurs when using a disc from a large manufacturer such as Dell or HP. #You will need to remove some files and folders from the compelation prior to applying a service pack. Remove the following file: * I386\SVCPACK.INF  Removing the following folders will avoid older patches from being applied: * $OEM$ * I386\SVCPACK You may need to remove or edit the following file: * I386\WINNT.SIF
+
+
+# SP1  ::  Another Note: You can use /integrate:<path> instead of the /S:<path>.
+rm ../w2k3/ROOT/I386/SVCPACK.INF
+wine ../w2k3/SP1/I386/UPDATE/UPDATE.EXE /integrate:..\\w2k3\\ROOT
+
+#
+# SP2  ::  Another Note: You can use /integrate:<path> instead of the /S:<path>.
+# 
+wine ../w2k3/SP2/I386/UPDATE/UPDATE.EXE /integrate:..\\w2k3\\ROOT

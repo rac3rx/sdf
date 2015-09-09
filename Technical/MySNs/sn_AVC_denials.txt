@@ -1,0 +1,521 @@
+   #[1]Unix & Linux Stack Exchange [2]Feed for question 'SELinux: allow a
+   process to create any file in a certain directory'
+
+[3]current community
+
+     * [4]chat [5]blog
+       Unix & Linux
+     * Unix & Linux Meta
+
+your communities
+
+   [6]Sign up or [7]log in to customize your list.
+
+[8]more stack exchange communities
+
+   [9]Stack Exchange
+   [10]sign up [11]log in [12]tour [13]help
+     * [14]Tour Start here for a quick overview of the site
+     * [15]Help Center Detailed answers to any questions you might have
+     * [16]Meta Discuss the workings and policies of this site
+
+   ____________________
+
+   [17]Unix & Linux
+     * [18]Questions
+     * [19]Tags
+     * [20]Users
+     * [21]Badges
+     * [22]Unanswered
+
+     * [23]Ask Question
+
+   [24]Take the 2-minute tour ×
+   Unix & Linux Stack Exchange is a question and answer site for users of
+   Linux, FreeBSD and other Un*x-like operating systems.. It's 100% free,
+   no registration required.
+
+[25]SELinux: allow a process to create any file in a certain directory
+
+   up vote 3 down vote [26]favorite
+
+   I have a script that, when invoked, will cause the contents of dmesg to
+   be written to a file, with the file's name basically being a timestamp.
+   SELinux prevents this. Following the advice of Fedora's SELinux
+   troubleshooting app, I tried:
+
+     grep dmesg /var/log/audit/audit.log | audit2allow -M mypol
+
+     semodule -i mypol.pp
+
+   However, this doesn't seem to work, probably because the name of the
+   file it's creating is different every time. So how do I tell SELinux to
+   allow dmesg to create (and write to) any file in a certain directory?
+   Or tell it that the script in question (and all the processes it
+   spawns) can do that?
+   [27]linux [28]fedora [29]security [30]selinux
+   [31]share|[32]improve this question
+   asked Aug 28 '13 at 23:26
+   [33]Matthew Cline
+   475110
+   add a comment |
+
+2 Answers 2
+
+   [34]active [35]oldest [36]votes
+   up vote 0 down vote accepted
+
+   You need to learn how to filter AVC denials and how to write a custom
+   policy module to allow access to an specific action (you script, in
+   this case).
+
+   I'd start by removing the module you inserted above, to start a-new:
+# semodule -r mymodule.pp
+
+   Afterwards, run your script:
+# date && ./my_script.sh
+
+   The date invocation is useful to filter AVC denials based on timestamp.
+
+   Next, use the usual method to debug AVC denials, which makes use of the
+   ausearch(8) command:
+# ausearch -m avc -ts $timestamp | audit2allow
+
+   Check the manpage for further information on the switches you can use,
+   specifically the -ts flag.
+
+   With this information you'll know what is being denied based on the
+   existing policy.
+
+   Now you should determine whether to grant this access or not. Let's
+   suppose you want to grant access. You would need to create a custom
+   policy module describing the rules defining the access you want to
+   grant. This is more or less simple depending on the complexity of your
+   script:
+# ausearch -m avc -ts 10:40:00 | audit2allow -m my_script > my_script.te
+
+   This will produce a type enforcement description.
+
+   You should proceed to review the code to ensure its correctness and
+   compile the type enforcement code into a module:
+# checkmodule -M -m -o my_script.mod my_script.te
+
+   The module must be packaged into a policy package for you to be able to
+   load it and unload it at will:
+# semodule_package -o my_script.pp -m my_script.mod
+
+   Now, you can load the policy using:
+# semodule -i my_script.pp
+
+   Check it is correctly loaded:
+# semodule -l | grep my_script
+
+   Then, try to trigger the denials again and see if there are more
+   (different) alerts in the audit log regarding this same process.
+
+   Further editions of the type enforcement code will need the version
+   (1.0) to be updated, or loading the package will fail. Once compiled
+   and packaged, updating the policy package is done issuing:
+# semodule -u my_script.pp
+
+   There is a lot to learn when starting with SELinux. Some useful
+   references:
+     * The manpages of the commands.
+     * Check also the output of apropos selinux.
+
+   From the RHEL docs
+     * [37]Managing Confined Services.
+     * [38]Security-Enhanced Linux.
+
+   A good introductory presentation by Dave Quigley:
+     * [39]Demystifying SELinux
+
+   [40]share|[41]improve this answer
+   answered Sep 15 '13 at 14:09
+   [42]dawud
+   1,382619
+   add a comment |
+   up vote 1 down vote
+
+   You can run semanage permissive -a dmesg_t. Then /bin/dmesg, whose type
+   is dmesg_t, will run in permissive mode. It will be allowed access but
+   SELinux will still generate AVC messages.
+   [43]share|[44]improve this answer
+   answered Sep 3 '13 at 7:38
+   [45]jdh8
+   1134
+   add a comment |
+
+Your Answer
+
+
+   _______________________________________________________________________
+   _______________________________________________________________________
+   _______________________________________________________________________
+   _______________________________________________________________________
+   _______________________________________________________________________
+   _______________________________________________________________________
+   _______________________________________________________________________
+   _______________________________________________________________________
+   _______________________________________________________________________
+   _______________________________________________________________________
+   _______________________________________________________________________
+   _______________________________________________________________________
+   _______________________________________________________________________
+   _______________________________________________________________________
+   _______________________________________________________________________
+
+   draft saved
+   draft discarded
+   ____________________
+
+Sign up or [46]log in
+
+   Sign up using Google
+
+   Sign up using Facebook
+
+   Sign up using Stack Exchange
+   [BUTTON Input] (not implemented)______
+
+Post as a guest
+
+   Name ______________________________
+   Email ______________________________
+
+Post as a guest
+
+   Name ______________________________
+   Email ______________________________
+   Post Your Answer [47]discard
+
+   By posting your answer, you agree to the [48]privacy policy and
+   [49]terms of service.
+
+Not the answer you're looking for? Browse other questions tagged [50]linux
+[51]fedora [52]security [53]selinux or [54]ask your own question.
+
+   asked
+
+   1 year ago
+
+   viewed
+
+   331 times
+
+   active
+
+   [55]1 year ago
+
+Related
+
+   1
+   [56]Which process/program create/write the file which I/O is redirected
+   to?
+   1
+   [57]How to set SELinux samba policy to enable dirs deletion/renaming?
+   7
+   [58]How to prevent a process from writing files
+   3
+   [59]SELinux: Can I disable copying of certain files?
+   2
+   [60]Prevent creating directories but allow creating files
+   2
+   [61]Configuring SELINUX to allow logging to a file that's outside
+   /var/log
+   3
+   [62]SELinux - allowing rsyslog open/read access to some files
+   3
+   [63]SELinux httpd write access to a directory
+   3
+   [64]How do I remedy SELinux not allowing legit programs in use access
+   to my system?
+   1
+   [65]Acpid event denied by SELinux, how can I savely allow the event
+   without opening security holes?
+
+[66]Hot Network Questions
+
+     * [67]Why can't MX records point to an IP address?
+     * [68]Is there anything that is completely non-toxic to humans at any
+       dose?
+     * [69]How can I prevent my parents' divorce?
+     * [70]How do I counter Sonic?
+     * [71]Do I need "wordpress hosting" to host wordpress?
+     * [72]Should I take over a compromised website from another hacker?
+     * [73]How can we 'regift' a group of highly dangerous gem scarabs
+       across a continent? We don't want them anymore
+     * [74]My domain registrar has gone bankrupt but the domain is locked,
+       what can I do?
+     * [75]How would we build Earth Mark II?
+     * [76]Is the discount more important than the price?
+     * [77]Why don't airlines load their passengers like freight?
+     * [78]Check if file is visible in OSX 10.10 with terminal
+     * [79]How to turn a heading into a list item in org mode?
+     * [80]What does "what lies ahead" mean in this context?
+     * [81]Up and down conundrum
+     * [82]Why specifically was Obi-Wan Kenobi the "only hope" of Princess
+       Leia?
+     * [83]Pipes, how do data flow in a pipeline?
+     * [84]Leaving intentional bugs in code for testers to find
+     * [85]Creating a realistic, photo-like 3D effect from an image or
+       document
+     * [86]Is it ethical to answer questions about homework for colleagues
+       taking courses I've already completed?
+     * [87]Is a Cm7 chord considered minor or dominant?
+     * [88]Draw arrow with text inside
+     * [89]How to show extreme gratitude in an email?
+     * [90]Cases with Alternatives failed
+
+   [91]more hot questions
+   [92]question feed
+
+   [93]tour [94]help [95]blog [96]chat [97]data [98]legal [99]privacy
+   policy [100]work here [101]advertising info mobile [102]contact us
+   [103]feedback
+   Technology Life / Arts Culture / Recreation Science Other
+    1. [104]Stack Overflow
+    2. [105]Server Fault
+    3. [106]Super User
+    4. [107]Web Applications
+    5. [108]Ask Ubuntu
+    6. [109]Webmasters
+    7. [110]Game Development
+    8. [111]TeX - LaTeX
+
+    1. [112]Programmers
+    2. [113]Unix & Linux
+    3. [114]Ask Different (Apple)
+    4. [115]WordPress Development
+    5. [116]Geographic Information Systems
+    6. [117]Electrical Engineering
+    7. [118]Android Enthusiasts
+    8. [119]Information Security
+
+    1. [120]Database Administrators
+    2. [121]Drupal Answers
+    3. [122]SharePoint
+    4. [123]User Experience
+    5. [124]Mathematica
+    6. [125]Salesforce
+    7. [126]more (14)
+
+    1. [127]Photography
+    2. [128]Science Fiction & Fantasy
+    3. [129]Graphic Design
+    4. [130]Seasoned Advice (cooking)
+    5. [131]Home Improvement
+    6. [132]Personal Finance & Money
+    7. [133]Academia
+    8. [134]more (10)
+
+    1. [135]English Language & Usage
+    2. [136]Skeptics
+    3. [137]Mi Yodeya (Judaism)
+    4. [138]Travel
+    5. [139]Christianity
+    6. [140]Arqade (gaming)
+    7. [141]Bicycles
+    8. [142]Role-playing Games
+    9. [143]more (21)
+
+    1. [144]Mathematics
+    2. [145]Cross Validated (stats)
+    3. [146]Theoretical Computer Science
+    4. [147]Physics
+    5. [148]MathOverflow
+    6. [149]more (7)
+
+    1. [150]Stack Apps
+    2. [151]Meta Stack Exchange
+    3. [152]Area 51
+    4. [153]Stack Overflow Careers
+
+   site design / logo © 2015 stack exchange inc; user contributions
+   licensed under [154]cc by-sa 3.0 with [155]attribution required
+   rev 2015.1.30.2262
+   Linux is a registered trademark of Linus Torvalds. UNIX is a registered
+   trademark of The Open Group.
+   This site is not affiliated with Linus Torvalds or The Open Group in
+   any way.
+
+   Unix & Linux Stack Exchange works best with JavaScript enabled
+
+References
+
+   Visible links
+   1. https://unix.stackexchange.com/opensearch.xml
+   2. https://unix.stackexchange.com/feeds/question/88622
+   3. https://unix.stackexchange.com/questions/88622/selinux-allow-a-process-to-create-any-file-in-a-certain-directory
+   4. http://chat.stackexchange.com/
+   5. http://blog.stackexchange.com/
+   6. https://unix.stackexchange.com/users/signup?returnurl=https://unix.stackexchange.com/questions/88622/selinux-allow-a-process-to-create-any-file-in-a-certain-directory
+   7. https://unix.stackexchange.com/users/login?returnurl=https://unix.stackexchange.com/questions/88622/selinux-allow-a-process-to-create-any-file-in-a-certain-directory
+   8. https://stackexchange.com/sites
+   9. https://stackexchange.com/
+  10. https://unix.stackexchange.com/users/signup?returnurl=https://unix.stackexchange.com/questions/88622/selinux-allow-a-process-to-create-any-file-in-a-certain-directory
+  11. https://unix.stackexchange.com/users/login?returnurl=https://unix.stackexchange.com/questions/88622/selinux-allow-a-process-to-create-any-file-in-a-certain-directory
+  12. https://unix.stackexchange.com/tour
+  13. https://unix.stackexchange.com/questions/88622/selinux-allow-a-process-to-create-any-file-in-a-certain-directory
+  14. https://unix.stackexchange.com/tour
+  15. https://unix.stackexchange.com/help
+  16. https://meta.unix.stackexchange.com/
+  17. https://unix.stackexchange.com/
+  18. https://unix.stackexchange.com/questions
+  19. https://unix.stackexchange.com/tags
+  20. https://unix.stackexchange.com/users
+  21. https://unix.stackexchange.com/help/badges
+  22. https://unix.stackexchange.com/unanswered
+  23. https://unix.stackexchange.com/questions/ask
+  24. https://unix.stackexchange.com/tour
+  25. https://unix.stackexchange.com/questions/88622/selinux-allow-a-process-to-create-any-file-in-a-certain-directory
+  26. https://unix.stackexchange.com/questions/88622/selinux-allow-a-process-to-create-any-file-in-a-certain-directory
+  27. https://unix.stackexchange.com/questions/tagged/linux
+  28. https://unix.stackexchange.com/questions/tagged/fedora
+  29. https://unix.stackexchange.com/questions/tagged/security
+  30. https://unix.stackexchange.com/questions/tagged/selinux
+  31. https://unix.stackexchange.com/q/88622
+  32. https://unix.stackexchange.com/posts/88622/edit
+  33. https://unix.stackexchange.com/users/41033/matthew-cline
+  34. https://unix.stackexchange.com/questions/88622/selinux-allow-a-process-to-create-any-file-in-a-certain-directory?answertab=active#tab-top
+  35. https://unix.stackexchange.com/questions/88622/selinux-allow-a-process-to-create-any-file-in-a-certain-directory?answertab=oldest#tab-top
+  36. https://unix.stackexchange.com/questions/88622/selinux-allow-a-process-to-create-any-file-in-a-certain-directory?answertab=votes#tab-top
+  37. https://access.redhat.com/site/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Managing_Confined_Services/index.html
+  38. https://access.redhat.com/site/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Security-Enhanced_Linux/index.html
+  39. https://speakerdeck.com/dpquigl/demystifying-selinux-as-presented-in-boulder-co-may-6th-2013
+  40. https://unix.stackexchange.com/a/90761
+  41. https://unix.stackexchange.com/posts/90761/edit
+  42. https://unix.stackexchange.com/users/39456/dawud
+  43. https://unix.stackexchange.com/a/89221
+  44. https://unix.stackexchange.com/posts/89221/edit
+  45. https://unix.stackexchange.com/users/37066/jdh8
+  46. https://unix.stackexchange.com/users/login?returnurl=/questions/88622/selinux-allow-a-process-to-create-any-file-in-a-certain-directory#new-answer
+  47. https://unix.stackexchange.com/questions/88622/selinux-allow-a-process-to-create-any-file-in-a-certain-directory
+  48. http://stackexchange.com/legal/privacy-policy
+  49. http://stackexchange.com/legal/terms-of-service
+  50. https://unix.stackexchange.com/questions/tagged/linux
+  51. https://unix.stackexchange.com/questions/tagged/fedora
+  52. https://unix.stackexchange.com/questions/tagged/security
+  53. https://unix.stackexchange.com/questions/tagged/selinux
+  54. https://unix.stackexchange.com/questions/ask
+  55. https://unix.stackexchange.com/questions/88622/selinux-allow-a-process-to-create-any-file-in-a-certain-directory?lastactivity
+  56. https://unix.stackexchange.com/questions/14586/which-process-program-create-write-the-file-which-i-o-is-redirected-to
+  57. https://unix.stackexchange.com/questions/61251/how-to-set-selinux-samba-policy-to-enable-dirs-deletion-renaming
+  58. https://unix.stackexchange.com/questions/64642/how-to-prevent-a-process-from-writing-files
+  59. https://unix.stackexchange.com/questions/69203/selinux-can-i-disable-copying-of-certain-files
+  60. https://unix.stackexchange.com/questions/78191/prevent-creating-directories-but-allow-creating-files
+  61. https://unix.stackexchange.com/questions/79311/configuring-selinux-to-allow-logging-to-a-file-thats-outside-var-log
+  62. https://unix.stackexchange.com/questions/79363/selinux-allowing-rsyslog-open-read-access-to-some-files
+  63. https://unix.stackexchange.com/questions/116575/selinux-httpd-write-access-to-a-directory
+  64. https://unix.stackexchange.com/questions/156320/how-do-i-remedy-selinux-not-allowing-legit-programs-in-use-access-to-my-system
+  65. https://unix.stackexchange.com/questions/168701/acpid-event-denied-by-selinux-how-can-i-savely-allow-the-event-without-opening
+  66. https://stackexchange.com/questions?tab=hot
+  67. http://serverfault.com/questions/663112/why-cant-mx-records-point-to-an-ip-address
+  68. http://biology.stackexchange.com/questions/28177/is-there-anything-that-is-completely-non-toxic-to-humans-at-any-dose
+  69. http://parenting.stackexchange.com/questions/18470/how-can-i-prevent-my-parents-divorce
+  70. http://gaming.stackexchange.com/questions/203893/how-do-i-counter-sonic
+  71. http://wordpress.stackexchange.com/questions/176757/do-i-need-wordpress-hosting-to-host-wordpress
+  72. http://security.stackexchange.com/questions/80360/should-i-take-over-a-compromised-website-from-another-hacker
+  73. http://rpg.stackexchange.com/questions/56165/how-can-we-regift-a-group-of-highly-dangerous-gem-scarabs-across-a-continent
+  74. http://webmasters.stackexchange.com/questions/76747/my-domain-registrar-has-gone-bankrupt-but-the-domain-is-locked-what-can-i-do
+  75. http://worldbuilding.stackexchange.com/questions/9437/how-would-we-build-earth-mark-ii
+  76. http://ux.stackexchange.com/questions/72705/is-the-discount-more-important-than-the-price
+  77. http://aviation.stackexchange.com/questions/12300/why-dont-airlines-load-their-passengers-like-freight
+  78. http://superuser.com/questions/872409/check-if-file-is-visible-in-osx-10-10-with-terminal
+  79. http://emacs.stackexchange.com/questions/7856/how-to-turn-a-heading-into-a-list-item-in-org-mode
+  80. http://ell.stackexchange.com/questions/48557/what-does-what-lies-ahead-mean-in-this-context
+  81. http://mathematica.stackexchange.com/questions/73008/up-and-down-conundrum
+  82. http://scifi.stackexchange.com/questions/80654/why-specifically-was-obi-wan-kenobi-the-only-hope-of-princess-leia
+  83. http://unix.stackexchange.com/questions/182232/pipes-how-do-data-flow-in-a-pipeline
+  84. http://programmers.stackexchange.com/questions/271395/leaving-intentional-bugs-in-code-for-testers-to-find
+  85. http://mathematica.stackexchange.com/questions/73030/creating-a-realistic-photo-like-3d-effect-from-an-image-or-document
+  86. http://academia.stackexchange.com/questions/37999/is-it-ethical-to-answer-questions-about-homework-for-colleagues-taking-courses-i
+  87. http://music.stackexchange.com/questions/29319/is-a-cm7-chord-considered-minor-or-dominant
+  88. http://tex.stackexchange.com/questions/225846/draw-arrow-with-text-inside
+  89. http://academia.stackexchange.com/questions/37862/how-to-show-extreme-gratitude-in-an-email
+  90. http://mathematica.stackexchange.com/questions/73016/cases-with-alternatives-failed
+  91. https://unix.stackexchange.com/questions/88622/selinux-allow-a-process-to-create-any-file-in-a-certain-directory
+  92. https://unix.stackexchange.com/feeds/question/88622
+  93. https://unix.stackexchange.com/tour
+  94. https://unix.stackexchange.com/help
+  95. http://blog.stackexchange.com/?blb=1
+  96. http://chat.stackexchange.com/
+  97. http://data.stackexchange.com/
+  98. http://stackexchange.com/legal
+  99. http://stackexchange.com/legal/privacy-policy
+ 100. http://stackexchange.com/work-here
+ 101. http://stackexchange.com/mediakit
+ 102. https://unix.stackexchange.com/contact
+ 103. http://meta.unix.stackexchange.com/
+ 104. https://stackoverflow.com/
+ 105. https://serverfault.com/
+ 106. https://superuser.com/
+ 107. https://webapps.stackexchange.com/
+ 108. https://askubuntu.com/
+ 109. https://webmasters.stackexchange.com/
+ 110. https://gamedev.stackexchange.com/
+ 111. https://tex.stackexchange.com/
+ 112. https://programmers.stackexchange.com/
+ 113. https://unix.stackexchange.com/questions/88622/selinux-allow-a-process-to-create-any-file-in-a-certain-directory
+ 114. https://apple.stackexchange.com/
+ 115. https://wordpress.stackexchange.com/
+ 116. https://gis.stackexchange.com/
+ 117. https://electronics.stackexchange.com/
+ 118. https://android.stackexchange.com/
+ 119. https://security.stackexchange.com/
+ 120. https://dba.stackexchange.com/
+ 121. https://drupal.stackexchange.com/
+ 122. https://sharepoint.stackexchange.com/
+ 123. https://ux.stackexchange.com/
+ 124. https://mathematica.stackexchange.com/
+ 125. https://salesforce.stackexchange.com/
+ 126. http://stackexchange.com/sites#technology
+ 127. https://photo.stackexchange.com/
+ 128. https://scifi.stackexchange.com/
+ 129. https://graphicdesign.stackexchange.com/
+ 130. https://cooking.stackexchange.com/
+ 131. https://diy.stackexchange.com/
+ 132. https://money.stackexchange.com/
+ 133. https://academia.stackexchange.com/
+ 134. http://stackexchange.com/sites#lifearts
+ 135. https://english.stackexchange.com/
+ 136. https://skeptics.stackexchange.com/
+ 137. https://judaism.stackexchange.com/
+ 138. https://travel.stackexchange.com/
+ 139. https://christianity.stackexchange.com/
+ 140. https://gaming.stackexchange.com/
+ 141. https://bicycles.stackexchange.com/
+ 142. https://rpg.stackexchange.com/
+ 143. http://stackexchange.com/sites#culturerecreation
+ 144. https://math.stackexchange.com/
+ 145. https://stats.stackexchange.com/
+ 146. https://cstheory.stackexchange.com/
+ 147. https://physics.stackexchange.com/
+ 148. https://mathoverflow.net/
+ 149. http://stackexchange.com/sites#science
+ 150. https://stackapps.com/
+ 151. https://meta.stackexchange.com/
+ 152. https://area51.stackexchange.com/
+ 153. https://careers.stackoverflow.com/
+ 154. http://creativecommons.org/licenses/by-sa/3.0/
+ 155. http://blog.stackoverflow.com/2009/06/attribution-required/
+
+   Hidden links:
+ 157. https://unix.stackexchange.com/questions/88622/selinux-allow-a-process-to-create-any-file-in-a-certain-directory
+ 158. http://meta.unix.stackexchange.com/
+ 159. https://unix.stackexchange.com/users/41033/matthew-cline
+ 160. https://unix.stackexchange.com/questions/88622/selinux-allow-a-process-to-create-any-file-in-a-certain-directory
+ 161. https://unix.stackexchange.com/users/39456/dawud
+ 162. https://unix.stackexchange.com/questions/88622/selinux-allow-a-process-to-create-any-file-in-a-certain-directory
+ 163. https://unix.stackexchange.com/users/37066/jdh8
+ 164. https://unix.stackexchange.com/questions/88622/selinux-allow-a-process-to-create-any-file-in-a-certain-directory
+ 165. https://unix.stackexchange.com/q/14586
+ 166. https://unix.stackexchange.com/q/61251
+ 167. https://unix.stackexchange.com/q/64642
+ 168. https://unix.stackexchange.com/q/69203
+ 169. https://unix.stackexchange.com/q/78191
+ 170. https://unix.stackexchange.com/q/79311
+ 171. https://unix.stackexchange.com/q/79363
+ 172. https://unix.stackexchange.com/q/116575
+ 173. https://unix.stackexchange.com/q/156320
+ 174. https://unix.stackexchange.com/q/168701

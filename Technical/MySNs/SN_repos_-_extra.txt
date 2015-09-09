@@ -1,0 +1,9 @@
+VLC media player (commonly known as VLC) is a portable, free and open-source, cross-platform media player and streaming media server written by the VideoLAN project. VLC media player supports many audio and video compression methods and file formats, including DVD-Video, video CD and streaming protocols. It is able to stream media over computer networks and to transcode multimedia files.[8]
+
+The default distribution of VLC includes a large number of free decoding and encoding libraries, avoiding the need for finding/calibrating proprietary plugins. Many of VLC’s codecs are provided by the libavcodec library from the FFmpeg project, but it uses mainly its own muxer and demuxers and its own protocols implementations. It also gained distinction as the first player to support playback of encrypted DVDs on Linux and OS X by using the libdvdcss DVD decryption library.
+
+For EL7:
+
+rpm -Uvh https://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-1.noarch.rpm
+rpm -Uvh http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-1.el7.nux.noarch.rpm
+

@@ -1,0 +1,118 @@
+<!-- pwd of present html page is, rac3rx/html/Technical --> 
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- ******************************************************* --> 
+<!-- *  File: /home/rac3rx/html/Technical/Technical.html   * --> 
+<!-- *  Author:  Anonymous                                 * --> 
+<!-- *  Purpose:  To present and share some HOWTOs         * --> 
+<!-- *  Date:  21JAN09                                     * --> 
+<!-- ******************************************************* --> 
+<HTML>
+<HEAD>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+        <meta name="description" content="my wolf clan">
+        <meta name="GENERATOR" content="vim">
+        <meta name="ProgId" content="vim.Document">
+        <TITLE>
+            ::  Technical Information  ::
+        </TITLE>
+</HEAD>
+<BODY bgcolor="black" text="green">
+	<FONT SIZE=+0 FACE="ARIAL">
+        <HR COLOR="#80ff80">
+        <TABLE>
+            <TR>
+		<TD></TD>   
+	        <TD><A HREF="../index.html">[ Home ]</A></TD>
+                <TD><A HREF="./Technical/Technical.html">[ Technical ]</A></TD>
+                <TD><A HREF="../Military/Military.html">[ Military ]</A></TD>
+                <TD><A HREF="../Literature/Literature.html">[ Literature ]</A></TD>
+                <TD><A HREF="../Family/Family.html">[ Family ]</A></TD>
+                <TD><A HREF="../Bookmarks/Bookmarks.html">[ Bookmarks ]</A></TD>
+                <TD><A HREF="../Health/Health.html">[ Health ]</A></TD>
+                <TD><A HREF="../Lyrics/Lyrics.html">[ Lyrics ]</A></TD>
+	    </TR>
+	</TABLE>
+        <HR COLOR="#80ff80"></HR>
+	<BR></BR>
+	<BR></BR>
+        <TABLE border="0" cellpadding="0" cellspacing="4" width="100%">
+	    <TR><TD align=center valign=top><BR>
+                <TABLE border=0 cellpadding=0 cellspacing=0 width="95%">
+                    <TR><TD bgcolor="#000000">
+                        <TABLE border=0 cellpadding=2 cellspacing=1 width="100%">
+                            <TR><TD bgcolor="#999999" align="center">
+                                <b>Some HOWTOs, Tutorials, and Cheat Sheets</b>
+	                    </TD></TR>
+		            <TR><TD bgcolor="#333333" style="line-height:140%">
+		                <NOBR>
+                                    &nbsp;<b>-</b><A href="./NetBSD/NetBSD.html">
+                                    <font color="#80ff80"> NetBSD</A></FONT><BR>
+                                    <TABLE border=0 cellpadding=2 cellspacing=1 width="100%">
+		                        <TR><TD bgcolor="#333333" style="line-height:140%">
+                                            <NOBR>
+                                                &nbsp;&nbsp;<b>+</b><A HREF="Study_Notes_NetBSD_Installation-v0.22.txt"><FONT COLOR="#80ff80"> NetBSD Newbie Install Notes, Checklist and Tutorial</A></FONT><BR>
+                                            </NOBR>
+                                        </TD></TR>
+                                    </TABLE>
+                                    &nbsp;<b>-</b><A href="./Shells/Shells.html">
+                                    <font color="#80ff80"> Shells</font></A></B><BR>
+                                    &nbsp;<b>-</b><A href="./Windows/Windows.html">
+                                    <font color="#80ff80"> Windows</font></A></B><BR>
+                                </NOBR>
+                            </TD></TR>
+                        </TABLE>	
+                    </TD></TR>
+                </TABLE>
+            </TD></TR>
+        </TABLE>	
+	<BR></BR>
+	<BR></BR>
+    <h1>Tools I Use For This Site</h1>
+    <P font size=-1 face="arial" ALIGN=LEFT>
+     NetBSD is my favorite server OS, for workstations I love GNU/Linux, the aforementioned OSs wouldn't be much without the tools offered by GNU and the rest of the open source community out there, and my favorite editor is VIM.
+        </P>
+    <P font size=-1 face="arial" ALIGN=CENTER>
+    <TABLE>
+      <TR>
+        <TD>
+          Site driven by NetBSD
+        </TD>
+        <TD>
+          Free unix-like OS, created by
+	      <P></P>
+          Linux Torvalds and others
+	      <P></P>
+          around the world
+        </TD>
+        <TD>
+          GNU is not unix
+        </TD>
+        <TD>
+          VImproved
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          <a href="http://www.NetBSD.org/"><img src="../Graphics/NetBSD_212x209.jpg" border=0 alt="Site driven by NetBSD - NetBSD rules!"></a>
+        </TD>
+        <TD>
+          <a href="http://www.Linux.org/"><img src="../Graphics/tux_212x209.jpg" border=0 alt="Free unix like OS, created by Linus Torvalds and others!"></a>
+        </TD>
+        <TD>
+          <a href="http://www.GNU.org/"><img src="../Graphics/gnu-linux_212x209.jpg" border=0 alt="GNU is not unix!"></a>
+        </TD>
+        <TD>
+          <A HREF="http://www.VIM.org/"><IMG SRC="../Graphics/vim_212x209.jpg" border=1 alt="VImproved!"></a>
+        </TD>
+      </TR>
+    </TABLE>
+    </P>
+	<BR></BR>
+	<FONT SIZE=+0 FACE="ARIAL">
+    <HR COLOR="#80ff80">
+    <P>Last updated: Sun Jan 19 01:56:49 UTC 2009</P>
+    <P><A HREF="MAILTO:rac3rx@sdf.lonestar.org">Webmaster: rac3rx@sdf.lonestar.org</A></P>
+    <HR COLOR="#80ff80">
+	</FONT>
+</BODY>
+</HTML>

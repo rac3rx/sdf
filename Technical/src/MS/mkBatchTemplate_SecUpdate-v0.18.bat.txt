@@ -1,0 +1,96 @@
+::  --------------------------------------------------------------------------
+::  File:  mkBatchTemplate_SecUpdate-v0.18.bat
+::  Purpose:  Create a batch template file
+::  Author:  SFC Hammond, Christopher J.
+::  Date:  01OCT10
+::  --------------------------------------------------------------------------
+
+:: (Place maintenance record here)
+:: Thu 10/28/2010 CJH removed and/or added the following variables:
+::                    VENDOR VERSION VENDOR SRC_FILE SRC_DIRECTORY
+
+
+@ECHO OFF
+GOTO START
+
+::  (Place syntax, notes, or other instructions heres)
+
+:START
+TITLE createBatchTemplate
+
+ECHO ::  -------------------------------------------------------------------------- > SecUpdate.bat
+ECHO ::  File:  SecUpdate.bat >> SecUpdate.bat
+ECHO ::  Purpose:   >> SecUpdate.bat
+ECHO ::  Author:  SFC Hammond, Christopher J. >> SecUpdate.bat
+ECHO ::  Date:  %DATE% >> SecUpdate.bat
+ECHO ::  -------------------------------------------------------------------------- >> SecUpdate.bat
+
+:: Used ECHO. for CR/LF supposedly ECHO: or ECHO"ALT-255" sans quotes will work too 
+ECHO. >> SecUpdate.bat
+ECHO :: (Place maintenance record here) >> SecUpdate.bat
+ECHO. >> SecUpdate.bat
+
+ECHO @ECHO OFF >> SecUpdate.bat
+ECHO GOTO START >> SecUpdate.bat
+ECHO. >> SecUpdate.bat
+ECHO ::  (Place syntax, notes, or other instructions heres) >> SecUpdate.bat
+ECHO. >> SecUpdate.bat
+
+ECHO :START >> SecUpdate.bat
+ECHO. >> SecUpdate.bat
+
+ECHO setlocal >> SecUpdate.bat
+ECHO. >> SecUpdate.bat
+ECHO :: ensure temp directory exists c:\temp  >> SecUpdate.bat
+
+ECHO IF NOT EXIST "C:\Temp" (  >> SecUpdate.bat 
+ECHO mkdir c:\Temp  >> SecUpdate.bat
+ECHO )  >> SecUpdate.bat
+ECHO IF EXIST "C:\Temp" ( >> SecUpdate.bat
+ECHO Temp directory on root of C drive exists >> SecUpdate.bat 
+ECHO ) >> SecUpdate.bat
+ECHO. >> SecUpdate.bat 
+
+ECHO :: Variables >> SecUpdate.bat
+ECHO SET BAT=xxx.bat >> SecUpdate.bat
+ECHO :: SET FILEMSI=msiexec /i >> SecUpdate.bat
+ECHO SET IAVA=200x-x-xxxx >> SecUpdate.bat
+ECHO SET KB=KBxxxxxx>> SecUpdate.bat
+ECHO SET KBFILE=KBxxxxxx >> SecUpdate.bat
+ECHO SET MSB=MS0x-xxx >> SecUpdate.bat
+ECHO SET MSBD="some vulnerability from MS whooooahhh" >> SecUpdate.bat
+ECHO SET PRODUCT=Shockwave >> SecUpdate.bat
+ECHO SET SRC_DIRECTORY=.\Security\foo\ >> SecUpdate.bat
+ECHO SET SRC_FILE=foo.exe >> SecUpdate.bat
+ECHO SET TEMP=C:\TEMP >> SecUpdate.bat 
+ECHO SET URL="someURL" >> SecUpdate.bat
+ECHO SET VBS=xxx.vbs >> SecUpdate.bat
+ECHO SET VENDOR=xxxx >> SecUpdate.bat
+ECHO SET VERSION=%FILE:~0,8% >> SecUpdate.bat
+ECHO. >> SecUpdate.bat
+
+ECHO :: Offspring Variables >> SecUpdate.bat
+ECHO SET FILEOPTS=/quiet /norestart /log c:\temp\%%FILE%%_%%KB%%_Log.txt >> SecUpdate.bat
+ECHO SET PATH=%%PATH%%;C:\TEMP\BIN >> SecUpdate.bat
+ECHO SET TOTALD="%%IAVA%% %%KB%% %%MSB%% %%MSBD%%" >> SecUpdate.bat 
+ECHO SET LOG=%%TOTALD%%_-_InstallLog.txt >> SecUpdate.bat
+ECHO. >> SecUpdate.bat
+
+ECHO IF NOT EXIST %%DIRECTORY%%%%FILE%% ( >> SecUpdate.bat
+ECHO :: wget -ct 3 %%URL%% >> SecUpdate.bat
+ECHO :: Redirect to screen >> SecUpdate.bat
+ECHO      echo %%DATE%% %%TIME%% %%TOTALD%%: >> SecUpdate.bat
+ECHO      echo %%DATE%% %%TIME%% %%URL%% >> SecUpdate.bat 
+ECHO :: Redirect to file >> SecUpdate.bat 
+ECHO       echo %%DATE%% %%TIME%% %%TOTALD%% is missing download from: ^>^> .\%%KB%%_%%KBFILE%%_BatchLog.txt >> SecUpdate.bat
+ECHO       echo %%DATE%% %%TIME%% %%URL%% ^>^> .\%%KB%%_%%KBFILE%%_BatchLog.txt >> SecUpdate.bat 
+ECHO ) ELSE ( >> SecUpdate.bat
+ECHO       echo %%DATE%% %%TIME%% updating %%TOTALD%% ^>^> .\%%KB%%_%%KBFILE%%_BatchLog.txt >> SecUpdate.bat
+ECHO       %%DIRECTORY%%%%FILE%% %%FILEOPTS%% >> SecUpdate.bat
+ECHO       echo %%DATE%% %%TIME%% completed %%TOTALD%% ^>^> .\%%KB%%_%%KBFILE%%_BatchLog.txt >> SecUpdate.bat
+ECHO        ) >> SecUpdate.bat
+ECHO. >> SecUpdate.bat
+ECHO endlocal >> SecUpdate.bat
+
+ECHO :EOF >> SecUpdate.bat
+

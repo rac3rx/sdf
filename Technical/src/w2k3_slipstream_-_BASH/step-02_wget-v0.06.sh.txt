@@ -1,0 +1,59 @@
+#!/bin/bash
+###
+#
+#  File:  step-02_wget-v0.05.sh
+#  Purpose:  Download all tools and sources needed
+#  Author:  SFC Hammond, Christopher J.
+#  Date:  12:05, 10/11/10
+#
+###
+
+# 
+#  Maintenance Record and versioning
+# 
+
+# 
+#  Syntax, notes, or instructions
+#
+
+#
+#    References:  
+#    Slipstreaming Windows 2000, XP SP1/SP1a/SP2/SP3, Server 2003 SP1/SP2 - http://www.tacktech.com/display.cfm?ttid=295
+#
+ 
+#
+# Verify ./w2k3/DL exits and download
+#   01.  Windows2003StdCDBootSector.zip
+#   02.  geteltorito.pl (optional: may use dd)
+#   03.  WindowsServer2003-KB889101-SP1-x86-ENU.exe
+#   04.  WindowsServer2003-KB914961-SP2-x86-ENU.exe
+#   05.  WindowsProductKey_07OCT10.txt
+#   06.  Windows Server 2003 SP1 Deployment Tools [32 bit] ~1.8MB - WindowsServer2003-KB892778-SP1-DeployTools-x86-ENU.cab 
+#   07.  Windows Server 2003 SP2 Deployment Tools [32 bit] ~2.2MB - WindowsServer2003-KB926028-v2-x86-ENU.exe
+#   08.  Windows Server 2003 SP1 Support Tools ~5.3MB - WindowsServer2003-KB892777-SupportTools-x86-ENU.exe
+#   09.  1/2 Windows Server 2003 SP2 Support Tools ~3.6MB - support.cab
+#   10.  2/2 Windows Server 2003 SP2 Support Tools ~232KB - suptools.msi
+#
+if [ -d ../w2k3/DL ]
+then
+  #   01.  Windows2003StdCDBootSector.zip
+  wget -ct 3 -P ../w2k3/DL http://www.windowsitpro.com/content/content/46202/Windows2003StdCDBootSector.zip
+  #   02.  geteltorito.pl (optional: may use dd)
+  wget -ct 3 -P ../w2k3/DL http://www.sourcefiles.org/CD_Writing/Tools/geteltorito.pl
+  #   03.  WindowsServer2003-KB889101-SP1-x86-ENU.exe
+  wget -ct 3 -P ../w2k3/DL http://download.microsoft.com/download/1/2/7/127c5938-d36a-4405-9df1-f00d57495652/WindowsServer2003-KB889101-SP1-x86-ENU.exe
+  #   04.  WindowsServer2003-KB914961-SP2-x86-ENU.exe
+  wget -ct 3 -P ../w2k3/DL http://download.microsoft.com/download/5/f/1/5f104409-2736-48ef-82e1-692ec3da020b/WindowsServer2003-KB914961-SP2-x86-ENU.exe
+  #   05.  WindowsProductKey_07OCT10.txt
+  cp ../Bin/WindowsProductKey_07OCT10.txt .
+  #   06.  Windows Server 2003 SP1 Deployment Tools [32 bit] ~1.8MB - WindowsServer2003-KB892778-SP1-DeployTools-x86-ENU.cab 
+  wget -ct 3 -P ../w2k3/DL http://download.microsoft.com/download/a/2/6/a267c18e-32d7-4e59-81e7-816c3b23cc29/WindowsServer2003-KB892778-SP1-DeployTools-x86-ENU.cab
+  #   07.  Windows Server 2003 SP2 Deployment Tools [32 bit] ~2.2MB - WindowsServer2003-KB926028-v2-x86-ENU.exe
+  wget -ct 3 -P ../w2k3/DL http://download.microsoft.com/download/a/8/8/a88a053e-a5f5-47c1-8fd0-90c792adf56a/WindowsServer2003-KB926028-v2-x86-ENU.exe
+  #   08.  Windows Server 2003 SP1 Support Tools ~5.3MB - WindowsServer2003-KB892777-SupportTools-x86-ENU.exe
+  wget -ct 3 -P ../w2k3/DL http://download.microsoft.com/download/3/e/4/3e438f5e-24ef-4637-abd1-981341d349c7/WindowsServer2003-KB892777-SupportTools-x86-ENU.exe
+  #   09.  1/2 Windows Server 2003 SP2 Support Tools ~3.6MB - support.cab
+  wget -ct 3 -P ../w2k3/DL http://download.microsoft.com/download/6/e/4/6e481b67-54af-4340-a534-25de4229cfc6/support.cab
+  #   10.  2/2 Windows Server 2003 SP2 Support Tools ~232KB - suptools.msi
+  wget -ct 3 -P ../w2k3/DL http://download.microsoft.com/download/6/e/4/6e481b67-54af-4340-a534-25de4229cfc6/suptools.msi
+fi

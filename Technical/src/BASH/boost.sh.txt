@@ -1,0 +1,24 @@
+#!/bin/bash
+#A little script to get the AWUS036NH working in ubuntu 11.10
+#It also boosts the tx power to 1W
+#Coded by GUNN4R, 15 Oct 2011
+if [ "$#" -eq 0 ]
+then
+  echo -e "Not Enough Arguements!\\nUsage:\\nboost.sh start  -- starts the card"
+  echo "boost.sh wlan5  -- this boosts the tx power to 1MW"
+  exit
+fi
+
+sudo modprobe rt2800usb
+sleep 2
+
+if [ "$1" = "start" ]
+then
+  echo '148f 3070' | sudo tee /sys/bus/usb/drivers/rt2800usb/new_id
+  ifconfig
+else
+  sudo ifconfig $1 up
+  sudo iw reg set BO
+  sudo iwconfig $1 txpower 30
+  iwconfig
+fi

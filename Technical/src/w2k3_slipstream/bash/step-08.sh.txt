@@ -1,0 +1,1 @@
+rm -rf ./ROOT/I386/SP1.CA*

@@ -1,0 +1,21 @@
+#!/bin/bash
+###
+#
+#  File:  step-04_chmod-v0.01.sh
+#  Purpose:  Change permissions on w2k3/ROOT for ugo 777
+#  Author:  SFC Hammond, Christopher J.
+#  Date:  01:28, 10/12/10
+#
+###
+  
+# 
+#  Maintenance Record and versioning
+# 
+  
+# 
+#  Syntax, notes, or instructions
+# 
+if [ -e ../w2k3/ROOT ]
+then  
+  chmod -R 777 ../w2k3/ROOT
+fi

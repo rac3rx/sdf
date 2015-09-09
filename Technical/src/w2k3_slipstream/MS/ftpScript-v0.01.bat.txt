@@ -1,0 +1,32 @@
+::  -------------------------------------------------------------------------- 
+::  File:  ftpScript.bat 
+::  Purpose:   
+::  Author:  SFC Hammond, Christopher J. 
+::  Date:  Tue 10/12/2010 
+::  -------------------------------------------------------------------------- 
+
+:: (Place maintenance record here) 
+ 
+GOTO START 
+ 
+::  (Place syntax, notes, or other instructions heres) 
+::  UnixUtils and UnixUpdates links:
+::    ftp://ftp.fh-hannover.de/pandora/files/linux/UnxUtils.zip
+::    ftp://ftp.fh-hannover.de/pandora/files/linux/UnxUpdates.zip
+ 
+:START 
+
+@ECHO off & setlocal enableextensions
+ECHO open ftp.fh-hannover.de>%temp%\ftp$$$.tmp
+ECHO anonymous>>%temp%\ftp$$$.tmp
+ECHO cd@gmail.com>>%temp%\ftp$$$.tmp
+ECHO literal pasv>>%temp%\ftp$$$.tmp
+ECHO binary>>%temp%\ftp$$$.tmp
+::ECHO cd /pc/link>>%temp%\ftp$$$.tmp
+::ECHO lcd C:\MyLocalDownloadsFolder>>%temp%\ftp$$$.tmp
+ECHO lcd mmddyy_w2k3\w2k3\DL>>%temp%\ftp$$$.tmp
+ECHO get /pandora/files/linux/UnxUtils.zip>>%temp%\ftp$$$.tmp
+ECHO quit>>%temp%\ftp$$$.tmp
+ftp -s:%temp%\ftp$$$.tmp
+del %temp%\ftp$$$.tmp
+endlocal & goto :EOF

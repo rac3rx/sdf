@@ -1,0 +1,176 @@
+Setting up a serial console in qemu and libvirt
+
+I always forget how to do this, but in fact it’s quite simple.
+
+First ensure your libvirt XML contains a fragment like this (my guest, installed using virt-install, already had this).
+
+<serial type='pty'>
+  <target port='0'/>
+</serial>
+<console type='pty'>
+  <target type='serial' port='0'/>
+</console>
+Second, edit /boot/grub/grub.conf inside the guest, adding the console=ttyS0 element to the kernel command line:
+
+# virt-edit Guestname /boot/grub/grub.conf
+...
+title Fedora (2.6.38.6-26.rc1.fc15.x86_64)
+	root (hd0,0)
+	kernel /vmlinuz ro [...] console=ttyS0
+...
+You don’t need to set the speed. I believe it defaults to 115200 8N1, but I don’t think that qemu serial ports have a “speed” as such, since the hardware is emulated.
+
+Third, start the guest and dump out the running XML:
+
+# virsh start Guestname && virsh dumpxml Guestname
+...
+    <console type='pty' tty='/dev/pts/8'>
+Notice the randomly assigned pty on the host side (/dev/pts/8). Connect to that with Minicom[1], and you should see boot messages and/or a login prompt.
+
+[1] Is there something better than minicom? It’s a horrible program, always has been.
+
+About these ads
+Share this:
+RedditTwitterEmailPrint
+Loading...
+
+Related
+Tip: Run Xen as a KVM guest
+In "kvm"
+libguestfs live
+In "guestfish"
+KVM working on the Cubietruck
+In "ARM"
+16 Comments
+Filed under Uncategorized
+Tagged as libvirt, minicom, qemu, serial console, virt-edit, virt-tools
+16 responses to “Setting up a serial console in qemu and libvirt”
+Vincent Bernat
+July 8, 2011 at 9:55 am
+You can use `cu` or `screen` instead of `minicom`.
+
+Reply
+Jorge Andrade
+July 8, 2011 at 12:55 pm
+What about just using:
+
+virsh console guestname
+
+Nice post!!
+
+Reply
+Cole Robinson
+July 8, 2011 at 1:14 pm
+There’s also ‘virsh console $guestname’
+
+Also virsh provides a helper to skip the parsing step as well
+$ virsh ttyconsole serial-test
+/dev/pts/1
+
+And if your guest doesn’t have any serial/console device configured for any reason, the easiest way is to just add to the block in the XML (or use virt-manager :D )
+
+Reply
+Stephen P. Schaefer
+July 8, 2011 at 4:46 pm
+I’ve heard that KVM has equivalent functionality to VMware’s vmotion, in which a live client gets moved from one host to another. With VMware, a guest having a virtual serial device like this prevented it from participating in vmotion (that may have changed over the last year, but I haven’t heard). How is a serial line handled when re-hosting a KVM running client? And if you could recommend a tutorial on setting up live KVM guest rehosting, I’d be grateful.
+
+Reply
+rich
+July 8, 2011 at 5:39 pm
+The way qemu live migration works is this: You[*] set up an empty container qemu instance on the target server, configured identically to the source qemu. So block devices, serial ports etc on the target are initialized by you and have to have the same configuration as the source. You then send a message to the source qemu telling it to start migration. This causes the source qemu to serialize the whole internal state (memory + device state) and send it to the target, usually over a TCP connection, although qemu migration is transport independent.
+
+This is a good summary of the technical details.
+
+So the answer to your first question is just that the management tool sets up another serial port and has to deal with how it is connected. libvirt does a few clever things in this area already, with more to come.
+
+Second question about “live KVM guest rehosting” I wasn’t quite sure what that means. For setting up an environment where you can migrate, load balance etc. you need some higher level tool like RHEV-M.
+
+[*] “You” in this instance usually means some management tool, ie. libvirtd, although I guess you could do this by hand if you were a certain sort of masochist.
+
+Reply
+Stephen P. Schaefer
+July 9, 2011 at 2:19 pm
+Thanks! Out of ignorance I used the phrase “live KVM guest rehosting” to mean exactly the migration you describe and which the link you referenced describes.
+
+Alex
+July 9, 2011 at 10:09 am
+yeah minicom sux. use tip(1) or cu(1).
+
+-Alex
+
+Reply
+rich
+July 9, 2011 at 4:26 pm
+Thanks for the “tip” (ba-bum tish …)
+
+Reply
+Russ Herrold
+July 9, 2011 at 10:01 pm
+I do not share your aversion to minicom — probably from too many hours remotely configuring Cisco kit across serial links. But, that said, and if one favors a GUI environment, the ‘putty’ program has a serial console mode, and is available in open source form, and on Linux, OS/X, and Windows
+
+– Russ herrold
+
+Reply
+Bill
+March 26, 2013 at 8:21 pm
+Agreed. IMHO Putty is far better. Putty is useful, even under Linux. It makes using the advanced settings of ssh, ones that would typically require a seperate config file, much easier. (Keep Alive, sock5 proxy, etc)
+
+Reply
+joshuadf
+August 2, 2011 at 6:11 pm
+You can also get the “console=ttyS0? in grub with a kickstart line like bootloader –location=mbr –append=”rhgb quiet console=ttyS0?
+
+Are tip(1) or cu(1) in RHEL or Fedora? Those short names are hard to search for.
+
+Also, is there a mailing list for libvirt/guestfish/etc?
+
+Reply
+rich
+August 2, 2011 at 6:21 pm
+Sadly neither tip nor cu are in Fedora. You can search for packages in Fedora by modifying this URL:
+
+https://admin.fedoraproject.org/pkgdb/acls/list/cu*
+
+The libvirt mailing lists are listed here.
+
+The libguestfs mailing list and IRC channel are linked from the website, on the right hand side, under “Mailing list and chat”.
+
+Reply
+Attila Ruzsinszky
+February 7, 2012 at 12:19 pm
+And how can I connect together two VMs with serial port? For example testing a PPP connection?
+I tried to setup a unix socket with virt-manager under Ubuntu 12.04 and it complains about permissions. If I created manually the socket with mkfifo command the complains was changed to Address already used.
+And what about vc or any other possibilities (TCP/UDP)?
+Is there a HowTo somewhere about that serial communication setup in qemu (or even in virt-manager)?
+
+TIA,
+
+Reply
+Sandeep Raman
+February 14, 2013 at 9:26 am
+I get the following message on virt-edit Guestname /boot/grub/grub.conf.
+I have executed the command.
+guestmount –ro -a /var/lib/nova/instances/instance-00000001/disk -m /dev/sda1 /mnt
+guestmount -d instance-00000001 -i –ro /mnt
+
+root@compute:~# virt-edit instance-00000001 /boot/grub/grub.conf
+libguestfs: error: error: domain is a live virtual machine.
+Writing to the disks of a running virtual machine can cause disk corruption.
+Either use read-only access, or if the guest is running the guestfsd daemon
+specify live access. In most libguestfs tools these options are –ro or
+–live respectively. Consult the documentation for further information.
+root@compute:~#
+
+Please help how to get past this.
+
+Reply
+rich
+February 14, 2013 at 10:04 am
+This isn’t the place to ask for libguestfs help. Use the libguestfs mailing list. In any case, if you read the error message, it tells you what to do.
+
+Reply
+Lincoln Ong
+January 28, 2014 at 5:55 am
+Hello! ‘cu’ can be found in the ‘uucp’ package (“yum provides */cu”). Your blog has always been a great source of information on virtualization, even though I am running Fedora 19, and as a consequence, a bit behind in what is available.
+
+Reply

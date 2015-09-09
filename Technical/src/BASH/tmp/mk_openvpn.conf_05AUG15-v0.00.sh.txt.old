@@ -1,0 +1,54 @@
+yum -y install openvpn
+#
+# change to openvpn config directory
+#
+cd /etc/openvpn
+#
+# Download PIA’s OpenVPN configuration files
+#
+wget -ct 3 https://www.privateinternetaccess.com/openvpn/openvpn.zip
+#
+# unzip archive
+#
+unzip ./openvpn.zip
+#
+# make a new copy of closest vpn server's config
+#
+cp US\ East.ovpn client_pia_east.conf
+#
+# change default auth-user-pass option for a non-interactive login
+#
+sed -i "s*auth-user-pass*auth-user-pass /etc/openvpn/login.pia*" client_pia_east.conf
+#
+# warning about leaks if this option isn't present
+#
+echo "auth-nocache" >> client_pia_east.conf
+#
+# setup login file for auth-user-pass with read access
+#
+echo "YOUR_LOGIN" > /etc/openvpn/login.pia
+echo "YOUR_PASSWD" >> /etc/openvpn/login.pia
+chmod 400 /etc/openvpn/login.pia
+#
+# add PIA's DNS servers
+#
+cp /etc/resolv.conf /etc/resolv.conf.000
+cat > /etc/resolv.conf << EOF
+search p4wn3d.com
+nameserver 4.2.2.1
+nameserver 4.2.2.2
+nameserver 4.2.2.3
+nameserver 75.75.76.76
+nameserver 75.75.75.75
+EOF
+#
+# setup openvpn client with systemd: install &  setup openvpn daemon
+# NB: notice use of openvpn@server, this relates to /etc/openvpn configuration file 
+#     in this case would be expected to be /etc/openvpn/server.conf. 
+#     If for example you had openvpn listening on port 443 you could
+#     would complement that with a /etc/openvpn/port443.conf
+ln /lib/systemd/system/openvpn@.service /etc/systemd/system/openvpn@client_pia_east.service
+systemctl daemon-reload
+systemctl enable openvpn@client_pia_east.service
+systemctl start openvpn@client_pia_east.service
+systemctl status openvpn@client_pia_east.service

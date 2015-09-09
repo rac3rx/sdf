@@ -1,0 +1,2 @@
+wget http://tlug.latech.edu/iso/backtrack/MD5SUM
+wget -ct 3 http://ftp.lug.udel.edu/pub/backtrack/BT5R2-KDE-32.iso

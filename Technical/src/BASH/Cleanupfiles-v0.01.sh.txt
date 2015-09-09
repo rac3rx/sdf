@@ -1,0 +1,36 @@
+#!/bin/bash
+###
+#
+#  File:  Cleanupfiles-v0.01.sh.txt
+#  Purpose: clean up spaces and capitalize first letter in txt filenames 
+#  Author:  SFC Hammond, Christopher J.
+#  Date:  22:12, 09/01/15
+#
+###
+
+
+# 
+#  Maintenance Record and versioning
+# 
+
+
+# 
+#  Syntax, notes, or instructions
+# 
+
+
+# remove all vim tildes and swp
+rm *.[tT][xX][tT]~
+rm *.[tT][xX][tT].swp
+
+# replace all spaces with underscores
+for i in *.[tT][xX][tT]; do mv "$i" `echo "$i" | sed s/[[:space:]]/_/g`; done
+
+# change all upper case to lower case
+for i in *.[tT][xX][tT]; do mv "$i" `echo $i | tr '[A-Z]' '[a-z]'`; done
+
+# test it first before executing
+# for i in *.[tT][xX][tT]; do echo $i | sed 's/^.\|_[a-z]/\U&/g'; done
+
+# change the first letter of each word to upper case
+for i in *.[tT][xX][tT]; do mv $i `echo $i | sed 's/^.\|_[a-z]/\U&/g'`; done

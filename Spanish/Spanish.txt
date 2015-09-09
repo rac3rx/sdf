@@ -1,0 +1,2131 @@
+SPANISH CHEAT SHEET
+
+yo (I)
+tú (you - informal)
+él (he)
+ella (she)
+usted (you - formal)
+
+nosotros/nosotras (we)
+ustedes (you-all - informal)
+
+ellos/ellas (they)
+ustedes (you-all formal)
+
+
+             habl+AR                                    aprend+ER                                       viv+IR
+-------------------------------------      -------------------------------------          -------------------------------------
+PRETERITO    PRESENTE     FUTURO           PRETERITO      PRESENTE       FUTURO           PRETERITO    PRESENTE     FUTURO           
+-------------------------------------      -------------------------------------          -------------------------------------
+habl+é       habl+o       habl+are         aprend+í       aprend+o       aprend+ere         viv+í       viv+o       viv+ire
+habl+aste    habl+as      habl+aras        aprend+iste    aprend+es      aprend+eras        viv+iste    viv+es      viv+iras
+habl+ó       habl+a       habl+ara         aprend+ió      aprend+e       aprend+era         viv+ió      viv+e       viv+ire
+habl+amos    habl+amos    habl+aremos      aprend+imos    aprend+emos    aprend+eremos      viv+imos    viv+imos    viv+iremos
+habl+aron    habl+an      habl+aran        aprend+ieron   aprend+en      aprend+eran        viv+ieron   viv+en      viv+iran
+habl+aron    habl+an      habl+aran        aprend+ieron   aprend+en      aprend+eran        viv+ieron   viv+en      viv+iran
+
+
+NB:    -ir verbs that change their stem in the present tense do change in the preterite, but in a different way. 
+       They change e:i and o:u in the third person, singular and plural.
+
+           preferir       dormir
+           preferí        dormí
+           preferiste     dormiste
+           prefirió       durmió
+           preferimos     dormimos
+           prefirieron    durmieron
+           prefirieron    durmieron
+
+
+REGULAR VERBS
+
+=================================          =================================
+Present Tense Examples                     Future Tense Examples
+=================================          =================================
+
+hablar                                     hablar
+^^^^..                                     ^^^^^^
+   | .                                          |
+   +--  stem (raiz) of the word is habl         +--  stem (raiz) hablar
+     .
+     .. suffix (lack of a better word)
+
+yo ...................... hablo       hable'
+tú                        hablas      habla's
+él/ella/est(o,a)/usted .. habla       habla'
+nosotros/nosotras         hablamos    hablemos
+ustedes ................. hablan      habla'n
+éll(o,a)s/est(o,a)s/usted habla       habla'n
+
+
+SPANISH CONTRACTIONS
+
+    a + el = al
+    de + el = del
+
+  Never Contracted
+
+    de + la
+    de + las
+    de + los
+    a  + la
+    a  + las
+    a  + los
+
+IRREGULAR VERBS (PAST, PRESENT, & FUTURE)
+
+    Regular:      Infinitive:                (Infinitivo):           to go:    IR
+    Past:         Preterite/Simple past:     (Preterito)             went      fui
+    Present:      Present Indicative:        (Presente Indicativo):  go:       voy
+    Future:       Future:                    (Futuro):               will go:  ire
+    Progressive:  Present Participle:                               going     andando 
+                 
+
+Example                                                     IR - to go           PODER - to be able  SER - to be        ESTAR - to be
+=================================================           ======PAST=========  =======PAST=======  =====PAST========  ==========PAST===========
+yo                      nosotr(a/o)s                        fui       fuimos     pude      pudimos   fui      fuimos    estuve        estuvimos
+tu                      ustedes                             fuiste    fueron     pudiste   pudieron  fuiste   fueron    estuviste     estuvieron
+el/ella/est(o,a)/usted  ell(o,a)s/est(o,a)s/usted           fue       fueron     pudo      pudieron  fue      fueron    estuvo        estuvieron
+                                                            ------PRESENT------  -----PRESENT------  -----PRESENT-----  ---------PRESENT---------
+.................................................           voy       vamos      puedo     podemos   soy      somos     estoy         estamos
+.................................................           vas       van        puedes    pueden    eres     son       estas         estan
+.................................................           va        van        puede     pueden    es       son       esta          estan
+.................................................           -------FUTURE------  -----FUTURE-------  -----FUTURE-----   ---------FUTURE----------
+.................................................           ire       iremos     podre     podremos  sere     seremos   estare        estaremos
+.................................................           iras      iran       podras    podran    seras    seran     estaras       estaran
+.................................................           ira       iran       podra     podran    sera     seran     estara        estaran
+
+
+DECIR - to say      VER - to see        DEJAR - to leave    HACER - to do        DAR - to give       PONER - to put      TRAER - to bring
+======PAST========  =======PAST=======  =======PAST=======  ======PAST=========  =======PAST=======  ======PAST========  ==========PAST============
+dije     dijimos    vi     vimos        deje     dejamos    hice      hicimos    di       dimos      puse     pusimos    traje        trajimos
+dijiste  dijeron    viste  vieron       dejaste  dejaron    hiciste   hicieron   diste    dieron     pusiste  pusieron   trajiste     trajeron
+dijo     dijeron    vio    vieron       dejo     dejaron    hizo      hicieron   dio      dieron     puso     pusieron   trajo        trajeron
+----PRESENT-------  ------PRESENT-----   -----PRESENT-----  ------PRESENT------  -----PRESENT------  ------PRESENT-----  ---------PRESENT----------
+digo     decimos    veo    vemos        dejo     dejamos    hago      hacemos    doy      damos      pongo    ponemos    traigo       traemos
+dices    dicen      ves    ven          dejas    dejaran    haces     hacen      das      dan        pones    ponen      traes        traen
+dice     dicen      ve     ven          deja     dejaran    hace      hacen      da       dan        pone     ponen      trae         traen
+----FUTURE--------  ------FUTURE------  ------FUTURE------  -------FUTURE------  ----FUTURE--------  ------FUTURE------  ---------FUTURE-----------
+diré     diremos    vere   veremos      dejare   dejaremos  hare      haremos    dare     daremos    pondre   podremos   traere       traeremos
+dirás    dirán      veras  veran        dejaras  dejaran    haras     haran      daras    daran      pondras  pondran    traeras      traeran
+dirá     dirán      vera   veran        dejara   dejaran    hara      haran      dara     daran      pondra   pondran    traera       traeran
+
+
+SALIR - to go out   VENIR - to come     OIR - to hear       QUERER - to want     SABER - to know     TENER - to have     AGRADECER - to appreciate
+======PAST========  =======PAST=======  =======PAST=======  =======PAST========  =======PAST=======  ======PAST========  ==========PAST============
+sali     salimos    vine     vinimos    oi       oimos      quise     quisimos   supe      supimos   tuve     tuvimos    agradeci     agradecimos
+saliste  salieron   viniste  vinieron   oiste    oyeron     quisiste  quisieron  supiste   supieron  tuviste  tuvieron   agradeciste  agradecieron
+salio    salieron   vino     vinieron   oyo      oyeron     quiso     quisieron  supo      supieron  tuvo     tuvieron   agradecio    agradecieron
+----PRESENT-------  ------PRESENT-----  -----PRESENT------  ------PRESENT------  -----PRESENT------  ------PRESENT-----  ---------PRESENT----------
+salgo    salimos    vengo    venimos    oigo    oimos       quiero    queremos   se        sabemos   tengo    tenemos    agradezco    agradecemos
+sales    salen      vienes   vienen     oyes    oyen        quieres   quieren    sabes     saben     tienes   tienen     agradeces    agradecen
+sale     salen      viene    vienen     oye     oyen        quiere    quieren    sabe      saben     tiene    tienen     agradece     agradecen
+-----FUTURE-------  ------FUTURE------  ------FUTURE------  ------PRESENT------  -----FUTURE-------  ------FUTURE------  ---------FUTURE-----------
+saldre   saldremos  vendre   vendremos  oire    oiremos     querre    querremos  sabre     sabremos  tendre   tendremos  agradecere   agradeceremos
+saldras  saldran    vendras  vendran    oiras   oiran       querras   querran    sabras    sabran    tendras  tendran    agradeceras  agradeceran
+saldra   saldran    vendra   vendran    oira    oiran       querra    querran    sabra     sabran    tendra   tendran    agradecera   agradeceran
+
+
+VESTIR - to dress                                                                                                        CONOCER - to know
+======PAST========  =======PAST=======  =======PAST=======  =======PAST========  =======PAST=======  ======PAST========  ==========PAST============
+vesti    vestimos   leí      leímos                                                                                      conoci       conocimos
+vestiste vestieron  leíste   leyeron                                                                                     conociste    conocieron
+vestio   vestieron  leyó     leyeron                                                                                     conocio      conocieron
+----PRESENT-------  ------PRESENT-----  -----PRESENT------  ------PRESENT------  -----PRESENT------  ------PRESENT-----  ---------PRESENT----------
+visto    vestimos   leo      leemos                                                                                      conozco      conocemos
+vistes   vistan     lees     leen                                                                                        conoces      conocen
+viste    vistan     lee      leen                                                                                        conoce       conocen
+-----FUTURE-------  ------FUTURE------  ------FUTURE------  ------PRESENT------  -----FUTURE-------  ------FUTURE------  ---------FUTURE-----------
+vestire  vestiremos leeré    leeremos                                                                                    conocere     conoceremos
+vestiras vestiran   leerás   leerán                                                                                      conoceras    conoceran
+vestira  vestiran   leerá    leerán                                                                                      conocera     conoceran
+
+NB:  Tips
+
+     1.)  Verbs derived from DECIR    2.)  irregular stem changing verbs, ending in -go
+        
+          bendicir                         venir                   
+          contradicer                      salir
+          desdecir                         tener
+          maldecir                         decir
+          predicir                         traer
+                                           valer
+                                           poner
+                                           caer
+
+    3.)  If the infinitive of the verb ends in a vowel followed by - cer or - cir, 
+         the yo form of the verb ends in - zco. Here are the infinitive forms of 
+         some of the most common - zco verbs: 
+
+         agradecer 
+         aparecer 
+         conocer 
+         desaparecer 
+         desconocer 
+         establecer 
+         merecer
+         obedecer 
+         ofrecer 
+         permanecer
+         pertenecer 
+         Producir
+         conducir (to drive) 
+         introducir (to introduce) 
+         traducir (to translate) 
+         producir (to produce) 
+
+
+    4.)  Two other verbs have unique yo forms. Both ver (to see) and saber 
+         (to know [a fact]) are regular - er verbs in all forms except the 
+         yo form, but their yo forms are completely different 
+
+         ver
+         saber
+
+    5.)  ser y estar
+
+         ser  -->  essence                                  estar  -->  condition
+                   essential                                .           conditional
+                   permanent                                .           temporary
+                   inherent                                             is    <--  what vs is
+                   hour, day, and date                      .           geographic or physical location
+                   place of origin                                      state or condition
+                   occupation                                           many idiomatic expressions
+                   nationality                                          progressive tenses
+                   religious or political affiliation                   where something is located right now, use estar
+                   the material something is made of        .
+                   possession                               .
+                   relationship of one person to another    .
+                   certain impersonal expressions
+                   where an event is taking place
+                   essential qualities
+                   what    <--  what vs is                            
+                   When a noun follows the verb, use ser
+                   where something is from, use ser
+                   where an event is taking place, use ser
+
+         ex:  
+
+              La manzana está verde.    <--  condition: verde = unripe
+
+              La manzana es verde.    <--  essential characteristic: verde = color green
+
+              Ella es callada.    <--  an essence or permanence, because she is a quiet person
+
+              Ella esta callada.    <--  temporarily or conditionally quiet presently
+
+              ¿Qué hora es?
+ 
+              Son las dos.
+
+              ¿Qué día es hoy?
+
+              Hoy es lunes.
+
+              ¿Qué fecha es hoy?
+ 
+              Es el cinco de mayo.
+
+              ¿De dónde eres tú?
+
+              Soy de Colombia.
+
+              ¿Cuál es tu trabajo?
+  
+              Soy carpintero
+
+              ¿Es ella puertorriqueña?
+
+              No, es guatemalteca.
+
+              ¿Son los García bautistas?
+
+              No, son católicos.
+
+              ¿Es el gobierno socialista?
+
+              No, es comunista.
+
+              ¿De qué material es la mesa?
+
+              Es de madera.
+
+              ¿De quién es la pluma?
+
+              Es de Emilio.
+ 
+              ¿Quién es Rogelio?
+
+              Es el esposo de Marta.
+
+              Es importante practicar cada día.
+
+              Es necesario hablar mucho.
+
+              La película es en el cine.
+
+              La fiesta es en el club Fantástico.
+
+              La película es en el cine.
+
+              La fiesta es en el club Fantástico.
+
+              ¿Dónde estás?
+
+              Estoy en el laboratorio.
+
+              ¿Dónde está Chile?
+
+              Chile está en América del Sur.
+
+              ¿Cómo está la sopa?
+    
+              La sopa está fría.
+   
+              ¿Cómo estás tú?
+  
+              Estoy muy bien, gracias.
+
+              estar de acuerdo
+    
+              estar de pie
+    
+              estar en camino
+    
+              estar en las nubes
+    
+              ¿Qué estás comiendo?
+    
+              Estoy comiendo arroz y frijoles.
+
+              Los elefantes son grandes.
+
+              El profesor está aburrido.
+
+              El profesor es aburrido.
+
+              Mónica es de España. (origin)
+
+              Mónica está en Venezuela. (location)
+
+              La fiesta es en la casa de Mónica. (taking place)
+
+			  ponerse de pie
+
+			  estar de pie
+
+			  parado
+
+			  quedarse de pie
+
+			  ayer por la mañana ... yesterday morning
+
+			  ayer por la tarde ... yesterday afternoon
+
+			  anteayer ............ the day before yesterday
+
+			  anoche .............. last night
+
+			  desde el primer momento ... from the first moment
+
+			  después ................... afterwards
+
+			  durante dos sigolos ....... for two centuries
+
+			  el lunes por la noche ..... Monday night
+
+			  el mes pasado ............. last month
+
+			  el otro dia ............... the other day
+
+			  entonces .................. then
+
+			  esta tarde ................ this afternoon
+
+			  hace dos días, años ....... two days, years ago
+
+			  la semana pasada .......... last week
+  
+
+"AR"         .  "ER"          .  "IR"
+amar         .  deber         .  abrir          .  love          must         open
+atacar .......  depender ......  admitir ........  attack ....   depend ....  admit
+baliar       .  esconder      .  asistir        .  dance         hide         assist
+cantar .......  exceder .......  asumir .........  sing ......   exceed ....  assume
+caminar      .  meter         .  combatir       .  walk          put          combat
+comarcar .....  poseer ........  confundir .....   border on .   possess ...  confuse 
+desear       .  prender       .  consumir       .  desire        take         consume
+escuchar ....   proceder ......  cubrir .........  listen ....   procede ...  cover 
+estudiar     .  prometer      .  cumplir        .  study         promise      comply
+ganar ........  romper ........  decidir ........  win ........  break .....  decide
+gustar       .  sorprender    .  definir        .  taste         surprise     define
+hablar .......  temer .........  deprimir .......  talk .......  fear ......  depress
+jugar        .  toser         .  deprimirsi     .  play          cough        get depress
+la nadar .....  vender ........  describir ......  swim .......  sell ......  describe
+llamar       .  asolver       .  descubrir      .  call/name     absolve      disclose/discover
+llevar .......  acoger ........  discutir .......  carry ......  receive ...  argue
+mirar        .  aprender      .  divider        .  look          learn        divide
+necesitar ....  arremeter .....  escriber .......  need .......  attack ....  write
+passar       .  atraer        .  escupir        .  pass          attract      spit 
+pensar .......  caber .........  exhibir ........  think ......  fit .......  exibit
+praticar     .  caer          .  existir        .  practice      fall         exist
+tocar ........  coger .........  imprimir .......  touch ......  hold ......  print
+trabajar     .  comer         .  interrumpir    .  work       .  eat       .  interrupt
+viajar .......  compadecer ....  invadir ........  travel .....  pity ......  invade
+abondonar    .  complacer     .  occurrir       .  abandon    .  please    .  occur
+abrazar ......  contener ......  omitir .........  hug ........  contain ...  omit
+aceptar      .  convencer     .  partir         .  accept     .  convince  .  depart
+acertar ......  correr ........  percibir .......  hit ........  run .......  perceive
+acomodar     .  aprehender    .  permitir          accomondate   apprehend    permit
+aconsejar ....  barrer ........  persistir ......  recommend ..  sweep .....  persist
+acordar      .  beber         .  persuadir         agree         drink        persuade
+acusar .......  cometer .......  presumir .......  accuse .....  eat .......  presume
+adecentar    .  compeler      .  prohibir          make descent  compel       prohibit
+adornar ......  depender ......  pulir ..........  adorn ......  depend ....  clean
+afanar       .  vender        .  recibir           agonize       sell         receive
+aflojar ......  leer ..........  transmitir .....  loosen .....  read ......  transmit
+alegrar      .  cometer       .  unir              gladden       commit       unite
+apañar .......  creer .........  vivir ..........  bread ......  believe ...  live
+dar          .  crecer        .  reir              give          grow         laugh
+buscar .......  nacer .........  ir   ...........  look .......  born ......  go
+imaginar        ofrecer          anadir            imagine       offer        add
+extranar .....  proteger ......  asistir ........  miss .......  protect ...  attend
+cenar           llover           interrumpir       dine          rain         interrupt
+agregar ......  poder .........  ocurrir ........  aggregate ..  be able ...  occur
+besar           hacer            subir             kiss          do / make    climb
+encuentrar ...  conocer .......  sufrir .........  meet .......  know ......  suffer
+empacar         querer           dividir           pack          want         divide
+contestar ....  volver ........  escribir .......  reply ......  return ..... write
+montar          poner            abatir            mount         lay/put      demolish/tear down/fell
+enamorar .....  conocer .......  aburrir .......   in love ....  know ....... bore
+perdonar        agradecer        dividir           forgive       thank        divide
+excitar ......            .....                    excite; arouse       
+llorar                                             cry                                    
+orinar .......                                     urinate 
+alegar                                             show
+asestar ......                                     aim
+calentar                                           heat
+tomar ........                                     take
+aprovechar ...                                     to take adavantage of
+llenar .......                                     to fill
+arrodillar ...                                     to kneel to the ground
+orar .........                                     to pray
+manejar ......                                     to drive
+fascinar .....                                     to fascinate
+sentar .......                                     to sit
+separar ......                                     to seperate
+asustar ......                                     to scare
+quedar .......                                     to leave/remain
+levantarse ...                                     get up
+pararse ......                                     get up
+quedarse .....                                     get up
+sentarse .....                                     sit
+
+Vocabulary - Miscellaneous Words
+
+asi ............ so            soldado ........ private
+mejilla ........ cheek         cabo ........... corporal
+ya ............. already       sarjento ....... sergeant
+deberes ........ homework      teniente ....... lieutenant
+archivo ........ file          capitan ........ captain
+descarga ....... download      major .......... major
+es(o,a)s ....... these         coronel ........ colonel
+dolir .......... to hurt       general ........ general
+dueles ......... hurt          marinero ....... seaman
+inyecciones .... injections    especialista ... specialist
+trasero ........ buttocks      contramaestre .. petty officer
+maletas ........ suitcases     .
+ambos .......... both          .
+antes .......... before        .
+despues ........ after         garganta ........ throat
+debajo ......... under         cuello .......... neck
+arriba ......... above         solamente ....... only
+la derecha ..... right         curiosidad ...... curiosity
+izquierdo ...... lefta         ensayo .......... essay
+cara ........... face          aprovechar ...... utilize
+esposo ......... wife          correcto ........ correct
+marido ......... husband       oeste ........... west
+llamada ........ call; knock   concejal(a) ..... council
+joven .......... young         provecho ........ profit; benefit; advantage
+interés ........ interest      curiosidad ...... curiosity
+tierno ......... tender        borrador ... rough draft, eraser
+listo .......... ready         flora ........... plant life
+pareces ........ look          riesgo .......... risk
+limon .......... lemon         fundacion ....... foundation
+miel ........... honey         nieto .......... grandchild
+gerencia ....... management    cojones ........ balls
+ademas ......... also too      montequilla .... butter
+piensamientos .. thoughts      cueva .......... cave
+goals .......... objetivos     novilla ........ heifer
+watch .......... reloj         abeja .......... bee
+knife .......... cuchillo      casado ......... married
+task  .......... tarea         asiento ........ seat
+axila .......... armpit        tener prisa .... rush
+below .......... bajo          oracíon ........ prayer
+golpe .......... bumps         ojalá .......... I hope so
+macha .......... blemish       debes algo a algien .. owe me
+hair ........... cabellos
+
+Misc
+encima ......... on top
+hay ............ there (is,are)
+certeza ........ certainty 
+pedo ........... fart
+banero ......... lifeguards
+cerebro ........ brain
+chabola ........ shack/shanty/ghetto
+cebolla ........ onion
+pendejo ........ coward/tonto
+
+
+Acronyms
+
+sip - 	
+Vocabulary - Miscellaneous Phrases
+
+buenos dias
+buenas tardes
+buenas noches
+mi cabo
+le presento
+mucho gusto
+senora de Miller
+encantada
+por q estabas tan perdido
+no descuido mi vida social
+que vas a ser oye
+paciencia
+debi ser psicologa... no .. mejor sexologa
+
+
+
+El baño
+================================
+la bañera ... bathtub 
+el excusado  ... toilet 
+el lavamanos ... sink 
+el botiquín ... medicine cabinet 
+el jabón  ... soap 
+la toalla ... towel 
+el cortinero ... curtain rod 
+el gorro de baño ... shower cap 
+la ducha ... shower 
+la jabonera ... soap dish 
+la esponja ... sponge 
+el champú ... shampoo 
+el desagüe ... drain 
+
+El crimen y el castigo
+=======================
+el juez ... judge 
+el jurado ... jury 
+el testigo ... witness 
+el acusador ... prosecutor 
+el abogado ... attorney 
+el acusado ... defendant 
+la cárcel ... jail 
+la sospecha ... suspicion 
+las esposas ... handcuffs 
+el policía ... policeman 
+la policía ... police force 
+la pistola ... pistol 
+
+
+Las plantas
+=================================
+el árbol tree 
+la flor flower 
+el cactus cactus 
+el arbusto bush 
+la enredadera vine 
+la hoja leaf 
+el tulipán tulip 
+el tallo stem 
+la margarita daisy 
+el bulbo bulb 
+la orquídea orchid 
+la violeta violet 
+la rosa rose 
+el botón bud 
+
+
+El cuarto de servicios
+========================
+la lavadora washing machine 
+la secadora dryer 
+la escoba broom 
+la limpiadora mop 
+la aspiradora vacuum 
+el recogedor dustpan 
+los trapos rags 
+la plancha iron 
+
+
+Los animales I
+================
+el elefante 
+elephant 
+el león 
+lion 
+el hipopótamo 
+hippopotamus 
+el rinoceronte 
+rhinoceros 
+el cuerno 
+antler 
+la trompa 
+trunk 
+el colmillo 
+tusk 
+el tigre 
+tiger 
+el alce 
+moose 
+el oso 
+bear 
+la llama 
+llama 
+la cebra 
+zebra 
+el bisonte 
+bison 
+el caballo 
+horse 
+el burro 
+donkey 
+la oveja 
+sheep 
+el venado 
+deer 
+el chivo 
+goat 
+la jirafa 
+giraffe 
+el cerdo 
+hog 
+la vaca 
+cow 
+
+
+Los animales II
+==================
+el perro 
+dog 
+el gato 
+cat 
+el venado 
+deer 
+el mono 
+monkey 
+el zorro 
+fox 
+el armadillo 
+armadillo 
+
+
+
+
+El restaurante
+================
+la mesera, la camarera 
+waitress 
+el cocinero 
+cook 
+la mesa 
+table 
+la cuenta 
+check 
+el menú 
+menu 
+
+
+Los servicios de emergencia
+============================
+el bombero 
+fireman 
+la ambulancia 
+ambulance 
+el policía 
+policeman 
+el paramédico 
+paramedic 
+el carro de bomberos 
+fire truck 
+la escalera 
+ladder 
+el escape de incendio 
+fire escape 
+
+
+El taller de trabajo
+=======================
+el serrucho de carpintero 
+carpenter's saw 
+la sierra para metales 
+hacksaw 
+la sierra de calar 
+coping saw 
+el formón 
+chisel 
+la escofina 
+rasp 
+la lima 
+file 
+la cinta métrica 
+tape measure 
+el martillo 
+hammer 
+la llave inglesa, la llave 
+wrench 
+el destornillador 
+screwdriver 
+la caja de herramientas 
+toolbox 
+los alicates 
+pliers 
+el tornillo 
+clamp, vise, screw 
+
+
+
+Las enfermedades
+==================
+alta presión sanguínea 
+high blood pressure 
+dolor de cabeza 
+headache 
+dolor de estómago 
+stomachache 
+dolor de garganta 
+sore throat 
+el dolor 
+ache 
+
+
+Las prendas femeninas
+=======================
+el vestido 
+dress 
+la blusa 
+blouse 
+la falda 
+skirt 
+los zapatos de tacón alto 
+high heels 
+el cinturón 
+belt 
+las medias 
+stockings 
+las sandalias 
+sandals 
+el bolso 
+handbag 
+la pantimedia 
+pantyhose 
+el bustillo 
+camisole 
+el refajo 
+slip 
+la pantaleta 
+panties 
+
+
+Las carnes
+==============
+la carne de res 
+beef 
+el cerdo 
+pork 
+el cordero 
+lamb 
+el pollo 
+chicken 
+el pescado 
+fish 
+los mariscos 
+shellfish 
+la carne molida 
+ground beef 
+asado 
+roasted 
+el bisté 
+steak 
+el chorizo 
+sausage 
+las chuletas 
+chops 
+el tocino 
+bacon 
+el jamón 
+ham 
+el pavo 
+turkey 
+el pato 
+duck 
+la langosta 
+lobster 
+los camarones 
+shrimp 
+las almejas 
+clams 
+
+
+Los órganos internos
+=======================
+el cerebro 
+brain 
+el pulmón 
+lung 
+el corazón 
+heart 
+el hígado 
+liver 
+el estómago 
+stomach 
+el riñón 
+kidney 
+la vejiga 
+bladder 
+la arteria 
+artery 
+la vena 
+vein 
+
+
+El parentesco
+=================
+el esposo 
+husband 
+la esposa 
+wife 
+el hijo 
+son 
+la hija 
+daughter 
+el hermano 
+brother 
+la hermana 
+sister 
+el padre 
+father 
+la madre 
+mother 
+el abuelo 
+grandfather 
+la abuela 
+grandmother 
+la tía 
+aunt 
+el tío 
+uncle 
+el sobrino 
+nephew 
+la sobrina 
+niece 
+
+
+El aeropuerto
+================
+el equipaje 
+baggage 
+la maleta 
+suitcase 
+el boleto 
+ticket 
+el porta ropa 
+garment bag 
+el guardia 
+security guard 
+el detector de metales 
+metal detector 
+el bolso de mano 
+carry-on 
+
+
+El interior del auto
+======================
+el volante 
+steering wheel 
+el espejo retrovisor 
+rearview mirror 
+la palanca de velocidades 
+stick shift 
+el acelerador 
+accelerator 
+el freno 
+brake 
+el embrague 
+clutch 
+el seguro 
+door lock 
+el descanso brazo, el apoyabrazos 
+armrest 
+la manija 
+door handle 
+la visera 
+visor 
+el medidor de gasolina 
+gas gauge 
+
+
+Los colores
+==============
+amarillo 
+yellow 
+anaranjado 
+orange 
+azul 
+blue 
+blanco 
+white 
+gris 
+gray 
+marrón 
+brown 
+morado 
+purple 
+negro 
+black 
+
+
+Las características negativas
+===============================
+malo bad 
+tonto stupid 
+furioso furious 
+aburrido boring 
+perezoso lazy 
+bruto crude 
+severo strict 
+agresivo hostile 
+cobarde cowardly 
+arrogante arrogant 
+insoportable ... intolerable 
+avaro ... greedy 
+avergonzados ... ashamed
+dolido ... ashamed
+embarrassed ... abochornado
+
+El tiempo
+==============
+lluvioso 
+rainy 
+nublado 
+cloudy 
+nevado 
+snowy 
+soleado 
+sunny 
+el termómetro 
+thermometer 
+el pronóstico 
+forecast 
+la temperatura 
+temperature 
+hace calor 
+it's hot 
+caluroso 
+warm 
+fresco 
+cool 
+hace frío 
+it's cold 
+helado 
+freezing 
+con neblina 
+foggy 
+con viento 
+windy 
+
+
+Los deportes
+==============
+el deportista 
+athlete (m) 
+la deportista 
+athlete (f) 
+el deporte 
+sport 
+el jugador 
+player (m) 
+la jugadora 
+player (f) 
+el equipo 
+team 
+el entrenamiento 
+training 
+el partido 
+game 
+la competición 
+competition 
+el campeonato 
+championship 
+el campeón 
+champion (m) 
+la campeona 
+champion (f) 
+el récord 
+record 
+ganar 
+to win 
+perder 
+to lose 
+
+
+Las características positivas
+================================
+bueno 
+good 
+simpático 
+nice 
+amable 
+friendly 
+sensible 
+sensitive 
+cariñoso 
+loving 
+alegre 
+cheerful 
+listo 
+clever 
+tímido 
+shy 
+serio 
+serious 
+correcto 
+polite 
+puntual 
+punctual 
+activo 
+active 
+gracioso 
+witty 
+
+
+El cuarto del bebé
+========================
+la cuna 
+crib 
+el carrito 
+stroller 
+la cuna mecedora 
+cradle 
+los bloques 
+blocks 
+el chupador, el chupete 
+pacifier 
+el oso de peluche 
+teddy bear 
+el móvil 
+mobile 
+el pañal 
+diaper 
+el biberón 
+bottle 
+la tetilla 
+nipple 
+el babero 
+bib 
+
+
+El cuerpo humano
+===================
+el pecho 
+chest 
+la espinilla 
+shin 
+el codo 
+elbow 
+la cabeza 
+head 
+la pierna 
+leg 
+el brazo 
+arm 
+la mano 
+hand 
+el pie 
+foot 
+el abdomen 
+abdomen 
+la cara 
+face 
+el ojo 
+eye 
+la boca 
+mouth 
+el cuello 
+neck 
+el hombro 
+shoulder 
+la espalda 
+back 
+el pezón, la mamila 
+nipple 
+la cintura 
+waist 
+las nalgas 
+buttocks 
+la cadera 
+hip 
+el muslo 
+thigh 
+la rodilla 
+knee 
+la pantorrilla 
+calf 
+
+
+El comedor
+==============
+el vaso 
+glass 
+la servilleta 
+napkin 
+el cuchillo 
+knife 
+el tenedor 
+fork 
+la cuchara 
+spoon 
+el plato 
+plate 
+la loza 
+china 
+el chinero, el aparador 
+china cabinet 
+el candil 
+chandelier 
+la jarra 
+pitcher 
+la mesa 
+table 
+el pimentero 
+pepper shaker 
+el salero 
+salt shaker 
+
+
+Los animales III
+===================
+la rata 
+rat 
+el ratón 
+mouse 
+el conejo 
+rabbit 
+la ardilla 
+squirrel 
+la ardillita 
+chipmunk 
+
+
+Las bicicletas y motocicletas
+==============================
+la rueda 
+wheel 
+el pedal 
+pedal 
+los rayos, el radio 
+spoke(s) 
+los manubrios 
+handlebars 
+la cadena 
+chain 
+la corona 
+sprocket 
+el triciclo 
+tricycle 
+el casco 
+helmet 
+la defensa 
+fender 
+el seguro 
+lock 
+el sillín 
+seat 
+el freno 
+brake 
+la bomba 
+pump 
+el cable 
+cable 
+el reflector 
+reflector 
+la válvula 
+valve 
+la llanta 
+tire 
+
+
+Los sentimientos positivos
+=============================
+feliz 
+happy 
+la alegría 
+joy 
+alegrarse 
+to be happy 
+contento 
+contented 
+tranquilo 
+calm 
+el amor 
+love 
+el cariño 
+affection 
+gustar 
+to like 
+tener ganas 
+to desire 
+la felicidad 
+happiness 
+
+
+El universo
+===============
+el agujero negro 
+black hole 
+el año luz 
+light year 
+el asteroide 
+asteroid 
+el astronauta 
+astronaut (m) 
+la astronauta 
+astronaut (f) 
+el cometa 
+comet 
+la constelación 
+constellation 
+el cosmos 
+cosmos 
+el eclipse 
+eclipse 
+la estación espacial 
+space station 
+la estrella 
+star 
+el extraterrestre 
+alien 
+la galaxia 
+galaxy 
+
+
+
+La gente
+===========
+el hombre 
+man 
+la mujer 
+woman 
+el chico 
+boy 
+la chica 
+girl 
+el bebé 
+baby 
+los niños 
+children 
+la gente 
+people 
+el anciano 
+old man 
+la anciana 
+old woman 
+
+
+
+En la playa
+===============
+las aletas 
+flippers 
+el alga 
+seaweed 
+la arena 
+sand 
+el traje de baño 
+swimsuit 
+la crema bronceadora 
+sun cream 
+la duna 
+dune 
+las gafas del sol 
+sunglasses 
+el mar 
+sea 
+la marea 
+tide 
+la marea alta 
+high tide 
+la marea baja 
+low tide 
+la sombrilla 
+parasol 
+la toalla 
+towel 
+
+
+Los pájaros
+=============
+el águila 
+eagle 
+el loro 
+parrot 
+el búho, la lechuza 
+owl 
+el cisne 
+swan 
+el pájaro carpintero 
+woodpecker 
+la gaviota 
+seagull 
+la paloma 
+dove 
+el ala 
+wing 
+el colibrí 
+hummingbird 
+el cuervo 
+crow 
+el pico 
+beak 
+el halcón 
+hawk 
+la pluma 
+feather 
+el pájaro azul 
+blue jay 
+el petirrojo 
+robin 
+el gorrión 
+sparrow 
+el cardenal 
+cardinal 
+
+
+
+El exterior de la casa
+==========================
+el techo 
+roof 
+la puerta 
+door 
+la ventana 
+window 
+la entrada de carros 
+driveway 
+el balcón 
+porch 
+la chimenea 
+chimney 
+el garaje 
+garage 
+la asoleadera 
+deck 
+
+
+Los peces
+==============
+el tiburón 
+shark 
+el pez espada 
+swordfish 
+la anguila 
+eel 
+el salmón 
+salmon 
+la raya 
+stingray 
+la trucha 
+trout 
+la cola 
+tail 
+la aleta 
+fin 
+
+
+Los envases
+===========
+la caja ...... box 
+la botella ... bottle 
+la bolsa ..... bag 
+el frasco .... jar 
+la lata ...... can 
+el paquete ... package 
+el cartón  ... carton 
+
+
+Los sentimientos negativos
+==============================
+triste 
+sad 
+la tristeza 
+sadness 
+llorar 
+to cry 
+la lágrima 
+tear 
+la vergüenza 
+shame 
+enfadarse 
+to become angry 
+enfadado 
+angry 
+aburrirse 
+to become bored 
+preocupado 
+worried 
+nervioso 
+nervous 
+la envidia 
+envy 
+envidioso 
+envious 
+el miedo 
+fear 
+
+
+
+Los insectos
+================
+la abeja 
+bee 
+la mariposa 
+butterfly 
+la hormiga 
+ant 
+el mosquito 
+mosquito 
+la mosca 
+fly 
+la araña 
+spider 
+el gusano de seda 
+caterpillar 
+el capullo 
+cocoon 
+la libélula 
+dragonfly 
+el ala 
+wing 
+el grillo 
+cricket 
+el saltamontes 
+grasshopper 
+la mantis 
+mantis 
+el alacrán 
+scorpion 
+la cucaracha 
+cockroach 
+el escarabajo 
+beetle 
+
+
+
+El dormitorio
+================
+la cama 
+bed 
+el despertador 
+alarm clock 
+la almohada 
+pillow 
+la cobija 
+blanket 
+el gavetero 
+chest of drawers 
+el espejo 
+mirror 
+el gancho 
+clothes hanger 
+el joyero 
+jewelry box 
+el peine 
+comb 
+el cepillo 
+brush 
+
+
+
+Las frutas
+============
+la manzana 
+apple 
+el plátano 
+banana 
+el limón 
+lemon 
+las uvas 
+grapes 
+la pera 
+pear 
+la piña 
+pineapple 
+el coco 
+coconut 
+el mango 
+mango 
+la papaya 
+papaya 
+la toronja, el pomelo 
+grapefruit 
+la naranja 
+orange 
+el limón 
+lime 
+la fresa 
+strawberry 
+el tomate 
+tomato 
+la cereza 
+cherry 
+
+
+
+Las joyas
+==========
+los aretes 
+earrings 
+el anillo 
+ring 
+el reloj de pulsera 
+watch 
+el collar 
+necklace 
+la pulsera 
+bracelet 
+las mancuernas 
+cufflinks 
+la cadena 
+chain 
+el prendedor 
+pin 
+
+
+
+Las tiendas
+===========
+la agencia de viajes 
+travel agency 
+la carnicería 
+butcher 
+la confitería 
+sweet shop 
+la floristería 
+flower shop 
+la tienda de fotografía 
+photo shop 
+la gasolinera 
+gas station 
+los grandes almacenes 
+department store 
+la papelería 
+stationers 
+la pastelería 
+cake shop 
+la peluquería 
+hairdressers 
+la pescadería 
+fish shop 
+
+
+
+Cuidado médico
+================
+los rayos equis 
+x-rays 
+la silla de ruedas 
+wheelchair 
+el enyesado 
+cast 
+el soporte 
+sling 
+el médico 
+doctor 
+el enfermero 
+nurse 
+la curita 
+Band Aid 
+la muleta 
+crutch 
+el estetoscopio 
+stethoscope 
+
+
+El centro
+===========
+el edificio de oficinas 
+office building 
+la esquina 
+corner 
+el letrero 
+street sign 
+el semáforo 
+traffic light 
+los apartamentos 
+apartment building 
+la vía peatonal 
+crosswalk 
+el edificio 
+building 
+el recibidor 
+lobby 
+la panadería 
+bakery 
+la oficina de correos 
+post office 
+el policía de tránsito 
+traffic cop 
+el cruce 
+intersection 
+el paradero de autobuses 
+bus stop 
+la banca 
+bench 
+el basurero 
+trashcan 
+el ascensor 
+elevator 
+
+
+La trasera del auto
+=====================
+las luces traseras 
+tail lights 
+las luces direccionales, los intermitentes 
+turn signals 
+la defensa trasera 
+rear bumper 
+la capota 
+trunk 
+la llanta de repuesto 
+spare tire 
+la gata, el gato 
+jack 
+el tapón 
+hubcap
+
+
+
+El trabajo doméstico
+=====================
+el ama de casa 
+housewife 
+la basura 
+garbage 
+el basurero 
+garbage can 
+limpiar 
+to clean 
+el polvo 
+dust 
+sacudir 
+to dust 
+el paño 
+dustcloth 
+la escoba 
+broom 
+barrer 
+to sweep 
+fregar 
+to scrub 
+el fregadero 
+kitchen sink 
+arreglar 
+to straighten up 
+la empleada, la muchacha 
+maid 
+la suciedad 
+filth 
+la limpieza 
+cleanliness 
+el cubo 
+bucket 
+el fregasuelos 
+mop 
+el cubo de basura 
+garbage pail 
+
+
+
+La oficina de correos
+=======================
+la estampilla 
+stamp 
+el sobre 
+envelope 
+el buzón 
+mailbox 
+la dirección 
+address 
+el remitente 
+return address 
+el cartero 
+letter carrier 
+el correo 
+mail 
+la carta 
+letter 
+la tarjeta postal 
+postcard 
+
+
+
+Las verduras
+================
+la lechuga 
+lettuce 
+el maíz 
+corn 
+los frijoles, las alubias 
+beans 
+la zanahoria 
+carrot 
+la papa, la patata 
+potato 
+la cebolla 
+onion 
+el brocoli 
+broccoli 
+la col 
+cabbage 
+la espinaca 
+spinach 
+las hierbas 
+herbs 
+el apio 
+celery 
+la alcachofa 
+artichoke 
+el tomate 
+tomato 
+
+
+
+Las heridas
+===========
+el ojo morado 
+black eye 
+la cortada 
+cut 
+el golpe 
+bruise 
+la quemadura 
+burn 
+
+
+
+La delantera del auto
+========================
+la capota 
+hood 
+las luces delanteras 
+headlights 
+el motor 
+engine 
+el parabrisas 
+windshield 
+la defensa delantera 
+front bumper 
+la antena 
+antenna 
+el filtro 
+air filter 
+la banda 
+belt 
+el acumulador 
+battery
+
+
+
+La sala
+==============
+el sofá sofa 
+la mesita central coffee table 
+la lámpara lamp 
+la mesita end table 
+el sillón reclinable recliner 
+la escalera staircase 
+el techo ceiling 
+la pared wall 
+la pintura painting 
+el jarrón vase 
+la repisa mantel 
+la silla chair
+
+
+
+El transporte público
+=======================
+el autobús 
+bus 
+el taxi 
+taxi 
+el tren 
+train 
+el avión 
+airplane 
+el tren subterráneo 
+subway 
+el tranvía 
+streetcar 
+el conductor 
+conductor 
+la plataforma 
+platform 
+el torniquete de entrada 
+turnstile 
+el ingeniero 
+engineer 
+
+
+
+El supermercado
+===================
+los alimentos congelados 
+frozen foods 
+los productos lácteos 
+dairy products 
+el estante 
+rack 
+la escala 
+scale 
+la canasta de compras 
+shopping basket 
+el pasillo 
+aisle 
+los productos enlatados 
+canned goods 
+las bebidas 
+beverages 
+los artículos de hogar 
+household goods 
+
+
+Las prendas masculinas
+=========================
+los pantalones trousers 
+los zapatos shoes 
+la camisa shirt 
+la corbata tie 
+el overol, el peto overalls 
+los calcetines socks 
+el traje suit 
+la camiseta undershirt 
+el calzoncillo under shorts 
+el suspensorio athletic supporter 
+la pajarita bow tie 
+el lazo string tie 
+el vestido 
+
+
+Los reptiles y anfibios
+=========================
+el caimán 
+alligator 
+la víbora 
+snake 
+la tortuga 
+turtle 
+la lagartija 
+lizard 
+el renacuajo 
+tadpole 
+la rana 
+frog 
+el cocodrilo 
+crocodile 
+la iguana 
+iguana 
+el camaleón 
+chameleon 
+
+
+Ropa de exteriores
+====================
+
+los guantes 
+gloves 
+la gorra 
+cap 
+las botas 
+boots 
+el abrigo 
+coat 
+la bufanda 
+scarf 
+la chaqueta 
+jacket 
+
+
+
+Gender of Nouns
+Masculine nouns that end in a consonant often have a corresponding feminine form that ends in -a.
+==================================================================================================
+
+el profesor
+la profesora
+
+el doctor
+la doctora
+
+el señor
+la señora
+
+
+
+Nouns that end in -sión, -ción, -dad, -tad, -tud, -umbre are feminine.
+======================================================================
+
+-sion  \
+-cion   \
+-dad     \  feminine
+-tad     /
+-tud    /
+-umbre /
+
+la televisión
+la decisión
+la conversación
+la habitación
+la ciudad
+la universidad
+la dificultad
+la libertad
+la actitud
+la gratitud
+la certidumbre ... certainly
+la muchedumbre ... crowd
+
+
+Some nouns that end in -a are masculine.
+=========================================
+
+el problema
+el telegrama
+el programa
+el mapa
+el sistema
+el poema
+el día
+el tema
+el clima
+el idioma
+el sofá
+el planeta
+
+
+Many nouns that end in -ma are masculine. Notice that eight of the twelve nouns listed above end in -ma.
+==========================================================================================================
+
+el telegrama
+el programa
+el problema
+el sistema
+el poema
+el idioma
+el clima
+el tema
+
+Note: A few nouns that end in -ma are feminine, such as la cama and la pluma.
+
+
+Four of the nouns that end in -a are simply exceptions and must be memorized.
+
+el día
+el mapa
+el planeta
+el sofá
+
+
+
+
+A few nouns that end in -o are feminine.
+
+la mano
+la radio
+
+Review of the rules learned in lesson 1 and lesson 2.
+
+Many nouns that denote living things have both a masculine and a feminine form. 
+Most nouns that end in -o are masculine. 
+Most nouns that end in -a are feminine. 
+Masculine nouns that end in a consonant often have a corresponding feminine form that ends in -a. 
+Some nouns that refer to people use the same form for both masculine and feminine. These nouns indicate gender by the article (el or la). 
+Nouns that end in -sión, -ción, -dad, -tad, -tud, -umbre are feminine. 
+Many nouns that end in -ma are masculine. 
+A few nouns that end in -o are feminine 
+
+Let's review the rules for making nouns plural.
+
+    * If a noun ends in a vowel, simply add -s.
+    * If a noun ends in a consonant, simply add -es.
+    * If a noun ends in a -z, change the z to c before adding -es.
+    * If a noun ends in ión, drop the written accent before adding -es.
+    * If the plural refers to a mixed group, use the masculine.
+    * For compound nouns, change "el" to "los".
+
+
+Spanish Compound Words Or Nouns
+
+    abre+latas   ...  open+cans = can opener
+	el abrelatas
+	los abrelatas
+
+	el paraguas
+	los paraguas  ...  for+water = umbrella
+
+Those Pesky Written Accents
+
+    Everything you always wanted to know about Spanish written accents—but were afraid to ask.
+
+
+
+   1. How do I type the written accents?
+
+   2. Why are there accents?
+
+   3. What are the rules?
+
+   4. An oral exercise on stress.
+
+Using Cryptic Codes
+
+If, for some reason, you don't want to change your keyboard, you can always type in the troublesome cryptic codes. Using this arcane system, the following codes apply:
+
+    * á = Alt + 0225
+    * é = Alt + 0233
+    * í = Alt + 0237
+    * ó = Alt + 0243
+    * ú = Alt + 0250
+    * ñ = Alt + 0241
+    * ü = Alt + 0252
+
+    * ¡ = Alt + 0161
+    * ¿ Alt + 0191
+
+Windows Vista
+
+   1. Start-->Control Panel-->Clock, Language, Region-->Change Keyboards
+   2. New Window: Click the Change Keyboards button
+   3. New Window: Click the Add button
+   4. Select United States-International keyboard
+   5. Click OK
+   6. From drop down menu (Default Input Language) select United States International
+
+Using the U.S. - International Keyboard
+
+If you followed the above directions carefully, your keyboard will now react slightly differently than it did before. First of all, notice that if you 
+strike the single apostrophe (') key, nothing happens. To type the single apostrophe now, you must strike the single apostrophe key and then strike the 
+space bar. When you strike the spacebar, the apostrophe will appear.
+
+The next thing to note is that the quotes (") key behaves the same way as the apostrophe key. You must first strike the quotes key and then strike the 
+space bar in order to create the (") symbol. These two minor inconveniences are more than made up for by the ease with which you can now type the special 
+characters.
+
+To type the special characters, two keystrokes are required. To type the á, you need only strike the apostrophe key and then the letter a. The other 
+characters are just as easy:
+
+    * á = ' + a
+    * é = ' + e
+    * í = ' + i
+    * ó = ' + o
+    * ú = ' + u
+    * ñ = ~ + n
+    * ü = " + u
+
+To type the special punctuation characters, you need to hold down on the Alt key while you strike the appropriate punctuation mark. On some keyboards, 
+only one of the two Alt keys will work for this.
+
+    * ¡ = Alt (hold down) + !
+    * ¿ = Alt (hold down) + ?
+
+
+Telling Time In Spanish
+
+If you'd like to be more specific, and say that a time is in the morning, or that it is in the afternoon/evening, you can add the following expressions:-
+
+de la mañana (in the morning)
+
+de la madrugada (in the wee hours of the morning)
+
+de la tarde (in the afternoon)
+
+de la noche (in the evening)
+
+For example, to say seven in the morning, use
+
+    Son las siete de la mañana.
+
+
+Cutlery
+glass 	el vaso
+pitcher 	la jarra
+table 	la mesa
+fork 	el tenedor
+knife 	el cuchillo
+spoon 	la cuchara
+salt shaker 	el salero
+pepper shaker 	el pimentero
+napkin 	la servilleta
+
+
+Shows & Movies
+A Prueba De Todo
+
+
+Vocabulary - IS
+
+ventana - window
+
+Vocabulary - Military
+
+patrol - patrulla, patrullar
+stone  - piedra
+to hurt's one's foot - hacerse daño en un pie 
+
+References:
+
+iGoogle
+http://www.google.com/ig
+
+Spanish Dict
+http://www.spanishdict.com/
+
+Spanish Verb Conjugator - dejar
+http://www.123teachme.com/spanish_verb_conjugation/dejar
+
+Verbs Derived from 'Decir'
+http://spanish.about.com/od/usingparticularverbs/qt/prefix_decir.htm
+
+www.200words-a-day
+http://www.200words-a-day.com/spanish-for-say.html
+
+Spanish Verb Conjugation Trainer > Present Tense
+http://www.spaleon.com/pres.php?id13=1&personal=1&buttonclick=Personal+selection%21
+
+Los Diablos ... a method for mastering the irregular Spanish verbs
+http://www.geocities.com/Athens/Thebes/6177/ws-vtables.html
+
+Learn Spanish with Spanish courses by e-mail
+http://www.elemadrid.com/spanish_language.htm
+
+Online Chatrooms in Spanish, French, Chinese and Other Foreign Languages
+http://mylanguageexchange.com/TextChat.asp
+
+Study Spanish
+http://www.studyspanish.com/vocab/games/courtla-oral.htm
+
+Study Spanish - Accents and characters
+http://www.studyspanish.com/accents/typing.htm
+
+Verb Flash Cards
+http://www.studyspanish.com/lessons/verb-flashcards.htm
+
+diccionarios.com
+http://www.diccionarios.com
+
+BBC - Languages - Spain
+http://www.bbc.co.uk/languages/spanish/index.shtml

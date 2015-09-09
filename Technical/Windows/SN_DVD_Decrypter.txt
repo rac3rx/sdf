@@ -1,0 +1,72 @@
+<!-- ******************************************************* --> 
+<!-- *  File: SN_DVD_Decrypter_25JAN09.txt                 * -->
+<!-- *  Author:   Anonymous                                * --> 
+<!-- *  File:     /home/rac3rx/html/index.html             * --> 
+<!-- *  Purpose:  Backup a personal DVD for home use.      * --> 
+<!-- *  Date:     21JAN09                                  * --> 
+<!-- ******************************************************* --> 
+
+How to backup you DVD collection for free.
+
+    STEP 01:  Download the program DVD Decryptor from the following URL:
+              
+              mrbass.org
+              http://www.mrbass.org/dvdrip/SetupDVDDecrypter_3.5.4.0.exe
+
+    STEP 02:  The filename and hashes of the program are listed down 
+              below to verify the confidentiality and integrity of the       <-- need easy gui for newbs
+              program to ensure that it hasn't been hacked or corrupted.
+
+                  Filename:  SetupDVDDecrypter_3.5.4.0.exe
+                  MD5 hash:  78d806097da8e8b8d595827cccddf6d9
+                  SHA1 hash: 4cd617d8bdad9b2175b1cf688780945ec5f2335d
+
+    STEP 03:  
+
+A little history.
+
+    Lightning UK! is the author or programmer of this application.
+
+The law and backing up DVDs within the US.
+
+    
+
+
+
+References:
+
+mrbass.org
+http://www.mrbass.org/dvdrip/SetupDVDDecrypter_3.5.4.0.exe
+
+Wikipedia - DVD Decryptor
+http://en.wikipedia.org/wiki/DVD_Decrypter
+
+DVD Decrypter guide
+http://www.doom9.org/index.html?/dvddec.htm
+
+ImgBurn
+http://en.wikipedia.org/wiki/ImgBurn
+
+Digital Millennium Copyright Act
+http://en.wikipedia.org/wiki/Digital_Millennium_Copyright_Act
+
+Fair use doctrine in the US copyright law
+http://en.wikipedia.org/wiki/Fair_use
+
+Copy a DVD5 with DVD Decrypter
+http://www.digitalfaq.com/dvdguides/dvdcopy/decrypter/decrypter.htm
+
+DVD Decrypter ripper | DVD43 on-the-fly decryption | RCE Protection
+http://www.mrbass.org/dvdrip/
+
+
+DVD Decrypter - SetupDVDDecrypter_3.5.4.0.exe
+MD5: 78d806097da8e8b8d595827cccddf6d9
+SHA1: 4cd617d8bdad9b2175b1cf688780945ec5f2335d
+Freeware : Windows
+
+DVD Shrink 3.2.0.15 - dvdshrink32setup.zip
+MD5: e6b0a6346fe640365f4ab9d5c7d9fb93
+SHA1: 011c6a1caa485c54b585d774d6438473ce5f9b39
+Freeware : Windows
+http://www.cleansoftware.org/utility/

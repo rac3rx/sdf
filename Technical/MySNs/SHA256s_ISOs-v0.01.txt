@@ -1,0 +1,106 @@
+How do I download the CD or DVD images to begin my installation of Red Hat Enterprise Linux?
+https://access.redhat.com/articles/142303
+
+
+rhel-server-7.0-x86_64-dvd.iso
+
+http://ftp.redhat.com/redhat/rhel/rc/7/Workstation/x86_64/iso/rhel-workstation-7.0-x86_64-dvd.iso
+
+http://ftp.redhat.com/redhat/rhel/rc/7/Server/x86_64/iso/rhel-server-7.0-x86_64-dvd.iso
+
+RHEL 7.0 Binary DVD
+==============================
+rhel-server-7.0-x86_64-dvd.iso
+SHA-256: 85a9fedc2bf0fc825cc7817056aa00b3ea87d7e111e0cf8de77d3ba643f8646c
+
+
+RHEL 7.0 Supplementary DVD
+==============================
+supp-server-7.0-rhel-7-x86_64-dvd.iso
+SHA-256: 75177a35b0c4e55086bdddc9e820d88a14ceef0b4e1ca0f2181df1c94020035f
+
+
+Boot ISO
+==============================
+rhel-server-7.0-x86_64-boot.iso
+SHA-256: b7a4f8b4d0132776ea20147abbb0a605d1a506ece92c704af5ab50796edc9a9b
+
+Key Words:
+Oracle Linux 7
+http://www.oracle.com/technetwork/server-storage/linux/downloads/oracle-linux-7-2170224.html
+
+REF:
+http://www.cyberciti.biz/faq/rhel-centos-fedora-linux-yum-command-howto/
+http://www.redhat.com/solutions/industry/education/subscription.html
+http://www.redhat.com/products/enterprise-linux/server/
+
+LEARN MORE ABOUT RED HAT ENTERPRISE LINUX 7
+
+Attend the Virtual Event and Webcast:
+To join the virtual event or view the replay after the event, visit http://bit.ly/RHELjune10.
+Read the press release:
+http://www.redhat.com/about/news/press-archive/2014/6/red-hat-unveils-rhel-7
+Download Red Hat Enterprise Linux 7 (requires login): https://access.redhat.com/site/products/Red_Hat_Enterprise_Linux/
+Access the documentation (requires login):
+Red Hat Enterprise Linux 7 documentation:
+https://access.redhat.com/site/documentation/en-US/Red_Hat_Enterprise_Linux/7/
+Release notes:
+https://access.redhat.com/site/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/7.0_Release_Notes/index.html
+Developing on Red Hat Enterprise Linux 7:  https://access.redhat.com/site/products/red-hat-enterprise-linux/developers
+Get the latest news via the Red Hat Enterprise Linux Blog:
+http://rhelblog.redhat.com
+
+
+
+
+code: fciv
+http://www.computerweekly.com/tip/How-to-use-the-Microsoft-FCIV-command-line-checksum-tool
+--snip--
+C:\Users\christopher.hammond\Downloads>fciv -r -add C:\Users\christopher.hammond\Downloads -type *.iso -XML dl_ISOs.xml
+--snip--
+
+http://gallery.technet.microsoft.com/PowerShell-File-Checksum-e57dcd67
+sha256
+Useful examples
+Here are few useful examples you can use:
+
+Start-PsFCIV -Path C:\tmp -XML DB.XML 
+Checks all files in C:\tmp folder by using SHA1 hash algorithm.
+
+Start-PsFCIV -Path C:\tmp -XML DB.XML -HashAlgorithm SHA1, SHA256, SHA512 -Recurse 
+Checks all files in C:\tmp folder and subfolders by using SHA1, SHA256 and SHA512 algorithms
+
+Start-PsFCIV -Path C:\tmp -Include InstallPackage.msi -XML DB.XML -HashAlgorithm SHA512 
+Checks only InstallPackage.msi file in C:\tmp folder by using SHA512 hash algorithm.
+
+Start-PsFCIV -Path C:\tmp -XML DB.XML –Rebuild 
+Rebuilds DB file, by removing all unused entries (when an entry exists, but the file does not exist) from the XML file and add all new files that has no records in the XML file using SHA1 algorithm. Existing files are not checked for integrity consistence.
+
+Start-PsFCIV -Path C:\tmp -XML DB.XML -HashAlgorithm SHA256 -Action Rename 
+Checks all files in C:\tmp folder using SHA256 algorithm and renames files with Length, LastWriteTime or hash mismatch by adding .BAD extension to them. The 'Delete' action can be appended to delete all bad files.
+
+Start-PsFCIV -Path C:\tmp -XML DB.XML -Show Ok, Bad 
+
+--snip--
+C:\Users\christopher.hammond\Downloads>fciv -r -add C:\Users\christopher.hammond\Downloads -type *.iso -XML dl_ISOs.xml
+Start-PsFCIV -Path C:\tmp -Include InstallPackage.msi -XML DB.XML -HashAlgorithm SHA512 
+--snip--
+
+
+Start-PsFCIV -Path C:\Users\christopher.hammond\Downloads\ISOs -Include *.iso -XML DB.XML -HashAlgorithm SHA256 
+
+
+Checks all files in C:\tmp folder using SHA1 algorithm and shows filenames that match Ok or Bad category.
+
+Start-PsFCIV -Path C:\temp -HashAlgorithm SHA1, SHA256, SHA512 -Online 
+Performs file hash calculation and passes output objects to a pipeline without using XML database.
+
+
+
+CentOS-7.0-1406-x86_64-Everything.iso
+=====================================================================
+sha256sum:
+ee505335bcd4943ffc7e6e6e55e5aaa8da09710b6ceecda82a5619342f1d24d9
+
+* CentOS-7.0-1406-x86_64-Everything.iso
+  Size: 7062159360

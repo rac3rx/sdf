@@ -1,0 +1,76 @@
+::  -------------------------------------------------------------------------- 
+::  File:  mkHTML_Index-v0.01.bat.txt 
+::  Purpose:  create an index of MS src code
+::  Author:  SFC Hammond, Christopher J. 
+::  Date:  13/01/2011 
+::  -------------------------------------------------------------------------- 
+ 
+:: (Place maintenance record here) 
+ 
+@ECHO OFF & SETLOCAL ENABLEEXTENSIONS ENABLEDELAYEDEXPANSION
+GOTO START 
+ 
+::  (Place syntax, notes, or other instructions heres) 
+ 
+:START 
+ 
+:: ensure temp directory exists c:\temp  
+IF NOT EXIST "C:\Temp" (  
+mkdir c:\Temp  
+)  
+IF EXIST "C:\Temp" ( 
+ECHO Temp directory on root of C drive exists 
+) 
+ 
+:: Variables 
+SET FILE=someFile 
+SET TEMP=C:\TEMP 
+SET URL="someURL" 
+ 
+:: Offspring Variables 
+SET FILEOPTS=/quiet /norestart /log c:\temp\%FILE%_%KB%_Log.txt 
+SET PATH=%PATH%;C:\TEMP\BIN 
+SET LOG=%TOTALD%_-_InstallLog.txt 
+SET VERSION=~0,8
+
+:: ECHO ^<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"^> > MS_srcIndex.html
+
+ECHO ^<!-- ******************************************************* --^> > MS_srcIndex.html 
+ECHO ^<!-- *  File:     /www/nz/r/rac3rx/index.html              * --^> >> MS_srcIndex.html 
+ECHO ^<!-- *  Author:   Anonymous                                * --^> >> MS_srcIndex.html 
+ECHO ^<!-- *  Purpose:  To present and share my homepage in an   * --^> >> MS_srcIndex.html 
+ECHO ^<!-- *            organizable fashion.                     * --^> >> MS_srcIndex.html 
+ECHO ^<!-- *  Date:     %DATE%                               * --^> >> MS_srcIndex.html 
+ECHO ^<!-- ******************************************************* --^> >> MS_srcIndex.html 
+ECHO. >> MS_srcIndex.html
+ECHO ^<!-- ******************************************************* --^> >> MS_srcIndex.html 
+ECHO ^<!-- *  Updates and Changes                                * --^> >> MS_srcIndex.html
+ECHO ^<!-- *  Date:  someDATE                                    * --^> >> MS_srcIndex.html 
+ECHO ^<!-- ******************************************************* --^> >> MS_srcIndex.html
+ECHO. >> MS_srcIndex.html
+ECHO ^<HTML^> >> MS_srcIndex.html
+    ECHO ^<HEAD^> >> MS_srcIndex.html
+	ECHO ^<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"^> >> MS_srcIndex.html
+        ECHO ^<meta name="description" content="xxxxxxxxxxxxsomeDescription"^> >> MS_srcIndex.html
+        ECHO ^<meta name="GENERATOR" content="vim"^> >> MS_srcIndex.html
+        ECHO ^<meta name="ProgId" content="vim.Document"^> >> MS_srcIndex.html
+        ECHO ^<TITLE^> >> MS_srcIndex.html
+        ECHO someTitlexxxxx >> MS_srcIndex.html
+        ECHO ^</TITLE^> >> MS_srcIndex.html
+    ECHO ^</HEAD^> >> MS_srcIndex.html
+    ECHO ^<BODY^> >> MS_srcIndex.html
+    ECHO ^<BODY BGCOLOR="BLACK"^> >> MS_srcIndex.html
+        ECHO ^<BODY TEXT="GREEN"^> >> MS_srcIndex.html
+	    ECHO ^<FONT SIZE=+0 FACE="ARIAL"^> >> MS_srcIndex.html
+        ECHO ^<HR COLOR="#80ff80"^> >> MS_srcIndex.html
+        ECHO ^<h4^>Updates and Changes    ^</h4^> >> MS_srcIndex.html
+        ECHO ^<P font size=-1 face="arial" ALIGN=LEFT^> >> MS_srcIndex.html
+    ECHO someDate - xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx >> MS_srcIndex.html
+        ECHO ^</P^> >> MS_srcIndex.html
+for %%i in (*.bat.txt) do echo ^<A HREF="./%%i"^>%%i^</A^>^<BR^> >> MS_srcIndex.html
+    ECHO ^</BODY^> >> MS_srcIndex.html
+ECHO ^</HTML^> >> MS_srcIndex.html
+
+endlocal 
+
+:EOF 

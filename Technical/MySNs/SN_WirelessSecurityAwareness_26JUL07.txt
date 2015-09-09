@@ -1,0 +1,348 @@
+File:  SN_WirelessSecurityAwareness.txt
+
+TIA-WIRE-3200 Wireless Security Awareness
+https://iatraining.us.army.mil/_p2g/header2gen.php#
+
+This module provides an overview of Wireless Security Awareness Topics.
+
+Prerequisite: Site Introduction, RQ-001
+
+Wireless
+
+TIA-WIRE-3200 Wireless Security Awareness
+Wireless Security Awareness
+
+In this training module you will learn how to:
+
+Task: 
+You will learn about: 
+The Risks of Wireless Technology 
+The different Types of Wireless Technology
+Benefits of Wireless Technology 
+Conditions: 
+Given the following: 
+Wireless Security Awareness training slides
+Standard: 
+You will gain an understanding of: 
+Wireless Technology
+Security Standards and Risks 
+Securing Wireless Networks
+
+Wireless
+
+TIA-WIRE-3200 Wireless Security Awareness
+Module Training Outline
+
+During this module you will cover the following topics. If you are familiar with some of the topics you may skip ahead. 
+
+Introduction
+Risks of Wireless Technology
+Types of wireless technology 
+Wireless Cellular Evolution Data-Only, or EvDO)
+WiFi
+Bluetooth
+If security is such an issue, why go wireless? 
+Wireless Security Standards 
+Administrative Requirements Summary
+Wireless LAN Requirements Summary 
+precautions
+Wireless PED Requirements Summary 
+anti-virus
+wireless communication 
+identification and authentication 
+Personal Area Networks (PAN)
+Web-enabled PEDs 
+security measures 
+Summary of Standards for Implementing Wireless LANs
+Securing Wireless Networks
+Review Questions
+Review Answers
+Conclusion
+
+Wireless
+
+TIA-WIRE-3200 Wireless Security Awareness
+Introduction
+
+Wireless technology is everywhere these days. Go into any hotel, bookstore, library or coffee shop and you’re likely to find access to a wireless network of some kind. In addition, it’s very likely that wireless technology is being knowingly and unknowingly utilized within Army facilities whether or not wireless security policies are in place. This is why it is important to understand the risks of insecure wireless access points and wireless client adapters, and to know how to discover these vulnerabilities and secure them appropriately.
+
+Please read the following documents for more information on DoD and Army Wireless Security Standards:
+
+ 
+
+DoDD Policy 8100.2 (http://www.dtic.mil/whs/directives/corres/html/81002.htm)  
+Army Regulation AR 25-02 (http://www.usapa.army.mil)  
+Army Wireless Security Standards (Jun 2004) 
+
+Wireless
+
+TIA-WIRE-3200 Wireless Security Awareness
+Risks of Wireless Technology
+
+Wireless signals are radio transmissions and can be intercepted by receiving devices and/or jammed intentionally. Data transmissions that are not encrypted—or are encrypted inadequately—can be intercepted, read and understood quickly and easily. Therefore, any data sent through a wireless network is at risk. 
+
+In addition, if incorrectly configured and monitored, a wireless network can allow unauthenticated or unauthorized users to access internal IP addresses and perform any action that an authorized user might be able to perform. This not only leaves internal networks open to attacks, but also jeopardizes any network accessible through the infrastructure of the hacked network. 
+
+Wireless
+
+TIA-WIRE-3200 Wireless Security Awareness
+Types of wireless technology - Wireless Cellular (Evolution Data-Only, or EvDO)
+
+Currently, wireless cellular connections are the easiest to secure of all wireless options, if configured correctly. EvDO solutions are mobile access solutions that rely on commercial cellular infrastructure. Because connectivity occurs only at Layer 3 (Network) and access is completely remote, wireless cellular connections provide a wide area network (WAN) connectivity that limits access and interception. Level 2 vulnerabilities are limited and interception of data would require very expensive cellular equipment, which may deter those who would attempt to capture data in transit. An additional security measure is the Army requirement for encryption of data in transit with the use of Virtual Private Network (VPN) capabilities, or Thin Client solutions (i.e CITRIX) for all mobile connectivity solutions. 
+
+Wireless
+
+TIA-WIRE-3200 Wireless Security Awareness
+Types of wireless technology - WiFi
+
+WiFi is a wireless Ethernet connection and was designed to mimic a local area network (LAN) connection. WiFi solutions are used to extend trusted wired LANs, as well as for connectivity for mobile workers via commercial LANs and wireless LANs (WLANs). Unfortunately, WLAN connections are not local; they can easily extend beyond your location. Just because the signal strength listed in the product specs seems acceptable doesn’t mean that someone beyond this cannot receive your signal with the right tools (i.e. more powerful antennas). WLAN connections are vulnerable at both Layers 2 and 3 and data transmissions are easy to intercept and view using inexpensive commercial wireless adapters and free software tools. Frequencies can be jammed easily (sometimes unintentionally) with any of a number of readily available transmission devices. 
+
+Wireless
+
+TIA-WIRE-3200 Wireless Security Awareness
+Types of wireless technology - Bluetooth
+
+Bluetooth devices may seem more convenient than their wired counterparts, but consider their vulnerabilities and they become more of a threat than a benefit. While Bluetooth headsets, printers, mice, keyboards and other tools are portable and seem less-encumbered, they are very insecure. Most devices are unable to secure data in transit, and their configuration requirements leave users vulnerable to attacks that can record every action of the user (i.e. recording keystroke or mouse clicks).
+
+Wireless
+
+TIA-WIRE-3200 Wireless Security Awareness
+If security is such an issue, why go wireless?
+
+Wireless networks can be an inexpensive and convenient solution to expansion of LANs. Wireless networking can also grant users of laptops and portable electronic devices (PED) the ability to operate outside traditional physical network boundaries, providing easier access to their installations' networks while traveling in the facility or working in locations without a typical network port available. In addition, with the increased availability of public wireless access points ("hot spots"), as well as the inclusion of wireless network cards in most current portable electronic devices, avoiding wireless networks is nearly impossible. In response to the recent rise of wireless technology, the Army has developed Wireless Security Standards.
+
+
+Wireless
+
+TIA-WIRE-3200 Wireless Security Awareness
+Wireless Security Standards - Administrative Requirements Summary
+
+The DAA is responsible for ensuring that all WLAN and PED technologies adhere to the requirements outlined in AR 25-2 and 
+the Wireless Security Standards BBP. If any fielded WLAN and PED technologies are not in compliance with these minimum 
+requirements, a migration plan must be developed within four months to ensure the systems will meet requirements. The 
+DAA is responsible for approving and maintaining migration plans as part of a system’s acceptable level of risk 
+determination. Any WLAN not in compliance and connected to an Army network processing sensitive but unclassified 
+information should be immediately disconnected until approved.
+
+In addition, Directorate of Information Management (DOIM) offices should identify and monitor all wireless gateways and access points (AP) under their jurisdiction. They should have the ability to run Wireless Intrusion Detection Systems (WIDS) and be able to perform scans to locate authorized and rogue APs. All running wireless APs must be approved by the DOIM and accredited. 
+
+Wireless
+
+TIA-WIRE-3200 Wireless Security Awareness
+Wireless Security Standards - Wireless LAN Requirements Summary
+
+All pilot and fielded wireless LANs and PEDs with LAN connectivity must meet the same certification and accreditation security requirements as wired LAN Information Systems (IS). In addition, wireless solutions should be engineered to preclude backdoors and trapdoors into the Army’s LANs. Systems must meet all Information Assurance Vulnerability Message (IAVM) compliance requirements.
+
+Commercial off-the-shelf (COTS) products generally arrive with factory default settings that don’t provide acceptable security. Wireless equipment that connects to a LAN must be configured appropriately to provide acceptable security coverage.
+
+When acquiring wireless LAN equipment, you should consider the IEEE publication 802.11 series as the industry standard.
+
+Prior to installing and implementing wireless LAN technology, thorough testing, analysis and risk assessment must be completed to determine the risk of information interception/monitoring and network intrusion. Secure wireless networks require Layer 2 (Data Link) security. It also is necessary to ensure that a user cannot enter a wireless network without strong authentication.
+
+Wireless
+
+TIA-WIRE-3200 Wireless Security Awareness
+Wireless Security Standards - Wireless LAN Requirements Summary
+
+In addition, the following precautions should be taken:
+
+Ensure that the ESSID/SSID broadcast option is disabled so that wireless access points cannot be identified.
+Wireless devices such as laptops, PDAs and other PEDs that connect to a network must meet current Certification and Accreditation standards. No wireless connectivity will be authorized if the wired infrastructure that is extended is not accredited.
+Standards for wireless devices should meet the AR 25-2, Information Assurance requirements. If they do not meet these requirements (particularly FIPS 140-2 Level II compliancy for cryptography), they must meet the following minimum-security standards to secure the connection and the transmission of data: 
+Software encryption solutions: The vendor's encryption solution must be certified by NIST at FIPS 140-2 (level 1 minimum) and must be listed as a certified module on the NIST website.
+Hardware or firmware-based encryption solutions: The vendor's encryption solution must be certified by NIST at FIPS 140-2 (level 2 minimum) and must be listed as a certified module on the NIST website. 
+NOTE: These interim standards are non-waiverable and interim products require a migration plan to the approved standard once designed and identified.
+All IA products used to secure Wireless devices/architectures must be NIAP certified, or in the NIAP Common Criteria certification process at the appropriate Evaluation Assurance Level (EAL). Wireless Client devices connecting to wireless architectures, whether on the host installation or through remote access via commercial internet service providers, must utilize approved host based protection mechanisms (firewall, intrustion detection/prevention, anti-virus, and data protection mechanisms for both "at rest" and "in transit" data).
+
+Wireless
+
+TIA-WIRE-3200 Wireless Security Awareness
+Wireless PED Requirements Summary - Anti-virus
+
+PEDs must support anti-virus products and updating capabilities. All signature files that are used to profile and identify viruses, worms and malicious code must be maintained and updated regularly.
+
+Wireless
+
+TIA-WIRE-3200 Wireless Security Awareness
+Wireless PED Requirements Summary - Wireless Communication
+
+PEDs with wireless communication capabilities are not permitted inside sensitive compartmented information facilities (SCIF), classified, or restricted areas without proper precautions (see Wireless Security Standards BBP for more information on these precautions). The agency in charge of any SCIF, classified or restricted facility has the authority to take any steps necessary to ensure physical security and prevent introduction of these devices to sensitive areas.
+
+Wireless
+
+TIA-WIRE-3200 Wireless Security Awareness
+Wireless PED Requirements Summary - Identification and Authentication
+
+PEDs without strong identification and authentication may NEVER be used to store, process, or transmit official Army information. The DoD public key infrastructure (PKI) and digital certificates will be used to the greatest extent possible to support security solutions for user identification and authentication, data confidentiality and non-repudiation when using PEDs for wireless communications.
+
+Wireless
+
+TIA-WIRE-3200 Wireless Security Awareness
+Wireless PED Requirements Summary - Personal Area Networks (PAN)
+
+Personal Area Networks (PAN), including Bluetooth technologies, will not be utilized for transmitting sensitive information unless the data is encrypted with a FIPS 140-2 Level I (software) or Level II (hardware) validated crypto module. Bluetooth should not be utilized as the sole mechanism for transmission of unencrypted Army data, not even to a printer, as there is no known inherent security planned for this technology. Transmission distances can reach up to 300 feet, therefore NO Army information should be sent in the clear using PAN technology unless secured using approved FIPS 140-2 validated encryption.
+
+Wireless
+
+TIA-WIRE-3200 Wireless Security Awareness
+Wireless PED Requirements Summary - Web-enabled PEDs
+
+Web-enabled PEDs that rely on wireless access protocol (WAP) and/or use commercial wireless network providers are at risk for information compromise. Data may not be transmitted in this situation unless the data is encrypted end-to-end using a FIPS-validated crypto module. Any WAP gateway installed in the top-level architecture (TLA) of Army installation networks to provide access to web-servers must be properly controlled and monitored by firewalls and intrusion detection systems at a minimum.
+
+The use of any wireless device must be coordinated with the local Army frequency manager prior to purchase. Wireless devices may not be used in other countries, as each country allocates its frequency resources differently.
+
+All wireless devices procured with Army funds must be certified for spectrum supportability through the Military Communications Electronics Board per DoDD 5000.1 and AR 5-12.
+
+All users of wireless PEDs must receive security awareness training that addresses physical and information security vulnerabilities of the device.
+
+Wireless
+
+TIA-WIRE-3200 Wireless Security Awareness
+Wireless PED Requirements Summary - 
+
+The following security measures should be in place at any Army command/activity whose members use PEDs that synchronize with desktop or laptop computers on the Army networks: 
+
+Only use DAA approved applications  
+PEDs may connect to unclassified computers ONLY 
+PEDs may NOT store passwords, combinations, personal identification numbers (PINs) and/or classified information 
+PEDs may NOT utilize remote connectivity features (i.e. wireless network connection) while physically connected to a desktop or laptop personal computer, especially if this computer is connected to a physical network. 
+
+Wireless
+
+TIA-WIRE-3200 Wireless Security Awareness
+Summary of Standards for Implementing Wireless LANs
+
+All wireless solutions must use encryption that is certified to FIPS 140-2 Level I (software) or Level II (hardware), and must protect Layer 2 (Data-Link) with an approved FIPS 140-2. 
+
+In addition, wireless solutions/architectures must be able to detect and prevent association with rogue access points, and should be set up to allow only authorized devices and users to access the wireless network. They must also incorporate a location aware protection scheme that enforces security policies based on location, connection interface, and wireless access points.
+
+Wireless
+
+TIA-WIRE-3200 Wireless Security Awareness
+Securing Wireless Networks
+
+As these previously summarized standards suggest, the good news is that it is possible to secure wireless networks. Accredited WLAN technology is available, including tools on the Army’s IA Approved Products List. Only tools on this list have been validated, are in the NIAP process and have been evaluated by a DoD lab. These accredited products meet all current Federal, DoD and Army requirements: Layer 2 (Data-Link) security; FIPS 140-1/2 compliant cryptography; and end-to-end FIPS 140-1/2 certified encryption solutions.
+
+You can read the FIPS 140-2 regulations and verify certification of products at the following website: http://www.itl.nist.gov/fipspubs/by-num.htm. 
+You can also check NIST certified encryption modules at: 
+http://cs-www.ncsl.nist.gov/cryptval/140-1/1401val.htm. 
+You can verify products that are in the process of becoming NIAP Certified at: 
+http://www.nsa.gov/ia/industry/niap.cfm  
+You can review the U.S. Army IA Approved Products List at the following website:
+https://informationassurance.us.army.mil/ia_tools/IAProducts.xls 
+
+Wireless
+
+TIA-WIRE-3200 Wireless Security Awareness
+Review Questions
+
+Wireless systems are not required to meet Information Assurance Vulnerability Message (IAVM) compliance requirements. 
+True
+*False
+An incorrectly configured wireless network can allow unauthorized users to access internal IP addresses and perform any action authorized users can perform.
+*True
+False
+The DAA is responsible for approving and maintaining migration plans as part of a system’s acceptable level of risk determination? 
+*True
+False
+
+Wireless
+
+TIA-WIRE-3200 Wireless Security Awareness
+Conclusion 
+
+ 
+
+In this module you learned about the Wireless networks and the benefits and potential security risks associated with this type of network. You also learned about the security standards and ways to secure this type of network.
+
+You have covered the following main areas:
+
+Risks of Wireless Technology
+Types of wireless technology
+if security is such an issue, why go wireless?
+Wireless Security Standards
+Securing Wireless Networks
+ 
+
+You have completed module TIA-WIRE-3200.
+
+NOTES:
+
+****25-2****
+4–28. Portable electronic devices
+Portable electronic devices (PEDs) are portable ISs or devices with the capability of wireless or LAN connectivity.
+These include, but are not limited to, cell phones, pagers, personal digital assistants (PDAs) (for example, Palm Pilots,
+Pocket PCs), laptops, and two-way radios. Current technologies (infrared, radio frequency, voice, video, microwave)
+allow the inclusion of several of these capabilities within a single device and dramatically increase the risks associated
+with IS and network access. Management of these devices will be as follows—
+a. PEDs containing wireless communications or connectivity, audio, video, recording, or transmission capabilities
+will be prohibited from areas where classified information is discussed or electronically processed, unless specifically
+permitted as an exception by the DAA and all classification, access, and encryption restrictions are enforced for the
+PED as they would be for a classified device.
+b. Implement identification and authentication measures at both the device and network level if connectivity is
+approved. Voice does not require DOD PKI IA.
+c. PEDs will support PKI, digital certificates, FIPS, or NSA validated crypto modules or data encryption standards
+appropriate for the classification level of the information processed.
+d. Provide all PED users with security awareness training regarding the physical and information security vulnerabilities
+and policies of the device.
+e. Contractor provided or owned PEDs (if approved) will be stated as mission essential in contracts, and will meet
+all C&A standards and are subject to inspections and IA requirements as any other IS.
+4–29. Wireless local area networks
+Wireless LANs are extensions of wired networks and will implement IA policies and procedures in accordance with
+this and other applicable regulations. Non-compliant wireless LANs must have migration plans that ensure the systems
+will meet the minimum requirements of this policy. The DAA is responsible for maintaining these migration plans as
+part of his or her acceptable level of risk determination. All Army organizations and activities operating WLANs will
+comply with the following and as supplemented in BBPs–—
+a. Pilot and fielded wireless LANs and PEDs with LAN connectivity will meet the same C&A and IA security
+requirements as wired LAN ISs in accordance with this regulation, AR 380–53, AR 25–1, and DODIs 5200.40 and
+8500.2.
+b. DOIMs and IAMs must ensure that all WLANs that connect to the installation undergo NETCOM CCB and C&A
+processes.
+c. Engineer wireless solutions to preclude backdoors.
+d. Where wireless LANs are implemented or proposed, thorough analysis, testing, and risk assessments must be
+done to determine the risks associated with potential information intercepts or monitoring, TEMPEST emanations, and
+network vulnerability.
+e. The use of AV software on wireless-capable ISs and devices is required.
+f. Users will use access authentication on the system.
+g. Control and monitor wireless access protocol (WAP) gateways, when approved, with firewalls and IDS devices.
+h. Certify all wireless devices procured with Army funds for spectrum supportability through the Military Communications
+Electronics Board (MCEB) per DODD 5000.1 and AR 5–12. Submit spectrum supportability requests to
+NETCOM/9th ASC, ATTN: NETC–EST–V, Suite 1204, 2461 Eisenhower Ave, Alexandria, VA 22331–0200.
+i. Terminate wireless access points at a boundary device in the DMZ, not in the internal enclave.
+j. Certify that WLAN frequencies meet any host nation or government restrictions.
+
+
+
+****TEST****
+
+Which of the following is a benefit of wireless networking? 
+*A. Allows for inexpensive and convenient expansion of LANs 
+
+B. Allows laptop users to access home networks while traveling or working remotely
+
+C. Answers A and B
+
+D. There are no benefits to wireless networking
+
+No Answer
+
+DAA responsibilities in regards to wireless technologies include: 
+A. Ensuring that all WLAN and PED technologies adhere to AR 25-2 and the Wireless Security Standards BBP 
+
+B. Monitoring all wireless gateways and access points under their jurisdiction
+
+C. Running wireless Intrusion Detection Systems
+
+D. Answers B and C only
+
+No Answer
+
+
+*************************************************************
+*  IA Training
+*  HTTPS://IATRAINING.US.ARMY.MIL
+* 
+*  christopher.hammond
+*  changeme
+*************************************************************
+*  ^^&&**

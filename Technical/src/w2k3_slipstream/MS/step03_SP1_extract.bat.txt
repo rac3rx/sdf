@@ -1,0 +1,29 @@
+::  -------------------------------------------------------------------------- 
+::  File:  step03_SP1_extract.bat 
+::  Purpose:   
+::  Author:  SFC Hammond, Christopher J. 
+::  Date:  Fri 10/15/2010 
+::  -------------------------------------------------------------------------- 
+ 
+:: http://support.microsoft.com/kb/946582
+:: Method 2: Use the Update.exe utility
+::  
+ 
+@ECHO OFF 
+GOTO START 
+ 
+::  (Place syntax, notes, or other instructions heres) 
+ 
+:START 
+
+:: extracted files
+.\mmddyy_w2k3\w2k3\DL\WindowsServer2003-KB889101-SP1-x86-ENU.exe.EXE /X:./mmddyy_w2k3/w2k3/SP1
+
+:: Windows Server 2003 SP2 files are being integrated into the Windows Server 2003 installation folder.
+:: .\mmddyy_w2k3\w2k3\SP1\i386\update\update.exe  /s:X:.\mmddyy_w2k3\w2k3\ROOT
+.\mmddyy_w2k3\w2k3\SP1\i386\update\update.exe /integrate:.\mmddyy_w2k3\w2k3\ROOT
+
+::run an in-place upgrade to Windows Server 2003 SP2 **** NOT STUPID setup ****
+::.\mmddyy_w2k3\w2k3\ROOT\i386\winnt32
+
+:END 

@@ -1,0 +1,44 @@
+tc qdisc del dev wlan0 root 2>/dev/null
+tc qdisc del dev wlan0 ingress 2>/dev/null
+iptables -P INPUT ACCEPT
+iptables -F INPUT
+iptables -P OUTPUT ACCEPT
+iptables -F OUTPUT
+iptables -P FORWARD DROP
+iptables -F FORWARD
+iptables -t nat -F PREROUTING
+iptables -t nat -F OUTPUT
+iptables -t nat -F POSTROUTING
+iptables -t nat -F
+iptables -t mangle -F
+ip route flush table main
+iptables -t mangle -A PREROUTING -p tcp -j CONNMARK --restore-mark
+
+modprobe ifb numifbs=1
+modprobe ip_conntrack
+modprobe xt_mark
+modprobe iptable_nat
+
+echo "1" > /proc/sys/net/ipv4/ip_forward
+echo "0" > /proc/sys/net/bridge/bridge-nf-call-arptables
+echo "0" > /proc/sys/net/bridge/bridge-nf-call-iptables
+echo "0" > /proc/sys/net/bridge/bridge-nf-call-ip6tables
+
+ifconfig br0 192.168.2.1 netmask 255.255.255.0
+route add -net 192.168.2.0 netmask 255.255.255.0 dev br0
+ip route add default via 192.168.2.1 dev wlan0
+
+kpartx -av win7.img
+kpartx -av ubuntu.img
+
+tunctl -u `whoami` -t tap0
+ip link set tap0 up
+brctl addif br0 tap0
+
+tunctl -u `whoami` -t tap1
+ip link set tap1 up
+brctl addif br0 tap1
+
+kvm -no-reboot -m 1300 -hda /dev/mapper/loop0p1 -boot order=c -net nic,macaddr="DE:AD:BE:EF:EC:B6" -net tap,ifname=tap0,script=/etc/qemu-dummy
+
+kvm -no-reboot -m 1300 -hda /dev/mapper/loop1p1 -boot order=c -net nic,macaddr="DE:AD:BE:EF:EC:B7" -net tap,ifname=tap1,script=/etc/qemu-dummy

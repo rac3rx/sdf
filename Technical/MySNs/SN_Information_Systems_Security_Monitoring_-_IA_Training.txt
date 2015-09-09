@@ -1,0 +1,303 @@
+File:  SN_Information Systems Security Monitoring_-_IA_Training.txt
+
+Information Systems Security Monitoring
+
+RQ-ISSM-902 Information Systems Security Monitoring
+Module Outline
+
+During this module you will cover the following topics. If you are familiar with some of the topics you may skip ahead. 
+
+Overview
+Key Definitions and Terms
+Constitutional Base 
+The First Amendment
+First Amendment Equal Protection Issues
+Fourth Amendment Privacy Issues
+Statutory Framework 
+Electronic Communications Privacy Act (ECPA) Exceptions
+Disclosing Intercepted Communications
+Foreign Intelligence Surveillance Act 50 USC § 1809
+Computer Fraud and Abuse Act
+Regulations 
+AR 380-53
+Joint Ethics Regulation
+Consequences and Best Practices
+Review Questions
+Review Answers
+Conclusion
+
+Key Definitions and Terms
+
+Telecommunications: The preparation, transmission, communication, or related processing of information (writings, images, sounds, or other data) by electrical, electro-mechanical, or electro-optical means.
+
+Telecommunications Security: Protective measures taken to deny unauthorized persons information derived from telecommunications related to national security, and to ensure the authenticity of such communications. It also includes the application of physical security measures to COMSEC information or materials.
+
+Telecommunications Systems: The interconnected devices used to transmit, receive, or process telecommunication (telephones, fax machines, computers, VTC systems, pagers, tactical radios, etc).
+
+Information Systems Security Monitoring: The act of listening to, reading, copying, or recording ones own official telecommunications to provide material for analysis, so that the degree of security being provided to them may be determined.
+
+Content: When used with respect to any wire, oral, or electronic communication, includes any information concerning the identity of the parties to such communication or the substance, purpose or meaning of that communication.
+
+   5 of 22     
+--------------------------------------------------------------------------------
+
+Information Systems Security Monitoring
+
+RQ-ISSM-902 Information Systems Security Monitoring
+Key Definitions and Terms
+
+Penetration Verification: Provides positive verification that a system or machine level compromise had been obtained through penetration testing.
+
+Vulnerability Analysis: Systematic examination of an information system or product to determine the adequacy of security measures, identify security deficiencies, provide data from which to predict the effectiveness of proposed security measures, and confirm those measures after implementation.
+
+US Person 
+
+A US Citizen
+A permanent resident alien
+An unincorporated association of mostly US citizens and/or permanent resident aliens
+An organization incorporated in the US, unless directed/controlled by a foreign government
+
+Court Order: An order issued by a US district court judge, a military court of appeals judge, or a military judge authorizing a wire or oral interception or a pen register.
+
+Key Definitions and Terms
+
+Interception: The acquisition of the contents of any wire or oral communications through the use of any electronic, mechanical, or other device. (18USC 2510(4))
+
+Consensual Interception: An interception of wire or oral communication after verbal or written consent is given by one or more of the parties to the communication.
+
+Oral Communication: Any oral communication uttered by a person exhibiting an expectation that such communication is not subject to interception; under circumstances justifying such expectations. (18USC 2510(2))
+
+Wire Communication: Any communication made in whole or in part through the use of facilities for the transmission of communications by the aid of wire, cable, or other like connection between the point of origin and the point of reception.
+
+Constitutional Base
+
+The fourth amendment to the US Constitution guarantees each US citizen the right of being secure against unreasonable searches.
+
+The first amendment to the US Constitution guarantees each US citizen the right to free speech.
+
+   8 of 22     
+--------------------------------------------------------------------------------
+
+Information Systems Security Monitoring
+
+RQ-ISSM-902 Information Systems Security Monitoring
+Constitutional Base - The First Amendment
+
+Reno vs. ACLU 521 US 844 (1997): the Supreme Court said they will give strong first amendment protection to the Internet.
+
+Mainstream Loudoun v. Board of Trustees of the Loudoun County Library 24 F. Supp 2d 552 (1998): the Loudon County Public Library had installed filters on their public computers to curb their patrons' frequent viewing of pornography. In this case, it was decided that a public library does not have to provide internet access, but if it does, it cannot restrict it's use.
+
+Minneapolis E.E.O.C. Ruling, May 2001: The library staff charged that the library created a hostile work environment by allowing its staff to be exposed to sexually explicit images on unrestricted internet access.
+
+The Children's Internet Protection Act of 2000, upheld by the Supreme Court in 2003, requires libraries receiving certain forms of federal aid to install web filters on their public machines. However, librarians are authorized to disable the software upon request, without an explanation from the patron.
+
+
+Constitutional Base - First Amendment Equal Protection Issues
+
+We can legally block outgoing traffic from government employees, but what about the first amendment rights of those we block?
+
+Urofsky v. Gilmore 167 F.3d 191 (4th Cir. 1999): Professors employed by Virginia public colleges and universities challenged the constitutionality of a Virginia law restricting state employees' access to sexually-explicit material on computers owned or leased by the state. The restriction of access was held to be constitutional because it regulated their speech only in their capacity as state employees, and not as citizens addressing matters of public concern.
+
+Connick v. Myers 461 US 138 (1983): Cited in the Urofsky v. Gilmore case. This case distinguished the First Amendment rights of citizens from the rights of public employees speaking as public employees.
+
+First Amendment protection applies only to matters of public concern.
+
+Can we block incoming attacks or commercial solicitations?
+
+Federal law prevents solicitation of federal employees by phone or fax but not by email -- this may change soon.
+
+Have objective criteria in place as to what constitutes a blocking offense.
+
+When a commercial solicitation fits your criteria of spamming attack, block it - you have the responsibility to protect your system.
+
+Constitutional Base - Fourth Amendment Privacy Issues
+
+O'Connor v. Ortega 409 US 709 (1987): Dr. Ortega, a state employee, was accused of misconduct and his state office, desk, and file cabinet were searched without a warrant. The Supreme Court decided there is a 4th Amendment right in a government workplace, but the extent of that right is determined by the reasonable expectation of privacy in that workplace and situation.
+
+US v. Simons 29 F. Supp. 2d 324 (EDVA, 1998): A System Administrator ran a routine test and discovered child pornography on Simons' computer. The court ruled that he had no expectation of privacy on his CIA computer because of a written policy that said that computer use would be audited, to include web sites visited, URL pages retrieved, inbound and outbound file transfers, sent and received e-mails.
+
+US v. Monroe (50 MJ 550) affirmed 52 MJ 326 (2000): An Air Force email regulation which advised personnel that their emails were subject to monitoring defeated any expectation of privacy. Therefore, System Administrators could read emails without a warrant. Air Force policy states it is the affirmative duty of the Email System Administrator to be sure the email is being used properly and appropriately.
+
+US v. Sims (DC New Mexico 2001): A System Administrator acted as a tool of law enforcement and discovered child pornography on Sims' computer. Therefore the evidence was subject to exclusion. Do not be the tool of law enforcement or counterintelligence as any evidence discovered could be suppressed in court.
+
+A banner warning does not waive an individual's fourth amendment protection.
+
+
+Statutory Framework
+
+Electronic Communications Privacy Act 18 USC 2510-2521 and 2701
+
+also known as the Omnibus Crime and Safe Streets Act of 1968
+
+Also known as the Wiretap (Title III) Statute.
+
+Prohibits unauthorized interception, use, or disclosure of wire, aural, or electronic communications.
+
+Stored wire communications probably have less protection than the actual transmissions.
+
+A statutory exception, usually a warrant, is required to intercept communications, but limited exceptions are found in the statute.
+
+Statutory Framework - Electronic Communications Privacy Act (ECPA) Exceptions
+
+Business Extension - An extension phone listened to by an employer during the course of business to guard against unauthorized use of the telephone or to determine whether a call is personal or not. When it is determined that the call is personal, the monitoring should end.
+
+Pursuant to Legal Process - With a warrant or other legal authority.
+
+COMSEC activities conducted in accordance with Attorney General Approved Procedures (AR 380-53).
+
+Service Provider Exception - System and Network Administrators can intercept, use, and disclose intercepted communications as long as they are found in the normal course of business and if the Administrator is performing an activity to keep the service operational or to protect the rights or property of the service provider. Under Army and DoD regulations the Service Provider must disclose what he/she finds if it's illegal.
+
+Consent to Monitor - one-party consent which may be implied or actual.
+
+
+There is limited disclosure under the ECPA
+
+Communications can be disclosed:
+
+To a person employed by or authorized by, or whose facilities are used, to forward communication to its destination (such as in the case of the service provider).
+
+To law enforcement, if a person acting under color of law is party to the communication or when one of the parties to the communication has given prior consent to the interception.
+
+Pursuant to the authority of Statute, Court Order or Foreign Intelligence Surveillance Act.
+
+To law enforcement, if the information was inadvertently obtained by the Service Provider and appears to relate to the commission of a crime.
+
+There is no exclusion of evidence based on the ECPA
+
+U.S. v. Kennedy, 81 F. Supp. 2d 1103, (DC Kan 2000): An Internet Service Provider received an anonymous phone call which stated there was child pornography on Kennedy's computer and notified the police. A Service Provider cannot provide information to the government without a court order but the evidence was not suppressed.
+
+U.S. v. Allen, 1999 CCA LEXIS 116, Air Force Court of Criminal Appeals: A government technician became concerned that large files passing through the network firewall on a government computer might contain images of pornography; upon further investigation it was discovered that it was child pornography requested by Lieutenant Allen. It was determined that the officers had acted in good faith on the ISP's assertion that they had the authority to release the records and the evidence was not suppressed.
+
+   14 of 22     
+--------------------------------------------------------------------------------
+
+Information Systems Security Monitoring
+
+RQ-ISSM-902 Information Systems Security Monitoring
+Statutory Framework - Foreign Intelligence Surveillance Act 50 USC § 1809
+
+FISA establishes a legal means for foreign intelligence surveillance separate from ordinary law enforcement surveillance.
+
+FISA surveillance must have an intelligence purpose but FISA-obtained information can be used in criminal trials.
+
+Prohibits individuals from disclosing information obtained under color of law (using power given by a governmental agency) by electronic surveillance not authorized by the statute.
+
+
+Statutory Framework - Computer Fraud and Abuse Act 
+(National Information Infrastructure Protection Act) 18 USC § 1030
+
+also known as: The Hacker Statute
+
+Makes certain activities designed to access a federal interest computer illegal, including:
+Knowingly accessing a computer without authorization.
+Knowingly exceeding authorized access.
+Implanting a malicious code or virus.
+A federal interest computer is:
+One used by a financial institution or the US Government.
+One used in interstate or foreign commerce or communication.
+One of two or more computers used in committing the offense.
+There is a sliding scale of punishment based on intent and damage caused.
+There is also an exception for law enforcement and intelligence agencies.
+
+AR 25-2
+
+Sets guidelines and limits for System and Network administrators and talks about the role of CERTs. The Network or System Administrator is not authorized to view content except:
+
+With the consent of the user or file owner, preferably in writing.
+While performing system backup and recovery.
+While performing anti-virus functions.
+As necessary for the continued operation and system integrity of the AIS - i.e., if a commander wants to monitor the system for personal use to keep limited bandwidth open, that's acceptable. One can monitor for system reasons but not to enforce policy.
+As part of a properly authorized investigation.
+Note:
+
+No keystroke monitoring software may be used. Sniffers can be used only for diagnostics and troubleshooting.
+A System Administrator may let a supervisor into a user's files only when the employee is unreachable, to find files for official purposes.
+In the Army, a warrant, commander's search authority, or user's consent is required to read emails.
+
+   17 of 22     
+--------------------------------------------------------------------------------
+
+Information Systems Security Monitoring
+
+RQ-ISSM-902 Information Systems Security Monitoring
+Regulations - AR 380-53
+
+Applies mainly to those performing COMSEC monitoring.
+
+Only authorized individuals as set forth in the regulation can conduct information systems security monitoring.
+
+System Administrators can do vulnerability assessments of their own systems, but only ACERT can perform penetration testing.
+
+Those performing COMSEC monitoring can't monitor for intelligence, law enforcement, or disciplinary reasons.
+
+The exception for C2 Protect functions is limited to vulnerability assessments for systems under the direct control of System and Network administrators.
+
+
+Regulations - Joint Ethics Regulation
+
+DoD 5500.7R, Para. 2-301
+
+Contains the rules for DoD personnel's personal use of government telecommunications resources.
+Limits personal use to when the individual is off duty, prohibiting pornographic and gambling sites.
+Limits personal use of government email - no chain letters and not for commercial business.
+A policy regarding personal use should be in place and personal use should not overburden the system.
+The Joint Ethics Regulation does not apply to contractor personnel, but there is a government-furnished equipment clause in every government contract which states the contractor can only use the equipment to complete the government contract.
+Joint Ethics Regulation 2-301 a. (3)
+
+DoD employees shall use federal government communications systems with the understanding that such use serves as consent to monitoring of any type of use, including incidental and personal uses, whether authorized or unauthorized.
+Carlos Morrison v. NASA 65 M.S.P.R. 348 (1994): Morrison received a 35-day suspension for having sexually-explicit pictures on a government computer, and exposing co-workers to sexually-explicit material was held not to be excessive.
+Clinton Zimmerman v. Pirie SEC NAV, 101 FEOR 1223 (April 5, 2001): Zimmerman received a 3-day suspension for viewing pornography.
+
+Regulations - Consequences and Best Practices
+
+Why Worry?
+
+You are subject to civil and criminal suit if you exceed your authority.
+Under all three statutes you can be sued by party to the communication or someone against whom the interception was directed.
+Cyberspace Rules of the Road
+
+Practice strict compliance with law and regulation - don't substitute your judgment for the law.
+Clearly identify the purpose of monitoring.
+Following correct procedure is always the safest approach.
+Get permission of the System Owner in writing.
+Use procedures and software that will give you a good audit trail.
+Know when to call in law enforcement and counterintelligence.
+
+   20 of 22     
+--------------------------------------------------------------------------------
+
+Information Systems Security Monitoring
+
+RQ-ISSM-902 Information Systems Security Monitoring
+Review Questions
+
+A banner warning always overrides a user's Fourth Amendment expectations of privacy.
+True
+*False
+The Joint Ethics Regulation applies to contractors using federal equipment.
+True
+*False
+All DOD telecommunications are subject to information systems security monitoring at all times.
+*True
+False
+
+Conclusion 
+
+ 
+
+In this module you learned about current ISSM regulations and their history.
+
+You have covered the following main areas:
+
+Key Definitions and Terms
+Constitutional Base
+Statutory Framework
+Regulations
+ 
+
+You have completed module RQ-ISSM-902.
+
+
+AR 380-19 deals with
+
+unlawful monitoring 

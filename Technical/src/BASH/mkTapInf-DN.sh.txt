@@ -1,0 +1,36 @@
+#!/bin/bash
+###
+#
+#  File:  mkTapInf-DN.sh.txt
+#  Purpose:  somePurposeExplainingTheExistanceOfThisFileInAMeaningConciseManner
+#  Author:  SFC Hammond, Christopher J.
+#  Date:  22:53, 08/31/15
+#
+###
+
+
+# 
+#  Maintenance Record and versioning
+# 
+
+
+# 
+#  Syntax, notes, or instructions
+# 
+
+
+#
+# sudo iptables -I INPUT -j ACCEPT -i tap0
+# sudo iptables -I OUTPUT -j ACCEPT -o tap0
+#
+# reverse it
+#
+sudo ifconfig br0 down
+sudo brctl delif br0 wlan0
+sudo brctl delif br0 tap0
+sudo brctl delbr br0
+sudo tunctl -d tap0
+sudo ifconfig wlan0 up
+#sudo ifconfig wlan0 10.0.0.31/24
+sudo dhclient wlan0
+#sudo route add default gw 10.0.0.1

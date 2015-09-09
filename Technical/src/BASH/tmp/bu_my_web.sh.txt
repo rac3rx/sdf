@@ -1,0 +1,2 @@
+#rsync -az -e ssh --delete ~ftp/pub/samba nimbus:"~ftp/pub/tridge"
+rsync -avz -e ssh /var/www/html/ rac3rx@freeshell.org:/arpa/ns/r/rac3rx/html/

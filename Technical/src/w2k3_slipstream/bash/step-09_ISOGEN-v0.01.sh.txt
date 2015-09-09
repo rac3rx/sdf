@@ -1,0 +1,20 @@
+#!/bin/bash
+###
+#
+#  File:  step-09_ISO-v0.01.sh
+#  Purpose:  Create w2k3 bootable ISO
+#  Author:  SFC Hammond, Christopher J.
+#  Date:  08:20, 10/13/10
+#
+###
+
+# 
+#  Maintenance Record and versioning
+# 
+
+# 
+#  Syntax, notes, or instructions
+# 
+
+cp ../w2k3/BOOT/w2k3ElTo.img ../w2k3/ROOT
+sudo genisoimage -b w2k3ElTo.img -no-emul-boot -c -max-iso9660-filenames -relaxed-filenames -o ../w2k3/ISOS/w2k3.iso .

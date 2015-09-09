@@ -1,0 +1,27 @@
+#!/bin/bash
+###
+#
+#  File:  FN2ID3-v0.06.sh.txt
+#  Purpose:  String Chopping artist's name in filename of mp3
+#  Author:  SFC Hammond, Christopher J.
+#  Date:  22:22, 09/01/15
+#
+###
+
+
+# 
+#  Maintenance Record and versioning
+# 
+
+
+# 
+#  Syntax, notes, or instructions
+# 
+
+
+# artist first string chopping the variable (trick #$% before var after -short # -long ## 
+# awk -F is FS field seperator for Artist_-_Title.mp3
+for i in $(ls *.mp3); do id3tool -r "$(basename "${i%%.*}" | awk -F_-_ '{print $1}' | tr "_" " ")" "${i}"; done
+
+# title second
+for i in $(ls *.mp3); do id3tool -t "$(basename "${i%%.*}" | awk -F_-_ '{print $2}' | tr "_" " ")" "${i}"; done

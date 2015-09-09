@@ -1,0 +1,6 @@
+  VIM
+-=-=-=-
+
+:%s/foo/bar/g Replace every occurrence word foo with bar in whole file.
+
+-=-=-=-

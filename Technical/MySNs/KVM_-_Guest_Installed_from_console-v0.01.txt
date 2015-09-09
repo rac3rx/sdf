@@ -1,0 +1,164 @@
+KVM Guest installed from console
+30JUN14
+========================
+
+    KVM 14 part virtualization series
+    ==========================
+    http://www.cyberciti.biz/faq/kvm-install-centos-redhat-using-kickstart-ks-cfg/
+    http://www.cyberciti.biz/faq/centos-rhel-linux-kvm-virtulization-tutorial/
+
+                     Physical Host
+                     kauai.example.net
+
+                     HD1 Space:  80GB>
+                     RAM:  > 4GB
+                     IP:  192.168.122.1
+
+
+       VM (server sytstem)         VM (test sytstem)         VM (test sytstem)
+       gamma.example.net           whitehat.example.net
+
+       HD1 Space: 12GB             HD1 Space: 12GB           HD1 Space: 12GB
+       HD2 Space: 01GB             HD1 Space: 01GB           HD1 Space: 01GB
+       RAM: 768 MB                 RAM: 768 MB               RAM: 768 MB
+       IP:  192.168.122.20         IP:  192.168.122.130      IP:  192.168.122.240
+
+
+    Step 01:  Use kickstart GUI tool called "Kickstart Configurator" (run system-config-kickstart command to start the tool) 
+              to create a file called ks.cfg as follows:
+    
+              $ system-config-kickstart                 #  ks.cfg
+
+              --snip--ks.cfg--
+
+auth  --useshadow  --enablemd5
+bootloader --location=mbr
+zerombr
+clearpart --all --initlabel
+text
+firewall --enabled --port=22:tcp
+firstboot --disable
+keyboard us
+network --device eth0 --bootproto static --ip 10.10.21.76 --netmask 255.255.255.240 --gateway 10.10.21.100 --nameserver 10.10.21.1,10.10.21.2 --noipv6
+network --device eth1 --bootproto static --ip 123.1.2.6 --netmask 255.255.255.240 --gateway 123.1.2.100 --nameserver 10.10.21.1,10.10.21.2 --hostname centos.nixcraft.in --noipv6
+lang en_US
+logging --level=info
+url --url=http://mirrors.nixcraft.in/centos/5.5/os/x86_64/ 
+reboot
+rootpw --iscrypted $1$somepassword
+selinux --enforcing
+skipx
+timezone  America/New_York
+install
+part / --bytes-per-inode=4096 --fstype="ext3" --grow --size=1
+part swap --recommended
+%packages
+@core
+--nobase
+%post
+(
+echo '10.0.0.0/8 via 10.10.21.100' > /etc/sysconfig/network-scripts/route-eth0
+sed -i 's/LABEL=\//& console=ttyS0/' /etc/grub.conf
+echo 'S0:12345:respawn:/sbin/agetty ttyS0 115200' >> /etc/inittab
+echo "ttyS0" >> /etc/securetty
+echo 'IPV6INIT=no' >> /etc/sysconfig/network
+echo 'install ipv6 /bin/true' >> /etc/modprobe.conf
+) 1>/root/post_install.log 2>&1
+
+              --snip--ks.cfg--
+
+    Step 02: 
+
+virt-install: Install CentOS using Kickstart
+
+Type the following command:
+# virt-install \
+-n centos \
+-r 2048 \
+--vcpus=1 \
+--os-variant=rhel5.4 \
+--accelerate \
+-v \
+-w bridge:br0 \
+-w bridge:br1 \
+--disk path=/emc/kvm/centos.img,size=100 \
+-l http://mirrors.nixcraft.in/centos/5.5/os/x86_64/ \
+-nographics \
+-x "ks=http://10.10.21.3/static/ks.cfg ksdevice=eth0 ip=10.10.21.76 netmask=255.255.255.240 dns=10.10.21.1 gateway=10.10.21.100"
+
+
+Troubleshooting:
+=============================================
+Configure libvirtd
+https://forums.gentoo.org/viewtopic-t-841327-start-0.html
+
+virt-install -n a32-kvm -r 1024 --connect=qemu:///system -v --import --disk path=/opt/a32.qcow,format=qcow2 -w bridge=br0 --vnc --prompt
+
+    auto-generated .xml
+
+    <features>
+        <acpi/>
+        <apic/>
+        <pae/>
+    </features>
+
+    $ virsh domxml-from-native qemu-argv demo.args > myvm.xml
+
+    --snip--
+
+    changing this:
+    Code:
+	
+        <driver name='qemu' type='raw'/>
+
+    to this:
+    Code:
+	
+        <driver name='qemu' type='qcow2'/>
+ 
+    --snip--
+
+socks groups permissions useful info
+https://help.ubuntu.com/community/KVM/Installation
+
+
+REF:
+
+Awesome site on tftp and various tricks for KVM - Configure libvirtd SELinux
+http://cumptrnrd.wordpress.com/tag/kvm/
+
+    sudo yum group install "Web Server"
+    sudo systemctl start httpd.service
+    sudo systemctl enable httpd.service
+
+    wget -ct 3 http://mirror.stanford.edu/yum/pub/centos/6.5/isos/x86_64/CentOS-6.5-x86_64-LiveDVD.iso
+    wget -ct 3 http://mirror.stanford.edu/yum/pub/centos/6.5/isos/x86_64/CentOS-6.5-x86_64-minimal.iso
+
+    virt-install --connect qemu:///system -n centos -r 512 --vcpus=2 --arch=x86_64 -c CentOS-6.2-x86_64-netinstall.iso --disk /var/lib/libvirt/images/centos.img,size=10 -w network=default --graphics vnc --os-type=linux --os-variant=rhel6
+
+    virt-install \
+--connect qemu:///system 
+-n centos \
+-r 512 \
+--vcpus=2 \
+--arch=x86_64 \
+-c CentOS-6.2-x86_64-netinstall.iso \
+--disk /var/lib/libvirt/images/centos.img,size=10 \
+-w network=default \
+--graphics vnc \
+--os-type=linux \
+--os-variant=rhel6
+
+Cheat sheet
+https://www.mare-system.de/static/dontpanic/Redhat_KVM_Cheat_sheet.html
+https://github.com/benpence/config/blob/master/cheatsheet/virt.md
+http://virt-tools.org/learning/install-with-command-line/
+
+Awesome VNC example
+http://www.cyberciti.biz/faq/kvm-virtualization-in-redhat-centos-scientific-linux-6/
+
+Direct terminal access via Serial Console
+https://help.ubuntu.com/community/KVM/Access
+
+Installing KVM Guests With virt-install On Ubuntu 8.10 Server
+http://www.howtoforge.com/installing-kvm-guests-with-virt-install-on-ubuntu-8.10-server

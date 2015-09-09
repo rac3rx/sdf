@@ -1,0 +1,1 @@
+cmd /k D:\DL\VanillaXPSP2_VanillaCD\mkisofs -A "SOCSO XPSP2 CD" -J -T -v -d -b "MicrosoftCorporation.bin" -c "bootcat.bin" -no-emul-boot -boot-load-size 4 -boot-load-seg 0x07C0 -l -disable-deep-relocation -joliet-long -omit-version-number -no-iso-translate -o "D:\DL\xpsp2-vanilla.iso" "D:\DL\VanillaXPSP2_VanillaCD"

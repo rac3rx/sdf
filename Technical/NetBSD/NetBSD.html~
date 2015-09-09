@@ -1,0 +1,74 @@
+<HTML>
+  <HEAD>
+    <TITLE>
+      NetBSD Newbie Notes, Checklists and Tutorials
+    </TITLE>
+  </HEAD>
+  <BODY>
+<TABLE>
+  <TR>
+    <TD>
+      <A HREF="Technical/MyTechnicalNotes.html">
+	[ Technical ]
+      </A>
+    </TD>
+    <TD>
+      <A HREF="Military/Military.html">
+        [ Military ]
+      </A>
+    </TD>
+    <TD>
+      <A HREF="Literature/Literature.html">
+        [ Literature ]
+      </A>
+    </TD>
+    <TD>
+      <A HREF="Family/Family.html">
+	[ Family ]
+      </A>
+    </TD>
+    <TD>
+      <A HREF="Bookmarks/MyFavoriteBookMarks.html">
+	[ Bookmarks ]
+      </A>
+    </TD>
+  </TR>
+</TABLE>
+    <TABLE>
+      <TR>
+        <TD>
+	  <A HREF="./NetBSD/NetBSD.html">[ NetBSD ]</A>
+	</TD>
+	<TD>
+	  <A HREF="./Shells/Shells.html">[ Shells ]</A>
+	</TD>
+      </TR>
+    </TABLE>
+    <TABLE>
+      <TR>
+        <TD>
+        <A HREF="Study_Notes_NetBSD_Installation-v0.22.txt">[ NetBSD Newbie Install Notes, Checklist and Tutorial ]</A>
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          <A HREF="NetBSD_Kernel.html">
+	    [ Kernel ]
+	  </A>
+        </TD>
+      </TR>
+    </TABLE>
+    <P>
+	       
+    <a href="http://www.NetBSD.org/"><img src="../../Graphics/NetBSD_212x209.jpg" border=0 alt="Site driven by NetBSD - NetBSD rules!"></a></P>
+    <P>
+      LAST UPDATED: Mon Apr 19 16:49:28 UTC 2004
+    </P> 
+    <P>
+      <A HREF="MAILTO:rac3rx@sdf.lonestar.org">
+        Webmaster: rac3rx@sdf.lonestar.org
+      </A>
+    </P>
+  </BODY>
+</HTML>
+

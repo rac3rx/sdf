@@ -1,0 +1,79 @@
+#!/bin/bash
+###
+#
+#  File:  mkTapInf-UP.sh.txt
+#  Purpose:  create a tap interface <-- UP
+#  Author:  SFC Hammond, Christopher J.
+#  Date:  22:54, 08/31/15
+#
+###
+
+
+# 
+#  Maintenance Record and versioning
+# 
+
+
+# 
+#  Syntax, notes, or instructions
+# 
+
+
+#
+# bridge util
+# http://www.blindhog.net/linux-bridging-for-gns3-lan-communications/
+# http://joshatterbury.com/tutorials/configuring-dynamips-to-use-a-linux-tap-interface/
+# http://networkingtips-tricks.blogspot.co.il/2010/09/how-to-install-loopback-interface-in.html
+#
+sudo apt-get install uml-utilities
+sudo apt-get install bridge-utils
+modprobe tun
+#
+# creates loopback int # ifconfig tap0 192.168.255.10/24 up
+#
+tunctl -t tap0    # tunctl -t tap1  # ireates another  int # ifconfig tap1 192.168.255.10/24 up
+#
+# Remove ip addressing and set eth0 and tap0 to promiscuous mode
+#
+sudo ifconfig tap0 0.0.0.0 promisc up
+sudo ifconfig wlan0 0.0.0.0 promisc up
+#
+# Create a new bridge interface
+#
+sudo brctl addbr br0
+#
+# Add tap0 and eth0/wlan0 to the bridge group
+#
+sudo brctl addif br0 tap0
+sudo brctl addif br0 wlan0
+#
+# Enable the bridge interface and give it an ip address
+#
+sudo ifconfig br0 up
+sudo ifconfig br0 10.0.0.30/24
+#
+# Configure the default route
+#
+sudo route add default gw 10.0.0.1
+#
+#
+#
+echo "step 06:  Drag the cloud onto the work-board and right click on it,"
+echo "step 06:  Select Configure. Then Select NIO TAP, type tap0, press Add."
+echo "step 06:  Click Apply and  ok.  Now connect it to your router."
+echo "step 07:  iptables"
+#
+# sudo iptables -I INPUT -j ACCEPT -i tap0
+# sudo iptables -I OUTPUT -j ACCEPT -o tap0
+#
+# reverse it
+#
+#sudo ifconfig br0 down
+#sudo brctl delif br0 wlan0
+#sudo brctl delif br0 tap0
+#sudo brctl delbr br0
+#sudo tunctl -d tap0
+#sudo ifconfig wlan0 up
+#sudo ifconfig wlan0 10.0.0.31/24
+#sudo dhclient wlan0
+#sudo route add default gw 10.0.0.1

@@ -1,0 +1,17 @@
+#!/usr/bin/perl
+# fortune.cgi - get a random quote
+# get a quote - change your path appropriately
+$quote = `fortune`;
+# print it in a page
+print <<EOF;
+<html>
+<head>
+<basefont face=Arial>
+</head>
+<body>
+And your quote is:
+<br>
+$quote
+</body>
+</html>
+EOF

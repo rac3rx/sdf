@@ -1,0 +1,137 @@
+#!/bin/bash
+###
+#
+#  File:  buRsync-v0.04.sh
+#  Purpose:  backup scripts in local directory.
+#  Author:  SFC Hammond, Christopher J.
+#  Date:  21:29, 10/07/10
+#
+###
+
+
+# 
+#  Maintenance Record and versioning
+# 
+#  need error control, logging, rsync, use find, email
+
+# 
+#  Syntax, notes, or instructions
+#
+#  v4 added pre-reqs
+#           .dot files
+
+#
+# Pre-Requisites
+# apt-get install msmtp heirloom-mailx bzip2 rsync read
+#
+for i in msmtp heirloom-mailx bzip2 rsync; do
+  if ! which command > /dev/null; then
+    echo -e "Command not found! Install? (y/n) \c"
+    read
+    if "$REPLY" = "y"; then
+      sudo apt-get install command
+    fi
+  fi
+#
+# env vars for directories or resources
+#
+HOME=/home/rac3rx                       # setup initial variables shortcuts first
+BIN=${HOME}/Bin
+SUPPORT=${HOME}/Support
+DATA=${SUPPORT}/Data
+MYBU=${DATA}/MyBU
+MYBU=${DATA}/MyDOTs
+MYSNS=${DATA}/MySNs
+MYSRC=${Data}/MySrc
+PCOS=${SUPPORT}/PCOS/W2k3/Bin
+MYDATA="${BIN} ${MYSNS} ${MYDOTS} ${MYSRC} ${PCOS}"
+TMP=${HOME}/Tmp
+UL=${HOME}/_UL
+COMP=`uname -n`
+
+#
+# env vars for dates eg $(date +%m-%d-%Y)
+#
+DOW=`date +%a`              		# Day of the week e.g. Mon
+DOM=`date +%d`              		# Date of the Month e.g. 27
+DM=`date +%d%b`             	        # Date and Month e.g. 27Sep
+DMY=`date +%d%b%y`             	        # Date, Month, and Year e.g. 27Sep10
+H=`date +%H`                            # 24 hr format
+HM=`date +%H%M`                         # 24 hr format
+BUFILE=${COMP}_${H}_${DM}.tbz
+
+#
+# synchronize directories rsync does it better than tar
+#
+
+#
+# mail variables
+#
+MTO=chris.hammond.tx@gmail.com
+MSUB="Backup ${MYBU}"
+#MBOD=`echo ${COMP} ${DM}`
+MBOD=${MYBU}/buMessage.txt
+MATT=${UL}/${BUFILE}
+
+#
+# verify files and dir
+#
+if [ ! -d "${BIN}" ]; then
+    mkdir "${BIN}"
+fi
+#
+# debugging
+#
+# UL=${HOME}/_UL; if [ ! -d "${UL}" ]; then mkdir ${UL}; fi
+if [ ! -d ${UL} ]; then mkdir ${UL}; fi
+if [ ! -d ${TMP} ]; then mkdir ${TMP}; fi
+if [ ! -d ${SUPPORT} ]; then mkdir ${SUPPORT}; fi
+if [ ! -d ${DATA} ]; then mkdir ${DATA}; fi
+if [ ! -d ${MYBU} ]; then mkdir ${MYBU}; fi
+if [ ! -d ${MYDOTS} ]; then mkdir ${MYDOTS}; fi
+if [ ! -f ${MBOD} ]; then echo "Great Backup" > ${MBOD}; fi
+if [ ! -d ${MYSNS} ]; then mkdir ${MYSNS}; fi
+if [ ! -d ${MYSRC} ]; then mkdir ${MYSRC}; fi
+if [ ! -d ${PCOS} ]; then mkdir -p ${PCOS}; fi
+
+#
+# backup targets bzip format 
+#
+    echo -e \\n
+    echo '+--------------------------------------+'
+    echo '|  synching targets to source          |'
+    echo '+--------------------------------------+'
+    echo -e \\n
+    echo '+--------------------------------------+'
+    echo '|  copying SN*                         |'
+    echo '+--------------------------------------+'
+    echo -e \\n
+    cp -a ${HOME}/SN_*.txt ${MYSNS}
+    cp -a ${HOME}/.m* ${MYDOTS}
+    echo '+--------------------------------------+'
+    echo '|  rsync   SN*                         |'
+    echo '+--------------------------------------+'
+    echo -e \\n
+    rsync -avz ${MYDATA} ${MYBU}
+    echo '+--------------------------------------+'
+    echo '|  tar     MYBU                        |'
+    echo '+--------------------------------------+'
+    echo -e \\n
+
+#
+# debugging here for a one liner
+#
+# UL=${HOME}/_UL; BUFILE=${COMP}_${H}_${DM}.tbz; 
+# MATT=${UL}/${BUFILE}; MYBU=${Data}/MyBU tar -jcf ${MATT} ${MYBU}
+
+    tar -jcf ${MATT} ${MYBU}
+    echo '+--------------------------------------+'
+    echo '|  mail    SN*                         |'
+    echo '+--------------------------------------+'
+    echo -e \\n
+    mail -a "${MATT}" -s "${MSUB}" "${MTO}" < "${MBOD}"
+    echo -e \\n
+    echo '+--------------------------------------+'
+    echo '|  Done thank you                      |'
+    echo '+--------------------------------------+'
+    echo -e \\n

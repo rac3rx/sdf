@@ -1,0 +1,48 @@
+::  -------------------------------------------------------------------------- 
+::  File:  step00_dd-v0.02.bat 
+::  Purpose:   
+::  Author:  SFC Hammond, Christopher J. 
+::  Date:  Thu 10/14/2010 
+::  -------------------------------------------------------------------------- 
+ 
+:: (Place maintenance record here) 
+ 
+@ECHO OFF 
+GOTO START 
+ 
+
+::
+:: The first physical drive is referred to as \\.\PhysicalDrive0
+:: and subsequent drives would be identified as 1,2,3 etc.
+:: hda = \\.\PhysicalDrive0
+:: hdb = \\.\PhysicalDrive1
+:: hdc = \\.\PhysicalDrive2
+:: \\. Represents the local machine. (Note the absence of a trailing backslash.)
+:: Logical \\.\C: /dev/hda1
+:: Physical \\.\PhysicalDrive0 /dev/hda
+:: Or unique volume name
+:: \\?\Volume{cc5deda7-d558-11d5-9226- 806d6172696f} (dd --list)
+::
+:: md5 example
+:: dd if=\\.\E: of=c:\images\E_drive.img --md5sum --verifymd5 --md5out=c:\images\E_drive.img.md5
+::
+:: Make an image of a floppy disk:
+::   dd if=\\.\a: of=c:\temp\disk1.img bs=1440k
+::
+:: Write the image back to a floppy disk:
+::   dd if=c:\temp\disk1.img of=\\.\a: bs=1440k
+::
+:: Rip an .iso from a CD
+::   dd if=\\?\Device\CdRom0 of=c:\temp\disc1.iso bs=1M
+::
+:: Read a partition from a USB memory device
+::   dd if=\\.\Volume{c18588c0-02e9-11d8-853f-00902758442b} of=c:\temp\usb1.img bs=1M
+::
+:: Read the entire USB memory device
+::   dd if=\\?\Device\Harddisk1\Partition0 of=c:\temp\usb2.img bs=1M --size --progress
+:: 
+ 
+:START 
+:: C:\Temp\Support\PCOS\MS_Windows_Svr_2k3\Tmp\Bin\UnxUtils\usr\local\wbin\dd.exe if=\\.\PhysicalDrive2 
+C:\Temp\Support\PCOS\MS_Windows_Svr_2k3\Tmp\Bin\dd-0.3\dd.exe if=\\?\Device\CdRom0 of=C:\Temp\Support\PCOS\MS_Windows_Svr_2k3\ISOs\w2k3.iso bs=1M 
+:END 

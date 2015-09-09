@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- ******************************************************* --> 
+<!-- *  File:     /home/rac3rx/html/index.html             * --> 
+<!-- *  Author:   Anonymous                                * --> 
+<!-- *  Purpose:  To present and share my homepage in an   * --> 
+<!-- *            organizable fashion.                     * --> 
+<!-- *  Date:     22NOV09                                  * --> 
+<!-- ******************************************************* --> 
+<HTML>
+    <HEAD>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+        <meta name="description" content="personal web site">
+        <meta name="GENERATOR" content="vim">
+        <meta name="ProgId" content="vim.Document">
+        <TITLE>
+            Chris's -- Personal Web Page
+        </TITLE>
+    </HEAD>
+    <BODY>
+    <BODY BGCOLOR="BLACK">
+    <BODY TEXT="GREEN">
+	<FONT SIZE=+0 FACE="ARIAL">
+    <HR COLOR="#80ff80">
+    <TABLE>
+      <TR>
+        <TD><A HREF="./index.html">[ Home ]</A></TD>
+        <TD><A HREF="./Spanish/Spanish.txt">[ Spanish ]</A></TD>
+        <TD><A HREF="./Technical/Technical.html">[ Technical ]</A></TD>
+        <TD><A HREF="./Military/Military.html">[ Military ]</A></TD>
+        <TD><A HREF="./Literature/Literature.html">[ Literature ]</A></TD>
+        <TD><A HREF="./Family/Family.html">[ Family ]</A></TD>
+        <TD><A HREF="./Tree/index.html">[ FamilyTree ]</A></TD>
+        <TD><A HREF="./Bookmarks/Bookmarks.html">[ Bookmarks ]</A></TD>
+        <TD><A HREF="./Health/Health.html">[ Health ]</A></TD>
+        <TD><A HREF="./Lyrics/Lyrics.html">[ Lyrics ]</A></TD>
+      </TR>
+    </TABLE>
+    <HR COLOR="#80ff80">
+    </p>
+    <P font size=-1 face="arial" ALIGN=LEFT>
+      I'm from Houston, Texas served in the Navy from 86-95 (stationed in Catania, Italy and Norfolk, Virginia).  I was an Aviation Machinest 
+      mate (jet mechanic, grease monkey, or nose picker).  Thereafter I became a civilian and worked at various places as IT from the ground up 
+      (hardware, software, networking, and a little code here and there (DOS, Win 3.1x, Novell, GNU/Linux, OS/2, and BSDs).  Microsoft has just 
+      kept evolving along with every other technology under the sun.  Oh yeah, I went to boot camp in San Diego, California.
+    <BR></BR>
+      In 2001, I started missing the military so I joined the Naval Reserve as an IT, but didn't like the Naval Reserve and tried joining the 
+      Marines but couldn't get the age waiver.  Afterwards I went into the Army Reserve as an infantryman.  Now I was hooked and transfered to 
+      active duty  ( I was changed to a NBC (nuclear, biological, and chemical at the whims of the Army).  This happened in 2004, it took three 
+      years to change my MOS to Signal (IT).  Soon after I was airborne.  Now I am trying to go Ranger it should happen this year if it's God's 
+      will in 2009.  Basic was at Ft. Leornardwood, and I was stationed at Ft. Polk, Louisiana, and currently serving in Latin America and 
+      the Carribean.
+    <BR></BR>
+    </p>
+    <P font size=-1 face="arial" ALIGN=LEFT>
+      Most importantly I am a christian with four wonderful children, Christopher, Breanna, Alyssa, and Dakota to whom my life is dedicated as 
+      Jesus has inspired me to be from one father to another.  I am blessed with one brother and sister, Jon and Laura.  They in turn have 
+      their families that make it a more enriched experience.  My parents have parted and I miss them sorely.  I'm no preacher or something to 
+      put on a pedestal.  However, after a fall I get up and press forward and always know where to turn to ie Jesus.  At least the devil 
+      can't tempt me there with an undeserving attitude.  This is a good snapshot of whom I am and some of my interests. 
+    </p>
+    <P font size=-1 face="arial" ALIGN=LEFT>
+     Special thanks to my children's mother Blanca, for doing such a great job 
+in raising our children, without me.
+    </p>
+    <h1 align=center><i>Translate</i></h1>
+    <P ALIGN=center>
+            <i>You may translate this page, down below, with Yahoo Babel Fish. Try it now, select your language!  I especially facilitated this, for my spanish and italian friends.
+            </i>
+        </P>
+        <table>
+            <tr>
+                <td valign="top">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td valign="top">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td valign="top">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td colspan=32>
+                </td>
+                <td colspan=32>
+                </td>
+                <td>
+<script type="text/javascript" charset="UTF-8" language="JavaScript1.2" src="http://uk.babelfish.yahoo.com/free_trans_service/babelfish2.js?from_lang=en&region=us"></script> 
+                </td>
+            </tr>
+        </table>
+	<BR></BR>
+	<BR></BR>
+    <h1>Tools I Use For This Site</h1>
+    <P font size=-1 face="arial" ALIGN=LEFT>
+     NetBSD is my favorite server OS, for workstations I love GNU/Linux, the aforementioned OSs wouldn't be much without the tools offered by GNU and the rest of the open source community out there, and my favorite editor is VIM.
+	<FONT SIZE=+0 FACE="ARIAL">
+    <P ALIGN=CENTER>
+    <TABLE>
+      <TR>
+        <TD>
+          Site driven by NetBSD
+        </TD>
+        <TD>
+          Free unix-like OS, created by
+              <P></P>
+          Linux Torvalds and others
+              <P></P>
+          around the world
+        </TD>
+        <TD>
+          GNU is not unix
+        </TD>
+        <TD>
+          VImproved
+        </TD>
+

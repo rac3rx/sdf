@@ -1,0 +1,1 @@
+wget -ct 3 http://mirrors.rutgers.edu/archlinux/iso/2012.12.01/archlinux-2012.12.01-dual.iso

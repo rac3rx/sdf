@@ -1,0 +1,20 @@
+#!/bin/bash
+###
+#
+#  File:  step-06_cabextract-v0.02.sh
+#  Purpose:  extract cab files Windows Server SP1/2
+#  Author:  SFC Hammond, Christopher J.
+#  Date:  20:12, 10/12/10
+#
+###
+  
+# 
+#  Maintenance Record and versioning
+# 
+  
+# 
+#  Syntax, notes, or instructions
+# 
+cabextract -d ../w2k3/SP1/ ../w2k3/DL/WindowsServer2003-KB889101-SP1-x86-ENU.exe
+cabextract -d ../w2k3/SP2/ ../w2k3/DL/WindowsServer2003-KB914961-SP2-x86-ENU.exe
+#convmv -r --upper --notest ./SP2/
